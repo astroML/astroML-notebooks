@@ -1,0 +1,7 @@
+matplotlib
+numpy
+pymc3
+https://github.com/astroML/astroML/archive/main.zip
+arviz
+seaborn
+jupyter-contrib-nbextensions
