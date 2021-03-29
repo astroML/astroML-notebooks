@@ -1,5 +1,5 @@
-Textbook Figures
-----------------
+AstroML notebooks
+-----------------
 
 This section makes available the source code used to generate the figures
 in the book `Statistics, Data Mining, and Machine Learning in Astronomy`,
