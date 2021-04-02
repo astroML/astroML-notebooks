@@ -126,9 +126,9 @@ If we consider a function in terms of the sum of bases (this can be polynomials,
 
 polynomial regression: 
 
-$$𝑦=𝑎_0+𝑎_1𝑥+𝑎_2𝑥^2+𝑎_3𝑥^3+⋯$$
+$$y=a_0+a_1x+a_2x^2+a_3x^3+...$$
 
-Notice that this is still a linear model—the linearity refers to the fact that the coefficients $𝑎_𝑛$ never multiply or divide each other. What we have effectively done here is to take our one-dimensional $𝑥$ values and projected them into a higher dimension, so that a linear fit can fit more complicated relationships between $𝑥$ and $𝑦$.
+Notice that this is still a linear model—the linearity refers to the fact that the coefficients $a_n$ never multiply or divide each other. What we have effectively done here is to take our one-dimensional $x$ values and projected them into a higher dimension, so that a linear fit can fit more complicated relationships between $x$ and $y$.
 
 ```{code-cell} ipython3
 from astroML.linear_model import PolynomialRegression
@@ -162,7 +162,7 @@ plt.show()
 ### Gaussian basis functions
 
 Of course, other basis functions are possible.
-For example, one useful pattern is to fit a model that is not a sum of polynomial bases, but a sum of Gaussian bases. E.g. we could substitute $𝑥^2$ for Gaussians (where we fix $𝜎$ and $𝜇$ and fit for the amplitude) as long as the attribute we are fitting for is linear. This is called basis function regression.
+For example, one useful pattern is to fit a model that is not a sum of polynomial bases, but a sum of Gaussian bases. E.g. we could substitute $x^2$ for Gaussians (where we fix $\sigma$ and $\mu$ and fit for the amplitude) as long as the attribute we are fitting for is linear. This is called basis function regression.
 
 ```{code-cell} ipython3
 from astroML.linear_model import BasisFunctionRegression
