@@ -14,7 +14,7 @@ kernelspec:
 
 +++ {"id": "_aG935uWHf7s", "colab_type": "text"}
 
-[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/bsipocz/astroML-notebooks/notebooks?filepath=chapter6/Figure6-11.ipynb)
+[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter6/Figure6-11.ipynb)
 
 # Extreme Deconvolution
 

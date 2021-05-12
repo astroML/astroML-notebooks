@@ -14,7 +14,7 @@ kernelspec:
 
 +++ {"id": "THlMh2ywJFoq", "colab_type": "text"}
 
-[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/bsipocz/astroML-notebooks/notebooks?filepath=chapter5/Figure5-9.ipynb)
+[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter5/Figure5-9.ipynb)
 
 # Parameter Estimation for a Binomial Distribution
 
