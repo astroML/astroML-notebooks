@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter9/AAS2019_NNexample.ipynb)
+[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter9/astroml_chapter9_Deep_Learning_Classifying_Astronomical_Images.ipynb)
 
 ## Deep Learning: Classifying Astronomical Images 
 

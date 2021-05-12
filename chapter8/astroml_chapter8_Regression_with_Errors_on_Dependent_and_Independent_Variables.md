@@ -12,7 +12,7 @@ kernelspec:
   name: python3
 ---
 
-[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter8/astroml_regression_example_with_errors.ipynb)
+[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter8/astroml_chapter8_Regression_with_Errors_on_Dependent_and_Independent_Variables.ipynb)
 
 # Measurement errors in both dependent and independent variables
 

@@ -14,7 +14,7 @@ kernelspec:
 
 +++ {"id": "K7l4AAzxVr-K", "colab_type": "text"}
 
-[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter5/Figure5-10,11.ipynb)
+[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter5/astroml_chapter5_Parameter_Estimation_for_Cauchy_Distribution.ipynb)
 
 
 # Parameter estimation for the Cauchy (Lorentzian) distribution

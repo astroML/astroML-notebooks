@@ -14,7 +14,7 @@ kernelspec:
 
 +++ {"id": "9FuC628wBtGP"}
 
-[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter10/Chapter10.5.ipynb)
+[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter10/astroml_chapter10_Analysis_of_Stochastic_Processes.ipynb)
 
 # Analysis of Stochastic Processes
 
