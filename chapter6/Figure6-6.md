@@ -14,7 +14,7 @@ kernelspec:
 
 +++ {"id": "XytOYGPU31rE", "colab_type": "text"}
 
-[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/bsipocz/astroML-notebooks/notebooks?filepath=chapter6/Figure6-6.ipynb)
+[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter6/Figure6-6.ipynb)
 
 # Gaussian Mixture Models Example
 
