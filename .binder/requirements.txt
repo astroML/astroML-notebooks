@@ -1,0 +1,11 @@
+matplotlib
+numpy
+pymc3
+https://github.com/astroML/astroML/archive/main.zip
+arviz
+seaborn
+jupyter-contrib-nbextensions
+tensorflow
+googledrivedownloader
+scipy
+scikit-learn<0.24    # Until https://github.com/astroML/astroML/pull/230 is released
