@@ -8,3 +8,4 @@ jupyter-contrib-nbextensions
 tensorflow
 googledrivedownloader
 scipy
+scikit-learn<0.24    # Until https://github.com/astroML/astroML/pull/230 is released
