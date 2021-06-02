@@ -1,0 +1,472 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parameter Estimation for a Binomial Distribution &#8212; AstroML Notebooks</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/astroml_logo.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">AstroML Notebooks</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html">
+   Chapter 5: Bayesian Statistical Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter6/README.html">
+   Chapter 6: Searching for Structure in Point Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter7/README.html">
+   Chapter 7: Dimensionality and its Reduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter8/README.html">
+   Chapter 8: Regression and Model Fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter9/README.html">
+   Chapter 9: Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter10/README.html">
+   Chapter 10: Time Series Analysis
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/chapter5/astroml_chapter5_Parameter_Estimation_for_Binomial_Distribution.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/chapter5/astroml_chapter5_Parameter_Estimation_for_Binomial_Distribution.md.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/astroML/astroML-notebooks"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2Fchapter5/astroml_chapter5_Parameter_Estimation_for_Binomial_Distribution.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/astroML/astroML-notebooks/edit/main/site/chapter5/astroml_chapter5_Parameter_Estimation_for_Binomial_Distribution.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?urlpath=tree/site/chapter5/astroml_chapter5_Parameter_Estimation_for_Binomial_Distribution.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#binomial-distribution">
+   Binomial Distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#posterior-probability-distribution-in-binomial-distribution">
+   Posterior probability distribution in binomial distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-data-and-functions">
+   Import Data and Functions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-functions-and-calculate-result-from-data">
+     Define functions and calculate result from data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#show-comparison-result">
+     Show comparison result
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#log-likelihood-for-binomial-distribution">
+   Log-likelihood for Binomial Distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plot-result">
+   plot result
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><a class="reference external" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter5/astroml_chapter5_Parameter_Estimation_for_Binomial_Distribution.ipynb"><img alt="Open in Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div class="section" id="parameter-estimation-for-a-binomial-distribution">
+<h1>Parameter Estimation for a Binomial Distribution<a class="headerlink" href="#parameter-estimation-for-a-binomial-distribution" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This chapter illustrates the uses of parameter estimation in generating Binomial distribution for a set of measurement, and investigates how the change of parameter <strong>b</strong> (explained below) will change the probability result. In astronomical application, we can use this binary result distrinution to statistically determine the fraction of galaxies
+which show evidence for a black hole in their center. This chapter will compare the conclusion drawn from Binomial distribution and from Gaussian distribution using a sample data.</p>
+</div>
+<div class="section" id="binomial-distribution">
+<h2>Binomial Distribution<a class="headerlink" href="#binomial-distribution" title="Permalink to this headline">¶</a></h2>
+<p>Unlike the Gaussian distribution, which describes the distribution of a continuous variable, the
+binomial distribution describes the distribution of a variable that can take only two discrete values
+(say, 0 or 1, or success vs. failure, or an event happening or not). If the probability of success is <strong>b</strong>,
+then the distribution of a discrete variable k (an integer number, unlike x which is a real number)
+that measures how many times success occurred in N trials (i.e., measurements), is given by</p>
+<div class="math notranslate nohighlight">
+\[p(k|b,N)=\frac{N!}{k!(N-k)!}b^k(1-b)^{N-k}\]</div>
+<p>Here we have the mean of the binomial distribution given by <span class="math notranslate nohighlight">\(\bar{k} = bN\)</span>.<br />
+The standard deviation is <span class="math notranslate nohighlight">\(\sigma_k = [N b(1-b)]^{1/2}\)</span>.<br />
+And the uncertainty (standard error) is <span class="math notranslate nohighlight">\(\sigma_b = \sigma_k/N\)</span>.</p>
+</div>
+<div class="section" id="posterior-probability-distribution-in-binomial-distribution">
+<h2>Posterior probability distribution in binomial distribution<a class="headerlink" href="#posterior-probability-distribution-in-binomial-distribution" title="Permalink to this headline">¶</a></h2>
+<p>Given a set of N measurements (or trials), <span class="math notranslate nohighlight">\({x_i}\)</span>, drawn from a binomial distribution described with parameter b, we seek the posterior probability distribution <span class="math notranslate nohighlight">\(p(b|{x_i}\)</span>).</p>
+<p>When N is large, b and its (presumably Gaussian) uncertainty <span class="math notranslate nohighlight">\(\sigma_b\)</span> can be determined using the equation above. For small N, the proper procedure is as follows.
+Assuming that the prior for b is at in the range 0-1, the posterior probability for b is</p>
+<div class="math notranslate nohighlight">
+\[p(b|k,N)=Cb^k(1-b)^{N-k}\]</div>
+<p>where k is now the actual observed number of successes in a data set of N values, and C is a normalization factor with
+can be determined from the condition <span class="math notranslate nohighlight">\(\int_0^1 p(b|k,N)db = 1\)</span>.
+The maximum posterior occurs at <span class="math notranslate nohighlight">\(b_0 = k/N\)</span>.</p>
+</div>
+<div class="section" id="import-data-and-functions">
+<h2>Import Data and Functions<a class="headerlink" href="#import-data-and-functions" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="define-functions-and-calculate-result-from-data">
+<h3>Define functions and calculate result from data<a class="headerlink" href="#define-functions-and-calculate-result-from-data" title="Permalink to this headline">¶</a></h3>
+<p>Here we vary the b value and draw the resulted posterior probability distribution from our data set. The equation is described below:
+$<span class="math notranslate nohighlight">\(p(b|k,N)=Cb^k(1-b)^{N-k}\)</span>$
+In comparison, we also calculate a Gaussian distribution from the same data set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># number of points</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">4</span>   <span class="c1"># number of successes from n draws</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># compute the probability p(b) </span>
+<span class="n">p_b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">**</span> <span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span>
+<span class="n">p_b</span> <span class="o">/=</span> <span class="n">p_b</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">p_b</span> <span class="o">/=</span> <span class="n">db</span>
+<span class="n">cuml_p_b</span> <span class="o">=</span> <span class="n">p_b</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+<span class="n">cuml_p_b</span> <span class="o">/=</span> <span class="n">cuml_p_b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># compute the gaussian approximation</span>
+<span class="n">p_g</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">n</span><span class="p">,</span> <span class="mf">0.16</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="n">cuml_p_g</span> <span class="o">=</span> <span class="n">p_g</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
+<span class="n">cuml_p_g</span> <span class="o">/=</span> <span class="n">cuml_p_g</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="show-comparison-result">
+<h3>Show comparison result<a class="headerlink" href="#show-comparison-result" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The solid line in the left panel shows the posterior pdf <span class="math notranslate nohighlight">\(p(b|k,N)\)</span> for k = 4
+and N = 10. The dashed line shows a Gaussian approximation.</p></li>
+<li><p>The right panel shows the corresponding cumulative distributions.<br />
+In comparison, a value of 0.1 is marginally likely according to the Gaussian approximation
+(<span class="math notranslate nohighlight">\(p_{approx}\)</span>(&lt; 0.1) <span class="math notranslate nohighlight">\(\approx\)</span> 0.03) but strongly rejected by the true distribution (<span class="math notranslate nohighlight">\(p_{true}\)</span>(&lt; 0.1) <span class="math notranslate nohighlight">\(\approx\)</span> 0.003).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot posterior as a function of b</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.11</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.18</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">p_b</span><span class="p">,</span> <span class="s1">&#39;-b&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">p_g</span><span class="p">,</span> <span class="s1">&#39;--r&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$b$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$p(b|x,I)$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">,</span> <span class="n">yscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">cuml_p_b</span><span class="p">,</span> <span class="s1">&#39;-b&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">cuml_p_g</span><span class="p">,</span> <span class="s1">&#39;--r&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">],</span> <span class="p">[</span><span class="mf">1E-6</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;:k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$b$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$P(&lt;b|x,I)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">1E-6</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="log-likelihood-for-binomial-distribution">
+<h2>Log-likelihood for Binomial Distribution<a class="headerlink" href="#log-likelihood-for-binomial-distribution" title="Permalink to this headline">¶</a></h2>
+<p>Suppose we have N measurements, <span class="math notranslate nohighlight">\({x_i}\)</span>. The measurement errors are gaussian, and the measurement error for each
+measurement is <span class="math notranslate nohighlight">\(\sigma_i\)</span>. This method applies logrithm in searching the posterior probability density function (pdf).
+Given that the likelihood function for a single measurement, <span class="math notranslate nohighlight">\(x_i\)</span>, is assumed to follow a Gaussian
+distribution <span class="math notranslate nohighlight">\(\mathcal{N}(\mu,\sigma)\)</span>, the likelihood for all measurements is given by
+$<span class="math notranslate nohighlight">\(L_p({x_i}|b,k,N) = ln[p(b,k,N|{x_i})]\)</span>$</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the function for calculating log-likelihood Binomial distribution</span>
+<span class="k">def</span> <span class="nf">bi_logL</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Binomial likelihood&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span> <span class="n">b</span><span class="o">**</span><span class="n">k</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="c1"># Define the grid and compute logL</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">70</span>
+
+<span class="n">logL</span> <span class="o">=</span> <span class="n">bi_logL</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+<span class="n">logL</span> <span class="o">-=</span> <span class="n">logL</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plot-result">
+<h2>plot result<a class="headerlink" href="#plot-result" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">logL</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span>
+           <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">k</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+           <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span>
+           <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\log(L)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">convert_to_stdev</span><span class="p">(</span><span class="n">logL</span><span class="p">),</span>
+            <span class="n">levels</span><span class="o">=</span><span class="p">(</span><span class="mf">0.683</span><span class="p">,</span> <span class="mf">0.955</span><span class="p">,</span> <span class="mf">0.997</span><span class="p">),</span>
+            <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$L(\mu,\sigma)\ \mathrm</span><span class="si">{for}</span><span class="s1">\ \bar</span><span class="si">{x}</span><span class="s1">=1,\ V=4,\ n=10$&#39;</span><span class="p">,</span>
+         <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">),</span>
+         <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By AstroML developers<br/>
+        
+            &copy; Copyright 2020-2021, AstroML developers.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

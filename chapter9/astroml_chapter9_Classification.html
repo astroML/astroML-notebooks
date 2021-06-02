@@ -1,0 +1,1051 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classification &#8212; AstroML Notebooks</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/astroml_logo.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">AstroML Notebooks</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter5/README.html">
+   Chapter 5: Bayesian Statistical Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter6/README.html">
+   Chapter 6: Searching for Structure in Point Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter7/README.html">
+   Chapter 7: Dimensionality and its Reduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter8/README.html">
+   Chapter 8: Regression and Model Fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html">
+   Chapter 9: Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter10/README.html">
+   Chapter 10: Time Series Analysis
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/chapter9/astroml_chapter9_Classification.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/chapter9/astroml_chapter9_Classification.md.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/astroML/astroML-notebooks"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2Fchapter9/astroml_chapter9_Classification.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/astroML/astroML-notebooks/edit/main/site/chapter9/astroml_chapter9_Classification.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?urlpath=tree/site/chapter9/astroml_chapter9_Classification.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Classification
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classification-loss-how-well-are-we-doing">
+     Classification loss: how well are we doing?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparing-the-performance-of-classifiers">
+     Comparing the performance of classifiers
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-and-quadratic-discriminant-analysis">
+   Linear and quadratic discriminant analysis
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gmm-and-bayes-classification">
+   GMM and Bayes classification
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#k-nearest-neighbours">
+   K-nearest neighbours
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#support-vector-machines">
+   Support Vector Machines
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gaussian-naive-bayes">
+   Gaussian Naive Bayes
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><a class="reference external" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter9/astroml_chapter9_Classification.ipynb"><img alt="Open in Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div class="section" id="classification">
+<h1>Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h1>
+<p>In density estimation we estimate joint probability distributions from multivariate data sets to identify the inherent clustering. This is essentially <u> unsupervised classification </u></p>
+<p>If we have labels for some of these data points (e.g., an object is tall, short, red, or blue) we can develop a relationship between the label and the properties of a source. This is <u> supervised classification </u></p>
+<p>Classification, regression, and density estimation are all related. For example, the regression function <span class="math notranslate nohighlight">\(\hat{y} = f(y|\vec{x})\)</span> is the best estimated value of <span class="math notranslate nohighlight">\(y\)</span> given a value of <span class="math notranslate nohighlight">\(\vec{x}\)</span>. In classification <span class="math notranslate nohighlight">\(y\)</span> is categorical and <span class="math notranslate nohighlight">\(f(y|\vec{x})\)</span> the called the <em>discriminant function</em></p>
+<ul class="simple">
+<li><p>Using density estimation for classification is referred to as <u><em>generative classification</em></u> (we have a full model of the density for each class or we have a model which describes how data could be generated from each class).</p></li>
+<li><p>Classification that finds the decision boundary that separates classes is called <u> <em>discriminative classification</em> </u></p></li>
+</ul>
+<p>Both have their place in astrophysical classification.</p>
+<div class="section" id="classification-loss-how-well-are-we-doing">
+<h2>Classification loss: how well are we doing?<a class="headerlink" href="#classification-loss-how-well-are-we-doing" title="Permalink to this headline">¶</a></h2>
+<p>The first question we need to address is how we score (defined the success of our classification)</p>
+<p>We can define a <em>loss function</em>. A zero-one loss function assigns a value of one for a misclassification and zero for a correct classification (i.e. we will want to minimize the loss).</p>
+<p>If <span class="math notranslate nohighlight">\(\hat{y}\)</span> is the best guess value of <span class="math notranslate nohighlight">\(y\)</span>, the classification loss, <span class="math notranslate nohighlight">\(L(y,\widehat{y})\)</span>, is</p>
+<div class="math notranslate nohighlight">
+\[L(y,\widehat{y}) = \delta(y \neq \widehat{y})\]</div>
+<p>which means</p>
+<p><span class="math notranslate nohighlight">\(\begin{eqnarray} L(y,\hat{y}) &amp; = &amp; \left\{ \begin{array}{cl} 1 &amp; \mbox{if \)</span>y\neq\hat{y}<span class="math notranslate nohighlight">\(}, \\  0 &amp; \mbox{otherwise.}       	           \end{array} \right. \end{eqnarray}\)</span></p>
+<p>The expectation (mean) value of the loss <span class="math notranslate nohighlight">\(\mathbb{E} \left[ L(y,\hat{y}) \right] = p(y\neq \hat{y})\)</span>  is called the <u>classification risk</u></p>
+<p>This is related to regression loss functions: <span class="math notranslate nohighlight">\(L(y, \hat{y}) = (y - \hat{y})^2\)</span> and <u>risk<u> <span class="math notranslate nohighlight">\(\mathbb{E}[(y - \hat{y})^2]\)</span>.</p>
+<p>We can then define:</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\( {\rm completeness} = \frac{\rm true\ positives}
+  {\rm true\ positives + false\ negatives}
+\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(  {\rm contamination} = \frac{\rm false\ positives}
+  {\rm true\ positives + false\ positives}
+\)</span></p>
+</div></blockquote>
+<p>or</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\( {\rm true\ positive\ rate} = \frac{\rm true\ positives}
+  {\rm true\ positives + false\ negatives}
+\)</span></p>
+</div></blockquote>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(  {\rm false\ positive\ rate} = \frac{\rm false\ positives}
+  {\rm true\ negatives + false\ positives}
+\)</span></p>
+</div></blockquote>
+</div>
+<div class="section" id="comparing-the-performance-of-classifiers">
+<h2>Comparing the performance of classifiers<a class="headerlink" href="#comparing-the-performance-of-classifiers" title="Permalink to this headline">¶</a></h2>
+<p>Best performance is a bit of a subjective topic (e.g. star-galaxy separation for correlation function studies or Galactic streams studies). We trade contamination as a function of completeness and this is science dependent.</p>
+<p><strong>ROC curves: Receiver Operating Characteristic curves</strong></p>
+<ul class="simple">
+<li><p>Plot the true-positive vs the false-positive rate</p></li>
+<li><p>Initially used to analyze radar results in WWII (a very productive era for statistics…).</p></li>
+<li><p>One concern about ROC curves is that they are sensitive to the relative sample sizes (if there are many more background events than source events small false positive results can dominate a signal). For these cases we we can plot efficiency (1 - contamination) vs completeness</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<span class="kn">from</span> <span class="nn">sklearn.discriminant_analysis</span> <span class="kn">import</span> <span class="p">(</span><span class="n">LinearDiscriminantAnalysis</span><span class="p">,</span>
+                                           <span class="n">QuadraticDiscriminantAnalysis</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">astroML.classification</span> <span class="kn">import</span> <span class="n">GMMBayes</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">roc_curve</span>
+
+<span class="kn">from</span> <span class="nn">astroML.utils</span> <span class="kn">import</span> <span class="n">split_samples</span><span class="p">,</span> <span class="n">completeness_contamination</span>
+<span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_rrlyrae_combined</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We will use the RR Lyrae dataset. We get the data here, and split it into training and testing sets,
+and then use the same sets for all the examples below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#----------------------------------------------------------------------</span>
+<span class="c1"># get data and split into training &amp; testing sets</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">fetch_rrlyrae_combined</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>  <span class="c1"># rearrange columns for better 1-color results</span>
+<span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">),</span> <span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">split_samples</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">],</span>
+                                                     <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">N_tot</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">N_st</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">N_rr</span> <span class="o">=</span> <span class="n">N_tot</span> <span class="o">-</span> <span class="n">N_st</span>
+<span class="n">N_train</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span>
+<span class="n">N_test</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span>
+<span class="n">N_plot</span> <span class="o">=</span> <span class="mi">5000</span> <span class="o">+</span> <span class="n">N_rr</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Fit all the models to the training data</span>
+<span class="k">def</span> <span class="nf">compute_models</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">probs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">classifier</span><span class="p">,</span> <span class="n">kwargs</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">classifier</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="n">clf</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="n">y_probs</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X_test</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">classifier</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="n">probs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_probs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">names</span><span class="p">,</span> <span class="n">probs</span>
+
+
+<span class="n">names</span><span class="p">,</span> <span class="n">probs</span> <span class="o">=</span> <span class="n">compute_models</span><span class="p">((</span><span class="n">GaussianNB</span><span class="p">,</span> <span class="p">{}),</span>
+                              <span class="p">(</span><span class="n">LinearDiscriminantAnalysis</span><span class="p">,</span> <span class="p">{}),</span>
+                              <span class="p">(</span><span class="n">QuadraticDiscriminantAnalysis</span><span class="p">,</span> <span class="p">{}),</span>
+                              <span class="p">(</span><span class="n">LogisticRegression</span><span class="p">,</span>
+                               <span class="nb">dict</span><span class="p">(</span><span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">)),</span>
+                              <span class="p">(</span><span class="n">KNeighborsClassifier</span><span class="p">,</span>
+                               <span class="nb">dict</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">)),</span>
+                              <span class="p">(</span><span class="n">DecisionTreeClassifier</span><span class="p">,</span>
+                               <span class="nb">dict</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+                                    <span class="n">criterion</span><span class="o">=</span><span class="s1">&#39;entropy&#39;</span><span class="p">)),</span>
+                              <span class="p">(</span><span class="n">GMMBayes</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1E-5</span><span class="p">,</span>
+                                              <span class="n">covariance_type</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)))</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Plot ROC curves and completeness/efficiency</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+
+<span class="c1"># ax2 will show roc curves</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+
+<span class="c1"># ax1 will show completeness/efficiency</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">GaussianNB</span><span class="o">=</span><span class="s1">&#39;GNB&#39;</span><span class="p">,</span>
+              <span class="n">LinearDiscriminantAnalysis</span><span class="o">=</span><span class="s1">&#39;LDA&#39;</span><span class="p">,</span>
+              <span class="n">QuadraticDiscriminantAnalysis</span><span class="o">=</span><span class="s1">&#39;QDA&#39;</span><span class="p">,</span>
+              <span class="n">KNeighborsClassifier</span><span class="o">=</span><span class="s1">&#39;KNN&#39;</span><span class="p">,</span>
+              <span class="n">DecisionTreeClassifier</span><span class="o">=</span><span class="s1">&#39;DT&#39;</span><span class="p">,</span>
+              <span class="n">GMMBayes</span><span class="o">=</span><span class="s1">&#39;GMMB&#39;</span><span class="p">,</span>
+              <span class="n">LogisticRegression</span><span class="o">=</span><span class="s1">&#39;LR&#39;</span><span class="p">)</span>
+
+<span class="n">thresholds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1001</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># iterate through and show results</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">y_prob</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">probs</span><span class="p">):</span>
+    <span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">thresh</span> <span class="o">=</span> <span class="n">roc_curve</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">)</span>
+
+    <span class="c1"># add (0, 0) as first point</span>
+    <span class="n">fpr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="n">fpr</span><span class="p">])</span>
+    <span class="n">tpr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tpr</span><span class="p">])</span>
+
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fpr</span><span class="p">,</span> <span class="n">tpr</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
+
+    <span class="n">comp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">thresholds</span><span class="p">)</span>
+    <span class="n">cont</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">thresholds</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">thresholds</span><span class="p">):</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_prob</span> <span class="o">&gt;=</span> <span class="n">t</span><span class="p">)</span>
+        <span class="n">comp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cont</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">completeness_contamination</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">cont</span><span class="p">,</span> <span class="n">comp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">labels</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;false positive rate&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;true positive rate&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;efficiency&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;completeness&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="linear-and-quadratic-discriminant-analysis">
+<h1>Linear and quadratic discriminant analysis<a class="headerlink" href="#linear-and-quadratic-discriminant-analysis" title="Permalink to this headline">¶</a></h1>
+<p>Linear discriminant analysis (LDA) assumes  the class distributions have identical
+covariances for all <span class="math notranslate nohighlight">\(k\)</span> classes (all classes are a set of shifted Gaussians). The
+optimal classifier is derived from the log of the class
+posteriors</p>
+<div class="math notranslate nohighlight">
+\[g_k(\vec{x}) = \vec{x}^T \Sigma^{-1} \vec{\mu_k} - \frac{1}{2}\vec{\mu_k}^T \Sigma^{-1} \vec{\mu_k} + \log \pi_k,
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\vec{\mu_k}\)</span> the mean of class <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(\Sigma\)</span> the covariance of the
+Gaussians. The class dependent covariances that would normally give rise to a quadratic dependence on
+<span class="math notranslate nohighlight">\(\vec{x}\)</span> cancel out if they are assumed to be constant. The Bayes classifier is, therefore, linear with respect to <span class="math notranslate nohighlight">\(\vec{x}\)</span>.</p>
+<p>The discriminant boundary between classes is the line that minimizes
+the overlap between Gaussians</p>
+<div class="math notranslate nohighlight">
+\[  g_k(\vec{x}) - g_\ell(\vec{x}) = \vec{x}^T \Sigma^{-1} (\mu_k-\mu_\ell)  - \frac{1}{2}(\mu_k - \mu_\ell)^T \Sigma^{-1}(\mu_k -\mu_\ell)  + \log (\frac{\pi_k}{\pi_\ell}) = 0. \]</div>
+<p>Relaxing the requirement that the covariances of the
+Gaussians are constant, the discriminant function
+becomes quadratic in <span class="math notranslate nohighlight">\(x\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ g(\vec{x}) = -\frac{1}{2} \log | \Sigma_k |   - \frac{1}{2}(\vec{x}-\mu_k)^T C^{-1}(\vec{x}-\mu_k) + \log \pi_k. \]</div>
+<p>This is sometimes known as <em>quadratic discriminant analysis</em> (QDA)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#----------------------------------------------------------------------</span>
+<span class="c1"># perform LinearDiscriminantAnalysis</span>
+<span class="n">classifiers</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">Ncolors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">nc</span> <span class="ow">in</span> <span class="n">Ncolors</span><span class="p">:</span>
+    <span class="n">clf</span> <span class="o">=</span> <span class="n">LinearDiscriminantAnalysis</span><span class="p">()</span>
+    <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:,</span> <span class="p">:</span><span class="n">nc</span><span class="p">],</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="p">:</span><span class="n">nc</span><span class="p">])</span>
+
+    <span class="n">classifiers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span>
+    <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+<span class="n">completeness</span><span class="p">,</span> <span class="n">contamination</span> <span class="o">=</span> <span class="n">completeness_contamination</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;completeness&quot;</span><span class="p">,</span> <span class="n">completeness</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;contamination&quot;</span><span class="p">,</span> <span class="n">contamination</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># perform QuadraticDiscriminantAnalysis</span>
+<span class="n">qclassifiers</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">qpredictions</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">nc</span> <span class="ow">in</span> <span class="n">Ncolors</span><span class="p">:</span>
+    <span class="n">qlf</span> <span class="o">=</span> <span class="n">QuadraticDiscriminantAnalysis</span><span class="p">()</span>
+    <span class="n">qlf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:,</span> <span class="p">:</span><span class="n">nc</span><span class="p">],</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">qy_pred</span> <span class="o">=</span> <span class="n">qlf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="p">:</span><span class="n">nc</span><span class="p">])</span>
+
+    <span class="n">qclassifiers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">qlf</span><span class="p">)</span>
+    <span class="n">qpredictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">qy_pred</span><span class="p">)</span>
+
+<span class="n">qpredictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">qpredictions</span><span class="p">)</span>
+
+<span class="n">qcompleteness</span><span class="p">,</span> <span class="n">qcontamination</span> <span class="o">=</span> <span class="n">completeness_contamination</span><span class="p">(</span><span class="n">qpredictions</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;completeness&quot;</span><span class="p">,</span> <span class="n">qcompleteness</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;contamination&quot;</span><span class="p">,</span> <span class="n">qcontamination</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Compute the decision boundary</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">classifiers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">qlf</span> <span class="o">=</span> <span class="n">qclassifiers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">xlim</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.35</span><span class="p">)</span>
+<span class="n">ylim</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">71</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">81</span><span class="p">))</span>
+
+
+<span class="n">Z</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">QZ</span> <span class="o">=</span> <span class="n">qlf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+<span class="n">QZ</span> <span class="o">=</span> <span class="n">QZ</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+
+
+<span class="c1">#----------------------------------------------------------------------</span>
+<span class="c1"># plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                    <span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="c1"># left plot: data and decision boundary</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="n">N_plot</span><span class="p">:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="n">N_plot</span><span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="n">N_plot</span><span class="p">:],</span>
+                <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Oranges</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">im</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+               <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+               <span class="n">extent</span><span class="o">=</span><span class="n">xlim</span> <span class="o">+</span> <span class="n">ylim</span><span class="p">)</span>
+<span class="n">im</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">],</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$u-g$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$g-r$&#39;</span><span class="p">)</span>
+
+<span class="c1"># right plot: qda</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="n">N_plot</span><span class="p">:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="n">N_plot</span><span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="n">N_plot</span><span class="p">:],</span>
+                <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Oranges</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">im</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">QZ</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+               <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+               <span class="n">extent</span><span class="o">=</span><span class="n">xlim</span> <span class="o">+</span> <span class="n">ylim</span><span class="p">)</span>
+<span class="n">im</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">QZ</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">],</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$u-g$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$g-r$&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="gmm-and-bayes-classification">
+<h1>GMM and Bayes classification<a class="headerlink" href="#gmm-and-bayes-classification" title="Permalink to this headline">¶</a></h1>
+<p>The natural extension to the Gaussian assumptions is to use GMM’s to learn the density distribution.</p>
+<p>The number of Gaussian components <span class="math notranslate nohighlight">\(K\)</span> must be chosen for each class independently</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># GMM-bayes takes several minutes to run, and is order[N^2]</span>
+<span class="c1">#  truncating the dataset can be useful for experimentation.</span>
+<span class="c1">#X_tr = X[::10]</span>
+<span class="c1">#y_tr = y[::10]</span>
+
+<span class="c1">#----------------------------------------------------------------------</span>
+<span class="c1"># perform GMM Bayes</span>
+<span class="n">Ncolors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">Ncomp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+
+<span class="k">def</span> <span class="nf">compute_GMMbayes</span><span class="p">(</span><span class="n">Ncolors</span><span class="p">,</span> <span class="n">Ncomp</span><span class="p">):</span>
+    <span class="n">classifiers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">ncm</span> <span class="ow">in</span> <span class="n">Ncomp</span><span class="p">:</span>
+        <span class="n">classifiers</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
+        <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
+        <span class="k">for</span> <span class="n">nc</span> <span class="ow">in</span> <span class="n">Ncolors</span><span class="p">:</span>
+            <span class="n">clf</span> <span class="o">=</span> <span class="n">GMMBayes</span><span class="p">(</span><span class="n">ncm</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1E-5</span><span class="p">,</span> <span class="n">covariance_type</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+            <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:,</span> <span class="p">:</span><span class="n">nc</span><span class="p">],</span> <span class="n">y_train</span><span class="p">)</span>
+            <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="p">:</span><span class="n">nc</span><span class="p">])</span>
+
+            <span class="n">classifiers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span>
+            <span class="n">predictions</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">classifiers</span><span class="p">,</span> <span class="n">predictions</span>
+
+<span class="n">classifiers</span><span class="p">,</span> <span class="n">predictions</span> <span class="o">=</span> <span class="n">compute_GMMbayes</span><span class="p">(</span><span class="n">Ncolors</span><span class="p">,</span> <span class="n">Ncomp</span><span class="p">)</span>
+
+<span class="n">completeness</span><span class="p">,</span> <span class="n">contamination</span> <span class="o">=</span> <span class="n">completeness_contamination</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;completeness&quot;</span><span class="p">,</span> <span class="n">completeness</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;contamination&quot;</span><span class="p">,</span> <span class="n">contamination</span><span class="p">)</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Compute the decision boundary</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">classifiers</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">xlim</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.35</span><span class="p">)</span>
+<span class="n">ylim</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">71</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">81</span><span class="p">))</span>
+
+<span class="n">Z</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1">#----------------------------------------------------------------------</span>
+<span class="c1"># plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                    <span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="c1"># left plot: data and decision boundary</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="n">N_plot</span><span class="p">:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="n">N_plot</span><span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="n">N_plot</span><span class="p">:],</span>
+                <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Oranges</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">im</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+               <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+               <span class="n">extent</span><span class="o">=</span><span class="n">xlim</span> <span class="o">+</span> <span class="n">ylim</span><span class="p">)</span>
+<span class="n">im</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$u-g$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$g-r$&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot completeness vs Ncolors</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ncolors</span><span class="p">,</span> <span class="n">completeness</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;^--k&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;N=</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">Ncomp</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ncolors</span><span class="p">,</span> <span class="n">completeness</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;o-k&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;N=</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">Ncomp</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;completeness&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># plot contamination vs Ncolors</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ncolors</span><span class="p">,</span> <span class="n">contamination</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;^--k&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;N=</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">Ncomp</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ncolors</span><span class="p">,</span> <span class="n">contamination</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;o-k&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;N=</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">Ncomp</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span>
+          <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.78</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">FormatStrFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%i</span><span class="s1">&#39;</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;N colors&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;contamination&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="k-nearest-neighbours">
+<h1>K-nearest neighbours<a class="headerlink" href="#k-nearest-neighbours" title="Permalink to this headline">¶</a></h1>
+<p>As with density estimation (and kernel density estimation)  the intuitive justification is that <span class="math notranslate nohighlight">\(p(y|x) \approx p(y|x')\)</span> if <span class="math notranslate nohighlight">\(x'\)</span> is very close to <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>The number of neighbors, <span class="math notranslate nohighlight">\(K\)</span>, regulates the complexity of the classification. In simplest form, a majority rule classification is adopted, where each of the <span class="math notranslate nohighlight">\(K\)</span> points votes on the classification. Increasing <span class="math notranslate nohighlight">\(K\)</span> decreases the variance in the classification but at the expense of an increase in the bias.</p>
+<p>Weights can be assigned to  individual votes by weighting the vote by the distance to the nearest point.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#----------------------------------------------------------------------</span>
+<span class="c1"># perform Classification</span>
+
+<span class="n">classifiers</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">Ncolors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">kvals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kvals</span><span class="p">:</span>
+    <span class="n">classifiers</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
+    <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">([])</span>
+    <span class="k">for</span> <span class="n">nc</span> <span class="ow">in</span> <span class="n">Ncolors</span><span class="p">:</span>
+        <span class="n">clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:,</span> <span class="p">:</span><span class="n">nc</span><span class="p">],</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="p">:</span><span class="n">nc</span><span class="p">])</span>
+
+        <span class="n">classifiers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span>
+        <span class="n">predictions</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+<span class="n">completeness</span><span class="p">,</span> <span class="n">contamination</span> <span class="o">=</span> <span class="n">completeness_contamination</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;completeness&quot;</span><span class="p">,</span> <span class="n">completeness</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;contamination&quot;</span><span class="p">,</span> <span class="n">contamination</span><span class="p">)</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Compute the decision boundary</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">classifiers</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">xlim</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.35</span><span class="p">)</span>
+<span class="n">ylim</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">71</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">81</span><span class="p">))</span>
+
+<span class="n">Z</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1">#----------------------------------------------------------------------</span>
+<span class="c1"># plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                    <span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="c1"># left plot: data and decision boundary</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="n">N_plot</span><span class="p">:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="n">N_plot</span><span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="n">N_plot</span><span class="p">:],</span>
+                <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Oranges</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">im</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+               <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+               <span class="n">extent</span><span class="o">=</span><span class="n">xlim</span> <span class="o">+</span> <span class="n">ylim</span><span class="p">)</span>
+<span class="n">im</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$u-g$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$g-r$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s2">&quot;k = </span><span class="si">%i</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">kvals</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="c1"># plot completeness vs Ncolors</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ncolors</span><span class="p">,</span> <span class="n">completeness</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;o-k&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;k=</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">kvals</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ncolors</span><span class="p">,</span> <span class="n">completeness</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;^--k&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;k=</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">kvals</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;completeness&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># plot contamination vs Ncolors</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ncolors</span><span class="p">,</span> <span class="n">contamination</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s1">&#39;o-k&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;k=</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">kvals</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ncolors</span><span class="p">,</span> <span class="n">contamination</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;^--k&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;k=</span><span class="si">%i</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">kvals</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span>
+          <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.79</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">FormatStrFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%i</span><span class="s1">&#39;</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;N colors&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;contamination&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="support-vector-machines">
+<h1>Support Vector Machines<a class="headerlink" href="#support-vector-machines" title="Permalink to this headline">¶</a></h1>
+<p>Find the hyperplane that maximizes the distance of the closest point from either class. This distance is the margin (width of the line before it hits a point). We want the line that maximizes the margin (m).</p>
+<p>The points on the margin are called <em>support vectors</em></p>
+<p>If we assume <span class="math notranslate nohighlight">\(y \in \{-1,1\}\)</span>, (+1 is maximum margin, -1 is minimum, 0 is the decision boundary)</p>
+<p>The maximum is then just when <span class="math notranslate nohighlight">\(\beta_0 + \beta^T x_i = 1\)</span> etc</p>
+<p>The hyperplane which maximizes the margin is given by finding</p>
+<div class="math notranslate nohighlight">
+\[
+\max_{\beta_0,\beta}(m) \;\;\;
+  \mbox{subject to} \;\;\; \frac{1}{||\beta||} y_i ( \beta_0 + \beta^T x_i )
+  \geq m \,\,\, \forall \, i.
+\]</div>
+<p>The constraints can be written as <span class="math notranslate nohighlight">\(y_i ( \beta_0 + \beta^T x_i ) \geq m ||\beta|| \)</span>.</p>
+<p>Thus the optimization problem is equivalent to minimizing
+$<span class="math notranslate nohighlight">\(
+\frac{1}{2} ||\beta|| \;\;\; \mbox{subject to} \;\;\; y_i
+  ( \beta_0 + \beta^T x_i ) \geq 1 \,\,\, \forall \, i.
+\)</span>$</p>
+<p>This optimization  is a <em>quadratic programming</em> problem (quadratic objective function with linear constraints).</p>
+<p>Note that because SVM uses a metric which maximizes the margin rather than a measure over all points in the data sets, it is similar in spirit to the rank-based estimators</p>
+<ul class="simple">
+<li><p>The median of a distribution is unaffected by even large perturbations of outlying points, as long as those perturbations do not cross the boundary.</p></li>
+<li><p>In the same way, once the support vectors are determined, changes to the positions or numbers of points beyond the margin will not change the decision boundary.  For this reason, SVM can be a very powerful tool for discriminative classification.</p></li>
+<li><p>This is why there is a high completeness compared to the other methods: it does not matter that the background sources outnumber the RR Lyrae stars by a factor of <span class="math notranslate nohighlight">\(\sim\)</span>200 to 1. It simply determines the best boundary between the small RR Lyrae clump and the large background clump.</p></li>
+<li><p>This completeness, however, comes at the cost of a relatively large contamination level.</p></li>
+<li><p>SVM is not scale invariant so it often worth rescaling the data to [0,1] or to whiten it to have a mean of 0 and variance 1 (remember to do this to the test data as well!)</p></li>
+<li><p>The data dont need to be separable (we can put a constraint in minimizing the number of “failures”)</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># SVM takes several minutes to run, and is order[N^2]</span>
+<span class="c1">#  truncating the dataset can be useful for experimentation.</span>
+<span class="c1">#X_tr = X[::5]</span>
+<span class="c1">#y_tr = y[::5]</span>
+
+
+<span class="c1">#----------------------------------------------------------------------</span>
+<span class="c1"># Fit Kernel SVM</span>
+<span class="n">Ncolors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">compute_SVM</span><span class="p">(</span><span class="n">Ncolors</span><span class="p">):</span>
+    <span class="n">classifiers</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">nc</span> <span class="ow">in</span> <span class="n">Ncolors</span><span class="p">:</span>
+        <span class="c1"># perform support vector classification</span>
+        <span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="s1">&#39;rbf&#39;</span><span class="p">,</span> <span class="n">gamma</span><span class="o">=</span><span class="mf">20.0</span><span class="p">,</span> <span class="n">class_weight</span><span class="o">=</span><span class="s1">&#39;balanced&#39;</span><span class="p">)</span>
+        <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">[:,</span> <span class="p">:</span><span class="n">nc</span><span class="p">],</span> <span class="n">y_train</span><span class="p">)</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">[:,</span> <span class="p">:</span><span class="n">nc</span><span class="p">])</span>
+
+        <span class="n">classifiers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">clf</span><span class="p">)</span>
+        <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">classifiers</span><span class="p">,</span> <span class="n">predictions</span>
+
+<span class="n">classifiers</span><span class="p">,</span> <span class="n">predictions</span> <span class="o">=</span> <span class="n">compute_SVM</span><span class="p">(</span><span class="n">Ncolors</span><span class="p">)</span>
+
+<span class="n">completeness</span><span class="p">,</span> <span class="n">contamination</span> <span class="o">=</span> <span class="n">completeness_contamination</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;completeness&quot;</span><span class="p">,</span> <span class="n">completeness</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;contamination&quot;</span><span class="p">,</span> <span class="n">contamination</span><span class="p">)</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># compute the decision boundary</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">classifiers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">xlim</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">1.35</span><span class="p">)</span>
+<span class="n">ylim</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
+
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">101</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">101</span><span class="p">))</span>
+
+<span class="n">Z</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># smooth the boundary</span>
+<span class="kn">from</span> <span class="nn">scipy.ndimage</span> <span class="kn">import</span> <span class="n">gaussian_filter</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">gaussian_filter</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1">#----------------------------------------------------------------------</span>
+<span class="c1"># plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+                    <span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="c1"># left plot: data and decision boundary</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="n">N_plot</span><span class="p">:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="o">-</span><span class="n">N_plot</span><span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="n">N_plot</span><span class="p">:],</span>
+                <span class="n">s</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Oranges</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">im</span><span class="o">.</span><span class="n">set_clim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">],</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$u-g$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$g-r$&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot completeness vs Ncolors</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ncolors</span><span class="p">,</span> <span class="n">completeness</span><span class="p">,</span> <span class="s1">&#39;o-k&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;completeness&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Ncolors</span><span class="p">,</span> <span class="n">contamination</span><span class="p">,</span> <span class="s1">&#39;o-k&#39;</span><span class="p">,</span> <span class="n">ms</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">FormatStrFormatter</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%i</span><span class="s1">&#39;</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;N colors&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;contamination&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="gaussian-naive-bayes">
+<h1>Gaussian Naive Bayes<a class="headerlink" href="#gaussian-naive-bayes" title="Permalink to this headline">¶</a></h1>
+<p>In Gaussian naive Bayes <span class="math notranslate nohighlight">\(p_k(x^i)\)</span> are modeled as one-dimensional normal distributions, with means <span class="math notranslate nohighlight">\(\mu^i_k\)</span> and widths <span class="math notranslate nohighlight">\(\sigma^i_k\)</span>. The naive Bayes estimator is then</p>
+<div class="math notranslate nohighlight">
+\[\hat{y} = \arg\max_{y_k}\left[\ln \pi_k - \frac{1}{2}\sum_{i=1}^N\left(2\pi(\sigma^i_k)^2 + \frac{(x^i - \mu^i_k)^2}{(\sigma^i_k)^2} \right) \right]\]</div>
+<p><b> Note: this is the log of the Bayes criterion with no normalization constant </b></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_imaging_sample</span>
+
+<span class="k">def</span> <span class="nf">get_stars_and_galaxies</span><span class="p">(</span><span class="n">Nstars</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">Ngals</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the subset of star/galaxy data to plot&quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">fetch_imaging_sample</span><span class="p">()</span>
+
+    <span class="n">objtype</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span>
+
+    <span class="n">stars</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">objtype</span> <span class="o">==</span> <span class="mi">6</span><span class="p">][:</span><span class="n">Nstars</span><span class="p">]</span>
+    
+    <span class="n">galaxies</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">objtype</span> <span class="o">==</span> <span class="mi">3</span><span class="p">][:</span><span class="n">Ngals</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">stars</span><span class="p">,</span><span class="n">galaxies</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stars</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">galaxies</span><span class="p">))])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">get_stars_and_galaxies</span><span class="p">(</span><span class="n">Nstars</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">Ngals</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="c1"># select r model mag and psf - model mag as columns</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;rRaw&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;rRawPSF&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;rRaw&#39;</span><span class="p">]))</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Fit the Naive Bayes classifier</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># predict the classification probabilities on a grid</span>
+<span class="n">xlim</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="n">ylim</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+<span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">71</span><span class="p">),</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">81</span><span class="p">))</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">xx</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">yy</span><span class="o">.</span><span class="n">ravel</span><span class="p">()])</span>
+<span class="n">Z</span> <span class="o">=</span> <span class="n">Z</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xx</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">],</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By AstroML developers<br/>
+        
+            &copy; Copyright 2020-2021, AstroML developers.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

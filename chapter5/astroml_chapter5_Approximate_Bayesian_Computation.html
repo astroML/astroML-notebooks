@@ -1,0 +1,711 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approximate Bayesian Computation Example &#8212; AstroML Notebooks</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/astroml_logo.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">AstroML Notebooks</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html">
+   Chapter 5: Bayesian Statistical Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter6/README.html">
+   Chapter 6: Searching for Structure in Point Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter7/README.html">
+   Chapter 7: Dimensionality and its Reduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter8/README.html">
+   Chapter 8: Regression and Model Fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter9/README.html">
+   Chapter 9: Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter10/README.html">
+   Chapter 10: Time Series Analysis
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/chapter5/astroml_chapter5_Approximate_Bayesian_Computation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/chapter5/astroml_chapter5_Approximate_Bayesian_Computation.md.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/astroML/astroML-notebooks"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2Fchapter5/astroml_chapter5_Approximate_Bayesian_Computation.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/astroML/astroML-notebooks/edit/main/site/chapter5/astroml_chapter5_Approximate_Bayesian_Computation.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?urlpath=tree/site/chapter5/astroml_chapter5_Approximate_Bayesian_Computation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#january-6-2020">
+   January 6, 2020
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#approximate-bayesian-computation">
+   Approximate Bayesian Computation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Approximate Bayesian Computation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   Approximate Bayesian Computation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#abc-algorithm">
+   ABC algorithm:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   ABC algorithm:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   ABC algorithm:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   ABC algorithm:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conclusions">
+   Conclusions:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   Conclusions:
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><a class="reference external" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter5/astroml_chapter5_Approximate_Bayesian_Computation.ipynb"><img alt="Open in Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div class="section" id="approximate-bayesian-computation-example">
+<h1>Approximate Bayesian Computation Example<a class="headerlink" href="#approximate-bayesian-computation-example" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="january-6-2020">
+<h2>January 6, 2020<a class="headerlink" href="#january-6-2020" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://www.astroml.org/workshops/AAS235.html">astroML workshop at the 235th Meeting of the American Astronomical Society</a></p>
+<p><a class="reference external" href="http://faculty.washington.edu/ivezic/">Zeljko Ivezic, University of Washington</a></p>
+<p><a class="reference external" href="https://github.com/astroML/astroML-workshop_AAS235/blob/master/bayesian/AAS2019_ABCexample.ipynb">This notebook</a></p>
+</div>
+<div class="section" id="approximate-bayesian-computation">
+<h2>Approximate Bayesian Computation<a class="headerlink" href="#approximate-bayesian-computation" title="Permalink to this headline">¶</a></h2>
+<p>Astronomical models are often intrinsically stochastic even when modeling data with negligible measurement errors.</p>
+<p>Good examples include simulations of the temperature map of the cosmic microwave background (CMB), of the large-scale structure of galaxy distribution, and of mass and luminosity distributions for stars and galaxies.</p>
+<p>In such cases it is hard and often impossible to explicitly write down the data likelihood.</p>
+</div>
+<div class="section" id="id1">
+<h2>Approximate Bayesian Computation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>When a simulation is stochastic, one often attempts to vary its input parameters until some adequate metric is well matched between the observed and simulated datasets (e.g., the CMB angular power spectrum, or a parametrized form of the luminosity function).</p>
+<p>With the aid of Approximate Bayesian computation (ABC), this tuning process can be made less ad hoc and much more efficient. An excellent tutorial is Turner &amp; Van Zandt (2012, Journal of Mathematical Psychology 56, 69–85).</p>
+</div>
+<div class="section" id="id2">
+<h2>Approximate Bayesian Computation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>The basic idea of ABC is quite simple: produce a large number of models (simulations) by sampling the plausible (prior) values of input parameters and select those that “look like the data”.</p>
+<p>The distribution of input parameters for the selected subset then approximates the true posterior pdf.</p>
+<p>And then repeat until reaching some pre-defined agreement between the values of a distance metric computed with real and simulated data sets.</p>
+<p>We will consider here a simple example of a 1-dimensional gaussian sample with a known std. deviation. We will use ABC to constrain its location parameter: <span class="math notranslate nohighlight">\(\mu\)</span> in <span class="math notranslate nohighlight">\(N(\mu, \sigma)\)</span>.</p>
+<p>This toy example is trivial - we already know that <em>the sample mean is the best estimator of the location parameter</em>. Nevertheless, the structure of more complex examples is identical: only the sample simulator, and perhaps distance metric need to be changed.</p>
+<p>For example, we could have a simulator of the distribution of galaxies on the sky and use two-point correlation function as a metric, or a simulator of the star formation process that generates luminosities of stars and use luminosity function to construct the distance metric.</p>
+</div>
+<div class="section" id="abc-algorithm">
+<h2>ABC algorithm:<a class="headerlink" href="#abc-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>Let’s assume that data are described by vector <span class="math notranslate nohighlight">\(\{x_i\}\)</span>, that we have a simulator for producing a model outcome (simulated data vector <span class="math notranslate nohighlight">\(\{y_i\}\)</span>) given a vector of input parameters <span class="math notranslate nohighlight">\(\theta\)</span>, and that their prior distribution, p<span class="math notranslate nohighlight">\(_0(\theta)\)</span>, is known.</p>
+<p>In the first iteration, input parameters <span class="math notranslate nohighlight">\(\theta\)</span> are repeatedly sampled from the prior until the simulated dataset <span class="math notranslate nohighlight">\(\{y_i\}\)</span> agrees with the data <span class="math notranslate nohighlight">\(\{x_i\}\)</span>, using some distance metric, and within some initial tolerance
+<span class="math notranslate nohighlight">\(\epsilon\)</span> (which can be very large).</p>
+<div class="math notranslate nohighlight">
+\[ D(\{x_i\}|\{y_i\}) &lt; \epsilon\]</div>
+</div>
+<div class="section" id="id3">
+<h2>ABC algorithm:<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>This sampling is repeated an arbitrary number of times to generate a set of values of desired size (e.g., to estimate precisely its posterior pdf, including higher moments, if needed).</p>
+<p>In every subsequent iteration j, the set of parameter values is improved through incremental approximations to the true posterior distribution.</p>
+</div>
+<div class="section" id="id4">
+<h2>ABC algorithm:<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>Just as in the first iteration, new input parameter values are repeatedly drawn from p<span class="math notranslate nohighlight">\(_j(\theta_j)\)</span> until</p>
+<div class="math notranslate nohighlight">
+\[ D(\{x_i\}|\{y_i\}) &lt; \epsilon_j\]</div>
+<p>is satisfied.</p>
+</div>
+<div class="section" id="id5">
+<h2>ABC algorithm:<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>p<span class="math notranslate nohighlight">\(_j(\theta_j)\)</span> is generated using the <span class="math notranslate nohighlight">\(\theta\)</span> values from the previous iteration in a step akin to MCMC, which
+effectively selects “particles” from the previous weighted pool, and then perturbs them using the kernel K.</p>
+<p>In each iteration j, the threshold value <span class="math notranslate nohighlight">\(\epsilon_j\)</span> decreases; it is typically taken as a value in the
+70%–90% range of the cumulative distribution of <span class="math notranslate nohighlight">\(D(\{x_i\}|\{y_i\})\)</span> in the previous iteration.
+This sampling algorithm is called <em>Population Monte Carlo ABC</em>.</p>
+<p>The ABC method typically relies on a low-dimensional summary statistic of the data, S(x), such as the sample mean, rather than the full data set. For example, the distance metric between <span class="math notranslate nohighlight">\(\{x_i\}\)</span> and <span class="math notranslate nohighlight">\(\{y_i\}\)</span> is often defined as</p>
+<div class="math notranslate nohighlight">
+\[ D(\{x_i\}|\{y_i\}) = D(S(x)|S(y))  = |\, {\rm mean}(x) - {\rm mean}(y) \,|.\]</div>
+<p>Another example of a distance metric would be <span class="math notranslate nohighlight">\(\chi^2\)</span> between two luminosity functions (data vs. simulation), or two two-point correlation functions.</p>
+<p>When <span class="math notranslate nohighlight">\(S(x)\)</span> is a sufficient statistic, ABC converges to the true posterior.</p>
+<p>In summary, the two key ABC aspects are the use of low-dimensional summary statistics of the data (instead of data likelihood) and MCMC-like intelligent parameter optimization.</p>
+<p>The following code is modeled after  Figure 5.29 from the book:
+https://www.astroml.org/book_figures/chapter5/fig_ABCexample.html</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">### generic ABC tools </span>
+
+<span class="c1"># return the gaussian kernel values</span>
+<span class="k">def</span> <span class="nf">kernelValues</span><span class="p">(</span><span class="n">prevThetas</span><span class="p">,</span> <span class="n">prevStdDev</span><span class="p">,</span> <span class="n">currentTheta</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">norm</span><span class="p">(</span><span class="n">currentTheta</span><span class="p">,</span> <span class="n">prevStdDev</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">prevThetas</span><span class="p">)</span>
+
+<span class="c1"># return new values, scattered around an old value using gaussian kernel</span>
+<span class="k">def</span> <span class="nf">kernelSample</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">stdDev</span><span class="p">,</span> <span class="n">Nsample</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="c1"># returns 1-D array of length N</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">stdDev</span><span class="p">,</span> <span class="n">Nsample</span><span class="p">)</span>
+
+<span class="c1"># kernel scale </span>
+<span class="k">def</span> <span class="nf">KLscatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="n">sample</span> <span class="o">=</span> <span class="n">weightedResample</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+    <span class="c1"># this optimal scale for the kernel was derived by minimizing </span>
+    <span class="c1"># the Kullback-Leibler divergence</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+
+<span class="c1"># compute new weight</span>
+<span class="k">def</span> <span class="nf">computeWeight</span><span class="p">(</span><span class="n">prevWeights</span><span class="p">,</span> <span class="n">prevThetas</span><span class="p">,</span> <span class="n">prevStdDev</span><span class="p">,</span> <span class="n">currentTheta</span><span class="p">):</span>
+    <span class="n">denom</span> <span class="o">=</span> <span class="n">prevWeights</span> <span class="o">*</span> <span class="n">kernelValues</span><span class="p">(</span><span class="n">prevThetas</span><span class="p">,</span> <span class="n">prevStdDev</span><span class="p">,</span> <span class="n">currentTheta</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">prior</span><span class="p">(</span><span class="n">prevThetas</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">denom</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">weightedResample</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
+    <span class="c1"># resample N elements from x with replacement, with selection </span>
+    <span class="c1"># probabilities proportional to provided weights</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+    <span class="c1"># returns 1-D array of length N</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">### specific ABC tools </span>
+
+<span class="c1"># ABC distance metric </span>
+<span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+
+<span class="c1"># flat prior probability</span>
+<span class="k">def</span> <span class="nf">prior</span><span class="p">(</span><span class="n">allThetas</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">allThetas</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ABC iterator </span>
+<span class="k">def</span> <span class="nf">doABC</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">ssTot</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">Ndata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    
+    <span class="c1">## first sample from uniform prior, draw samples and compute their distance to data</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">):</span>
+        <span class="n">thetaS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">thetaMin</span><span class="p">,</span> <span class="n">thetaMax</span><span class="p">)</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="n">simulateData</span><span class="p">(</span><span class="n">Ndata</span><span class="p">,</span> <span class="n">thetaS</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">)</span>
+        <span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">distance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sample</span><span class="p">)</span>
+        <span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">thetaS</span>
+
+    <span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">Ndraw</span>
+    <span class="n">scatter</span> <span class="o">=</span> <span class="n">KLscatter</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">weights</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Ndraw</span><span class="p">)</span>
+    <span class="n">eps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">50</span><span class="p">)</span>
+    
+    <span class="c1">## continue with ABC iterations of theta </span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Niter</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;iteration:&#39;</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+        <span class="n">thetaOld</span> <span class="o">=</span> <span class="n">theta</span>
+        <span class="n">weightsOld</span> <span class="o">=</span> <span class="n">weights</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+        <span class="c1"># sample until distance condition fullfilled</span>
+        <span class="n">ss</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">):</span>
+            <span class="n">notdone</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="c1"># sample repeatedly until meeting the distance threshold Ndraw times</span>
+            <span class="k">while</span> <span class="n">notdone</span><span class="p">:</span>
+                <span class="n">ss</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">ssTot</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="c1"># sample from previous theta with probability given by weights: thetaS</span>
+                <span class="c1"># nb: weightedResample returns a 1-D array of length 1</span>
+                <span class="n">thetaS</span> <span class="o">=</span> <span class="n">weightedResample</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="c1"># perturb thetaS with kernel</span>
+                <span class="c1"># nb: kernelSample returns a 1-D array of length 1</span>
+                <span class="n">thetaSS</span> <span class="o">=</span> <span class="n">kernelSample</span><span class="p">(</span><span class="n">thetaS</span><span class="p">,</span> <span class="n">scatter</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="c1"># generate a simulated sample</span>
+                <span class="n">sample</span> <span class="o">=</span> <span class="n">simulateData</span><span class="p">(</span><span class="n">Ndata</span><span class="p">,</span> <span class="n">thetaSS</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">)</span>
+                <span class="c1"># and check the distance threshold </span>
+                <span class="n">dist</span> <span class="o">=</span> <span class="n">distance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sample</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">dist</span> <span class="o">&lt;</span> <span class="n">eps</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+                    <span class="c1"># met the goal, another acceptable value!</span>
+                    <span class="n">notdone</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="c1"># new accepted parameter value </span>
+            <span class="n">theta</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">thetaSS</span>
+            <span class="n">D</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span>
+            <span class="c1"># get weight for new theta</span>
+            <span class="n">weights</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">computeWeight</span><span class="p">(</span><span class="n">weights</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">theta</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">scatter</span><span class="p">,</span> <span class="n">thetaSS</span><span class="p">)</span>
+        <span class="c1"># collected Ndraw values in this iteration, now </span>
+        <span class="c1"># update the kernel scatter value using new values </span>
+        <span class="n">scatter</span> <span class="o">=</span> <span class="n">KLscatter</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">weights</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">Ndraw</span><span class="p">)</span>
+        <span class="c1"># threshold for next iteration </span>
+        <span class="n">eps</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">DpercCut</span><span class="p">)</span>
+        <span class="n">accrate</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mf">100.0</span><span class="o">*</span><span class="n">Ndraw</span><span class="o">/</span><span class="n">ss</span>
+        <span class="n">simTot</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">ssTot</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">verbose</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; number of sim. evals so far:&#39;</span><span class="p">,</span> <span class="n">simTot</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;     sim. evals in this iter:&#39;</span><span class="p">,</span> <span class="n">ss</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;         acceptance rate (%):&#39;</span><span class="p">,</span> <span class="n">accrate</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;                 new epsilon:&#39;</span><span class="p">,</span> <span class="n">eps</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;           KL sample scatter:&#39;</span><span class="p">,</span> <span class="n">scatter</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ssTot</span>     
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plotABC</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">muTrue</span><span class="p">,</span> <span class="n">sigTrue</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">):</span>
+
+    <span class="n">Nresample</span> <span class="o">=</span> <span class="mi">100000</span>
+    <span class="n">Ndata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">xmean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">sigPosterior</span> <span class="o">=</span> <span class="n">sigTrue</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">Ndata</span><span class="p">)</span>
+    <span class="n">truedist</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">xmean</span><span class="p">,</span> <span class="n">sigPosterior</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Niter</span><span class="p">):</span>
+        <span class="n">meanT</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">stdT</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+
+    <span class="c1"># plot</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">))</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.24</span><span class="p">,</span>
+                        <span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+    <span class="c1"># last few iterations</span>
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">))</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(\mu)$&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">25</span><span class="p">]:</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="n">weightedResample</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">Nresample</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span>
+                 <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="o">-</span><span class="p">(</span><span class="mf">0.04</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">15</span><span class="p">)))</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">truedist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.12</span><span class="p">,</span> <span class="mf">2.25</span><span class="p">,</span> <span class="s1">&#39;Iter: 15, 20, 25&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">,</span>
+        <span class="n">bbox</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;facecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+
+
+    <span class="c1"># first few iterations</span>
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">))</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(\mu)$&#39;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">8.0</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">]:</span>
+        <span class="n">sample</span> <span class="o">=</span> <span class="n">weightedResample</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">Nresample</span><span class="p">,</span> <span class="n">weights</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">sample</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span>
+                 <span class="n">alpha</span><span class="o">=</span><span class="p">(</span><span class="mf">0.9</span><span class="o">-</span><span class="mf">0.1</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="mi">2</span><span class="p">)))</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">3.2</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="s1">&#39;Iter: 2, 4, 6&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;italic&#39;</span><span class="p">,</span>
+        <span class="n">bbox</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;facecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;pad&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+
+
+    <span class="c1"># mean and scatter vs. iteration number</span>
+    <span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.60</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">))</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;iteration&#39;</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$&lt;\mu&gt; \pm \, \sigma_\mu$&#39;</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Niter</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="nb">iter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">Niter</span><span class="p">)</span>
+    <span class="n">meanTm</span> <span class="o">=</span> <span class="n">meanT</span> <span class="o">-</span> <span class="n">stdT</span>
+    <span class="n">meanTp</span> <span class="o">=</span> <span class="n">meanT</span> <span class="o">+</span> <span class="n">stdT</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">iter</span><span class="p">,</span> <span class="n">meanTm</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">iter</span><span class="p">,</span> <span class="n">meanTp</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">Niter</span><span class="p">],</span> <span class="p">[</span><span class="n">xmean</span><span class="p">,</span> <span class="n">xmean</span><span class="p">],</span> <span class="n">ls</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># data</span>
+    <span class="n">ax4</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.60</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">))</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.26</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+    <span class="n">datadist</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">muTrue</span><span class="p">,</span> <span class="n">sigTrue</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">datadist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">xmean</span><span class="p">,</span> <span class="n">xmean</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.07</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mf">0.25</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)),</span> <span class="s1">&#39;|k&#39;</span><span class="p">)</span>
+
+    <span class="c1"># acceptance rate vs. iteration number</span>
+    <span class="n">ax5</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">1.00</span><span class="p">,</span> <span class="mf">0.60</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">))</span>
+    <span class="n">ax5</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;iteration&#39;</span><span class="p">)</span>
+    <span class="n">ax5</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;acceptance rate (%)&#39;</span><span class="p">)</span>
+    <span class="n">ax5</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Niter</span><span class="p">)</span>
+    <span class="c1"># ax5.set_ylim(0, 4)</span>
+    <span class="nb">iter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">Niter</span><span class="p">)</span>
+    <span class="n">ax5</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">iter</span><span class="p">,</span> <span class="n">accrate</span><span class="p">)</span>
+     
+    <span class="c1"># the number of simulations vs. iteration number</span>
+    <span class="n">ax6</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mf">1.00</span><span class="p">,</span> <span class="mf">0.10</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">))</span>
+    <span class="n">ax6</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;iteration&#39;</span><span class="p">)</span>
+    <span class="n">ax6</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;total sims evals&#39;</span><span class="p">)</span>
+    <span class="n">ax6</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">Niter</span><span class="p">)</span>
+    <span class="c1"># ax6.set_ylim(0, 4)</span>
+    <span class="nb">iter</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">Niter</span><span class="p">)</span>
+    <span class="n">ax6</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">iter</span><span class="p">,</span> <span class="n">simTot</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulateData</span><span class="p">(</span><span class="n">Ndata</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="c1"># simple gaussian toy model</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">Ndata</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">getData</span><span class="p">(</span><span class="n">Ndata</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="c1"># use simulated data</span>
+    <span class="k">return</span> <span class="n">simulateData</span><span class="p">(</span><span class="n">Ndata</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># &quot;observed&quot; data:</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># for repeatability</span>
+<span class="n">Ndata</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">muTrue</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">sigmaTrue</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">getData</span><span class="p">(</span><span class="n">Ndata</span><span class="p">,</span> <span class="n">muTrue</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">)</span>
+<span class="n">dataMean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="c1"># very conservative choice for initial tolerance</span>
+<span class="n">eps0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="c1"># (very wide) limits for uniform prior</span>
+<span class="n">thetaMin</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span>
+<span class="n">thetaMax</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ABC sampling parameters</span>
+<span class="n">Ndraw</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">Niter</span> <span class="o">=</span> <span class="mi">26</span>
+<span class="n">DpercCut</span> <span class="o">=</span> <span class="mi">80</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># arrays for tracking iterations </span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">])</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">])</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">])</span>
+<span class="n">eps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">])</span>
+<span class="n">accrate</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">])</span>
+<span class="n">simTot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">])</span>
+<span class="n">meanT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Niter</span><span class="p">)</span>
+<span class="n">stdT</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">Niter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">numberSimEvals</span> <span class="o">=</span> <span class="n">doABC</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot</span>
+<span class="n">plotABC</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">muTrue</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="conclusions">
+<h2>Conclusions:<a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
+<p>As shown in the top middle panel in the above figure, the ABC algorithm converges to the correct solution in about 15 iterations.</p>
+<p>Between the 15th and the 25th iteration, the tolerance <span class="math notranslate nohighlight">\(\epsilon\)</span> decreases from 0.1 to 0.01 and the acceptance probability decreases from 25% to 2.7%. As a result, the total number of simulation evaluations increases by about a factor of six (from about 30,000 to about 180,000), although there is very little gain for our inference of <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
+</div>
+<div class="section" id="id6">
+<h2>Conclusions:<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<p>Therefore, the stopping criterion requires careful consideration when the cost of simulations is high (e.g., the maximum acceptable relative change of the estimator can be compared to its uncertainty).</p>
+<p>We can have a much smaller number of sim evals if we don’t care about pretty histograms.</p>
+<p>For 100 times smaller Ndraw, we expect about 100 times fewer simulation evaluations.</p>
+<p>Let’s do it!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">## LAST POINT: we can have much smaller Ndraw if we don&#39;t care about pretty </span>
+<span class="c1">## histograms for 100 times smaller Ndraw, expect about 100 times fewer </span>
+<span class="c1">## simulation evaluations</span>
+<span class="n">Ndraw</span> <span class="o">=</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># arrays for tracking iterations </span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">])</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">])</span>
+<span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">])</span>
+<span class="c1"># run ABC </span>
+<span class="n">numberSimEvals2</span> <span class="o">=</span> <span class="n">doABC</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plotABC</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">muTrue</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For “professional” implementations of ABC as an open-source Python code see:</p>
+<p><em><strong>astroABC</strong></em>, <em><strong>abcpmc</strong></em>, and <em><strong>cosmoabc</strong></em></p>
+</div>
+</div>
+
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By AstroML developers<br/>
+        
+            &copy; Copyright 2020-2021, AstroML developers.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

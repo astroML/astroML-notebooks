@@ -1,0 +1,547 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parameter estimation for the Cauchy (Lorentzian) distribution &#8212; AstroML Notebooks</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      <img src="../_static/astroml_logo.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">AstroML Notebooks</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html">
+   Chapter 5: Bayesian Statistical Inference
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter6/README.html">
+   Chapter 6: Searching for Structure in Point Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter7/README.html">
+   Chapter 7: Dimensionality and its Reduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter8/README.html">
+   Chapter 8: Regression and Model Fitting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter9/README.html">
+   Chapter 9: Classification
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter10/README.html">
+   Chapter 10: Time Series Analysis
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        <a class="dropdown-buttons"
+            href="../_sources/chapter5/astroml_chapter5_Parameter_Estimation_for_Cauchy_Distribution.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/chapter5/astroml_chapter5_Parameter_Estimation_for_Cauchy_Distribution.md.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/astroML/astroML-notebooks"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2Fchapter5/astroml_chapter5_Parameter_Estimation_for_Cauchy_Distribution.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        <a class="edit-button" href="https://github.com/astroML/astroML-notebooks/edit/main/site/chapter5/astroml_chapter5_Parameter_Estimation_for_Cauchy_Distribution.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?urlpath=tree/site/chapter5/astroml_chapter5_Parameter_Estimation_for_Cauchy_Distribution.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#import-functions">
+   Import Functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#log-likelihood-for-cauchy-distribution">
+   Log-likelihood for Cauchy Distribution
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-function">
+     1. Define function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#find-mu-and-gamma-at-max-data-likelihood">
+     2. Find mu and gamma at max data likelihood
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-the-results">
+     3. Plot the results
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#posterior-for-cauchy-distribution">
+   Posterior for Cauchy Distribution
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     1. define function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#generate-sample-and-use-bootstrap-estimation">
+     2. Generate sample and use Bootstrap estimation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#plot-results">
+     3. Plot results
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><a class="reference external" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter5/astroml_chapter5_Parameter_Estimation_for_Cauchy_Distribution.ipynb"><img alt="Open in Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<div class="section" id="parameter-estimation-for-the-cauchy-lorentzian-distribution">
+<h1>Parameter estimation for the Cauchy (Lorentzian) distribution<a class="headerlink" href="#parameter-estimation-for-the-cauchy-lorentzian-distribution" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p><strong>Cauchy (Lorentzian) distribution</strong> is a symmetric distribution described by location parameter <span class="math notranslate nohighlight">\(\mu\)</span> and a scale parameter <span class="math notranslate nohighlight">\(\gamma\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[p(x|\mu, \gamma) = \frac{1}{\pi \gamma} (\frac{\gamma^2}{\gamma^2+(x-\mu)^2})\]</div>
+<p>Because its tails decrease as slowly as <span class="math notranslate nohighlight">\(x^{-2}\)</span> for large <span class="math notranslate nohighlight">\(|x|\)</span>, the mean, variance, standard deviation, and higher moments do not exist. Therefore we cannot estimate location and scale parameter from the mean, standard deviation. Instead, we can estimate it from median value and interquartile range for {<span class="math notranslate nohighlight">\(x_i\)</span>} using a Bayesian approach.</p>
+<p>Suppose we want to determine the location of a lighthouse signal along the coastline. Let coastline located at y = 0, and the lighthouse is at distance <span class="math notranslate nohighlight">\(\gamma\)</span> away from the coastline. Define the angle between the line of light and coastline as <span class="math notranslate nohighlight">\(\theta\)</span>, then the position is expressed as <span class="math notranslate nohighlight">\(x = \mu + \gamma tan(\theta)\)</span>. From <span class="math notranslate nohighlight">\(-\pi/2 \leq \theta \leq \pi/2\)</span>, and angle <span class="math notranslate nohighlight">\(\theta\)</span> is distributed uniformly, we can find data likelihood using <span class="math notranslate nohighlight">\(p(x) = (\pi dx/d\theta)^{-1}p(\theta)\)</span>.<br />
+The datalikelihood for a set of data {<span class="math notranslate nohighlight">\(x_i\)</span>} with Cauchy distribution is</p>
+<div class="math notranslate nohighlight">
+\[p({x_i}|\mu,\gamma,I) = \prod_{i=1}^N \frac{1}{\pi}(\frac{\gamma}{\gamma^2+(x_i-\mu)^2})\]</div>
+<p>In this notebook, we will explore how the changes of <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\gamma\)</span> affect the estimated probability density function (pdf).</p>
+</div>
+<div class="section" id="import-functions">
+<h2>Import Functions<a class="headerlink" href="#import-functions" title="Permalink to this headline">¶</a></h2>
+<p>The core function used for the Cauchy function is cauchy in scipy.stats.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">cauchy</span>
+<span class="kn">from</span> <span class="nn">astroML.plotting.mcmc</span> <span class="kn">import</span> <span class="n">convert_to_stdev</span>
+<span class="kn">from</span> <span class="nn">astroML.stats</span> <span class="kn">import</span> <span class="n">median_sigmaG</span>
+<span class="kn">from</span> <span class="nn">astroML.resample</span> <span class="kn">import</span> <span class="n">bootstrap</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="log-likelihood-for-cauchy-distribution">
+<h2>Log-likelihood for Cauchy Distribution<a class="headerlink" href="#log-likelihood-for-cauchy-distribution" title="Permalink to this headline">¶</a></h2>
+<p>Given a data set of measured positions {<span class="math notranslate nohighlight">\(x_i\)</span>}, we need to estimate <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\gamma\)</span>. Analogously to the Gaussian case discussed in the prevoius chapter, we shall adopt a uniform prior distribution for the location parameter <span class="math notranslate nohighlight">\(\mu\)</span>, and a uniform prior distribution for ln<span class="math notranslate nohighlight">\(\gamma\)</span>, for <span class="math notranslate nohighlight">\(\mu_{min} \leq \mu \leq \mu_{max}\)</span> and <span class="math notranslate nohighlight">\(\gamma_{min} \leq \gamma \leq \gamma_{max}\)</span>.</p>
+<p>The logarithm of the posterior pdf is</p>
+<div class="math notranslate nohighlight">
+\[L_p \equiv ln[p(\mu,\gamma|{x_i},I)] = constant + (N-1)ln\gamma - \sum^N_{i=1}ln[\gamma^2 + (x_i-\mu)^2]\]</div>
+<div class="section" id="define-function">
+<h3>1. Define function<a class="headerlink" href="#define-function" title="Permalink to this headline">¶</a></h3>
+<p>We define the log-likelihood function as</p>
+<div class="math notranslate nohighlight">
+\[L_p \equiv ln[p(\mu,\gamma|{x_i},I)] = constant + (N-1)ln\gamma - \sum^N_{i=1}ln[\gamma^2 + (x_i-\mu)^2]\]</div>
+<p>In this example, we will use N = 10 values of <span class="math notranslate nohighlight">\(x_i\)</span>, <span class="math notranslate nohighlight">\(\mu\)</span> = 0, and <span class="math notranslate nohighlight">\(\gamma\)</span> = 2.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cauchy_logL</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">mu</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Equation 5.74: cauchy likelihood&quot;&quot;&quot;</span>
+    <span class="n">xi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">xi</span><span class="o">.</span><span class="n">size</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="n">xi</span> <span class="o">=</span> <span class="n">xi</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">xi</span><span class="o">.</span><span class="n">shape</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">([</span><span class="mi">1</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">shape</span><span class="p">]))</span>
+
+    <span class="k">return</span> <span class="p">((</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span>
+            <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">gamma</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">xi</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="c1"># Define the grid and compute logL</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">44</span><span class="p">)</span>
+<span class="n">mu0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">gamma0</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">cauchy</span><span class="p">(</span><span class="n">mu0</span><span class="p">,</span> <span class="n">gamma0</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">logL</span> <span class="o">=</span> <span class="n">cauchy_logL</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">gamma</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span> <span class="n">mu</span><span class="p">)</span>
+<span class="n">logL</span> <span class="o">-=</span> <span class="n">logL</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="find-mu-and-gamma-at-max-data-likelihood">
+<h3>2. Find mu and gamma at max data likelihood<a class="headerlink" href="#find-mu-and-gamma-at-max-data-likelihood" title="Permalink to this headline">¶</a></h3>
+<p>We can find <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\gamma\)</span> that maximize L by setting the derivative of L to 0, as <span class="math notranslate nohighlight">\(\frac{dlnL(\mu)}{d\mu}\Big|_{\mu^0} \equiv 0\)</span>. Here in this example, the result is <span class="math notranslate nohighlight">\(\mu = -0.36\)</span>, and <span class="math notranslate nohighlight">\(\gamma = 0.81\)</span>.</p>
+<p>Median and interquartile range imply <span class="math notranslate nohighlight">\(\mu = -0.26\)</span> and <span class="math notranslate nohighlight">\(\gamma = 1.11\)</span>. The interquartile range for the Cauchy distribution is equal to <span class="math notranslate nohighlight">\(2\gamma\)</span> and thus
+$<span class="math notranslate nohighlight">\(\sigma_G = 1.483\gamma\)</span>$</p>
+<p>When using this shortcut, the bootstrap method can be used to estimate parameter uncertainties as shown in the next section.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">logL</span> <span class="o">&gt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">logL</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mu from likelihood:&quot;</span><span class="p">,</span> <span class="n">mu</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;gamma from likelihood:&quot;</span><span class="p">,</span> <span class="n">gamma</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="n">med</span><span class="p">,</span> <span class="n">sigG</span> <span class="o">=</span> <span class="n">median_sigmaG</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mu from median&quot;</span><span class="p">,</span> <span class="n">med</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;gamma from quartiles:&quot;</span><span class="p">,</span> <span class="n">sigG</span> <span class="o">/</span> <span class="mf">1.483</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plot-the-results">
+<h3>3. Plot the results<a class="headerlink" href="#plot-the-results" title="Permalink to this headline">¶</a></h3>
+<p>Here we show the result of the logarithm of posterior probability distribution for <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\gamma\)</span> for <span class="math notranslate nohighlight">\(L_p(\mu,\gamma)\)</span> given above.<br />
+This example uses N = 10, <span class="math notranslate nohighlight">\(\mu\)</span> = 0 and <span class="math notranslate nohighlight">\(\gamma\)</span> = 2. The maximum of L is renormalized to 0, and color coded as shown in the legend. The contours enclose the regions that contain 0.683, 0.955 and 0.997 of the cumulative (integrated) posterior probability.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">logL</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">,</span>
+           <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">mu</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">mu</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">gamma</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">gamma</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+           <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">()</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\log(L)$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">convert_to_stdev</span><span class="p">(</span><span class="n">logL</span><span class="p">),</span>
+            <span class="n">levels</span><span class="o">=</span><span class="p">(</span><span class="mf">0.683</span><span class="p">,</span> <span class="mf">0.955</span><span class="p">,</span> <span class="mf">0.997</span><span class="p">),</span>
+            <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.93</span><span class="p">,</span>
+         <span class="sa">r</span><span class="s1">&#39;$L(\mu,\gamma)\ \mathrm</span><span class="si">{for}</span><span class="s1">\ \bar</span><span class="si">{x}</span><span class="s1">=0,\ \gamma=2,\ n=10$&#39;</span><span class="p">,</span>
+         <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">),</span>
+         <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\gamma$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="posterior-for-cauchy-distribution">
+<h2>Posterior for Cauchy Distribution<a class="headerlink" href="#posterior-for-cauchy-distribution" title="Permalink to this headline">¶</a></h2>
+<p>In the prevoius secsion, we use the interquartile range shortcut expressed by <span class="math notranslate nohighlight">\(\sigma_G = 1.483\gamma\)</span> Here we will use a bootstrap method to estimate parameter uncertainties.</p>
+<div class="section" id="id1">
+<h3>1. define function<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">estimate_mu_gamma</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Equation 3.54: Cauchy point estimates&quot;&quot;&quot;</span>
+    <span class="n">q25</span><span class="p">,</span> <span class="n">q50</span><span class="p">,</span> <span class="n">q75</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">q50</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">q75</span> <span class="o">-</span> <span class="n">q25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="generate-sample-and-use-bootstrap-estimation">
+<h3>2. Generate sample and use Bootstrap estimation<a class="headerlink" href="#generate-sample-and-use-bootstrap-estimation" title="Permalink to this headline">¶</a></h3>
+<p>Draw a random sample from the cauchy distribution, and compute marginalized posteriors of mu and gamma. Here we have a Cauchy distributed sample with N = 10, <span class="math notranslate nohighlight">\(\mu = 0\)</span>, <span class="math notranslate nohighlight">\(\gamma = 2\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">44</span><span class="p">)</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">mu_0</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">gamma_0</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">xi</span> <span class="o">=</span> <span class="n">cauchy</span><span class="p">(</span><span class="n">mu_0</span><span class="p">,</span> <span class="n">gamma_0</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">gamma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">dgamma</span> <span class="o">=</span> <span class="n">gamma</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">gamma</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">70</span><span class="p">)</span>
+<span class="n">dmu</span> <span class="o">=</span> <span class="n">mu</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">likelihood</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">cauchy_logL</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">gamma</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span> <span class="n">mu</span><span class="p">))</span>
+
+<span class="n">pmu</span> <span class="o">=</span> <span class="n">likelihood</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">pmu</span> <span class="o">/=</span> <span class="n">pmu</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="n">dmu</span>
+
+<span class="n">pgamma</span> <span class="o">=</span> <span class="n">likelihood</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">pgamma</span> <span class="o">/=</span> <span class="n">pgamma</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">*</span> <span class="n">dgamma</span>
+
+<span class="c1"># bootstrap estimate</span>
+<span class="n">mu_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span>
+<span class="n">gamma_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span>
+
+<span class="n">mu_bootstrap</span><span class="p">,</span> <span class="n">gamma_bootstrap</span> <span class="o">=</span> <span class="n">bootstrap</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="mi">20000</span><span class="p">,</span> <span class="n">estimate_mu_gamma</span><span class="p">,</span>
+                                          <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="plot-results">
+<h3>3. Plot results<a class="headerlink" href="#plot-results" title="Permalink to this headline">¶</a></h3>
+<p>We will draw a bootstrap estimation (blue dotted lines) of this Cauchy distributed sample along with the posterior pdf (black solid lines). The left two plots show how the result changes with the change of posterior <span class="math notranslate nohighlight">\(\mu\)</span>, and the right two plots show how the result changes with the posterior <span class="math notranslate nohighlight">\(\gamma\)</span>.<br />
+The bottom two plots show the cumulative probability distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.35</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
+                    <span class="n">hspace</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="c1"># first axes: mu posterior</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">221</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">pmu</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">mu_bootstrap</span><span class="p">,</span> <span class="n">mu_bins</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+         <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(\mu|x,I)$&#39;</span><span class="p">)</span>
+
+<span class="c1"># second axes: mu cumulative posterior</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">223</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">pmu</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">*</span> <span class="n">dmu</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">mu_bootstrap</span><span class="p">,</span> <span class="n">mu_bins</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+         <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$P(&lt;\mu|x,I)$&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># third axes: gamma posterior</span>
+<span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">222</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="n">pgamma</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">gamma_bootstrap</span><span class="p">,</span> <span class="n">gamma_bins</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+         <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\gamma$&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(\gamma|x,I)$&#39;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+
+<span class="c1"># fourth axes: gamma cumulative posterior</span>
+<span class="n">ax4</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="n">ax3</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="n">ax2</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="n">pgamma</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span> <span class="o">*</span> <span class="n">dgamma</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">gamma_bootstrap</span><span class="p">,</span> <span class="n">gamma_bins</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cumulative</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+         <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\gamma$&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$P(&lt;\gamma|x,I)$&#39;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By AstroML developers<br/>
+        
+            &copy; Copyright 2020-2021, AstroML developers.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
