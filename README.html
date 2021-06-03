@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AstroML notebooks &#8212; AstroML Notebooks</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
@@ -34,14 +34,11 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -61,8 +58,6 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
-      
-      <img src="_static/astroml_logo.gif" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">AstroML Notebooks</h1>
@@ -194,9 +189,21 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#notebook-contents">
-   Notebook Contents
+  <a class="reference internal nav-link" href="#contributing">
+   Contributing
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#smaller-changes">
+     Smaller changes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#editing-ipynb">
+     Editing ipynb
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -211,16 +218,29 @@
                 
   <div class="section" id="astroml-notebooks">
 <h1>AstroML notebooks<a class="headerlink" href="#astroml-notebooks" title="Permalink to this headline">¶</a></h1>
-<p>This section makes available the source code used to generate the figures
-in the book <cite>Statistics, Data Mining, and Machine Learning in Astronomy</cite>,
-curated into stand alone notebook format. The focus is on the later chapters that
+<p>This repository shares notebooks developed for AstroML. The material
+reproduces many of the figures from the book <cite>Statistics, Data Mining, and
+Machine Learning in Astronomy</cite>, and therefore organized in topics following
+the chapters. We focused on the later chapters that
 have actual applications using astronomical data.
 Narrative commentary is provided, however some sections maybe less
 self-explanatory without the book as a reference.
-The table of contents of the book can be seen <code class="xref download docutils literal notranslate"><span class="pre">here(pdf)</span></code>.</p>
-<div class="section" id="notebook-contents">
-<h2>Notebook Contents<a class="headerlink" href="#notebook-contents" title="Permalink to this headline">¶</a></h2>
-<p>Each chapter links to a page with a list of figures relevant to the chapter.</p>
+The table of contents of the book can be found on the main astroML webpage, <cite>www.astroml.org</cite>.</p>
+<div class="section" id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
+<p>Contributions are welcome in the form of pull requests.</p>
+<p>This repository uses Jupytext and MyST Markdown Notebook to generate static
+html pages. We store both the linked <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> and <code class="docutils literal notranslate"><span class="pre">.md</span></code> files.</p>
+<div class="section" id="smaller-changes">
+<h3>Smaller changes<a class="headerlink" href="#smaller-changes" title="Permalink to this headline">¶</a></h3>
+<p>For making smaller changes to the text content of the notebooks, please edit
+the .md files using either the GitHub interface or a text editor.</p>
+</div>
+<div class="section" id="editing-ipynb">
+<h3>Editing ipynb<a class="headerlink" href="#editing-ipynb" title="Permalink to this headline">¶</a></h3>
+<p>For larger changes to the code and outputs, the easiest approach is to edit
+the notebooks directly.</p>
+</div>
 </div>
 </div>
 
