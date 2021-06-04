@@ -5,7 +5,6 @@
    "id": "convenient-bradley",
    "metadata": {},
    "source": [
-    "[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter7/astroml_chapter7_Dimensionality_Reduction.ipynb)\n",
     "\n",
     "## Dimensionality reduction"
    ]

@@ -12,7 +12,6 @@ kernelspec:
   name: python3
 ---
 
-[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter6/astroml_chapter6_Searching_for_Structure_in_Point_Data.ipynb)
 
 # Searching for Structure in Point Data
 

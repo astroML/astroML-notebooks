@@ -309,7 +309,7 @@
             href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2Fchapter9/astroml_chapter9_Classification.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/astroML/astroML-notebooks/edit/main/site/chapter9/astroml_chapter9_Classification.md"><button
+        <a class="edit-button" href="https://github.com/astroML/astroML-notebooks/edit/main/chapter9/astroml_chapter9_Classification.md"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -329,7 +329,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?urlpath=tree/site/chapter9/astroml_chapter9_Classification.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?urlpath=tree/chapter9/astroml_chapter9_Classification.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -351,44 +351,37 @@
             </div>
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Classification
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classification-loss-how-well-are-we-doing">
+   Classification loss: how well are we doing?
   </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#classification-loss-how-well-are-we-doing">
-     Classification loss: how well are we doing?
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#comparing-the-performance-of-classifiers">
-     Comparing the performance of classifiers
-    </a>
-   </li>
-  </ul>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparing-the-performance-of-classifiers">
+   Comparing the performance of classifiers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#linear-and-quadratic-discriminant-analysis">
    Linear and quadratic discriminant analysis
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#gmm-and-bayes-classification">
    GMM and Bayes classification
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#k-nearest-neighbours">
    K-nearest neighbours
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#support-vector-machines">
    Support Vector Machines
   </a>
  </li>
- <li class="toc-h1 nav-item toc-entry">
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#gaussian-naive-bayes">
    Gaussian Naive Bayes
   </a>
@@ -404,8 +397,7 @@
         
               <div>
                 
-  <p><a class="reference external" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter9/astroml_chapter9_Classification.ipynb"><img alt="Open in Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
-<div class="section" id="classification">
+  <div class="section" id="classification">
 <h1>Classification<a class="headerlink" href="#classification" title="Permalink to this headline">¶</a></h1>
 <p>In density estimation we estimate joint probability distributions from multivariate data sets to identify the inherent clustering. This is essentially <u> unsupervised classification </u></p>
 <p>If we have labels for some of these data points (e.g., an object is tall, short, red, or blue) we can develop a relationship between the label and the properties of a source. This is <u> supervised classification </u></p>
@@ -590,9 +582,8 @@ and then use the same sets for all the examples below.</p>
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="linear-and-quadratic-discriminant-analysis">
-<h1>Linear and quadratic discriminant analysis<a class="headerlink" href="#linear-and-quadratic-discriminant-analysis" title="Permalink to this headline">¶</a></h1>
+<h2>Linear and quadratic discriminant analysis<a class="headerlink" href="#linear-and-quadratic-discriminant-analysis" title="Permalink to this headline">¶</a></h2>
 <p>Linear discriminant analysis (LDA) assumes  the class distributions have identical
 covariances for all <span class="math notranslate nohighlight">\(k\)</span> classes (all classes are a set of shifted Gaussians). The
 optimal classifier is derived from the log of the class
@@ -735,7 +726,7 @@ becomes quadratic in <span class="math notranslate nohighlight">\(x\)</span>:</p
 </div>
 </div>
 <div class="section" id="gmm-and-bayes-classification">
-<h1>GMM and Bayes classification<a class="headerlink" href="#gmm-and-bayes-classification" title="Permalink to this headline">¶</a></h1>
+<h2>GMM and Bayes classification<a class="headerlink" href="#gmm-and-bayes-classification" title="Permalink to this headline">¶</a></h2>
 <p>The natural extension to the Gaussian assumptions is to use GMM’s to learn the density distribution.</p>
 <p>The number of Gaussian components <span class="math notranslate nohighlight">\(K\)</span> must be chosen for each class independently</p>
 <div class="cell docutils container">
@@ -850,7 +841,7 @@ becomes quadratic in <span class="math notranslate nohighlight">\(x\)</span>:</p
 </div>
 </div>
 <div class="section" id="k-nearest-neighbours">
-<h1>K-nearest neighbours<a class="headerlink" href="#k-nearest-neighbours" title="Permalink to this headline">¶</a></h1>
+<h2>K-nearest neighbours<a class="headerlink" href="#k-nearest-neighbours" title="Permalink to this headline">¶</a></h2>
 <p>As with density estimation (and kernel density estimation)  the intuitive justification is that <span class="math notranslate nohighlight">\(p(y|x) \approx p(y|x')\)</span> if <span class="math notranslate nohighlight">\(x'\)</span> is very close to <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <p>The number of neighbors, <span class="math notranslate nohighlight">\(K\)</span>, regulates the complexity of the classification. In simplest form, a majority rule classification is adopted, where each of the <span class="math notranslate nohighlight">\(K\)</span> points votes on the classification. Increasing <span class="math notranslate nohighlight">\(K\)</span> decreases the variance in the classification but at the expense of an increase in the bias.</p>
 <p>Weights can be assigned to  individual votes by weighting the vote by the distance to the nearest point.</p>
@@ -958,7 +949,7 @@ becomes quadratic in <span class="math notranslate nohighlight">\(x\)</span>:</p
 </div>
 </div>
 <div class="section" id="support-vector-machines">
-<h1>Support Vector Machines<a class="headerlink" href="#support-vector-machines" title="Permalink to this headline">¶</a></h1>
+<h2>Support Vector Machines<a class="headerlink" href="#support-vector-machines" title="Permalink to this headline">¶</a></h2>
 <p>Find the hyperplane that maximizes the distance of the closest point from either class. This distance is the margin (width of the line before it hits a point). We want the line that maximizes the margin (m).</p>
 <p>The points on the margin are called <em>support vectors</em></p>
 <p>If we assume <span class="math notranslate nohighlight">\(y \in \{-1,1\}\)</span>, (+1 is maximum margin, -1 is minimum, 0 is the decision boundary)</p>
@@ -1089,7 +1080,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 </div>
 <div class="section" id="gaussian-naive-bayes">
-<h1>Gaussian Naive Bayes<a class="headerlink" href="#gaussian-naive-bayes" title="Permalink to this headline">¶</a></h1>
+<h2>Gaussian Naive Bayes<a class="headerlink" href="#gaussian-naive-bayes" title="Permalink to this headline">¶</a></h2>
 <p>In Gaussian naive Bayes <span class="math notranslate nohighlight">\(p_k(x^i)\)</span> are modeled as one-dimensional normal distributions, with means <span class="math notranslate nohighlight">\(\mu^i_k\)</span> and widths <span class="math notranslate nohighlight">\(\sigma^i_k\)</span>. The naive Bayes estimator is then</p>
 <div class="math notranslate nohighlight">
 \[\hat{y} = \arg\max_{y_k}\left[\ln \pi_k - \frac{1}{2}\sum_{i=1}^N\left(2\pi(\sigma^i_k)^2 + \frac{(x^i - \mu^i_k)^2}{(\sigma^i_k)^2} \right) \right]\]</div>
@@ -1150,6 +1141,7 @@ $<span class="math notranslate nohighlight">\(
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>

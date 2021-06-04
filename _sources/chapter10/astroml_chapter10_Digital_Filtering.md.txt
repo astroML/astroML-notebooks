@@ -14,7 +14,6 @@ kernelspec:
 
 +++ {"id": "RY3UTJn5xS61"}
 
-[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter10/astroml_chapter10_Digital_Filtering.ipynb)
 
 # Digital Filtering
 

@@ -14,7 +14,6 @@ kernelspec:
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
-[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter5/astroml_chapter5_Hierarchical_Bayes.ipynb)
 
 # Hierarchical Bayes Example
 ### January 6, 2020 
@@ -60,7 +59,7 @@ We'll start with a quick reminder of Bayes' Theorem and its implications for tod
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
-<img src="bayes2.jpg" style="height:670px">
+![Bayesian Statistics](figures/bayes2.jpg)
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
