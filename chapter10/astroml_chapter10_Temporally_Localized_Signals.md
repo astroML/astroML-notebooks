@@ -14,7 +14,6 @@ kernelspec:
 
 +++ {"id": "EI3PhtVB5Ui_"}
 
-[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter10/astroml_chapter10_Temporally_Localized_Signals.ipynb)
 
 # Temporally localized signals
 
