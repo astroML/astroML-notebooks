@@ -17,7 +17,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: 3.8
 
       - name: Insall dependencies
         run: |
@@ -35,3 +35,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_build/html/
+          commit_message: ${{ github.event.head_commit.message }}

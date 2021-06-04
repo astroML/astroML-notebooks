@@ -14,7 +14,6 @@ kernelspec:
 
 +++ {"id": "KA0JN-Zs1TeU", "colab_type": "text"}
 
-[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter5/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution.ipynb)
 
 # Parameter Estimation for a Gaussian Distribution
 

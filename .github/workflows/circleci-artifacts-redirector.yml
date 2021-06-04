@@ -1,4 +1,4 @@
-name: circleci-artifacts-redirector
+name: Run CircleCI artifacts redirector, rendered pages are under Details
 
 on: [status]
 jobs:

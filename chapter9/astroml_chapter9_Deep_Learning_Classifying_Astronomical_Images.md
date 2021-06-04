@@ -12,10 +12,10 @@ kernelspec:
   name: python3
 ---
 
-[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter9/astroml_chapter9_Deep_Learning_Classifying_Astronomical_Images.ipynb)
 
-## Deep Learning: Classifying Astronomical Images 
+# Deep Learning: Classifying Astronomical Images 
 
+<!---
 ### January 6, 2020 
 
 
@@ -25,10 +25,9 @@ kernelspec:
 
 Thanks to Hayden Smotherman, University of Washington for the example networks.
 
-[Tutorial Repository](https://github.com/astroML/astroML-workshop_AAS235)
-
 
 In this notebook we work through a simple example for a Neural Network using TensorFlow and the Keras interface. Initially we will start with a vanila network with two hidden layers and then expand this to a convolutional neural network with drop out layers and batch normalization
+--->
 
 +++
 
@@ -45,7 +44,7 @@ multiple neurons or layers of neurons to one another.
 
 +++
 
-<img src="figures/fig_neural_network-1.png">
+![Neural Network Diagram](figures/fig_neural_network-1.png)
 
 +++
 
@@ -498,7 +497,7 @@ sequences.
 
 +++
 
-<img src="figures/fig_cnn_1.png">
+![Convolutional Neural Network](figures/fig_cnn_1.png)
 
 +++
 

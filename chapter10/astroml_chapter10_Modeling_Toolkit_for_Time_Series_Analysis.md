@@ -14,7 +14,6 @@ kernelspec:
 
 +++ {"id": "W_l-7O_Ed1MV"}
 
-[![Open in Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?filepath=chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.ipynb)
 
 # Modeling Toolkit For Time Series Analysis
 
