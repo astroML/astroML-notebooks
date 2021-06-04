@@ -13,8 +13,9 @@ kernelspec:
 ---
 
 
-## Deep Learning: Classifying Astronomical Images 
+# Deep Learning: Classifying Astronomical Images 
 
+<!---
 ### January 6, 2020 
 
 
@@ -24,10 +25,9 @@ kernelspec:
 
 Thanks to Hayden Smotherman, University of Washington for the example networks.
 
-[Tutorial Repository](https://github.com/astroML/astroML-workshop_AAS235)
-
 
 In this notebook we work through a simple example for a Neural Network using TensorFlow and the Keras interface. Initially we will start with a vanila network with two hidden layers and then expand this to a convolutional neural network with drop out layers and batch normalization
+--->
 
 +++
 
