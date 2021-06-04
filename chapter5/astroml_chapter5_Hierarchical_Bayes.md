@@ -59,7 +59,7 @@ We'll start with a quick reminder of Bayes' Theorem and its implications for tod
 
 +++ {"slideshow": {"slide_type": "slide"}}
 
-<img src="bayes2.jpg" style="height:670px">
+![Bayesian Statistics](figures/bayes2.jpg)
 
 +++ {"slideshow": {"slide_type": "slide"}}
 

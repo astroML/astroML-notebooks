@@ -44,7 +44,7 @@ multiple neurons or layers of neurons to one another.
 
 +++
 
-<img src="figures/fig_neural_network-1.png">
+![Neural Network Diagram](figures/fig_neural_network-1.png)
 
 +++
 
@@ -497,7 +497,7 @@ sequences.
 
 +++
 
-<img src="figures/fig_cnn_1.png">
+![Convolutional Neural Network](figures/fig_cnn_1.png)
 
 +++
 
