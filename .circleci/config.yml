@@ -1,0 +1,41 @@
+version: 2
+jobs:
+
+  build-docs:
+    docker:
+      - image: cimg/python:3.9
+
+    steps:
+      - checkout
+
+      - run:
+          name: Install dependencies
+          command: |
+            pip install -r .binder/requirements.txt -r doc-requirements.txt
+
+# TODO: figure out what is useful to bring back from cache
+#      - restore_cache:
+#          keys:
+#            - cache-data
+
+      - run:
+          name: Build html
+          no_output_timeout: 30m
+          command: |
+            sphinx-build -b html -D jupyter_execute_notebooks=off . _build/html
+
+# TODO: figure out what is useful to bring back from cache
+#      - save-cache:
+#          key: cache-data
+#          paths:
+#            - _build
+
+      - store_artifacts:
+          path: _build/html
+
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build-docs
