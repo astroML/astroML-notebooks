@@ -20,14 +20,13 @@ kernelspec:
 
 
 [astroML workshop at the 235th Meeting of the American Astronomical Society](http://www.astroml.org/workshops/AAS235.html)
-
+--->
 [Andrew Connolly, University of Washington](http://faculty.washington.edu/ajc26/)
 
 Thanks to Hayden Smotherman, University of Washington for the example networks.
 
 
 In this notebook we work through a simple example for a Neural Network using TensorFlow and the Keras interface. Initially we will start with a vanila network with two hidden layers and then expand this to a convolutional neural network with drop out layers and batch normalization
---->
 
 +++
 
