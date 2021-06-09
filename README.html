@@ -342,6 +342,11 @@
      Editing ipynb
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rendering-the-notebooks">
+     Rendering the notebooks
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -379,6 +384,19 @@ the .md files using either the GitHub interface or a text editor.</p>
 <h3>Editing ipynb<a class="headerlink" href="#editing-ipynb" title="Permalink to this headline">¶</a></h3>
 <p>For larger changes to the code and outputs, the easiest approach is to edit
 the notebooks directly.</p>
+</div>
+<div class="section" id="rendering-the-notebooks">
+<h3>Rendering the notebooks<a class="headerlink" href="#rendering-the-notebooks" title="Permalink to this headline">¶</a></h3>
+<p>You will need to install some extra dependencies for rendering the notebooks to html pages, install them via:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">doc-requirements.txt</span>
+<span class="pre">`</span></code></p>
+<p>Running some of the notebooks takes significant time, therefore we store the outputs in them and therefore
+building the pages without executing the notebooks:</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">sphinx-build</span> <span class="pre">-b</span> <span class="pre">html</span> <span class="pre">-D</span> <span class="pre">jupyter_execute_notebooks=off</span> <span class="pre">.</span> <span class="pre">_build/html</span>
+<span class="pre">`</span></code></p>
+<p>The rendered notebooks then available in <code class="docutils literal notranslate"><span class="pre">_build/html/index.html</span></code></p>
 </div>
 </div>
 </div>
