@@ -388,14 +388,10 @@ the notebooks directly.</p>
 <div class="section" id="rendering-the-notebooks">
 <h3>Rendering the notebooks<a class="headerlink" href="#rendering-the-notebooks" title="Permalink to this headline">¶</a></h3>
 <p>You will need to install some extra dependencies for rendering the notebooks to html pages, install them via:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">doc-requirements.txt</span>
-<span class="pre">`</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">doc-requirements.txt</span></code></p>
 <p>Running some of the notebooks takes significant time, therefore we store the outputs in them and therefore
 building the pages without executing the notebooks:</p>
-<p><code class="docutils literal notranslate"><span class="pre">`</span>
-<span class="pre">sphinx-build</span> <span class="pre">-b</span> <span class="pre">html</span> <span class="pre">-D</span> <span class="pre">jupyter_execute_notebooks=off</span> <span class="pre">.</span> <span class="pre">_build/html</span>
-<span class="pre">`</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-b</span> <span class="pre">html</span> <span class="pre">-D</span> <span class="pre">jupyter_execute_notebooks=off</span> <span class="pre">.</span> <span class="pre">_build/html</span></code></p>
 <p>The rendered notebooks then available in <code class="docutils literal notranslate"><span class="pre">_build/html/index.html</span></code></p>
 </div>
 </div>

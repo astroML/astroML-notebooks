@@ -39,15 +39,11 @@ Rendering the notebooks
 
 You will need to install some extra dependencies for rendering the notebooks to html pages, install them via:
 
-```
-pip install -r doc-requirements.txt
-```
+``pip install -r doc-requirements.txt``
 
 Running some of the notebooks takes significant time, therefore we store the outputs in them and therefore
 building the pages without executing the notebooks:
 
-```
-sphinx-build -b html -D jupyter_execute_notebooks=off . _build/html
-```
+``sphinx-build -b html -D jupyter_execute_notebooks=off . _build/html``
 
 The rendered notebooks then available in ``_build/html/index.html``
