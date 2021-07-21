@@ -24,6 +24,10 @@ jobs:
           pip install -r .binder/requirements.txt -r doc-requirements.txt
 
 
+      - name: TMP: clean source files
+        # ugly hack to make the colab links work, sphinx defaults to use the md files to generate content, while the colab link can only be created from the ipynb
+        run: |
+          rm chapter*/astroml_chapter*md
       - name: Build the notebooks
         run: |
           sphinx-build -b html -D jupyter_execute_notebooks=off . _build/html
