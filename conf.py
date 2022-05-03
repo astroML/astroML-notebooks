@@ -59,7 +59,11 @@ html_theme_options = {
     "launch_buttons": {
         "binderhub_url": "https://mybinder.org",
         "colab_url": "https://colab.research.google.com"
+
     },
+    "home_page_in_toc": True,
+    "logo_link_url": "https://astroML.org",
+    "logo_url": "http://www.astroml.org/_images/plot_moving_objects_1.png"
 }
 
 
