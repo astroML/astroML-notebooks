@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Dimensionality reduction &#8212; AstroML Notebooks</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,38 +20,53 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Chapter 8: Regression and Model Fitting" href="../chapter8/README.html" />
     <link rel="prev" title="Chapter 7: Dimensionality and its Reduction" href="README.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -58,10 +75,15 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="../_static/astroml_logo.gif" class="logo" alt="logo">
       
@@ -72,7 +94,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
@@ -245,114 +267,244 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/chapter7/astroml_chapter7_Dimensionality_Reduction.ipynb.txt"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/astroML/astroML-notebooks"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2Fchapter7/astroml_chapter7_Dimensionality_Reduction.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/astroML/astroML-notebooks/edit/main/chapter7/astroml_chapter7_Dimensionality_Reduction.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?urlpath=tree/chapter7/astroml_chapter7_Dimensionality_Reduction.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/astroML/astroML-notebooks/blob/main/chapter7/astroml_chapter7_Dimensionality_Reduction.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
             </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?urlpath=tree/chapter7/astroml_chapter7_Dimensionality_Reduction.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/astroML/astroML-notebooks/blob/main/chapter7/astroml_chapter7_Dimensionality_Reduction.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2Fchapter7/astroml_chapter7_Dimensionality_Reduction.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter7/astroml_chapter7_Dimensionality_Reduction.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/chapter7/astroml_chapter7_Dimensionality_Reduction.ipynb.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-curse-of-dimensionality">
    The curse of dimensionality
@@ -424,37 +576,123 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Dimensionality reduction</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-curse-of-dimensionality">
+   The curse of dimensionality
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#principal-component-analysis">
+   Principal Component Analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#derivation-of-principal-component-analyses">
+     Derivation of principal component analyses
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#singular-value-decomposition-svd">
+     Singular value decomposition (SVD)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#application-of-pca">
+     Application of PCA
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pca-reconstruction-of-a-spectrum">
+   PCA Reconstruction of a spectrum
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eigenvalues">
+   Eigenvalues
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pca-with-missing-data">
+   PCA with missing data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparing-pca-nmf-and-ica">
+   Comparing PCA, NMF and ICA
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nonnegative-matrix-factorization">
+     Nonnegative Matrix Factorization
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#independent-component-analysis">
+     Independent component analysis
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Comparing PCA, NMF and ICA
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#summary-of-pracical-properties-of-pca-nmf-and-ica">
+     Summary of pracical properties of PCA, NMF, and ICA
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="dimensionality-reduction">
-<h1>Dimensionality reduction<a class="headerlink" href="#dimensionality-reduction" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="the-curse-of-dimensionality">
-<h2>The curse of dimensionality<a class="headerlink" href="#the-curse-of-dimensionality" title="Permalink to this headline">¶</a></h2>
+  <section id="dimensionality-reduction">
+<h1>Dimensionality reduction<a class="headerlink" href="#dimensionality-reduction" title="Permalink to this headline">#</a></h1>
+<section id="the-curse-of-dimensionality">
+<h2>The curse of dimensionality<a class="headerlink" href="#the-curse-of-dimensionality" title="Permalink to this headline">#</a></h2>
 <p>Fitting and overfitting get worse with ‘’curse of dimensionality’’ Bellman 1961</p>
 <p>Think about a hypersphere. Its volume is  given by</p>
-<div class="math notranslate nohighlight">
-\[  V_D(r) = \frac{2r^D\pi^{D/2}}{D\  \Gamma(D/2)}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\Gamma(z)\)</span> is the complete gamma function, <span class="math notranslate nohighlight">\(D\)</span> is the dimension, and <span class="math notranslate nohighlight">\(r\)</span> the radius of the sphere.</p>
-<p>If you populated a hypercube of size <span class="math notranslate nohighlight">\(2r\)</span> how much data would be enclosed by the hypersphere</p>
+<p>$$  V_D(r) = \frac{2r^D\pi^{D/2}}{D\  \Gamma(D/2)}$$</p>
+<p>where $\Gamma(z)$ is the complete gamma function, $D$ is the dimension, and $r$ the radius of the sphere.</p>
+<p>If you populated a hypercube of size $2r$ how much data would be enclosed by the hypersphere</p>
 <ul class="simple">
-<li><p>as <span class="math notranslate nohighlight">\(D\)</span> increases the fractional volume enclosed by the hypersphere goes to 0!</p></li>
+<li><p>as $D$ increases the fractional volume enclosed by the hypersphere goes to 0!</p></li>
 </ul>
 <p>For example: the SDSS comprises a sample of 357 million sources.</p>
 <ul class="simple">
 <li><p>each source has 448 measured attributes</p></li>
-<li><p>selecting just 30 (e.g., magnitude, size..) and normalizing the data range <span class="math notranslate nohighlight">\(-1\)</span> to <span class="math notranslate nohighlight">\(1\)</span></p></li>
+<li><p>selecting just 30 (e.g., magnitude, size..) and normalizing the data range $-1$ to $1$</p></li>
 </ul>
-<p>probability of having one of the 357 million sources reside within a unit hypersphere 1 in 1.4<span class="math notranslate nohighlight">\(\times 10^5\)</span>.</p>
-</div>
-<div class="section" id="principal-component-analysis">
-<h2>Principal Component Analysis<a class="headerlink" href="#principal-component-analysis" title="Permalink to this headline">¶</a></h2>
+<p>probability of having one of the 357 million sources reside within a unit hypersphere 1 in 1.4$\times 10^5$.</p>
+</section>
+<section id="principal-component-analysis">
+<h2>Principal Component Analysis<a class="headerlink" href="#principal-component-analysis" title="Permalink to this headline">#</a></h2>
 <p>Points are  correlated along a particular direction which doesn’t align with the initial choice of axes.</p>
 <ul class="simple">
 <li><p>we should rotate our axes to align with this correlation.</p></li>
@@ -467,8 +705,8 @@
 <li><p>…</p></li>
 </ul>
 <p>In the following example a distribution of points drawn from a bivariate Gaussian and centered on the
-origin of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.
-PCA defines a rotation such that the new axes (<span class="math notranslate nohighlight">\(x’\)</span> and <span class="math notranslate nohighlight">\(y’\)</span>) are aligned along the directions of maximal
+origin of $x$ and $y$.
+PCA defines a rotation such that the new axes ($x’$ and $y’$) are aligned along the directions of maximal
 variance (the principal components) with zero covariance. This is equivalent to minimizing the square of
 the perpendicular distances between the points and the principal components.</p>
 <div class="cell docutils container">
@@ -547,54 +785,47 @@ the perpendicular distances between the points and the principal components.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/astroml_chapter7_Dimensionality_Reduction_6_0.png" src="../_images/astroml_chapter7_Dimensionality_Reduction_6_0.png" />
+<img alt="../_images/9e37a24727be754c5e65fde0140eecaedb5e32ea3055bc1e703f0209fdf2f9e1.png" src="../_images/9e37a24727be754c5e65fde0140eecaedb5e32ea3055bc1e703f0209fdf2f9e1.png" />
 </div>
 </div>
-<div class="section" id="derivation-of-principal-component-analyses">
-<h3>Derivation of principal component analyses<a class="headerlink" href="#derivation-of-principal-component-analyses" title="Permalink to this headline">¶</a></h3>
-<p>Set of data <span class="math notranslate nohighlight">\(X\)</span>: <span class="math notranslate nohighlight">\(N\)</span> observations by <span class="math notranslate nohighlight">\(K\)</span> measurements</p>
+<section id="derivation-of-principal-component-analyses">
+<h3>Derivation of principal component analyses<a class="headerlink" href="#derivation-of-principal-component-analyses" title="Permalink to this headline">#</a></h3>
+<p>Set of data $X$: $N$ observations by $K$ measurements</p>
 <p>Center data by subtracting the mean</p>
 <p>The covariance is</p>
-<div class="math notranslate nohighlight">
-\[ C_X=\frac{1}{N-1}X^TX,\]</div>
-<p><span class="math notranslate nohighlight">\(N-1\)</span> as the sample covariance matrix.</p>
-<p>We want a projection, <span class="math notranslate nohighlight">\(R\)</span>,  aligned with the directions of maximal variance (<span class="math notranslate nohighlight">\(Y= X R\)</span>) with covariance</p>
-<div class="math notranslate nohighlight">
-\[C_{Y} = R^T X^T X R = R^T C_X R\]</div>
+<p>$$ C_X=\frac{1}{N-1}X^TX,$$</p>
+<p>$N-1$ as the sample covariance matrix.</p>
+<p>We want a projection, $R$,  aligned with the directions of maximal variance ($Y= X R$) with covariance</p>
+<p>$$C_{Y} = R^T X^T X R = R^T C_X R$$</p>
 <p>Derive  principal component by maximizing its variance (using Lagrange multipliers and constraint)</p>
-<div class="math notranslate nohighlight">
-\[\phi(r_1,\lambda_1) = r_1^TC_X r_1 - \lambda_1(r_1^Tr_1-1)\]</div>
-<p>derivative of <span class="math notranslate nohighlight">\(\phi(r_1,\lambda)\)</span> with respect to <span class="math notranslate nohighlight">\(r_1\)</span> set to 0</p>
-<div class="math notranslate nohighlight">
-\[C_Xr_1 - \lambda_1 r_1 = 0\]</div>
-<p><span class="math notranslate nohighlight">\(\lambda_1\)</span> is the root of the equation <span class="math notranslate nohighlight">\(\det(C_X -
-\lambda_1 {\bf I})=0\)</span> and the largest eigenvalue</p>
-<div class="math notranslate nohighlight">
-\[\lambda_1 =  r_1^T C_X r_1\]</div>
+<p>$$\phi(r_1,\lambda_1) = r_1^TC_X r_1 - \lambda_1(r_1^Tr_1-1)$$</p>
+<p>derivative of $\phi(r_1,\lambda)$ with respect to $r_1$ set to 0</p>
+<p>$$C_Xr_1 - \lambda_1 r_1 = 0$$</p>
+<p>$\lambda_1$ is the root of the equation $\det(C_X -
+\lambda_1 {\bf I})=0$ and the largest eigenvalue</p>
+<p>$$\lambda_1 =  r_1^T C_X r_1$$</p>
 <p>Other  principal components  derived by
-applying additional constraint that components are uncorrelated (e.g., <span class="math notranslate nohighlight">\(r^T_2 C_X r_1 = 0\)</span>).</p>
-</div>
-<div class="section" id="singular-value-decomposition-svd">
-<h3>Singular value decomposition (SVD)<a class="headerlink" href="#singular-value-decomposition-svd" title="Permalink to this headline">¶</a></h3>
+applying additional constraint that components are uncorrelated (e.g., $r^T_2 C_X r_1 = 0$).</p>
+</section>
+<section id="singular-value-decomposition-svd">
+<h3>Singular value decomposition (SVD)<a class="headerlink" href="#singular-value-decomposition-svd" title="Permalink to this headline">#</a></h3>
 <p>Common approach is eigenvalue decomposition of the covariance or correlation matrix,
 or singular value decomposition (SVD) of the data matrix</p>
-<div class="math notranslate nohighlight">
-\[U \Sigma V^T = \frac{1}{\sqrt{N - 1}} X\]</div>
-<p>columns of <span class="math notranslate nohighlight">\(U\)</span> are  <em>left-singular vectors</em></p>
-<p>columns of <span class="math notranslate nohighlight">\(V\)</span> are the <em>right-singular vectors</em></p>
-<p>The columns of <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> form orthonormal bases (<span class="math notranslate nohighlight">\(U^TU = V^TV = I\)</span>)</p>
+<p>$$U \Sigma V^T = \frac{1}{\sqrt{N - 1}} X$$</p>
+<p>columns of $U$ are  <em>left-singular vectors</em></p>
+<p>columns of $V$ are the <em>right-singular vectors</em></p>
+<p>The columns of $U$ and $V$ form orthonormal bases ($U^TU = V^TV = I$)</p>
 <p>Covariance matrix is</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-  C_X = \left[\frac{1}{\sqrt{N - 1}}X\right]^T \left[\frac{1}{\sqrt{N - 1}}X\right]\nonumber\\
-      = V \Sigma U^T U \Sigma V^T\nonumber\\
-      = V \Sigma^2 V^T.
-\end{split}\]</div>
-<p>right singular vectors <span class="math notranslate nohighlight">\(V\)</span> are the principal components so principal from the SVD of <span class="math notranslate nohighlight">\(X\)</span> dont need <span class="math notranslate nohighlight">\(C_X\)</span>.</p>
-</div>
-<div class="section" id="application-of-pca">
-<h3>Application of PCA<a class="headerlink" href="#application-of-pca" title="Permalink to this headline">¶</a></h3>
-<p>In the following example we have 100 data points in 3 dimensions, <span class="math notranslate nohighlight">\(X\)</span>, and <span class="math notranslate nohighlight">\(R\)</span> as the projection matrix. To compute the PCA components (4 in our case) we use <code class="docutils literal notranslate"><span class="pre">PCA</span></code> from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p>
+<p>$$
+C_X = \left[\frac{1}{\sqrt{N - 1}}X\right]^T \left[\frac{1}{\sqrt{N - 1}}X\right]\nonumber\
+= V \Sigma U^T U \Sigma V^T\nonumber\
+= V \Sigma^2 V^T.
+$$</p>
+<p>right singular vectors $V$ are the principal components so principal from the SVD of $X$ dont need $C_X$.</p>
+</section>
+<section id="application-of-pca">
+<h3>Application of PCA<a class="headerlink" href="#application-of-pca" title="Permalink to this headline">#</a></h3>
+<p>In the following example we have 100 data points in 3 dimensions, $X$, and $R$ as the projection matrix. To compute the PCA components (4 in our case) we use <code class="docutils literal notranslate"><span class="pre">PCA</span></code> from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
@@ -677,22 +908,20 @@ for masking using an iterative PCA reconstruction technique, and resampled to 10
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/astroml_chapter7_Dimensionality_Reduction_15_0.png" src="../_images/astroml_chapter7_Dimensionality_Reduction_15_0.png" />
+<img alt="../_images/e6e6050870305e48dd9007fd2450d3e26563c56a1c6b71d735922623bfbdc894.png" src="../_images/e6e6050870305e48dd9007fd2450d3e26563c56a1c6b71d735922623bfbdc894.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="pca-reconstruction-of-a-spectrum">
-<h2>PCA Reconstruction of a spectrum<a class="headerlink" href="#pca-reconstruction-of-a-spectrum" title="Permalink to this headline">¶</a></h2>
-<p>Reconstruction of spectrum, <span class="math notranslate nohighlight">\({x}(k)\)</span>, from the
-eigenvectors, <span class="math notranslate nohighlight">\({e}_i(k)\)</span></p>
-<div class="math notranslate nohighlight">
-\[  {x}_i(k) = {\mu}(k) + \sum_j^R \theta_{ij} {e}_j(k),\]</div>
-<p>Truncating this expansion (i.e., <span class="math notranslate nohighlight">\(r&lt;R\)</span>)</p>
-<div class="math notranslate nohighlight">
-\[
+</section>
+</section>
+<section id="pca-reconstruction-of-a-spectrum">
+<h2>PCA Reconstruction of a spectrum<a class="headerlink" href="#pca-reconstruction-of-a-spectrum" title="Permalink to this headline">#</a></h2>
+<p>Reconstruction of spectrum, ${x}(k)$, from the
+eigenvectors, ${e}_i(k)$</p>
+<p>$$  {x}<em>i(k) = {\mu}(k) + \sum_j^R \theta</em>{ij} {e}_j(k),$$</p>
+<p>Truncating this expansion (i.e., $r&lt;R$)</p>
+<p>$$
 {x}_i(k) = {\mu}(k) + \sum_i^{r&lt;R} \theta_i {e}_i(k),
-\]</div>
+$$</p>
 <ul class="simple">
 <li><p>eigenvectors ordered by their associated eigenvalues</p></li>
 <li><p>eigenvalues reflect variance  within each eigenvector (sum of the eigenvalues is total variance of the system).</p></li>
@@ -763,12 +992,12 @@ the reconstruction is very close to the input, as indicated by the expected tota
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/astroml_chapter7_Dimensionality_Reduction_18_0.png" src="../_images/astroml_chapter7_Dimensionality_Reduction_18_0.png" />
+<img alt="../_images/b4c9bbe3f6da8eb0ea5a2b8d7d4fa60bb1e73932ae0217fe80ac0d01a20490e0.png" src="../_images/b4c9bbe3f6da8eb0ea5a2b8d7d4fa60bb1e73932ae0217fe80ac0d01a20490e0.png" />
 </div>
 </div>
-</div>
-<div class="section" id="eigenvalues">
-<h2>Eigenvalues<a class="headerlink" href="#eigenvalues" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="eigenvalues">
+<h2>Eigenvalues<a class="headerlink" href="#eigenvalues" title="Permalink to this headline">#</a></h2>
 <p>The eigenvalues for the PCA decomposition of the SDSS spectra described in the previous section. The top panel
 shows the decrease in eigenvalue as a function of the number of eigenvectors, with a break in the distribution
 at ten eigenvectors. The lower panel shows the cumulative sum of eigenvalues normalized to unity.
@@ -797,37 +1026,33 @@ at ten eigenvectors. The lower panel shows the cumulative sum of eigenvalues nor
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/astroml_chapter7_Dimensionality_Reduction_20_0.png" src="../_images/astroml_chapter7_Dimensionality_Reduction_20_0.png" />
+<img alt="../_images/4e471f7e62a843169b46b54086723894c00ffe6cbc3832fd5c2ca27149d57629.png" src="../_images/4e471f7e62a843169b46b54086723894c00ffe6cbc3832fd5c2ca27149d57629.png" />
 </div>
 </div>
-</div>
-<div class="section" id="pca-with-missing-data">
-<h2>PCA with missing data<a class="headerlink" href="#pca-with-missing-data" title="Permalink to this headline">¶</a></h2>
-<p>Observed spectrum, <span class="math notranslate nohighlight">\(x^o\)</span> is the true spectrum, <span class="math notranslate nohighlight">\({x}\)</span> plus a wavelength-dependent weight, <span class="math notranslate nohighlight">\({w}\)</span>.</p>
-<p>Weight is zero where data are missing and <span class="math notranslate nohighlight">\(1/{\sigma}^2\)</span> for rest</p>
-<p>Minimizing the quadratic deviation between  <span class="math notranslate nohighlight">\({x}^o\)</span> truncated reconstruction, <span class="math notranslate nohighlight">\(\sum_i \theta_i {e}_i\)</span>
-and solving for <span class="math notranslate nohighlight">\(\theta_i\)</span> gives</p>
-<div class="math notranslate nohighlight">
-\[
-	\sum_k \theta_i {w}(k) {e}_i(k) {e}_j(k) =
-	\sum_k {w}(k) {x}^o(k) {e}_j(k),
-\]</div>
-<p>If <span class="math notranslate nohighlight">\(M_{ij} = \sum_k {w}(k) {e}_i(k) {e}_j(k)\)</span> and <span class="math notranslate nohighlight">\(F_i = \sum_k {w}(k) {x}^o(k) {e}_i(k)\)</span> then</p>
-<div class="math notranslate nohighlight">
-\[
-	\theta_i = \sum_j M_{ij}^{-1} F_{j},
-\]</div>
+</section>
+<section id="pca-with-missing-data">
+<h2>PCA with missing data<a class="headerlink" href="#pca-with-missing-data" title="Permalink to this headline">#</a></h2>
+<p>Observed spectrum, $x^o$ is the true spectrum, ${x}$ plus a wavelength-dependent weight, ${w}$.</p>
+<p>Weight is zero where data are missing and $1/{\sigma}^2$ for rest</p>
+<p>Minimizing the quadratic deviation between  ${x}^o$ truncated reconstruction, $\sum_i \theta_i {e}_i$
+and solving for $\theta_i$ gives</p>
+<p>$$
+\sum_k \theta_i {w}(k) {e}_i(k) {e}_j(k) =
+\sum_k {w}(k) {x}^o(k) {e}_j(k),
+$$</p>
+<p>If $M_{ij} = \sum_k {w}(k) {e}_i(k) {e}_j(k)$ and $F_i = \sum_k {w}(k) {x}^o(k) {e}_i(k)$ then</p>
+<p>$$
+\theta_i = \sum_j M_{ij}^{-1} F_{j},
+$$</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(F_j\)</span> are  coefficients derived from  gappy data</p></li>
-<li><p><span class="math notranslate nohighlight">\(M_{ij}^{-1}\)</span> shows how correlated  eigenvectors are over the missing regions.</p></li>
+<li><p>$F_j$ are  coefficients derived from  gappy data</p></li>
+<li><p>$M_{ij}^{-1}$ shows how correlated  eigenvectors are over the missing regions.</p></li>
 </ul>
 <p>An estimate of the uncertainty on the
 reconstruction coefficients is given by</p>
-<div class="math notranslate nohighlight">
-\[
-%Cov(\theta_i,\theta_j) = \frac{1}{N}M_{ij}^{-1}
-{\rm Cov}(\theta_i,\theta_j) = M_{ij}^{-1}.
-\]</div>
+<p>$$</p>
+<p>{\rm Cov}(\theta_i,\theta_j) = M_{ij}^{-1}.
+$$</p>
 <p>Accuracy of this reconstruction will depend on the distribution of
 the gaps within the data vector.</p>
 <p>The principal component vectors defined for the SDSS spectra can be used to interpolate across or reconstruct
@@ -899,14 +1124,14 @@ masked region of the spectrum.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/astroml_chapter7_Dimensionality_Reduction_24_0.png" src="../_images/astroml_chapter7_Dimensionality_Reduction_24_0.png" />
+<img alt="../_images/1020b8f4b2d7ab6f7e472eb35f705b55728374ade3c82318a52f994061eaf8c8.png" src="../_images/1020b8f4b2d7ab6f7e472eb35f705b55728374ade3c82318a52f994061eaf8c8.png" />
 </div>
 </div>
-</div>
-<div class="section" id="comparing-pca-nmf-and-ica">
-<h2>Comparing PCA, NMF and ICA<a class="headerlink" href="#comparing-pca-nmf-and-ica" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="nonnegative-matrix-factorization">
-<h3>Nonnegative Matrix Factorization<a class="headerlink" href="#nonnegative-matrix-factorization" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="comparing-pca-nmf-and-ica">
+<h2>Comparing PCA, NMF and ICA<a class="headerlink" href="#comparing-pca-nmf-and-ica" title="Permalink to this headline">#</a></h2>
+<section id="nonnegative-matrix-factorization">
+<h3>Nonnegative Matrix Factorization<a class="headerlink" href="#nonnegative-matrix-factorization" title="Permalink to this headline">#</a></h3>
 <p>Eigenvectors are defined relative to mean data vector. Principal components that can be positive or
 negative but for many physical systems we know data are a linear sum of positive components (e.g. galaxy
 spectrum is a linear sum of stellar components</p>
@@ -932,9 +1157,9 @@ spectrum is a linear sum of stellar components</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="independent-component-analysis">
-<h3>Independent component analysis<a class="headerlink" href="#independent-component-analysis" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="independent-component-analysis">
+<h3>Independent component analysis<a class="headerlink" href="#independent-component-analysis" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">FastICA</span>
@@ -951,9 +1176,9 @@ spectrum is a linear sum of stellar components</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="id1">
-<h3>Comparing PCA, NMF and ICA<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id1">
+<h3>Comparing PCA, NMF and ICA<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>A comparison of the decomposition of SDSS spectra using PCA (left panel), ICA (middle panel) and
 NMF (right panel). The rank of the component increases from top to bottom. For the ICA and PCA
 the first component is the mean spectrum (NMF does not require mean subtraction). All of these
@@ -1059,12 +1284,12 @@ continuum and line emission). The ordering of the spectral components is techniq
   warnings.warn(&quot;Maximum number of iterations %d reached. Increase it to&quot;
 </pre></div>
 </div>
-<img alt="../_images/astroml_chapter7_Dimensionality_Reduction_32_1.png" src="../_images/astroml_chapter7_Dimensionality_Reduction_32_1.png" />
+<img alt="../_images/648746f3a987fb782679b724d68eb8f9b613a4490d770ae4a00cb8edf8daafdc.png" src="../_images/648746f3a987fb782679b724d68eb8f9b613a4490d770ae4a00cb8edf8daafdc.png" />
 </div>
 </div>
-</div>
-<div class="section" id="summary-of-pracical-properties-of-pca-nmf-and-ica">
-<h3>Summary of pracical properties of PCA, NMF, and ICA<a class="headerlink" href="#summary-of-pracical-properties-of-pca-nmf-and-ica" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="summary-of-pracical-properties-of-pca-nmf-and-ica">
+<h3>Summary of pracical properties of PCA, NMF, and ICA<a class="headerlink" href="#summary-of-pracical-properties-of-pca-nmf-and-ica" title="Permalink to this headline">#</a></h3>
 <p>The following table is a simple summary of the trade-offs along our axes of
 accuracy, interpretability, simplicity, and speed in dimension
 reduction methods, expressed in terms of high (H), medium
@@ -1099,41 +1324,55 @@ reduction methods, expressed in terms of high (H), medium
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="README.html" title="previous page">Chapter 7: Dimensionality and its Reduction</a>
-    <a class='right-next' id="next-link" href="../chapter8/README.html" title="next page">Chapter 8: Regression and Model Fitting</a>
-
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="README.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 7: Dimensionality and its Reduction</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="../chapter8/README.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 8: Regression and Model Fitting</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By AstroML developers<br/>
-        
-            &copy; Copyright 2020-2021, AstroML developers.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By AstroML developers<br/>
+  
+      &copy; Copyright 2020-2021, AstroML developers.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>

@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Modeling Toolkit For Time Series Analysis &#8212; AstroML Notebooks</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,38 +20,53 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Wavelets" href="astroml_chapter10_Wavelets.html" />
     <link rel="prev" title="Chapter 10: Time Series Analysis" href="README.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -58,10 +75,15 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="../_static/astroml_logo.gif" class="logo" alt="logo">
       
@@ -72,7 +94,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
@@ -245,112 +267,261 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        <a class="dropdown-buttons"
-            href="../_sources/chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download notebook file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.md.txt"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/astroML/astroML-notebooks"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2Fchapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/astroML/astroML-notebooks/edit/main/chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?urlpath=tree/chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
             </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?urlpath=tree/chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/astroML/astroML-notebooks/blob/main/chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2Fchapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download notebook file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-code"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="../_sources/chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#introduction">
    Introduction
@@ -514,40 +685,219 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Modeling Toolkit For Time Series Analysis</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#main-concepts-for-time-series-analysis">
+   Main concepts for time series analysis
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#import-functions-and-packages">
+     Import Functions and Packages
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fourier-analysis">
+   1. Fourier analysis
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#some-useful-concepts">
+   Some useful concepts
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fourier-reconstruction-of-rr-lyrae-templates">
+     (1) Fourier Reconstruction of RR-Lyrae Templates
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#import-a-rr-lyrae-template">
+       Import a RR Lyrae template
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#show-fourier-reconstruction-results">
+       Show Fourier reconstruction results
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convolution-theorem">
+     (2) Convolution Theorem
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#generate-data-and-define-function">
+       Generate data and define function
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#show-data-and-window-function">
+       Show data and window function
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#compute-the-fourier-transforms-of-the-signal-and-window">
+       Compute the Fourier transforms of the signal and window
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#show-fourier-transform-result-of-two-functions">
+       Show Fourier Transform result of two functions
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#calculate-the-product-of-fourier-transforms">
+       Calculate the product of Fourier transforms
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#perform-the-convolution">
+       Perform the convolution
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#show-convolution-result">
+       Show convolution result
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#show-convolution-diagram">
+       Show Convolution Diagram
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discrete-fourier-transform">
+   2. Discrete Fourier Transform
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-nyquist-sampling-theorem">
+     (1) The Nyquist sampling theorem
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#define-functions-and-terms">
+       Define functions and terms
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#show-a-comparison-of-well-sampled-and-over-sampled-results">
+       Show a comparison of well-sampled and over-sampled results
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-window-function">
+     (2) The window function
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#generate-the-data">
+       Generate the data
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#select-observations-and-compute-psd">
+       Select observations and compute PSD
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#scale-psds-for-plotting">
+       Scale PSDs for plotting
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#show-figure">
+       Show figure
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-fast-fourier-transform-fft">
+     (3) The Fast Fourier Transform (FFT)
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id1">
+       Generate the data
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#show-result-with-data-and-calculated-psd">
+       Show result with data and calculated PSD
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="modeling-toolkit-for-time-series-analysis">
-<h1>Modeling Toolkit For Time Series Analysis<a class="headerlink" href="#modeling-toolkit-for-time-series-analysis" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+  <section id="modeling-toolkit-for-time-series-analysis">
+<h1>Modeling Toolkit For Time Series Analysis<a class="headerlink" href="#modeling-toolkit-for-time-series-analysis" title="Permalink to this headline">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>In this notebook, we are going to learn fundamental concepts and tools for analyzing time series data. From an astronomical perspective, this field has predominantly focused on unevenly sampled data, low signal-to-noise data, and heteroscedastic errors. The most common applications range from the detection of variability and periodicity to the treatment of nonperiodic
 variability and searches for localized events.<br />
 Despite being set in the context of time series, many tools and results are readily applicable in other domains, which we will see later in this notebook. We will extend this toolkit by introducing tools for analysis
 in the frequency domain, such as Fourier analysis, discrete Fourier transform, wavelet analysis and
 digital filtering.<br />
 The main data sets used in this chapter include light curves obtained by the <a class="reference external" href="https://arxiv.org/abs/1505.02082">LINEAR survey</a> (Lincoln Near-Earth Asteroid Research).</p>
-</div>
-<div class="section" id="main-concepts-for-time-series-analysis">
-<h2>Main concepts for time series analysis<a class="headerlink" href="#main-concepts-for-time-series-analysis" title="Permalink to this headline">¶</a></h2>
-<p>The time series discussed here will be limited to two-dimensional scalar data sets: pairs of random variables, (<span class="math notranslate nohighlight">\(t_1\)</span>, <span class="math notranslate nohighlight">\(y_1\)</span>),…,(<span class="math notranslate nohighlight">\(t_N\)</span>; <span class="math notranslate nohighlight">\(y_N\)</span>), with no assumptions about the sampling of the time coordinate t. In many ways, analysis methods discussed here are closely related to the parameter estimation and model selection problems discussed in the context of regression. However, unlike regression problems where different y measurements are typically treated as independent random
-variables, in such models the value of <span class="math notranslate nohighlight">\(y_{i+1}\)</span> directly depends on the preceding value <span class="math notranslate nohighlight">\(y_i\)</span>.</p>
+</section>
+<section id="main-concepts-for-time-series-analysis">
+<h2>Main concepts for time series analysis<a class="headerlink" href="#main-concepts-for-time-series-analysis" title="Permalink to this headline">#</a></h2>
+<p>The time series discussed here will be limited to two-dimensional scalar data sets: pairs of random variables, ($t_1$, $y_1$),…,($t_N$; $y_N$), with no assumptions about the sampling of the time coordinate t. In many ways, analysis methods discussed here are closely related to the parameter estimation and model selection problems discussed in the context of regression. However, unlike regression problems where different y measurements are typically treated as independent random
+variables, in such models the value of $y_{i+1}$ directly depends on the preceding value $y_i$.</p>
 <p>The main tasks of time series analysis are:</p>
-<ol class="simple">
+<ol class="arabic simple">
 <li><p>To characterize the presumed temporal correlation between different values of y, including its significance.</p></li>
 <li><p>To forecast (predict) future values of y.</p></li>
 </ol>
-<div class="section" id="import-functions-and-packages">
-<h3>Import Functions and Packages<a class="headerlink" href="#import-functions-and-packages" title="Permalink to this headline">¶</a></h3>
+<section id="import-functions-and-packages">
+<h3>Import Functions and Packages<a class="headerlink" href="#import-functions-and-packages" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_rrlyrae_templates</span>
@@ -569,75 +919,69 @@ variables, in such models the value of <span class="math notranslate nohighlight
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
 <span class="n">setup_text_plots</span><span class="p">(</span><span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="fourier-analysis">
-<h2>1. Fourier analysis<a class="headerlink" href="#fourier-analysis" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="fourier-analysis">
+<h2>1. Fourier analysis<a class="headerlink" href="#fourier-analysis" title="Permalink to this headline">#</a></h2>
 <p>Fourier analysis plays a major role in the analysis of time series data. In Fourier analysis, general
 functions are represented or approximated by integrals or sums of simpler trigonometric functions.</p>
 <p>For periodic functions, such as periodic light curves
 in astronomy, it is often true that a relatively small number of terms (less than 10) suffices to reach
 an approximation precision level similar to the measurement precision.</p>
-</div>
-<div class="section" id="some-useful-concepts">
-<h2>Some useful concepts<a class="headerlink" href="#some-useful-concepts" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="some-useful-concepts">
+<h2>Some useful concepts<a class="headerlink" href="#some-useful-concepts" title="Permalink to this headline">#</a></h2>
 <p>The <strong>Fourier transform</strong> of function h(t) is defined as</p>
-<div class="math notranslate nohighlight">
-\[H(f)=\int_{-\infty}^{\infty} h(t) exp(-i2\pi ft)dt\]</div>
+<p>$$H(f)=\int_{-\infty}^{\infty} h(t) exp(-i2\pi ft)dt$$</p>
 <p>with <strong>inverse transformation</strong></p>
-<div class="math notranslate nohighlight">
-\[h(t)=\int_{-\infty}^{\infty} H(t) exp(-i2\pi ft)df\]</div>
+<p>$$h(t)=\int_{-\infty}^{\infty} H(t) exp(-i2\pi ft)df$$</p>
 <p>where t is time and f is frequency (for time in seconds, the unit for frequency is hertz, or Hz; the
 units for H(f) are the product of the units for h(t) and inverse hertz.<br />
 For a real function h(t), H(f) is in general a complex function.<br />
 In the special case when h(t) is an even function such that h(-t) = h(t), H(f) is real and even as well. For example, the
-Fourier transform of a pdf of a zero-mean Gaussian <span class="math notranslate nohighlight">\(N(0, \sigma)\)</span> in the time domain is a Gaussian
-<span class="math notranslate nohighlight">\(H(f) = exp(-2\pi^2 \sigma^2 f^2)\)</span> in the frequency domain.<br />
+Fourier transform of a pdf of a zero-mean Gaussian $N(0, \sigma)$ in the time domain is a Gaussian
+$H(f) = exp(-2\pi^2 \sigma^2 f^2)$ in the frequency domain.<br />
 When the time axis of an arbitrary function
-h(t) is shifted by <span class="math notranslate nohighlight">\(\Delta t\)</span>, then the Fourier transform of <span class="math notranslate nohighlight">\(h(t + \Delta t)\)</span> is</p>
-<div class="math notranslate nohighlight">
-\[\int_{-\infty}^{\infty}h(t+\Delta t)exp(-i2\pi ft)dt = H(f)exp(i2\pi f\Delta t)\]</div>
-<p>Therefore, the <strong>Fourier transform of a Gaussian <span class="math notranslate nohighlight">\(N(\mu, \sigma)\)</span></strong> is</p>
-<div class="math notranslate nohighlight">
-\[H_{Gauss}(f)=exp(-2\pi^2\sigma^2f^2)[cos(2\pi f\mu)+isin(2\pi f \mu)]\]</div>
+h(t) is shifted by $\Delta t$, then the Fourier transform of $h(t + \Delta t)$ is</p>
+<p>$$\int_{-\infty}^{\infty}h(t+\Delta t)exp(-i2\pi ft)dt = H(f)exp(i2\pi f\Delta t)$$</p>
+<p>Therefore, the <strong>Fourier transform of a Gaussian $N(\mu, \sigma)$</strong> is</p>
+<p>$$H_{Gauss}(f)=exp(-2\pi^2\sigma^2f^2)[cos(2\pi f\mu)+isin(2\pi f \mu)]$$</p>
 <p>This is known as <strong>“white noise”</strong> since there is no frequency
 dependence (also known as “thermal noise” or Johnson’s noise).<br />
 An important quantity in time series analysis is the one-sided <strong>power spectral density (PSD)</strong> function
-(or power spectrum) defined for <span class="math notranslate nohighlight">\(0 \leq f &lt; \infty\)</span> as</p>
-<div class="math notranslate nohighlight">
-\[PSD(f) \equiv |H(f)|^2+|H(-f)|^2\]</div>
+(or power spectrum) defined for $0 \leq f &lt; \infty$ as</p>
+<p>$$PSD(f) \equiv |H(f)|^2+|H(-f)|^2$$</p>
 <p>The PSD gives the amount of power contained in the frequency interval between f and f + df.<br />
 The total power is the same whether computed in the frequency or the time domain:</p>
-<div class="math notranslate nohighlight">
-\[P_{tot} \equiv \int_0^{\infty}PSD(f)df=\int_{-\infty}^{\infty}|h(t)|^2dt\]</div>
+<p>$$P_{tot} \equiv \int_0^{\infty}PSD(f)df=\int_{-\infty}^{\infty}|h(t)|^2dt$$</p>
 <p>This result is known as <strong>Parseval’s theorem</strong>.</p>
-<div class="section" id="fourier-reconstruction-of-rr-lyrae-templates">
-<h3>(1) Fourier Reconstruction of RR-Lyrae Templates<a class="headerlink" href="#fourier-reconstruction-of-rr-lyrae-templates" title="Permalink to this headline">¶</a></h3>
+<section id="fourier-reconstruction-of-rr-lyrae-templates">
+<h3>(1) Fourier Reconstruction of RR-Lyrae Templates<a class="headerlink" href="#fourier-reconstruction-of-rr-lyrae-templates" title="Permalink to this headline">#</a></h3>
 <p>Below is an example of a truncated Fourier representation of an RR Lyrae light curve. As we can see, the more terms that are included in the sum, the better is the resulting approximation.</p>
-<div class="section" id="import-a-rr-lyrae-template">
-<h4>Import a RR Lyrae template<a class="headerlink" href="#import-a-rr-lyrae-template" title="Permalink to this headline">¶</a></h4>
+<section id="import-a-rr-lyrae-template">
+<h4>Import a RR Lyrae template<a class="headerlink" href="#import-a-rr-lyrae-template" title="Permalink to this headline">#</a></h4>
 <p>From astroML.datasets, we take the RR Lyrae (variable star) light curve as an example. RR Lyrae has a periodical pulsation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">templates</span> <span class="o">=</span> <span class="n">fetch_rrlyrae_templates</span><span class="p">()</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">templates</span> <span class="o">=</span> <span class="n">fetch_rrlyrae_templates</span><span class="p">()</span>
 <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">templates</span><span class="p">[</span><span class="s1">&#39;115r&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="show-fourier-reconstruction-results">
-<h4>Show Fourier reconstruction results<a class="headerlink" href="#show-fourier-reconstruction-results" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="show-fourier-reconstruction-results">
+<h4>Show Fourier reconstruction results<a class="headerlink" href="#show-fourier-reconstruction-results" title="Permalink to this headline">#</a></h4>
 <p>The thick dashed line shows the true curve; the gray lines show the approximation based on 1, 3, and 8 Fourier modes (sinusoids).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">kvals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
@@ -681,31 +1025,29 @@ The total power is the same whether computed in the frequency or the time domain
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="convolution-theorem">
-<h3>(2) Convolution Theorem<a class="headerlink" href="#convolution-theorem" title="Permalink to this headline">¶</a></h3>
-<p>A convolution of two functions <span class="math notranslate nohighlight">\(a(t)\)</span> and <span class="math notranslate nohighlight">\(b(t)\)</span> is given by</p>
-<div class="math notranslate nohighlight">
-\[(a*b)(t) \equiv \int_{-\infty}^{\infty} a(t')b(t-t')dt'\]</div>
+</section>
+</section>
+<section id="convolution-theorem">
+<h3>(2) Convolution Theorem<a class="headerlink" href="#convolution-theorem" title="Permalink to this headline">#</a></h3>
+<p>A convolution of two functions $a(t)$ and $b(t)$ is given by</p>
+<p>$$(a*b)(t) \equiv \int_{-\infty}^{\infty} a(t’)b(t-t’)dt’$$</p>
 <p>In the above equation, the function a can
-be thought of as the “convolving pattern” of the measuring apparatus, and the function <span class="math notranslate nohighlight">\(b\)</span> is the
-signal. In practice, we measure the convolved (or smoothed) version of our signal, <span class="math notranslate nohighlight">\([a * b](t)\)</span>, and
-seek to uncover the original signal <span class="math notranslate nohighlight">\(b\)</span> using the presumably known <span class="math notranslate nohighlight">\(a\)</span>.<br />
-The convolution theorem states that if <span class="math notranslate nohighlight">\(h = a * b\)</span>, then the Fourier transforms of <span class="math notranslate nohighlight">\(h\)</span>, <span class="math notranslate nohighlight">\(a\)</span>, and <span class="math notranslate nohighlight">\(b\)</span> are
+be thought of as the “convolving pattern” of the measuring apparatus, and the function $b$ is the
+signal. In practice, we measure the convolved (or smoothed) version of our signal, $<span class="xref myst">a * b</span>$, and
+seek to uncover the original signal $b$ using the presumably known $a$.<br />
+The convolution theorem states that if $h = a * b$, then the Fourier transforms of $h$, $a$, and $b$ are
 related by their pointwise products:</p>
-<div class="math notranslate nohighlight">
-\[H(f)=A(f)B(f)\]</div>
+<p>$$H(f)=A(f)B(f)$$</p>
 <p>Thus a convolution of two functions is transformed into a simple multiplication of the associated
-Fourier representations. Therefore, to obtain <span class="math notranslate nohighlight">\(b\)</span>, we can simply take the inverse Fourier transform
-of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In the absence of noise, this operation is exact.</p>
+Fourier representations. Therefore, to obtain $b$, we can simply take the inverse Fourier transform
+of the ratio $H(f)=A(f)$. In the absence of noise, this operation is exact.</p>
 <p>For further explanation, we will see a schematic representation of the convolution theorem below.</p>
-<div class="section" id="generate-data-and-define-function">
-<h4>Generate data and define function<a class="headerlink" href="#generate-data-and-define-function" title="Permalink to this headline">¶</a></h4>
+<section id="generate-data-and-define-function">
+<h4>Generate data and define function<a class="headerlink" href="#generate-data-and-define-function" title="Permalink to this headline">#</a></h4>
 <p>Generate random x, y with a given covariance length. Then we define a normalized top-hat window function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate data</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate data</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
 <span class="n">h</span> <span class="o">=</span> <span class="mf">0.01</span>
@@ -719,13 +1061,13 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="show-data-and-window-function">
-<h4>Show data and window function<a class="headerlink" href="#show-data-and-window-function" title="Permalink to this headline">¶</a></h4>
-<p>The graph below show simulated data <span class="math notranslate nohighlight">\(D(x)\)</span> in black line, and top-hat window function <span class="math notranslate nohighlight">\(W(x)\)</span> in gray boxes.</p>
+</section>
+<section id="show-data-and-window-function">
+<h4>Show data and window function<a class="headerlink" href="#show-data-and-window-function" title="Permalink to this headline">#</a></h4>
+<p>The graph below show simulated data $D(x)$ in black line, and top-hat window function $W(x)$ in gray boxes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the plots</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the plots</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 
@@ -747,12 +1089,12 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="compute-the-fourier-transforms-of-the-signal-and-window">
-<h4>Compute the Fourier transforms of the signal and window<a class="headerlink" href="#compute-the-fourier-transforms-of-the-signal-and-window" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="compute-the-fourier-transforms-of-the-signal-and-window">
+<h4>Compute the Fourier transforms of the signal and window<a class="headerlink" href="#compute-the-fourier-transforms-of-the-signal-and-window" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y_fft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y_fft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="n">w_fft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
 
 <span class="n">yw_fft</span> <span class="o">=</span> <span class="n">y_fft</span> <span class="o">*</span> <span class="n">w_fft</span>
@@ -761,13 +1103,13 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="show-fourier-transform-result-of-two-functions">
-<h4>Show Fourier Transform result of two functions<a class="headerlink" href="#show-fourier-transform-result-of-two-functions" title="Permalink to this headline">¶</a></h4>
-<p>The function on the top shows the Fourier transform of <span class="math notranslate nohighlight">\(D(x)\)</span> and the bottom shows the transform of <span class="math notranslate nohighlight">\(W(x)\)</span>.</p>
+</section>
+<section id="show-fourier-transform-result-of-two-functions">
+<h4>Show Fourier Transform result of two functions<a class="headerlink" href="#show-fourier-transform-result-of-two-functions" title="Permalink to this headline">#</a></h4>
+<p>The function on the top shows the Fourier transform of $D(x)$ and the bottom shows the transform of $W(x)$.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the plots</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the plots</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="c1"># plot the Fourier transforms</span>
@@ -799,13 +1141,13 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="calculate-the-product-of-fourier-transforms">
-<h4>Calculate the product of Fourier transforms<a class="headerlink" href="#calculate-the-product-of-fourier-transforms" title="Permalink to this headline">¶</a></h4>
-<p>We multiply the above two Fourier transform functions and get the product of them (shown below). The inverse transformation of this product give us the convolution of <span class="math notranslate nohighlight">\([D*W](x)\)</span>.</p>
+</section>
+<section id="calculate-the-product-of-fourier-transforms">
+<h4>Calculate the product of Fourier transforms<a class="headerlink" href="#calculate-the-product-of-fourier-transforms" title="Permalink to this headline">#</a></h4>
+<p>We multiply the above two Fourier transform functions and get the product of them (shown below). The inverse transformation of this product give us the convolution of $<span class="xref myst">D*W</span>$.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">yw_fft</span><span class="p">)),</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
 
@@ -822,13 +1164,13 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="perform-the-convolution">
-<h4>Perform the convolution<a class="headerlink" href="#perform-the-convolution" title="Permalink to this headline">¶</a></h4>
-<p>Use equation <span class="math notranslate nohighlight">\((a*b)(t) \equiv \int_{-\infty}^{\infty} a(t')b(t-t')dt'\)</span> we take the convolution of D(x) and W(x).</p>
+</section>
+<section id="perform-the-convolution">
+<h4>Perform the convolution<a class="headerlink" href="#perform-the-convolution" title="Permalink to this headline">#</a></h4>
+<p>Use equation $(a*b)(t) \equiv \int_{-\infty}^{\infty} a(t’)b(t-t’)dt’$ we take the convolution of D(x) and W(x).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">w</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">w</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
 <span class="n">valid_indices</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_norm</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">y_norm</span> <span class="o">=</span> <span class="n">y_norm</span><span class="p">[</span><span class="n">valid_indices</span><span class="p">]</span>
 
@@ -841,13 +1183,13 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="show-convolution-result">
-<h4>Show convolution result<a class="headerlink" href="#show-convolution-result" title="Permalink to this headline">¶</a></h4>
-<p>The result of <span class="math notranslate nohighlight">\([D*W](x)\)</span> can be viewed as the data signal smoothed with the window (top-hat) function.</p>
+</section>
+<section id="show-convolution-result">
+<h4>Show convolution result<a class="headerlink" href="#show-convolution-result" title="Permalink to this headline">#</a></h4>
+<p>The result of $<span class="xref myst">D*W</span>$ can be viewed as the data signal smoothed with the window (top-hat) function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the convolution</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the convolution</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_w</span><span class="p">,</span> <span class="n">y_w</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
@@ -870,19 +1212,19 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="show-convolution-diagram">
-<h4>Show Convolution Diagram<a class="headerlink" href="#show-convolution-diagram" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="show-convolution-diagram">
+<h4>Show Convolution Diagram<a class="headerlink" href="#show-convolution-diagram" title="Permalink to this headline">#</a></h4>
 <p>Here we take all the process together and express them in a clockwise order.</p>
 <ul class="simple">
-<li><p>Top-left are the original data signal <span class="math notranslate nohighlight">\(D(x)\)</span> (solid line) and top-hat window functions <span class="math notranslate nohighlight">\(W(x)\)</span> (gray box).</p></li>
-<li><p>Moving on to the top-right panel, we have the Fourier transform of two functions, with <span class="math notranslate nohighlight">\(F(D)\)</span> as the Fourier of <span class="math notranslate nohighlight">\(D(x)\)</span> at the top, and <span class="math notranslate nohighlight">\(F(W)\)</span> as the Fourier of <span class="math notranslate nohighlight">\(W(x)\)</span> at the bottom.</p></li>
-<li><p>Next we multiply <span class="math notranslate nohighlight">\(F(D)\)</span> and <span class="math notranslate nohighlight">\(F(W)\)</span> to get a pointwise function in the bottom-right panel.</p></li>
-<li><p>At last, we can take the inverse Fourier of <span class="math notranslate nohighlight">\(F(D) \cdot F(W)\)</span> and get the convolution of function <span class="math notranslate nohighlight">\(D(x)\)</span> and <span class="math notranslate nohighlight">\(W(x)\)</span>, as shown in the bottom-left panel.</p></li>
+<li><p>Top-left are the original data signal $D(x)$ (solid line) and top-hat window functions $W(x)$ (gray box).</p></li>
+<li><p>Moving on to the top-right panel, we have the Fourier transform of two functions, with $F(D)$ as the Fourier of $D(x)$ at the top, and $F(W)$ as the Fourier of $W(x)$ at the bottom.</p></li>
+<li><p>Next we multiply $F(D)$ and $F(W)$ to get a pointwise function in the bottom-right panel.</p></li>
+<li><p>At last, we can take the inverse Fourier of $F(D) \cdot F(W)$ and get the convolution of function $D(x)$ and $W(x)$, as shown in the bottom-left panel.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the plots</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the plots</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.09</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.09</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
                     <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
@@ -1000,59 +1342,54 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="discrete-fourier-transform">
-<h2>2. Discrete Fourier Transform<a class="headerlink" href="#discrete-fourier-transform" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+</section>
+<section id="discrete-fourier-transform">
+<h2>2. Discrete Fourier Transform<a class="headerlink" href="#discrete-fourier-transform" title="Permalink to this headline">#</a></h2>
 <p>In practice, data are always discretely sampled. When the spacing of the time interval is constant,
 the discrete Fourier transform is a powerful tool.
 Although in astronomy, temporal data are rarely sampled with uniform spacing (LIGO data, however, as a counterexample, will be discussed in the later notebook), uniformly sampled data is a good place to start because we have fast algorithm for this situation.<br />
 When computing the Fourier transform for discretely and uniformly sampled data, the Fourier
 integrals from</p>
-<div class="math notranslate nohighlight">
-\[H(f)=\int_{-\infty}^{\infty} h(t) exp(-i2\pi ft)dt\]</div>
-<div class="math notranslate nohighlight">
-\[h(t)=\int_{-\infty}^{\infty} H(t) exp(-i2\pi ft)df\]</div>
+<p>$$H(f)=\int_{-\infty}^{\infty} h(t) exp(-i2\pi ft)dt$$
+$$h(t)=\int_{-\infty}^{\infty} H(t) exp(-i2\pi ft)df$$</p>
 <p>are translated to sums. Here we have t for time and f for frequency.</p>
 <p>The discrete Fourier transform of the vector of values hj is a complex vector of length N defined
 by</p>
-<div class="math notranslate nohighlight">
-\[H_k=\sum_{j=0}^{N-1}h_j exp[-i2\pi jk/N]\]</div>
+<p>$$H_k=\sum_{j=0}^{N-1}h_j exp[-i2\pi jk/N]$$</p>
 <p>where k=0,…,(N-1).<br />
 The corresponding inverse discrete Fourier transform is defined by</p>
-<div class="math notranslate nohighlight">
-\[h_j=\sum_{j=0}^{N-1}H_k exp[-i2\pi jk/N]\]</div>
-<p>where j=0,…,(N-1). Unlike the continuous transforms, here the units for <span class="math notranslate nohighlight">\(H_k\)</span> are the same as
-the units for <span class="math notranslate nohighlight">\(h_j\)</span> . Given <span class="math notranslate nohighlight">\(H_k\)</span>, we can represent the function described by <span class="math notranslate nohighlight">\(h_j\)</span> as a sum of sinusoids,
+<p>$$h_j=\sum_{j=0}^{N-1}H_k exp[-i2\pi jk/N]$$</p>
+<p>where j=0,…,(N-1). Unlike the continuous transforms, here the units for $H_k$ are the same as
+the units for $h_j$ . Given $H_k$, we can represent the function described by $h_j$ as a sum of sinusoids,
 as was done in the first figure.</p>
-<div class="section" id="the-nyquist-sampling-theorem">
-<h3>(1) The Nyquist sampling theorem<a class="headerlink" href="#the-nyquist-sampling-theorem" title="Permalink to this headline">¶</a></h3>
-<p>Let us define <span class="math notranslate nohighlight">\(h(t)\)</span> to be band limited if <span class="math notranslate nohighlight">\(H(f) = 0\)</span> for <span class="math notranslate nohighlight">\(|f| &gt; f_c\)</span>, where <span class="math notranslate nohighlight">\(f_c\)</span> is the band limit, or the
-Nyquist critical frequency. If <span class="math notranslate nohighlight">\(h(t)\)</span> is band limited, then there is some “resolution” limit in <span class="math notranslate nohighlight">\(t\)</span> space,
-<span class="math notranslate nohighlight">\(t_c = 1/(2f_c)\)</span> below which h(t) appears “smooth.” When <span class="math notranslate nohighlight">\(h(t)\)</span> is band limited, then according to the Nyquist sampling theorem we can exactly reconstruct h(t) from evenly sampled data when <span class="math notranslate nohighlight">\(\Delta t &lt; t_c\)</span>,
+<section id="the-nyquist-sampling-theorem">
+<h3>(1) The Nyquist sampling theorem<a class="headerlink" href="#the-nyquist-sampling-theorem" title="Permalink to this headline">#</a></h3>
+<p>Let us define $h(t)$ to be band limited if $H(f) = 0$ for $|f| &gt; f_c$, where $f_c$ is the band limit, or the
+Nyquist critical frequency. If $h(t)$ is band limited, then there is some “resolution” limit in $t$ space,
+$t_c = 1/(2f_c)$ below which h(t) appears “smooth.” When $h(t)$ is band limited, then according to the Nyquist sampling theorem we can exactly reconstruct h(t) from evenly sampled data when $\Delta t &lt; t_c$,
 as</p>
-<div class="math notranslate nohighlight">
-\[h(t)=\frac{\Delta t}{t_c} \sum_{k=-\infty}^{k=\infty} h_k \frac{sin[2\pi f_c (t-k\Delta t)]}{2\pi f_c (t-k\Delta t)}\]</div>
+<p>$$h(t)=\frac{\Delta t}{t_c} \sum_{k=-\infty}^{k=\infty} h_k \frac{sin[2\pi f_c (t-k\Delta t)]}{2\pi f_c (t-k\Delta t)}$$</p>
 <p>This result is known as the Whittaker-Shannon, or often just Shannon, interpolation formula
 (or “sinc-shifting” formula).<br />
 Note that the summation goes to infinity, but also that the term
-multiplying <span class="math notranslate nohighlight">\(h_k\)</span> vanishes for large values of <span class="math notranslate nohighlight">\(|t - k\Delta t|\)</span>.<br />
-For example <span class="math notranslate nohighlight">\(h(t) = sin(2 \pi t/P )\)</span> has a period
-P and is band limited with <span class="math notranslate nohighlight">\(f_c = 1/P\)</span>. If it is sampled with <span class="math notranslate nohighlight">\(\Delta t\)</span> not larger than <span class="math notranslate nohighlight">\(P/2\)</span>, it can be fully
-reconstructed at any <span class="math notranslate nohighlight">\(t\)</span> (it is important to note that this entire discussion assumes that there is no
-noise associated with sampled values <span class="math notranslate nohighlight">\(h_j\)</span> ). On the other hand, when the sampled function h(t) is not
-band limited, or when the sampling rate is not sufficient (i.e., <span class="math notranslate nohighlight">\(\Delta t &gt; t_c\)</span>), an effect called <strong>“aliasing”</strong>
+multiplying $h_k$ vanishes for large values of $|t - k\Delta t|$.<br />
+For example $h(t) = sin(2 \pi t/P )$ has a period
+P and is band limited with $f_c = 1/P$. If it is sampled with $\Delta t$ not larger than $P/2$, it can be fully
+reconstructed at any $t$ (it is important to note that this entire discussion assumes that there is no
+noise associated with sampled values $h_j$ ). On the other hand, when the sampled function h(t) is not
+band limited, or when the sampling rate is not sufficient (i.e., $\Delta t &gt; t_c$), an effect called <strong>“aliasing”</strong>
 prevents us from exactly reconstructing h(t). In such a case, all of the power
-spectral density from frequencies <span class="math notranslate nohighlight">\(|f| &gt; f_c\)</span> is aliased (falsely transferred) into the <span class="math notranslate nohighlight">\(-f_c &lt; f &lt; f_c\)</span>
+spectral density from frequencies $|f| &gt; f_c$ is aliased (falsely transferred) into the $-f_c &lt; f &lt; f_c$
 range. The aliasing can be thought of as inability to resolve details in a time series at a finer detail
-than that set by <span class="math notranslate nohighlight">\(f_c\)</span>. The figure below will show us the effect of aliasing.</p>
-<div class="section" id="define-functions-and-terms">
-<h4>Define functions and terms<a class="headerlink" href="#define-functions-and-terms" title="Permalink to this headline">¶</a></h4>
+than that set by $f_c$. The figure below will show us the effect of aliasing.</p>
+<section id="define-functions-and-terms">
+<h4>Define functions and terms<a class="headerlink" href="#define-functions-and-terms" title="Permalink to this headline">#</a></h4>
 <p>Here we defind a Gaussian shaped data and its Fourier transform as an example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
 
 
@@ -1069,9 +1406,9 @@ than that set by <span class="math notranslate nohighlight">\(f_c\)</span>. The 
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="show-a-comparison-of-well-sampled-and-over-sampled-results">
-<h4>Show a comparison of well-sampled and over-sampled results<a class="headerlink" href="#show-a-comparison-of-well-sampled-and-over-sampled-results" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="show-a-comparison-of-well-sampled-and-over-sampled-results">
+<h4>Show a comparison of well-sampled and over-sampled results<a class="headerlink" href="#show-a-comparison-of-well-sampled-and-over-sampled-results" title="Permalink to this headline">#</a></h4>
 <p>A visualization of aliasing in the Fourier transform.
 We have two sets of four panels, and in each set:</p>
 <ul class="simple">
@@ -1081,10 +1418,10 @@ We have two sets of four panels, and in each set:</p>
 <li><p>the bottom-right panel shows the convolution of the Fourier-space representations</p></li>
 </ul>
 <p>In the top four panels, the data is well sampled, and there is little to no aliasing.<br />
-In the bottom panels, the data is not well sampled (the spacing between two data points is larger) which leads to aliasing, as seen in the overlap of the convolved Fourier transforms. The aliasing effect can be recognized if the Fourier transform is nonzero at <span class="math notranslate nohighlight">\(|f| = 1/(2 \Delta t)\)</span> in this example.</p>
+In the bottom panels, the data is not well sampled (the spacing between two data points is larger) which leads to aliasing, as seen in the overlap of the convolved Fourier transforms. The aliasing effect can be recognized if the Fourier transform is nonzero at $|f| = 1/(2 \Delta t)$ in this example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Two plots: one well-sampled, one over-sampled</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Two plots: one well-sampled, one over-sampled</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">12</span>
 
 <span class="k">def</span> <span class="nf">plot_aliasing</span><span class="p">(</span><span class="n">dt</span><span class="p">):</span>
@@ -1187,25 +1524,25 @@ In the bottom panels, the data is not well sampled (the spacing between two data
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plot_aliasing</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plot_aliasing</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">plot_aliasing</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plot_aliasing</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="the-window-function">
-<h3>(2) The window function<a class="headerlink" href="#the-window-function" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="the-window-function">
+<h3>(2) The window function<a class="headerlink" href="#the-window-function" title="Permalink to this headline">#</a></h3>
 <p>The figure above shows the relationship between sampling and the window function: the sampling window
 function in the time domain can be expressed as the sum of delta functions placed at sampled
-observation times. The Fourier transform of a set of delta functions with spacing <span class="math notranslate nohighlight">\(\Delta t\)</span> is another set of delta functions with spacing <span class="math notranslate nohighlight">\(1/\Delta t\)</span>; this result is at the core of the Nyquist sampling theorem. By the convolution theorem, pointwise multiplication of this sampling window with the data is equivalent to the convolution of their Fourier
+observation times. The Fourier transform of a set of delta functions with spacing $\Delta t$ is another set of delta functions with spacing $1/\Delta t$; this result is at the core of the Nyquist sampling theorem. By the convolution theorem, pointwise multiplication of this sampling window with the data is equivalent to the convolution of their Fourier
 representations, as seen in the right-hand panels. When data are nonuniformly sampled, the impact of sampling can be understood using the same framework.<br />
 The sampling window is the sum of delta functions, but because the delta functions
 are not regularly spaced, the Fourier transform is a more complicated, and in general complex,
@@ -1215,11 +1552,11 @@ The resulting PSD is called the <strong>spectral window function</strong>, and m
 is affected by the sampling. As discussed in detail in <a class="reference external" href="http://adsabs.harvard.edu/full/1975Ap%26SS..36..137D">Fourier analysis with unequally-spaced data</a>, the observed <strong>power spectral density (PSD)</strong> is a convolution of
 the true underlying PSD and this spectral window function.<br />
 We will see an example of an irregular sampling window in the figure below.</p>
-<div class="section" id="generate-the-data">
-<h4>Generate the data<a class="headerlink" href="#generate-the-data" title="Permalink to this headline">¶</a></h4>
+<section id="generate-the-data">
+<h4>Generate the data<a class="headerlink" href="#generate-the-data" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Nbins</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">15</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Nbins</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">15</span>
 <span class="n">Nobs</span> <span class="o">=</span> <span class="mi">40</span>
 <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
 
@@ -1230,12 +1567,12 @@ We will see an example of an irregular sampling window in the figure below.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="select-observations-and-compute-psd">
-<h4>Select observations and compute PSD<a class="headerlink" href="#select-observations-and-compute-psd" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="select-observations-and-compute-psd">
+<h4>Select observations and compute PSD<a class="headerlink" href="#select-observations-and-compute-psd" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># select observations</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># select observations</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">t_obs</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
 
@@ -1261,32 +1598,32 @@ We will see an example of an irregular sampling window in the figure below.</p>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="scale-psds-for-plotting">
-<h4>Scale PSDs for plotting<a class="headerlink" href="#scale-psds-for-plotting" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="scale-psds-for-plotting">
+<h4>Scale PSDs for plotting<a class="headerlink" href="#scale-psds-for-plotting" title="Permalink to this headline">#</a></h4>
 <p>Normalize the true PSD so it can be shown in the plot: in theory it’s a delta function, so normalization is arbitrary.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">PSD_window</span> <span class="o">/=</span> <span class="mi">500</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PSD_window</span> <span class="o">/=</span> <span class="mi">500</span>
 <span class="n">PSD_y</span> <span class="o">/=</span> <span class="n">PSD_y</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 <span class="n">PSD_obs</span> <span class="o">/=</span> <span class="mi">500</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="show-figure">
-<h4>Show figure<a class="headerlink" href="#show-figure" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="show-figure">
+<h4>Show figure<a class="headerlink" href="#show-figure" title="Permalink to this headline">#</a></h4>
 <p>An illustration of the impact of a sampling window function of resulting PSD.</p>
 <ul class="simple">
-<li><p>The top-left panel shows a simulated data set with 40 points drawn from the function <span class="math notranslate nohighlight">\(y(t|P) = sin(t)\)</span> (i.e., <span class="math notranslate nohighlight">\(f = 1/(2\pi) ~ 0.16\)</span>).</p></li>
+<li><p>The top-left panel shows a simulated data set with 40 points drawn from the function $y(t|P) = sin(t)$ (i.e., $f = 1/(2\pi) ~ 0.16$).</p></li>
 <li><p>The bottom-left panel shows radom sampling illustracted by the vertical lines.</p></li>
 <li><p>The bottom-right panel shows the PSD of sampling times, or spectral window.</p></li>
 <li><p>The top-right panel shows the PSD computed for the data set from the top-left panel; it is equal to a convolution of the single peak (shaded in gray) with the window PSD shown in the bottom-right panel (e.g., the peak at f ~ 0.42 in the top-right panel can be traced to a peak at f ~ 0.26 in the bottom-right panel).</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare the figures</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare the figures</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
                     <span class="n">left</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
@@ -1332,20 +1669,20 @@ We will see an example of an irregular sampling window in the figure below.</p>
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="the-fast-fourier-transform-fft">
-<h3>(3) The Fast Fourier Transform (FFT)<a class="headerlink" href="#the-fast-fourier-transform-fft" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="the-fast-fourier-transform-fft">
+<h3>(3) The Fast Fourier Transform (FFT)<a class="headerlink" href="#the-fast-fourier-transform-fft" title="Permalink to this headline">#</a></h3>
 <p>The <strong>Fast Fourier transform (FFT)</strong> is an algorithm for computing discrete Fourier transforms in
 O(N logN) time, rather than O(N2) using a naive implementation. The algorithmic details for
 the FFT can be found in NumRec. The speed of FFT makes it a widespread tool in the analysis
 of evenly sampled, high signal-to-noise ratio, time series data.<br />
 An example below shows such analysis for a function with a single dominant frequency: a sine wave whose amplitude is modulated by a Gaussian.</p>
-<div class="section" id="id1">
-<h4>Generate the data<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<section id="id1">
+<h4>Generate the data<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">tj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>
 <span class="n">hj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">tj</span><span class="p">)</span>
@@ -1354,13 +1691,13 @@ An example below shows such analysis for a function with a single dominant frequ
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="show-result-with-data-and-calculated-psd">
-<h4>Show result with data and calculated PSD<a class="headerlink" href="#show-result-with-data-and-calculated-psd" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="show-result-with-data-and-calculated-psd">
+<h4>Show result with data and calculated PSD<a class="headerlink" href="#show-result-with-data-and-calculated-psd" title="Permalink to this headline">#</a></h4>
 <p>The discrete Fourier transform (bottom panel) for two noisy data sets shown in the top panel. For 512 evenly sampled times t (dt = 0.977), points are drawn from h(t) = a + sin(t)G(t), where G(t) is a Gaussian N(mu = 0,sigma = 10). Gaussian noise with sigma = 0.05 (top data set) and 0.005 (bottom data set) is added to signal h(t). The value of the offset a is 0.15 and 0, respectively. The discrete Fourier transform is computed as described in this section. For both noise realizations, the correct frequency f = (2pi)-1 ~ 0.159 is easily discernible in the bottom panel. Note that the height of peaks is the same for both noise realizations. The large value of abs(H(f = 0)) for data with larger noise is due to the vertical offset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the results</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the results</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
@@ -1405,42 +1742,56 @@ An example below shows such analysis for a function with a single dominant frequ
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
+</section>
 
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="README.html" title="previous page">Chapter 10: Time Series Analysis</a>
-    <a class='right-next' id="next-link" href="astroml_chapter10_Wavelets.html" title="next page">Wavelets</a>
-
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="README.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 10: Time Series Analysis</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="astroml_chapter10_Wavelets.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Wavelets</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By AstroML developers<br/>
-        
-            &copy; Copyright 2020-2021, AstroML developers.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By AstroML developers<br/>
+  
+      &copy; Copyright 2020-2021, AstroML developers.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>

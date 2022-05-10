@@ -4,11 +4,13 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Wavelets &#8212; AstroML Notebooks</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet" />
-  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -18,38 +20,53 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/togglebutton.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Digital Filtering" href="astroml_chapter10_Digital_Filtering.html" />
     <link rel="prev" title="Modeling Toolkit For Time Series Analysis" href="astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -58,10 +75,15 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="../_static/astroml_logo.gif" class="logo" alt="logo">
       
@@ -72,7 +94,7 @@
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
@@ -245,114 +267,244 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/chapter10/astroml_chapter10_Wavelets.ipynb.txt"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/astroML/astroML-notebooks"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2Fchapter10/astroml_chapter10_Wavelets.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/astroML/astroML-notebooks/edit/main/chapter10/astroml_chapter10_Wavelets.ipynb"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?urlpath=tree/chapter10/astroml_chapter10_Wavelets.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        <a class="colab-button" href="https://colab.research.google.com/github/astroML/astroML-notebooks/blob/main/chapter10/astroml_chapter10_Wavelets.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
-                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
-                    src="../_static/images/logo_colab.png"
-                    alt="Interact on Colab">Colab</button></a>
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
             </div>
-            <nav id="bd-toc-nav">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?urlpath=tree/chapter10/astroml_chapter10_Wavelets.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/astroML/astroML-notebooks/blob/main/chapter10/astroml_chapter10_Wavelets.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2Fchapter10/astroml_chapter10_Wavelets.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter10/astroml_chapter10_Wavelets.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/chapter10/astroml_chapter10_Wavelets.ipynb.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#wavelet-transform-of-gaussian-noise">
    Wavelet transform of Gaussian Noise
@@ -404,38 +556,103 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Wavelets</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wavelet-transform-of-gaussian-noise">
+   Wavelet transform of Gaussian Noise
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#imput-signal">
+     Imput signal
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compute-wavelet">
+     Compute wavelet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compute-psd">
+     Compute PSD
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wavelet-transform-of-a-noisy-spike">
+   Wavelet transform of a Noisy Spike
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#define-functions-and-construct-imput-noise">
+     Define functions and construct imput noise
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Compute wavelet
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compute-spectrogram">
+     Compute spectrogram
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples-of-wavelets">
+   Examples of Wavelets
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="wavelets">
-<h1>Wavelets<a class="headerlink" href="#wavelets" title="Permalink to this headline">¶</a></h1>
+  <section id="wavelets">
+<h1>Wavelets<a class="headerlink" href="#wavelets" title="Permalink to this headline">#</a></h1>
 <p>An increasingly popular family of basis functions is called <strong>wavelets</strong>. By construction, wavelets are localized in both frequency and time domains. Individual wavelets are specified by a set of wavelet filter coefficients. Given a wavelet, a complete
 orthonormal set of basis functions can be constructed by scalings and translations. Different wavelet families trade the localization of a wavelet with its smoothness.</p>
-<div class="section" id="wavelet-transform-of-gaussian-noise">
-<h2>Wavelet transform of Gaussian Noise<a class="headerlink" href="#wavelet-transform-of-gaussian-noise" title="Permalink to this headline">¶</a></h2>
+<section id="wavelet-transform-of-gaussian-noise">
+<h2>Wavelet transform of Gaussian Noise<a class="headerlink" href="#wavelet-transform-of-gaussian-noise" title="Permalink to this headline">#</a></h2>
 <p>Below we have an example using a particular wavelet to compute a wavelet PSD as a
-function of time <span class="math notranslate nohighlight">\(t_0\)</span> and frequency <span class="math notranslate nohighlight">\(f_0\)</span>. The wavelet used is of the form</p>
-<div class="math notranslate nohighlight">
-\[w(t|t_0,f_0,Q) = A exp[i2\pi f_0 (t-t_0)]exp[-f_0^2(t-t_0)^2/Q^2]\]</div>
-<p>where <span class="math notranslate nohighlight">\(t_0\)</span> is the central time, <span class="math notranslate nohighlight">\(f_0\)</span> is the central frequency, and the dimensionless parameter Q is
+function of time $t_0$ and frequency $f_0$. The wavelet used is of the form</p>
+<p>$$w(t|t_0,f_0,Q) = A exp[i2\pi f_0 (t-t_0)]exp[-f_0^2(t-t_0)^2/Q^2]$$</p>
+<p>where $t_0$ is the central time, $f_0$ is the central frequency, and the dimensionless parameter Q is
 a model parameter which controls the width of the frequency window.<br />
 The Fourier transform of this form is</p>
-<div class="math notranslate nohighlight">
-\[W(f|t_0,f_0,Q)=(\frac{\pi}{f^2_0/Q^2})^{1/2} exp(-i2\pi f t_0) exp[\frac{-\pi^2Q^2(f-f_0)^2}{Qf^2_0}]\]</div>
+<p>$$W(f|t_0,f_0,Q)=(\frac{\pi}{f^2_0/Q^2})^{1/2} exp(-i2\pi f t_0) exp[\frac{-\pi^2Q^2(f-f_0)^2}{Qf^2_0}]$$</p>
 <p>Note that the form given by above equations is not technically a wavelet because it
 does not meet the admissibility criterion (the equivalent of orthogonality in Fourier transforms).
 This form is closely related to a true wavelet, the <em>Morlet wavelet</em>, through a simple scaling and offset. Therefore, these equations should probaly be referred to as “matched filters” rather than “wavelets”.<br />
 However, these functions display quite nicely one
 main property of wavelets: the localization of power in both time and frequency. For this reason,
 we will refer to these functions as “wavelets,” and explore their ability to localize frequency signals.</p>
-<div class="section" id="imput-signal">
-<h3>Imput signal<a class="headerlink" href="#imput-signal" title="Permalink to this headline">¶</a></h3>
+<section id="imput-signal">
+<h3>Imput signal<a class="headerlink" href="#imput-signal" title="Permalink to this headline">#</a></h3>
 <p>We take a localized Gaussian noise as imput signal, as shown below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -482,12 +699,12 @@ we will refer to these functions as “wavelets,” and explore their ability to
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$h(t)$&#39;)
 </pre></div>
 </div>
-<img alt="../_images/astroml_chapter10_Wavelets_4_1.png" src="../_images/astroml_chapter10_Wavelets_4_1.png" />
+<img alt="../_images/4196d1ccfd6ae9e7222c8f2af13d148379ef7bba9575ea82a48f79a186784db9.png" src="../_images/4196d1ccfd6ae9e7222c8f2af13d148379ef7bba9575ea82a48f79a186784db9.png" />
 </div>
 </div>
-</div>
-<div class="section" id="compute-wavelet">
-<h3>Compute wavelet<a class="headerlink" href="#compute-wavelet" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="compute-wavelet">
+<h3>Compute wavelet<a class="headerlink" href="#compute-wavelet" title="Permalink to this headline">#</a></h3>
 <p>We compute the wavelet from sample data using <em>sinegauss</em> function in <em>astroML.fourier</em>.<br />
 Here we take Q=1.0 to control the width of the frequency window.
 In the plot, solid line and dashed line show the real part and imaginary part respectively.</p>
@@ -524,17 +741,17 @@ In the plot, solid line and dashed line show the real part and imaginary part re
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$w(t; t_0, f_0, Q)$&#39;)
 </pre></div>
 </div>
-<img alt="../_images/astroml_chapter10_Wavelets_6_1.png" src="../_images/astroml_chapter10_Wavelets_6_1.png" />
+<img alt="../_images/8e27b8b7cf309ba651fa84c7f669b1449e6f6cc0c6e87fcf32d6854e36b1c1ca.png" src="../_images/8e27b8b7cf309ba651fa84c7f669b1449e6f6cc0c6e87fcf32d6854e36b1c1ca.png" />
 </div>
 </div>
-</div>
-<div class="section" id="compute-psd">
-<h3>Compute PSD<a class="headerlink" href="#compute-psd" title="Permalink to this headline">¶</a></h3>
-<p>The wavelet PSD (power spectral density) is defined by <span class="math notranslate nohighlight">\(PSD_w(f0, t0;Q) = |Hw(t_0; f_0,Q)|^2\)</span>. Unlike
+</section>
+<section id="compute-psd">
+<h3>Compute PSD<a class="headerlink" href="#compute-psd" title="Permalink to this headline">#</a></h3>
+<p>The wavelet PSD (power spectral density) is defined by $PSD_w(f0, t0;Q) = |Hw(t_0; f_0,Q)|^2$. Unlike
 the typical Fourier-transform PSD, the wavelet PSD allows detection of frequency information
 which is localized in time.<br />
 Here we compute the wavelet PSD from sample wavelet using <em>wavelet_PSD</em> function in <em>astroML.fourier</em>.</p>
-<p>The plot shows the PSD as a function of the frequency <span class="math notranslate nohighlight">\(f_0\)</span> and the time <span class="math notranslate nohighlight">\(t_0\)</span>, for Q = 1.0.</p>
+<p>The plot shows the PSD as a function of the frequency $f_0$ and the time $t_0$, for Q = 1.0.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the wavelet PSD</span>
@@ -565,16 +782,16 @@ Here we compute the wavelet PSD from sample wavelet using <em>wavelet_PSD</em> f
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$f_0$&#39;)
 </pre></div>
 </div>
-<img alt="../_images/astroml_chapter10_Wavelets_8_1.png" src="../_images/astroml_chapter10_Wavelets_8_1.png" />
+<img alt="../_images/83428810418c96f78790cd6e9f3832a380ef002e0061e975b0aa65cd77704ae9.png" src="../_images/83428810418c96f78790cd6e9f3832a380ef002e0061e975b0aa65cd77704ae9.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="wavelet-transform-of-a-noisy-spike">
-<h2>Wavelet transform of a Noisy Spike<a class="headerlink" href="#wavelet-transform-of-a-noisy-spike" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="wavelet-transform-of-a-noisy-spike">
+<h2>Wavelet transform of a Noisy Spike<a class="headerlink" href="#wavelet-transform-of-a-noisy-spike" title="Permalink to this headline">#</a></h2>
 <p>Here we use wavelet transform when the imput data is noisy spike rather than local Gaussian.</p>
-<div class="section" id="define-functions-and-construct-imput-noise">
-<h3>Define functions and construct imput noise<a class="headerlink" href="#define-functions-and-construct-imput-noise" title="Permalink to this headline">¶</a></h3>
+<section id="define-functions-and-construct-imput-noise">
+<h3>Define functions and construct imput noise<a class="headerlink" href="#define-functions-and-construct-imput-noise" title="Permalink to this headline">#</a></h3>
 <p>This example uses a Gaussian spike in the presence of white (Gaussian) noise as the imput noise. The imput signal is shown below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -626,19 +843,18 @@ Here we compute the wavelet PSD from sample wavelet using <em>wavelet_PSD</em> f
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$h(t)$&#39;)
 </pre></div>
 </div>
-<img alt="../_images/astroml_chapter10_Wavelets_11_1.png" src="../_images/astroml_chapter10_Wavelets_11_1.png" />
+<img alt="../_images/6b037ba624abffb26f0de7e182f81380f7ee21a43c9ecac3cd4fd87067dda78a.png" src="../_images/6b037ba624abffb26f0de7e182f81380f7ee21a43c9ecac3cd4fd87067dda78a.png" />
 </div>
 </div>
-</div>
-<div class="section" id="id1">
-<h3>Compute wavelet<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id1">
+<h3>Compute wavelet<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>Compute the convolution via the continuous Fourier transform. This is more exact than using the discrete transform, because we have an analytic expression for the FT of the wavelet. The wavelet transform applied to data h(t) is given by</p>
-<div class="math notranslate nohighlight">
-\[H_w(t_0;f_0,Q)=\int^{\infty}_{\infty} h(t)w(t|t_0,f_0,Q)dt\]</div>
-<p>By the convolution theorem <span class="math notranslate nohighlight">\(H(f) = A(f)B(f)\)</span>, we can write the Fourier transform
-of <span class="math notranslate nohighlight">\(H_w\)</span> as the pointwise product of the Fourier transforms of h(t) and <span class="math notranslate nohighlight">\(w*(t; t_0; f_0, Q)\)</span>. The first can
-be approximated using the discrete Fourier transform as shown in appendix E in the textbook; the second can be found using the analytic formula for W(f) in the prevoius section. This allows us to quickly evaluate <span class="math notranslate nohighlight">\(H_w\)</span> as a
-function of <span class="math notranslate nohighlight">\(t_0\)</span> and <span class="math notranslate nohighlight">\(f_0\)</span>, using two <span class="math notranslate nohighlight">\(O(N logN)\)</span> fast Fourier transforms.</p>
+<p>$$H_w(t_0;f_0,Q)=\int^{\infty}_{\infty} h(t)w(t|t_0,f_0,Q)dt$$</p>
+<p>By the convolution theorem $H(f) = A(f)B(f)$, we can write the Fourier transform
+of $H_w$ as the pointwise product of the Fourier transforms of h(t) and $w*(t; t_0; f_0, Q)$. The first can
+be approximated using the discrete Fourier transform as shown in appendix E in the textbook; the second can be found using the analytic formula for W(f) in the prevoius section. This allows us to quickly evaluate $H_w$ as a
+function of $t_0$ and $f_0$, using two $O(N logN)$ fast Fourier transforms.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="mf">0.3</span>
@@ -675,14 +891,14 @@ function of <span class="math notranslate nohighlight">\(t_0\)</span> and <span 
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$w(t; t_0, f_0, Q)$&#39;)
 </pre></div>
 </div>
-<img alt="../_images/astroml_chapter10_Wavelets_13_1.png" src="../_images/astroml_chapter10_Wavelets_13_1.png" />
+<img alt="../_images/950a58fa6196611fa70e841274c57df9130696c360afafc7a48bab067aa3bd60.png" src="../_images/950a58fa6196611fa70e841274c57df9130696c360afafc7a48bab067aa3bd60.png" />
 </div>
 </div>
-</div>
-<div class="section" id="compute-spectrogram">
-<h3>Compute spectrogram<a class="headerlink" href="#compute-spectrogram" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="compute-spectrogram">
+<h3>Compute spectrogram<a class="headerlink" href="#compute-spectrogram" title="Permalink to this headline">#</a></h3>
 <p>We compute spectrogram using <em>IFT_continuous</em> in <em>astroML.fourier</em>.<br />
-The plot below shows the power spectral density as a function of the frequency <span class="math notranslate nohighlight">\(f_0\)</span> and the time <span class="math notranslate nohighlight">\(t_0\)</span>, for Q = 0.3.</p>
+The plot below shows the power spectral density as a function of the frequency $f_0$ and the time $t_0$, for Q = 0.3.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">wavelet_FT</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">f0</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">Q</span><span class="p">))</span>
@@ -712,15 +928,15 @@ The plot below shows the power spectral density as a function of the frequency <
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/astroml_chapter10_Wavelets_15_0.png" src="../_images/astroml_chapter10_Wavelets_15_0.png" />
+<img alt="../_images/91ad3274857c04417da962a5a80c83f5955c8d068cb9f5ab76cd340079758b8a.png" src="../_images/91ad3274857c04417da962a5a80c83f5955c8d068cb9f5ab76cd340079758b8a.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="examples-of-wavelets">
-<h2>Examples of Wavelets<a class="headerlink" href="#examples-of-wavelets" title="Permalink to this headline">¶</a></h2>
-<p>The resulting wavelets vary from different parameters Q and <span class="math notranslate nohighlight">\(f_0\)</span>.
-Here we take several different parameters Q and <span class="math notranslate nohighlight">\(f_0\)</span> and show the result wavelets, taking the prevoius Gaussian sample imput.</p>
+</section>
+</section>
+<section id="examples-of-wavelets">
+<h2>Examples of Wavelets<a class="headerlink" href="#examples-of-wavelets" title="Permalink to this headline">#</a></h2>
+<p>The resulting wavelets vary from different parameters Q and $f_0$.
+Here we take several different parameters Q and $f_0$ and show the result wavelets, taking the prevoius Gaussian sample imput.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the wavelets</span>
@@ -769,43 +985,57 @@ Here we take several different parameters Q and <span class="math notranslate no
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/astroml_chapter10_Wavelets_19_0.png" src="../_images/astroml_chapter10_Wavelets_19_0.png" />
+<img alt="../_images/da3f78f4a91d6c23dd044077b475ac3095a1e1118140e4ae539bc5dcd349022e.png" src="../_images/da3f78f4a91d6c23dd044077b475ac3095a1e1118140e4ae539bc5dcd349022e.png" />
 </div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
               </div>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.html" title="previous page">Modeling Toolkit For Time Series Analysis</a>
-    <a class='right-next' id="next-link" href="astroml_chapter10_Digital_Filtering.html" title="next page">Digital Filtering</a>
-
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Modeling Toolkit For Time Series Analysis</p>
         </div>
-        
+    </a>
+    <a class='right-next' id="next-link" href="astroml_chapter10_Digital_Filtering.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Digital Filtering</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By AstroML developers<br/>
-        
-            &copy; Copyright 2020-2021, AstroML developers.<br/>
-      </p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By AstroML developers<br/>
+  
+      &copy; Copyright 2020-2021, AstroML developers.<br/>
+</p>
+        </footer>
     </div>
-  </footer>
-</main>
+    
+</div>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
-  
+
   </body>
 </html>
