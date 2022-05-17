@@ -22,7 +22,7 @@ jobs:
           name: Build html
           no_output_timeout: 30m
           command: |
-            sphinx-build -b html -D jupyter_execute_notebooks=off . _build/html
+            sphinx-build -b html -D nb_execution_mode=off . _build/html
 
 # TODO: figure out what is useful to bring back from cache
 #      - save-cache:
