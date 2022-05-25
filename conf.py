@@ -37,7 +37,7 @@ templates_path = ['_templates']
 exclude_patterns = ['_build', 'notes']
 
 # MyST-NB configuration
-execution_timeout = 900
+nb_execution_timeout = 900
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -48,7 +48,7 @@ execution_timeout = 900
 html_theme = 'sphinx_book_theme'
 html_title = 'AstroML Notebooks'
 html_logo = '_static/astroml_logo.gif'
-html_favicon = '_static/favicon.png'
+html_favicon = '_static/favicon.ico'
 html_theme_options = {
     "github_url": "https://github.com/astroML/astroML-notebooks",
     "repository_url": "https://github.com/astroML/astroML-notebooks",

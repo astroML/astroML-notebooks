@@ -13,6 +13,15 @@ jobs:
           command: |
             pip install -r .binder/requirements.txt -r doc-requirements.txt
 
+
+      - run:
+          name: TMP clean MD source files
+          # ugly hack to make the colab links work as well as extracting the images from the notebooks without excecuting.
+          # sphinx defaults to use the md files to generate content, while the colab link can only be created from the ipynb
+          # revisit these issues upstream, or also enable executing for the simpler notebooks.
+          command: |
+            find chapter* -name "*ipynb"|awk -F ipynb '{print $1"md"}'|xargs rm -f
+
 # TODO: figure out what is useful to bring back from cache
 #      - restore_cache:
 #          keys:
@@ -22,7 +31,7 @@ jobs:
           name: Build html
           no_output_timeout: 30m
           command: |
-            sphinx-build -b html -D jupyter_execute_notebooks=off . _build/html
+            sphinx-build -b html -D nb_execution_mode=off . _build/html
 
 # TODO: figure out what is useful to bring back from cache
 #      - save-cache:
