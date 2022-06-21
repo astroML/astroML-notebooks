@@ -100,7 +100,6 @@ device_lib.list_local_devices()
 
 ```{code-cell} ipython3
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 from astroML.utils import split_samples
 %matplotlib inline
@@ -267,8 +266,6 @@ for image in noise:
 ```
 
 ```{code-cell} ipython3
-import matplotlib.pyplot as plt
-
 # plot sample of images
 plot_image_array(no_point_source_stamps, title='false positives')
 plot_image_array(point_source_stamps, title='true positives')
@@ -376,9 +373,7 @@ import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, Flatten, Activation
 from tensorflow.keras.utils import to_categorical
-import matplotlib.pyplot as plt
 
-import numpy as np
 def simple(input_shape=(21, 21, 1), n_classes: int = 2):
 
     model = tf.keras.models.Sequential(name='simple')
@@ -567,9 +562,7 @@ import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, Flatten
 from tensorflow.keras.utils import to_categorical
-import matplotlib.pyplot as plt
 
-import numpy as np
 def vgg6(input_shape=(21, 21, 1), n_classes: int = 2):
     """
         VGG6
@@ -703,7 +696,6 @@ ax.imshow(np.array(heatmap), alpha=0.5, cmap=mycmap)
 
 ```{code-cell} ipython3
 # Based on https://github.com/priya-dwivedi/Deep-Learning/blob/master/resnet_keras/Residual_Networks_yourself.ipynb
-import numpy as np
 import tensorflow as tf
 from tensorflow.keras.layers import Input, Add, Dense, Activation, ZeroPadding2D, BatchNormalization, Flatten, Conv2D, AveragePooling2D, MaxPooling2D, GlobalMaxPooling2D
 from tensorflow.keras.initializers import glorot_uniform
