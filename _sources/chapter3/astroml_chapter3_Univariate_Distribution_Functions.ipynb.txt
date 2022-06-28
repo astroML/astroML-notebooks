@@ -1,0 +1,1595 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "ca06a06b",
+   "metadata": {},
+   "source": [
+    "# Univariate Distribution Functions \n",
+    "## A note on the following graphs\n",
+    "\n",
+    "The code below ensures the fonts in plots are rendered with LaTex.\n",
+    "This function adjusts matplotlib settings for a uniform feel in the textbook.\n",
+    "Note that with `usetex=True`, fonts are rendered with LaTeX. This may result in an error if LaTeX is not installed on your system. In that case, you can set `usetex` to `False`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "84da7c92",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "if \"setup_text_plots\" not in globals():\n",
+    "    from astroML.plotting import setup_text_plots\n",
+    "setup_text_plots(fontsize=8, usetex=False)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "a2970784",
+   "metadata": {},
+   "source": [
+    "For each of these distributions, both `Numpy` and `Matplotlib` are needed to generate the graphs. Each graph will also require a different module from `scipy.stats` which we will import separately as you will see below."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0aa41431",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import numpy as np\n",
+    "from matplotlib import pyplot as plt"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "cf29a436",
+   "metadata": {},
+   "source": [
+    "## The uniform distribution\n",
+    "\n",
+    "The uniform distribution is given by\n",
+    "\n",
+    "$$ p(x|\\mu,W) = \\frac{1}{W}\\:\\:\\text{for}\\:\\:|x-\\mu|\\le \\frac{W}{2}$$\n",
+    "\n",
+    "and zero otherwise. Both the mean and the median are equal to $\\mu$, and the width of the 'box' is $W$. For a uniform distribution, every point in the continuous range of $W$ has an equally likely chance of appearing, resulting in the familiar \"top-hat\" shape.\n",
+    "\n",
+    "Additionally, the distribution's shape is unimpacted by varying its location along the x-axis or multiplying x by a scalar, allowing us to define $z=\\frac{x-\\mu}{W}$ and\n",
+    "\n",
+    "$$ p(z) = 1 \\text{ for |z| }{\\leq \\frac{1}{2}}\\text{ and } p(z) = 0 \\text{ for |z| > }\\frac{1}{2} $$\n",
+    "\n",
+    "In the following example, we will plot three uniform distributions of different widths with $\\mu = 0$. The uniform distribution is implemented in `scipy.stats.uniform` -- after importing the module, we will define $\\mu$, $W$, and use `np.linspace` to create a sequence of evenly spaced numbers $x$ to plot against."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "165ac3bb",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from scipy.stats import uniform\n",
+    "\n",
+    "W_values = [1.0, 2.0, 3.0]\n",
+    "linestyles = ['-', '--', ':']\n",
+    "mu = 0\n",
+    "x = np.linspace(-2, 2, 1000)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "29556719",
+   "metadata": {},
+   "source": [
+    "Next, we plot the distributions. The `uniform` function takes two main arguments: the left edge and the width of the distribution. To find the left edge, we calculate $\\mu - 0.5 W$ for each value of W."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "432ebcf9",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fig, ax = plt.subplots(figsize=(6, 4.5))\n",
+    "\n",
+    "for W, ls in zip(W_values, linestyles):\n",
+    "    left = mu - 0.5 * W \n",
+    "    dist = uniform(left, W)\n",
+    "\n",
+    "    plt.plot(x, dist.pdf(x), ls=ls, c='black',\n",
+    "             label=r'$\\mu=%i,\\ W=%i$' % (mu, W))\n",
+    "\n",
+    "plt.xlim(-1.7, 1.7)\n",
+    "plt.ylim(0, 1.2)\n",
+    "\n",
+    "plt.xlabel('$x$', fontsize = 12)\n",
+    "plt.ylabel(r'$p(x|\\mu, W)$', fontsize = 12)\n",
+    "plt.title('Uniform Distribution', fontsize = 12)\n",
+    "\n",
+    "plt.legend()\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "19b0246c",
+   "metadata": {},
+   "source": [
+    "### Useful SciPy functions:\n",
+    "\n",
+    "SciPy has built-in functions to calculate descriptive statistics of distribtions -- a few of them are shown below."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "fc621a9e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dist = uniform(-0.5,1) # instantiates a uniform distribution with left edge = -0.5 and width = 1 \n",
+    "\n",
+    "random = dist.rvs(10) # ten random draws\n",
+    "\n",
+    "mean, var, skew, kurt = uniform.stats(moments='mvsk') #first four moments of the distribution\n",
+    "\n",
+    "pdfval = dist.pdf(0) # pdf at x = 0\n",
+    "cdfval = dist.cdf(0) # cdf at x = 0\n",
+    "ppfval = dist.ppf(0.5) # returns x value for cdf = 0.5\n",
+    "\n",
+    "# We can check that these are the values we would expect by looking at the graph for mu = 0 and W = 1\n",
+    "print(pdfval, cdfval, ppfval)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4d95f6bd",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(random)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "dd70f3d0",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(mean,var,skew,kurt)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "652d63db",
+   "metadata": {},
+   "source": [
+    "## The Gaussian (normal) distribution \n",
+    "\n",
+    "The Gaussian distribution, also known as the normal distribution, is given by\n",
+    "\n",
+    "$$p(x|\\mu,\\sigma) = \\frac{1}{\\sigma\\sqrt{2\\pi}}\\text{exp}\\bigg(\\frac{-(x-\\mu)^2}{2\\sigma ^2}\\bigg) $$\n",
+    "\n",
+    "This distribution shows up often in statistics, and it is recognizable by its familiar \"bell\" shape. Here, $\\mu$ (location parameter) is the mean, and $\\sigma$ (scale parameter) is the standard deviation of the function. Thus it follows that Gaussian functions are centered at $\\mu$, and its width is dependent on the value of $\\sigma$.\n",
+    "\n",
+    "In the following example, we will plot three Gaussian distributions of different $\\sigma$ values with $\\mu = 0$. The Gaussian distribution is implemented in `scipy.stats.norm` -- after importing the module, we will define $\\mu$, $\\sigma$, and use `np.linspace` to create a sequence of evenly spaced numbers $x$ to plot against."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "ee7c8bae",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from scipy.stats import norm\n",
+    "\n",
+    "sigma_values = [0.5, 1.0, 2.0]\n",
+    "linestyles = ['-', '--', ':']\n",
+    "mu = 0\n",
+    "x = np.linspace(-10, 10, 1000)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "cb57089a",
+   "metadata": {},
+   "source": [
+    "Next, we plot the distribution. The `norm` function takes two main arguments: the mean and the standard deviation."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "65f752b5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fig, ax = plt.subplots(figsize=(6, 4.5))\n",
+    "\n",
+    "for sigma, ls in zip(sigma_values, linestyles):\n",
+    "    \n",
+    "    dist = norm(mu, sigma)  # creates the gaussian distribution\n",
+    "\n",
+    "    plt.plot(x, dist.pdf(x), ls=ls, c='black',\n",
+    "             label=r'$\\mu=%i,\\ \\sigma=%.1f$' % (mu, sigma)) # pdf calculated at x\n",
+    "\n",
+    "plt.xlim(-5, 5)\n",
+    "plt.ylim(0, 0.85)\n",
+    "\n",
+    "plt.xlabel('$x$', fontsize = 12)\n",
+    "plt.ylabel(r'$p(x|\\mu,\\sigma)$', fontsize = 12)\n",
+    "plt.title('Gaussian Distribution', fontsize = 12)\n",
+    "\n",
+    "plt.legend()\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8006175e",
+   "metadata": {},
+   "source": [
+    "### Useful Scipy functions:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4b69b1e6",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dist = norm(0,2) # instantiates normal distribution with mean = 0, stdev = 2 \n",
+    "\n",
+    "random = dist.rvs(10) # ten random draws \n",
+    "\n",
+    "mean, var, skew, kurt = norm.stats(moments='mvsk') #first four moments of the distribution\n",
+    "\n",
+    "pdfval = dist.pdf(0) # pdf at x = 0\n",
+    "cdfval = dist.cdf(0) # cdf at x = 0\n",
+    "ppfval = dist.ppf(0.5) # returns x value for cdf = 0.5\n",
+    "\n",
+    "# We can check that these are the values we would expect by looking at the graph for mu = 0 and W = 2\n",
+    "print(pdfval, cdfval, ppfval)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f3330194",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(random)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "aae0780f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(mean,var,skew,kurt)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7f813e6a",
+   "metadata": {},
+   "source": [
+    "The cumulative distribution function (cdf) for a Gaussian distribution does not have a closed-term solution and is usually expressed as the Gauss error function, which is implemented in `scipy.special`."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "592d2325",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from scipy.special import erf \n",
+    "erf(1)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "92a9bcce",
+   "metadata": {},
+   "source": [
+    "## The binomial distribution\n",
+    "\n",
+    "The binomial distribution is given by\n",
+    "\n",
+    "$$p(k|b,N) = \\frac{N!}{k!(N-k)!}b^k(1-b)^{N-k} $$\n",
+    "\n",
+    "This distribution differs from the previous two in that it describes the distribution of a **discrete** variable that can only take two values (such as an event occurring or not occuring). We define $b$ as the probability of success, and the distribution of a discrete variable $k$ measures how many times success occurred in $N$ trials. Here, $k$ is an integer (not a real number as in the prior distributions).\n",
+    "\n",
+    "In the following example, we will plot three binomial distributions of different $b$ and $N$ values. The binomial distribution is implemented in `scipy.stats.binom` -- after importing the module, we will define $N$, $b$, and use `np.arange` to create a sequence of evenly spaced **integers** $k$ to plot against. "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "8d57a837",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from scipy.stats import binom\n",
+    "\n",
+    "n_values = [20, 20, 40]\n",
+    "b_values = [0.2, 0.6, 0.6]\n",
+    "linestyles = ['-', '--', ':']\n",
+    "k = np.arange(-1, 200)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d148f58b",
+   "metadata": {},
+   "source": [
+    "Next we plot the distributions."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "fbae4e21",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fig, ax = plt.subplots(figsize=(6, 4.5))\n",
+    "\n",
+    "for (n, b, ls) in zip(n_values, b_values, linestyles):\n",
+    "    \n",
+    "    dist = binom(n, b) # creates a binomial distribution\n",
+    "\n",
+    "    plt.plot(k, dist.pmf(k), color='black',linestyle=ls,\n",
+    "             drawstyle= 'steps-mid',\n",
+    "             label=r'$b=%.1f,\\ n=%i$' % (b, n))  # pmf calculated at x\n",
+    "\n",
+    "plt.xlim(-0.5, 35)\n",
+    "plt.ylim(0, 0.25)\n",
+    "\n",
+    "plt.xlabel('$k$', fontsize = 12)\n",
+    "plt.ylabel(r'$p(k|b, n)$', fontsize = 12)\n",
+    "plt.title('Binomial Distribution', fontsize = 12)\n",
+    "\n",
+    "plt.legend()\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b4c55c29",
+   "metadata": {},
+   "source": [
+    "### Useful Scipy functions:\n",
+    "\n",
+    "Since we are dealing with a discrete variable, we calculate the pmf (probability mass function) as opposed to the pdf."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6df935f4",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dist = binom(20, 0.6) # instantiates binomial distribution with N = 20, b = 0.6\n",
+    "\n",
+    "random = dist.rvs(10) # ten random draws\n",
+    "\n",
+    "n, p = 20, 0.6\n",
+    "mean, var, skew, kurt = binom.stats(n, p, moments='mvsk') #first four moments of the distribution\n",
+    "\n",
+    "pmfval = dist.pmf(12) # pmf at k=12\n",
+    "cdfval = dist.cdf(12) # cdf at k=12\n",
+    "ppfval = dist.ppf(0.58) # returns k for cdf = 0.58\n",
+    "\n",
+    "print(pmfval, cdfval, ppfval)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e7b62207",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(random)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "81ad5885",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(mean, var, skew, kurt)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c0d72c6f",
+   "metadata": {},
+   "source": [
+    "Additionally, we can use SciPy to calculate a related distribution: the multinomial distribution, which describes the distribution of M discrete values, each corresponding to a particular probability."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "521f9535",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from numpy.random import multinomial\n",
+    "vals = multinomial(10, pvals=[0.2, 0.3, 0.5]) # pvals sum to 1"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f640db4b",
+   "metadata": {},
+   "source": [
+    "## The Poisson distribution"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b3425e52",
+   "metadata": {},
+   "source": [
+    "The Poisson distribution is a particular case of the binomial distribution, and thus it's also discrete. If the number of trials, $N$, for a binomial distribution goes to infinity such that the probability of success, $p = k/N$, stays fixed, then the distribution of the number of successes, $k$, is controlled by $\\mu = pN$ and given by\n",
+    "\n",
+    "$$ p(k|\\mu) = \\frac{\\mu^k\\text{exp}(-\\mu)}{k!} $$\n",
+    "\n",
+    "The Poisson distribution is fully described by its mean, $\\mu$.\n",
+    "\n",
+    "In the following example, we will plot three Poisson distributions of different $\\mu$ values. The Poisson distribution is implemented in `scipy.stats.poisson` -- after importing the module, we will define $\\mu$ and use `np.arange` to create a sequence of evenly spaced integers $k$ to plot against."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "71fa62fc",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from scipy.stats import poisson\n",
+    "\n",
+    "k = np.arange(-1, 200)\n",
+    "mu_values = [1, 5, 15]\n",
+    "linestyles = ['-', '--', ':']"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "335de5e4",
+   "metadata": {},
+   "source": [
+    "We then plot the distributions."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3cad653c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fig, ax = plt.subplots(figsize=(6, 4.5))\n",
+    "\n",
+    "for mu, ls in zip(mu_values, linestyles):\n",
+    "    \n",
+    "    dist = poisson(mu)\n",
+    "\n",
+    "    plt.plot(k, dist.pmf(k), color='black',\n",
+    "             linestyle=ls,\n",
+    "             drawstyle = 'steps-mid',\n",
+    "             label=r'$\\mu=%i$' % mu)\n",
+    "\n",
+    "plt.xlim(-0.5, 30)\n",
+    "plt.ylim(0, 0.4)\n",
+    "\n",
+    "plt.xlabel('$k$', fontsize = 12)\n",
+    "plt.ylabel(r'$p(k|\\mu)$', fontsize = 12)\n",
+    "plt.title('Poisson Distribution', fontsize = 12)\n",
+    "\n",
+    "plt.legend()\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "34cd18d0",
+   "metadata": {},
+   "source": [
+    "### Useful Scipy functions:\n",
+    "\n",
+    "Since we are still dealing with a discrete variable, we calculate the pmf rather than a pdf."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "3619a917",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dist = poisson(5) # instantiates poisson distribution with mu = 5\n",
+    "\n",
+    "random = dist.rvs(10) # ten random draws\n",
+    "\n",
+    "mean, var, skew, kurt = poisson.stats(mu, moments='mvsk') # first four moments of the distribution\n",
+    "\n",
+    "pmfval = dist.pmf(5) # pmf at k=5\n",
+    "cdfval = dist.cdf(5) # cdf at k=5\n",
+    "ppfval = dist.ppf(0.6) # returns k for cdf = 0.6\n",
+    "\n",
+    "print(pmfval, cdfval, ppfval)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d3dc1dfe",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(random)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f394a839",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(mean, var, skew, kurt)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "93d98dd6",
+   "metadata": {},
+   "source": [
+    "## The Cauchy (Lorentzian) distribution"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8bcff7de",
+   "metadata": {},
+   "source": [
+    "The Cauchy, or Lorentzian distribution is defined as \n",
+    "\n",
+    "$$ p(x|\\mu,\\gamma) = \\frac{1}{\\pi\\gamma}\\bigg(\\frac{\\gamma^2}{\\gamma^2+(x-\\mu)^2}\\bigg) $$\n",
+    "\n",
+    "The median and mode are equal to the location parameter $\\mu$, and $\\gamma$ is the scale parameter known as the interquartile range for  $\\{x_i\\}$. \n",
+    "\n",
+    "This distribution is different from the ones we've looked at so far in that the mean, variance, standard deviation, and higher moments do not exist. The probability decreases relatively slowly as $|x|$ increases due to the graph's broad tails -- because of this, outliers easily influence and sway the mean. Furthermore, the large scatter around $\\mu$ doesn't decrease with the sample size, and the probability of getting an outlier never decreases. Thus, we use a more robust estimator to describe the distribution: the median.\n",
+    "\n",
+    "In the following example, we will plot three Cauchy distributions of different $\\gamma$ values with $\\mu = 0$. The Cauchy distribution is implemented in `scipy.stats.cauchy` -- after importing the module, we will define $\\mu$, $\\gamma$, and use `np.linspace` to create a sequence of evenly spaced numbers $x$ to plot against."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "a7a18025",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from scipy.stats import cauchy\n",
+    "\n",
+    "gamma_values = [0.5, 1.0, 2.0]\n",
+    "linestyles = ['-', '--', ':']\n",
+    "mu = 0\n",
+    "x = np.linspace(-10, 10, 1000)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "17c02408",
+   "metadata": {},
+   "source": [
+    "We then plot the distributions."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "4579198c",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fig, ax = plt.subplots(figsize=(6, 4.5))\n",
+    "\n",
+    "for gamma, ls in zip(gamma_values, linestyles):\n",
+    "    dist = cauchy(mu, gamma)\n",
+    "\n",
+    "    plt.plot(x, dist.pdf(x), ls=ls, color='black',\n",
+    "             label=r'$\\mu=%i,\\ \\gamma=%.1f$' % (mu, gamma))\n",
+    "\n",
+    "plt.xlim(-4.5, 4.5)\n",
+    "plt.ylim(0, 0.65)\n",
+    "\n",
+    "plt.xlabel('$x$', fontsize = 12)\n",
+    "plt.ylabel(r'$p(x|\\mu,\\gamma)$', fontsize = 12)\n",
+    "plt.title('Cauchy Distribution', fontsize = 12)\n",
+    "\n",
+    "plt.legend()\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "98baa0d4",
+   "metadata": {},
+   "source": [
+    "### Useful Scipy functions:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f0976851",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dist = cauchy(0,0.5) # instantiates cauchy distribution with mu = 0, gamma = 0.5\n",
+    "\n",
+    "random = dist.rvs(10) # ten random draws\n",
+    "\n",
+    "pmfval = dist.pdf(0) # pdf at x=0\n",
+    "cdfval = dist.cdf(0) # cdf at x=0\n",
+    "ppfval = dist.ppf(0.5) # returns x for cdf = 0.5\n",
+    "\n",
+    "print(pdfval, cdfval, ppfval)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7e5d1f05",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(random)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "ca09efcb",
+   "metadata": {},
+   "source": [
+    "## The Laplace (exponential) distribution\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7c74d7a7",
+   "metadata": {},
+   "source": [
+    "The Laplace distribution is given by:\n",
+    "\n",
+    "$$ p(x|\\mu,\\Delta) = \\frac{1}{2\\Delta}\\text{exp}\\bigg(\\frac{-|x-\\mu|}{\\Delta}\\bigg) $$\n",
+    "\n",
+    "If we define $x > 0$, the above expression becomes the one-sided exponential distribution. Since the Laplace distribution is symmetric around $\\mu$, its mean, mode, and median are $\\mu$, and its skewness is 0. The standard deviation is $\\sigma = \\sqrt{2\\Delta}$.\n",
+    "\n",
+    "In the following example, we will plot three laplacian distributions with different $\\Delta$ values and $\\mu = 0$. The Laplacian distribution is implemented in `scipy.stats.laplace` -- after importing the module, we will define $\\mu$, $\\Delta$, and use `np.linspace` to create a sequence of evenly spaced numbers $x$ to plot against."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "60de6eb0",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from scipy.stats import laplace\n",
+    "\n",
+    "delta_values = [0.5, 1.0, 2.0]\n",
+    "linestyles = ['-', '--', ':']\n",
+    "mu = 0\n",
+    "x = np.linspace(-10, 10, 1000)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3e150fac",
+   "metadata": {},
+   "source": [
+    "Next, we plot the distributions."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2b73fa2e",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fig, ax = plt.subplots(figsize=(6, 4.5))\n",
+    "\n",
+    "for delta, ls in zip(delta_values, linestyles):\n",
+    "    dist = laplace(mu, delta)\n",
+    "\n",
+    "    plt.plot(x, dist.pdf(x), ls=ls, c='black',\n",
+    "             label=r'$\\mu=%i,\\ \\Delta=%.1f$' % (mu, delta))\n",
+    "\n",
+    "plt.xlim(-6, 6)\n",
+    "plt.ylim(0, 1.0)\n",
+    "\n",
+    "plt.xlabel('$x$', fontsize = 12)\n",
+    "plt.ylabel(r'$p(x|\\mu,\\Delta)$', fontsize = 12)\n",
+    "plt.title('Laplace Distribution', fontsize = 12)\n",
+    "\n",
+    "plt.legend()\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "1b62508d",
+   "metadata": {},
+   "source": [
+    "We can see the same example but defined for $x>0$. Thus we will use `scipy.stats.expon` instead and change the lower limit of $x$ to zero, excluding zero itself."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "aec5d168",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from scipy.stats import expon\n",
+    "\n",
+    "delta_values = [0.5, 1.0, 2.0]\n",
+    "linestyles = ['-', '--', ':']\n",
+    "mu = 0\n",
+    "x = np.linspace(0, 10, 1000)[1:]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5398eea4",
+   "metadata": {},
+   "source": [
+    "Next, we plot the distribution."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "874d6455",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fig, ax = plt.subplots(figsize=(6, 4.5))\n",
+    "\n",
+    "for delta, ls in zip(delta_values, linestyles):\n",
+    "    dist = laplace(mu, delta)\n",
+    "\n",
+    "    plt.plot(x, dist.pdf(x), ls=ls, c='black',\n",
+    "             label=r'$\\mu=%i,\\ \\Delta=%.1f$' % (mu, delta))\n",
+    "\n",
+    "plt.xlim(0, 6)\n",
+    "plt.ylim(0, 1.0)\n",
+    "\n",
+    "plt.xlabel('$x$', fontsize = 12)\n",
+    "plt.ylabel(r'$p(x|\\mu,\\Delta)$', fontsize = 12)\n",
+    "plt.title('Laplace Distribution', fontsize = 12)\n",
+    "\n",
+    "plt.legend()\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "af35eb2d",
+   "metadata": {},
+   "source": [
+    "### Useful SciPy functions"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6b9af52b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dist = laplace(0,0.5) # instantiates laplacian distribution with mu = 0, delta = 0.5\n",
+    "\n",
+    "random = dist.rvs(10) # ten random draws\n",
+    "\n",
+    "mean, var, skew, kurt = laplace.stats(moments='mvsk') # first four moments of the distribution\n",
+    "\n",
+    "pmfval = dist.pdf(0) # pdf at x=0\n",
+    "cdfval = dist.cdf(0) # cdf at x=0\n",
+    "ppfval = dist.ppf(0.5) # returns x for cdf = 0.5\n",
+    "\n",
+    "print(pdfval, cdfval, ppfval)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6f419ff9",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(random)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c0b7d5bd",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(mean, var, skew, kurt)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7563f06f",
+   "metadata": {},
+   "source": [
+    "## The $\\chi^2$ distribution"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "1280cef1",
+   "metadata": {},
+   "source": [
+    "The $\\chi^2$ distribution has the form:\n",
+    "\n",
+    "$$ p(Q|k) \\equiv \\chi^2(Q|k) = \\frac{1}{2^{k/2}\\Gamma(k/2)}Q^{k/2-1}\\text{exp}(-Q/2)\\: \\text{for}\\: Q>0 $$\n",
+    "\n",
+    "It has $k$ degrees of freedom, and $\\Gamma$ is the gamma function. The distribution of $Q$ values depends only on the sample size, and not on the actual values of $\\mu$ and $\\sigma$. If $\\mu$ and $\\sigma$ are set to 0 and 1, the $\\chi^2$ is the sum of $k$ standardized Gaussians.\n",
+    "\n",
+    "We can define the $\\chi^2$ distribution *per degree of freedom* as\n",
+    "\n",
+    "$$\\chi^2_{dof}(Q|k) \\equiv \\chi^2(Q/k|k)$$\n",
+    "\n",
+    "The mean value for $\\chi^2_{dof}$ is 1, the standard deviation is $\\sqrt{2/k}$, and as k increases, $\\chi^2_{dof}$ tends to $N(1,\\sqrt{2/k})$.\n",
+    "\n",
+    "In the following example, we will plot four $\\chi^2$ distributions with different $k$ values and $\\mu = 0$. The $\\chi^2$ distribution is implemented in `scipy.stats.chi2` -- after importing the module, we will define $\\mu$, $k$, and use `np.linspace` to create a sequence of evenly spaced numbers $x$ to plot against."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0e5cf56d",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from scipy.stats import chi2\n",
+    "\n",
+    "k_values = [1, 2, 5, 7]\n",
+    "linestyles = ['-', '--', ':', '-.']\n",
+    "mu = 0\n",
+    "x = np.linspace(-1, 20, 1000)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5d32327d",
+   "metadata": {},
+   "source": [
+    "Next, we plot the distributions."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "97d5f178",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fig, ax = plt.subplots(figsize=(6, 4.5))\n",
+    "fig.subplots_adjust(bottom=0.12)\n",
+    "\n",
+    "for k, ls in zip(k_values, linestyles):\n",
+    "    dist = chi2(k, mu)\n",
+    "\n",
+    "    plt.plot(x, dist.pdf(x), ls=ls, c='black',\n",
+    "             label=r'$k=%i$' % k)\n",
+    "\n",
+    "plt.xlim(0, 10)\n",
+    "plt.ylim(0, 0.5)\n",
+    "\n",
+    "plt.xlabel('$Q$', fontsize = 12)\n",
+    "plt.ylabel(r'$p(Q|k)$', fontsize = 12)\n",
+    "plt.title(r'$\\chi^2\\ \\mathrm{Distribution}$', fontsize = 12)\n",
+    "\n",
+    "plt.legend()\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b4dacc27",
+   "metadata": {},
+   "source": [
+    "### Useful SciPy Functions"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "022105a2",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dist = chi2(5) # instantiates chi^2 distribution with k = 5\n",
+    "\n",
+    "random = dist.rvs(10) # ten random draws \n",
+    "\n",
+    "mean, var, skew, kurt = chi2.stats(k, moments='mvsk') # first four moments of the distribution\n",
+    "\n",
+    "pdfval = dist.pdf(4) # pdf at x = 4\n",
+    "cdfval = dist.cdf(4) # cdf at x = 4\n",
+    "ppfval = dist.ppf(0.45) # returns x value for cdf = 0.45\n",
+    "\n",
+    "print(pdfval, cdfval, ppfval)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9ac18646",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(random)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c55ccb00",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(mean, var, skew, kurt)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c598cdee",
+   "metadata": {},
+   "source": [
+    "Additionally, the gamma function and log-gamma function are available in scipy.special:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "cfe0a962",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from scipy import special\n",
+    "print(special.gamma(5)) # returns (gamma(5))\n",
+    "print(special.gammaln(100)) # returns log(gamma(100))"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b0d4aea8",
+   "metadata": {},
+   "source": [
+    "## Student’s t distribution\n",
+    "\n",
+    "Student's t distribution has the form:\n",
+    "\n",
+    "$$ p(x|k) = \\frac{\\Gamma(\\frac{k+1}{2})}{\\sqrt{\\pi k}\\Gamma(\\frac{k}{2})}\\bigg(1+\\frac{x^2}{k}\\bigg)^{-\\frac{k+1}{2}}$$\n",
+    "\n",
+    "where $k$ is the number of degrees of freedom. This curve appears similar in shape to a Gaussian but with thicker tails. The mean, median, and mode are zero for $k > 1$ and undefined for $k = 1$.\n",
+    "\n",
+    "In the following example, we will plot four Student's t distributions with different $k$ values and $\\mu = 0$. Student's t distribution is implemented in `scipy.stats.t` -- after importing the module, we will define $\\mu$, k, and use `np.linspace` to create a sequence of evenly spaced numbers $x$ to plot against."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "f4bebc13",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from scipy.stats import t as student_t\n",
+    "\n",
+    "mu = 0\n",
+    "k_values = [1E10, 2, 1, 0.5]\n",
+    "\n",
+    "linestyles = ['-', '--', ':', '-.']\n",
+    "x = np.linspace(-10, 10, 1000)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "40ff8fe8",
+   "metadata": {},
+   "source": [
+    "Next, plot the distributions."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "61d09b0a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fig, ax = plt.subplots(figsize=(6, 4.5))\n",
+    "\n",
+    "for k, ls in zip(k_values, linestyles):\n",
+    "    dist = student_t(k, 0)\n",
+    "\n",
+    "    if k >= 1E10:\n",
+    "        label = r'$\\mathrm{t}(k=\\infty)$'\n",
+    "    else:\n",
+    "        label = r'$\\mathrm{t}(k=%.1f)$' % k\n",
+    "\n",
+    "    plt.plot(x, dist.pdf(x), ls=ls, c='black', label=label)\n",
+    "\n",
+    "plt.xlim(-5, 5)\n",
+    "plt.ylim(0.0, 0.45)\n",
+    "\n",
+    "plt.xlabel('$x$', fontsize = 12)\n",
+    "plt.ylabel(r'$p(x|k)$', fontsize = 12)\n",
+    "plt.title(\"Student's $t$ Distribution\", fontsize = 12)\n",
+    "\n",
+    "plt.legend()\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "667e0565",
+   "metadata": {},
+   "source": [
+    "### Useful SciPy Functions"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d9a7a93b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dist = student_t(5) # instantiates Student's t distribution with k = 5\n",
+    "\n",
+    "random = dist.rvs(10) # ten random draws \n",
+    "\n",
+    "mean, var, skew, kurt = student_t.stats(k, moments='mvsk') # first four moments of the distribution\n",
+    "\n",
+    "pdfval = dist.pdf(0) # pdf at x = 0\n",
+    "cdfval = dist.cdf(0) # cdf at x = 0\n",
+    "ppfval = dist.ppf(0.5) # returns x value for cdf = 0\n",
+    "\n",
+    "print(pdfval, cdfval, ppfval)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "418cc877",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(random)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "5ca86e54",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(mean, var, skew, kurt)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "fd272afa",
+   "metadata": {},
+   "source": [
+    "## Fisher’s F distribution\n",
+    "\n",
+    "For $x \\geq 0$, $ d_1 > 0$, and $ d_2 > 0$, Fisher’s F distribution is given by\n",
+    "\n",
+    "$$ p(x|d_1,d_2) = C \\bigg(1+\\frac{d_1}{d_2}x\\bigg)^{-\\frac{d_1+d_2}{2}}x^{\\frac{d_1}{2}-1}$$\n",
+    "\n",
+    "where $d_1$ and $d_2$ are degrees of freedom, the normalization constant C is equal to\n",
+    "\n",
+    "$$ C = \\frac{1}{B(d_1/2,d_2/2)}\\bigg(\\frac{d_1}{d_2}\\bigg)^{d_1/2} $$ \n",
+    "\n",
+    "and $B$ is the beta function.\n",
+    "\n",
+    "In the following example, we will plot four Fisher’s F distributions with different $d_1$ and $d_2$ values and $\\mu = 0$. Fisher’s F distribution is implemented in `scipy.stats.f` -- after importing the module, we will define $\\mu$, $d_1$, $d_2$, and use `np.linspace` to create a sequence of evenly spaced numbers $x$ to plot against (removing x = 0)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "d9a1ca3b",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from scipy.stats import f as fisher_f\n",
+    "\n",
+    "mu = 0\n",
+    "d1_values = [1, 5, 2, 10]\n",
+    "d2_values = [1, 2, 5, 50]\n",
+    "linestyles = ['-', '--', ':', '-.']\n",
+    "x = np.linspace(0, 5, 1001)[1:]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "6a655b0e",
+   "metadata": {},
+   "source": [
+    "We then plot the distributions."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "85964622",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fig, ax = plt.subplots(figsize=(6, 4.5))\n",
+    "\n",
+    "for (d1, d2, ls) in zip(d1_values, d2_values, linestyles):\n",
+    "    dist = fisher_f(d1, d2, mu)\n",
+    "\n",
+    "    plt.plot(x, dist.pdf(x), ls=ls, c='black',\n",
+    "             label=r'$d_1=%i,\\ d_2=%i$' % (d1, d2))\n",
+    "\n",
+    "plt.xlim(0, 4)\n",
+    "plt.ylim(0.0, 1.0)\n",
+    "\n",
+    "plt.xlabel('$x$', fontsize = 12)\n",
+    "plt.ylabel(r'$p(x|d_1, d_2)$', fontsize = 12)\n",
+    "plt.title(\"Fisher's Distribution\", fontsize = 12)\n",
+    "\n",
+    "plt.legend()\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "66afc398",
+   "metadata": {},
+   "source": [
+    "### Useful SciPy Functions"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "5c55ce30",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dist = fisher_f(5,2) #instantiates Fisher's f distribution with d1=5,d2=2 \n",
+    "\n",
+    "random = dist.rvs(10) # ten random draws \n",
+    "\n",
+    "d1, d2 = 5, 2\n",
+    "mean, var, skew, kurt = fisher_f.stats(d1, d2, moments='mvsk') # first four moments of the distribution\n",
+    "\n",
+    "pdfval = dist.pdf(0.5) # pdf at x = 0.5\n",
+    "cdfval = dist.cdf(0.5) # cdf at x = 0.5\n",
+    "ppfval = dist.ppf(.23) # returns x value for cdf = 0.23\n",
+    "\n",
+    "print(pdfval, cdfval, ppfval)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7d840524",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(random)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "216408ca",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(mean, var, skew, kurt)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "5aa770a8",
+   "metadata": {},
+   "source": [
+    "## The beta distribution\n",
+    "\n",
+    "For $0 < x < 1$, the beta distribution is given by\n",
+    "\n",
+    "$$ p(x|\\alpha,\\beta) = \\frac{\\Gamma(\\alpha+\\beta)}{\\Gamma(\\alpha)\\Gamma(\\beta)} x^{\\alpha-1}(1-x)^{\\beta-1}$$\n",
+    "\n",
+    "where $\\alpha$ and $\\beta$ are shape parameters both greater than zero.\n",
+    "\n",
+    "In the following example, we will plot four beta distributions with various $\\alpha$ and $\\beta$ values. The beta distribution is implemented in `scipy.stats.beta` -- after importing the module, we will define $\\alpha$, $\\beta$, and use `np.linspace` to create a sequence of evenly spaced numbers $x$ to plot against."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "a7b841fc",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from scipy.stats import beta\n",
+    "\n",
+    "alpha_values = [0.5, 1.5, 3.0, 0.5]\n",
+    "beta_values = [0.5, 1.5, 3.0, 1.5]\n",
+    "linestyles = ['-', '--', ':', '-.']\n",
+    "x = np.linspace(0, 1, 1002)[1:-1]"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "ef6ebc72",
+   "metadata": {},
+   "source": [
+    "We then plot the distributions."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "6312ab75",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fig, ax = plt.subplots(figsize=(6, 4.5))\n",
+    "\n",
+    "for a, b, ls in zip(alpha_values, beta_values, linestyles):\n",
+    "    dist = beta(a, b)\n",
+    "\n",
+    "    plt.plot(x, dist.pdf(x), ls=ls, c='black',\n",
+    "             label=r'$\\alpha=%.1f,\\ \\beta=%.1f$' % (a, b))\n",
+    "\n",
+    "plt.xlim(0, 1)\n",
+    "plt.ylim(0, 3)\n",
+    "\n",
+    "plt.xlabel('$x$', fontsize = 12)\n",
+    "plt.ylabel(r'$p(x|\\alpha,\\beta)$', fontsize = 12)\n",
+    "plt.title('Beta Distribution', fontsize = 12)\n",
+    "\n",
+    "plt.legend(loc=0)\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2e92be9e",
+   "metadata": {},
+   "source": [
+    "### Useful SciPy functions"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "a8e9f5cc",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dist = beta(0.5, 1.5) #instantiates beta distribution with alpha = 0.5, beta = 1.5\n",
+    "\n",
+    "random = dist.rvs(10) # ten random draws\n",
+    "\n",
+    "a, b = 0.5, 1.5\n",
+    "mean, var, skew, kurt = beta.stats(a, b, moments='mvsk') #calculates the first four moments of the distribution\n",
+    "\n",
+    "pdfval = dist.pdf(0.5) # pdf at x = 0.5\n",
+    "cdfval = dist.cdf(0.5) # cdf at x = 0.5\n",
+    "ppfval = dist.ppf(0.82) # returns x value for cdf = 0.82\n",
+    "\n",
+    "print(pdfval,cdfval,ppfval)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "7e7a16d5",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(random)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "42bec50f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(mean, var, skew, kurt)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "ac4bbe39",
+   "metadata": {},
+   "source": [
+    "## The gamma distribution\n",
+    "\n",
+    "For 0 < x < $\\infty$, the gamma distribution is given by\n",
+    "\n",
+    "$$ p(x|k,\\theta) = \\frac{1}{\\theta^k}\\frac{x^{k-1}e^{-x/\\theta}}{\\Gamma(k)}$$\n",
+    "\n",
+    "where k is the shape parameter and $\\theta$ is the scale parameter.\n",
+    "\n",
+    "In the following example, we will plot four gamma distributions with various k and $\\theta$ values. The Weibull distribution is implemented in `scipy.stats.gamma` -- after importing the module, we will define k, $\\theta$ and use `np.linspace` to create a sequence of evenly spaced numbers $x$ to plot against."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "c2dfd01f",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from scipy.stats import gamma\n",
+    "\n",
+    "k_values = [1, 2, 3, 5]\n",
+    "theta_values = [2, 1, 1, 0.5]\n",
+    "linestyles = ['-', '--', ':', '-.']\n",
+    "x = np.linspace(1E-6, 10, 1000)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "f9857d77",
+   "metadata": {},
+   "source": [
+    "We then plot the distribution."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "916c2b32",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fig, ax = plt.subplots(figsize=(6, 4.5))\n",
+    "\n",
+    "for k, t, ls in zip(k_values, theta_values, linestyles):\n",
+    "    dist = gamma(k, 0, t) # zero is the location parameter\n",
+    "    plt.plot(x, dist.pdf(x), ls=ls, c='black',\n",
+    "             label=r'$k=%.1f,\\ \\theta=%.1f$' % (k, t))\n",
+    "\n",
+    "plt.xlim(0, 10)\n",
+    "plt.ylim(0, 0.45)\n",
+    "\n",
+    "plt.xlabel('$x$', fontsize = 12)\n",
+    "plt.ylabel(r'$p(x|k,\\theta)$', fontsize = 12)\n",
+    "plt.title('Gamma Distribution', fontsize = 12)\n",
+    "\n",
+    "plt.legend(loc=0)\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "25f14699",
+   "metadata": {},
+   "source": [
+    "### Useful Scipy functions:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "dd3af6ca",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dist = gamma(1,0,2) # instantiates gamma distribution with k=1, loc=0, theta=2\n",
+    "\n",
+    "random = dist.rvs(10) # ten random draws\n",
+    "\n",
+    "k = 1\n",
+    "mean, var, skew, kurt = gamma.stats(k, moments='mvsk') #first four moments of the distribution\n",
+    "\n",
+    "pdfval = dist.pdf(2) # pdf at x = 2\n",
+    "cdfval = dist.cdf(2) # cdf at x = 2\n",
+    "ppfval = dist.ppf(0.632) # returns x value for cdf = 0.632\n",
+    "\n",
+    "print(pdfval,cdfval,ppfval)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "64674176",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(random)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "22b1f2fc",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(mean, var, skew, kurt)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7bff85d5",
+   "metadata": {},
+   "source": [
+    "## The Weibull distribution\n",
+    "\n",
+    "For $x \\geq 0$, the Weilbull distribution is given by \n",
+    "\n",
+    "$$ p(x|k,\\lambda) = \\frac{k}{\\lambda}\\bigg(\\frac{x}{\\lambda}\\bigg)^{k-1}e^{-(x/\\lambda)^k}$$\n",
+    "\n",
+    "where $\\lambda$ is the scale parameter and k is the shape parameter. The mean is given by $\\lambda\\Gamma(1+1/k)$ and the median is $\\lambda (\\ln2)^{1/k}$. \n",
+    "\n",
+    "The shape parameter can be used to interpolate between the exponential distribution (k=1) and the Rayleigh distribution (k=2). As k tends to infinity, the Weibull distribution transforms into a Dirac $\\delta$ function.\n",
+    "\n",
+    "In the following example, we will plot four Weibull distributions of various k and $\\lambda$ values. The Weibull distribution is implemented in `scipy.stats.weibull_min` -- after importing the module, we will define k, $\\lambda$, $\\mu$, and use `np.linspace` to create a sequence of evenly spaced numbers $x$ to plot against. Note that $\\mu$ is the location parameter."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "52656510",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "from scipy.stats import weibull_min\n",
+    "\n",
+    "k_values = [0.5, 1, 2, 2]\n",
+    "lam_values = [1, 1, 1, 2]\n",
+    "linestyles = ['-', '--', ':', '-.', '--']\n",
+    "mu = 0\n",
+    "x = np.linspace(-10, 10, 1000)"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "36a7ab09",
+   "metadata": {},
+   "source": [
+    "We then plot the distributions."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e0d66be2",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "fig, ax = plt.subplots(figsize=(6, 4.5))\n",
+    "\n",
+    "for (k, lam, ls) in zip(k_values, lam_values, linestyles):\n",
+    "    dist = weibull_min(k, mu, lam)\n",
+    "    plt.plot(x, dist.pdf(x), ls=ls, c='black',\n",
+    "             label=r'$k=%.1f,\\ \\lambda=%i$' % (k, lam))\n",
+    "\n",
+    "plt.xlim(0, 5)\n",
+    "plt.ylim(0, 1)\n",
+    "\n",
+    "plt.xlabel('$x$', fontsize = 12)\n",
+    "plt.ylabel(r'$p(x|k,\\lambda)$', fontsize = 12)\n",
+    "plt.title('Weibull Distribution', fontsize = 12)\n",
+    "\n",
+    "plt.legend()\n",
+    "plt.show()"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "50cd7921",
+   "metadata": {},
+   "source": [
+    "### Useful Scipy functions:"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "eb6666a9",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "dist = weibull_min(2, 0, 1) #instantiates Weibull distribution with k = 2, loc = 0, lambda = 1\n",
+    "\n",
+    "random = dist.rvs(10) # ten random draws\n",
+    "\n",
+    "k=2\n",
+    "mean, var, skew, kurt = weibull_min.stats(k, moments='mvsk') #first four moments of the distribution\n",
+    "\n",
+    "pdfval = dist.pdf(1) # pdf at x = 1\n",
+    "cdfval = dist.cdf(1) # cdf at x = 1\n",
+    "ppfval = dist.ppf(0.632) # returns x value for cdf = 0.632\n",
+    "\n",
+    "print(pdfval,cdfval,ppfval)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "fe0c5cef",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(random)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1ef0c371",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "print(mean, var, skew, kurt)"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
