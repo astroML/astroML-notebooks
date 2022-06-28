@@ -9,5 +9,5 @@ statistics. It also introduces several important probability distribution functi
 maxdepth: 1
 ---
 
-astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution
+astroml_chapter3_Univariate_Distribution_Functions
 ```

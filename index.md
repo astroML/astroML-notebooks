@@ -7,6 +7,7 @@
 maxdepth: 2
 ---
 
+chapter3/README
 chapter5/README
 chapter6/README
 chapter7/README
