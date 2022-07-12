@@ -10,4 +10,5 @@ maxdepth: 1
 ---
 
 astroml_chapter3_Univariate_Distribution_Functions
+astroml_chapter3_Univariate_Distribution_Functions
 ```
