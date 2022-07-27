@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -39,8 +39,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -657,12 +659,14 @@ orthonormal set of basis functions can be constructed by scalings and translatio
 <section id="wavelet-transform-of-gaussian-noise">
 <h2>Wavelet transform of Gaussian Noise<a class="headerlink" href="#wavelet-transform-of-gaussian-noise" title="Permalink to this headline">#</a></h2>
 <p>Below we have an example using a particular wavelet to compute a wavelet PSD as a
-function of time $t_0$ and frequency $f_0$. The wavelet used is of the form</p>
-<p>$$w(t|t_0,f_0,Q) = A exp[i2\pi f_0 (t-t_0)]exp[-f_0^2(t-t_0)^2/Q^2]$$</p>
-<p>where $t_0$ is the central time, $f_0$ is the central frequency, and the dimensionless parameter Q is
+function of time <span class="math notranslate nohighlight">\(t_0\)</span> and frequency <span class="math notranslate nohighlight">\(f_0\)</span>. The wavelet used is of the form</p>
+<div class="math notranslate nohighlight">
+\[w(t|t_0,f_0,Q) = A exp[i2\pi f_0 (t-t_0)]exp[-f_0^2(t-t_0)^2/Q^2]\]</div>
+<p>where <span class="math notranslate nohighlight">\(t_0\)</span> is the central time, <span class="math notranslate nohighlight">\(f_0\)</span> is the central frequency, and the dimensionless parameter Q is
 a model parameter which controls the width of the frequency window.<br />
 The Fourier transform of this form is</p>
-<p>$$W(f|t_0,f_0,Q)=(\frac{\pi}{f^2_0/Q^2})^{1/2} exp(-i2\pi f t_0) exp[\frac{-\pi^2Q^2(f-f_0)^2}{Qf^2_0}]$$</p>
+<div class="math notranslate nohighlight">
+\[W(f|t_0,f_0,Q)=(\frac{\pi}{f^2_0/Q^2})^{1/2} exp(-i2\pi f t_0) exp[\frac{-\pi^2Q^2(f-f_0)^2}{Qf^2_0}]\]</div>
 <p>Note that the form given by above equations is not technically a wavelet because it
 does not meet the admissibility criterion (the equivalent of orthogonality in Fourier transforms).
 This form is closely related to a true wavelet, the <em>Morlet wavelet</em>, through a simple scaling and offset. Therefore, these equations should probaly be referred to as “matched filters” rather than “wavelets”.<br />
@@ -765,11 +769,11 @@ In the plot, solid line and dashed line show the real part and imaginary part re
 </section>
 <section id="compute-psd">
 <h3>Compute PSD<a class="headerlink" href="#compute-psd" title="Permalink to this headline">#</a></h3>
-<p>The wavelet PSD (power spectral density) is defined by $PSD_w(f0, t0;Q) = |Hw(t_0; f_0,Q)|^2$. Unlike
+<p>The wavelet PSD (power spectral density) is defined by <span class="math notranslate nohighlight">\(PSD_w(f0, t0;Q) = |Hw(t_0; f_0,Q)|^2\)</span>. Unlike
 the typical Fourier-transform PSD, the wavelet PSD allows detection of frequency information
 which is localized in time.<br />
 Here we compute the wavelet PSD from sample wavelet using <em>wavelet_PSD</em> function in <em>astroML.fourier</em>.</p>
-<p>The plot shows the PSD as a function of the frequency $f_0$ and the time $t_0$, for Q = 1.0.</p>
+<p>The plot shows the PSD as a function of the frequency <span class="math notranslate nohighlight">\(f_0\)</span> and the time <span class="math notranslate nohighlight">\(t_0\)</span>, for Q = 1.0.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the wavelet PSD</span>
@@ -868,11 +872,12 @@ Here we compute the wavelet PSD from sample wavelet using <em>wavelet_PSD</em> f
 <section id="id1">
 <h3>Compute wavelet<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <p>Compute the convolution via the continuous Fourier transform. This is more exact than using the discrete transform, because we have an analytic expression for the FT of the wavelet. The wavelet transform applied to data h(t) is given by</p>
-<p>$$H_w(t_0;f_0,Q)=\int^{\infty}_{\infty} h(t)w(t|t_0,f_0,Q)dt$$</p>
-<p>By the convolution theorem $H(f) = A(f)B(f)$, we can write the Fourier transform
-of $H_w$ as the pointwise product of the Fourier transforms of h(t) and $w*(t; t_0; f_0, Q)$. The first can
-be approximated using the discrete Fourier transform as shown in appendix E in the textbook; the second can be found using the analytic formula for W(f) in the prevoius section. This allows us to quickly evaluate $H_w$ as a
-function of $t_0$ and $f_0$, using two $O(N logN)$ fast Fourier transforms.</p>
+<div class="math notranslate nohighlight">
+\[H_w(t_0;f_0,Q)=\int^{\infty}_{\infty} h(t)w(t|t_0,f_0,Q)dt\]</div>
+<p>By the convolution theorem <span class="math notranslate nohighlight">\(H(f) = A(f)B(f)\)</span>, we can write the Fourier transform
+of <span class="math notranslate nohighlight">\(H_w\)</span> as the pointwise product of the Fourier transforms of h(t) and <span class="math notranslate nohighlight">\(w*(t; t_0; f_0, Q)\)</span>. The first can
+be approximated using the discrete Fourier transform as shown in appendix E in the textbook; the second can be found using the analytic formula for W(f) in the prevoius section. This allows us to quickly evaluate <span class="math notranslate nohighlight">\(H_w\)</span> as a
+function of <span class="math notranslate nohighlight">\(t_0\)</span> and <span class="math notranslate nohighlight">\(f_0\)</span>, using two <span class="math notranslate nohighlight">\(O(N logN)\)</span> fast Fourier transforms.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span> <span class="o">=</span> <span class="mf">0.3</span>
@@ -916,7 +921,7 @@ function of $t_0$ and $f_0$, using two $O(N logN)$ fast Fourier transforms.</p>
 <section id="compute-spectrogram">
 <h3>Compute spectrogram<a class="headerlink" href="#compute-spectrogram" title="Permalink to this headline">#</a></h3>
 <p>We compute spectrogram using <em>IFT_continuous</em> in <em>astroML.fourier</em>.<br />
-The plot below shows the power spectral density as a function of the frequency $f_0$ and the time $t_0$, for Q = 0.3.</p>
+The plot below shows the power spectral density as a function of the frequency <span class="math notranslate nohighlight">\(f_0\)</span> and the time <span class="math notranslate nohighlight">\(t_0\)</span>, for Q = 0.3.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">wavelet_FT</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">f0</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="n">Q</span><span class="p">))</span>
@@ -953,8 +958,8 @@ The plot below shows the power spectral density as a function of the frequency $
 </section>
 <section id="examples-of-wavelets">
 <h2>Examples of Wavelets<a class="headerlink" href="#examples-of-wavelets" title="Permalink to this headline">#</a></h2>
-<p>The resulting wavelets vary from different parameters Q and $f_0$.
-Here we take several different parameters Q and $f_0$ and show the result wavelets, taking the prevoius Gaussian sample imput.</p>
+<p>The resulting wavelets vary from different parameters Q and <span class="math notranslate nohighlight">\(f_0\)</span>.
+Here we take several different parameters Q and <span class="math notranslate nohighlight">\(f_0\)</span> and show the result wavelets, taking the prevoius Gaussian sample imput.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the wavelets</span>

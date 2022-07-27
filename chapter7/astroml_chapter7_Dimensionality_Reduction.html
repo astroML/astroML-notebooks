@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -39,8 +39,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -696,18 +698,19 @@ title="Print to PDF"
 <h2>The curse of dimensionality<a class="headerlink" href="#the-curse-of-dimensionality" title="Permalink to this headline">#</a></h2>
 <p>Fitting and overfitting get worse with ‘’curse of dimensionality’’ Bellman 1961</p>
 <p>Think about a hypersphere. Its volume is  given by</p>
-<p>$$  V_D(r) = \frac{2r^D\pi^{D/2}}{D\  \Gamma(D/2)}$$</p>
-<p>where $\Gamma(z)$ is the complete gamma function, $D$ is the dimension, and $r$ the radius of the sphere.</p>
-<p>If you populated a hypercube of size $2r$ how much data would be enclosed by the hypersphere</p>
+<div class="math notranslate nohighlight">
+\[  V_D(r) = \frac{2r^D\pi^{D/2}}{D\  \Gamma(D/2)}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Gamma(z)\)</span> is the complete gamma function, <span class="math notranslate nohighlight">\(D\)</span> is the dimension, and <span class="math notranslate nohighlight">\(r\)</span> the radius of the sphere.</p>
+<p>If you populated a hypercube of size <span class="math notranslate nohighlight">\(2r\)</span> how much data would be enclosed by the hypersphere</p>
 <ul class="simple">
-<li><p>as $D$ increases the fractional volume enclosed by the hypersphere goes to 0!</p></li>
+<li><p>as <span class="math notranslate nohighlight">\(D\)</span> increases the fractional volume enclosed by the hypersphere goes to 0!</p></li>
 </ul>
 <p>For example: the SDSS comprises a sample of 357 million sources.</p>
 <ul class="simple">
 <li><p>each source has 448 measured attributes</p></li>
-<li><p>selecting just 30 (e.g., magnitude, size..) and normalizing the data range $-1$ to $1$</p></li>
+<li><p>selecting just 30 (e.g., magnitude, size..) and normalizing the data range <span class="math notranslate nohighlight">\(-1\)</span> to <span class="math notranslate nohighlight">\(1\)</span></p></li>
 </ul>
-<p>probability of having one of the 357 million sources reside within a unit hypersphere 1 in 1.4$\times 10^5$.</p>
+<p>probability of having one of the 357 million sources reside within a unit hypersphere 1 in 1.4<span class="math notranslate nohighlight">\(\times 10^5\)</span>.</p>
 </section>
 <section id="principal-component-analysis">
 <h2>Principal Component Analysis<a class="headerlink" href="#principal-component-analysis" title="Permalink to this headline">#</a></h2>
@@ -723,8 +726,8 @@ title="Print to PDF"
 <li><p>…</p></li>
 </ul>
 <p>In the following example a distribution of points drawn from a bivariate Gaussian and centered on the
-origin of $x$ and $y$.
-PCA defines a rotation such that the new axes ($x’$ and $y’$) are aligned along the directions of maximal
+origin of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.
+PCA defines a rotation such that the new axes (<span class="math notranslate nohighlight">\(x’\)</span> and <span class="math notranslate nohighlight">\(y’\)</span>) are aligned along the directions of maximal
 variance (the principal components) with zero covariance. This is equivalent to minimizing the square of
 the perpendicular distances between the points and the principal components.</p>
 <div class="cell docutils container">
@@ -808,42 +811,49 @@ the perpendicular distances between the points and the principal components.</p>
 </div>
 <section id="derivation-of-principal-component-analyses">
 <h3>Derivation of principal component analyses<a class="headerlink" href="#derivation-of-principal-component-analyses" title="Permalink to this headline">#</a></h3>
-<p>Set of data $X$: $N$ observations by $K$ measurements</p>
+<p>Set of data <span class="math notranslate nohighlight">\(X\)</span>: <span class="math notranslate nohighlight">\(N\)</span> observations by <span class="math notranslate nohighlight">\(K\)</span> measurements</p>
 <p>Center data by subtracting the mean</p>
 <p>The covariance is</p>
-<p>$$ C_X=\frac{1}{N-1}X^TX,$$</p>
-<p>$N-1$ as the sample covariance matrix.</p>
-<p>We want a projection, $R$,  aligned with the directions of maximal variance ($Y= X R$) with covariance</p>
-<p>$$C_{Y} = R^T X^T X R = R^T C_X R$$</p>
+<div class="math notranslate nohighlight">
+\[ C_X=\frac{1}{N-1}X^TX,\]</div>
+<p><span class="math notranslate nohighlight">\(N-1\)</span> as the sample covariance matrix.</p>
+<p>We want a projection, <span class="math notranslate nohighlight">\(R\)</span>,  aligned with the directions of maximal variance (<span class="math notranslate nohighlight">\(Y= X R\)</span>) with covariance</p>
+<div class="math notranslate nohighlight">
+\[C_{Y} = R^T X^T X R = R^T C_X R\]</div>
 <p>Derive  principal component by maximizing its variance (using Lagrange multipliers and constraint)</p>
-<p>$$\phi(r_1,\lambda_1) = r_1^TC_X r_1 - \lambda_1(r_1^Tr_1-1)$$</p>
-<p>derivative of $\phi(r_1,\lambda)$ with respect to $r_1$ set to 0</p>
-<p>$$C_Xr_1 - \lambda_1 r_1 = 0$$</p>
-<p>$\lambda_1$ is the root of the equation $\det(C_X -
-\lambda_1 {\bf I})=0$ and the largest eigenvalue</p>
-<p>$$\lambda_1 =  r_1^T C_X r_1$$</p>
+<div class="math notranslate nohighlight">
+\[\phi(r_1,\lambda_1) = r_1^TC_X r_1 - \lambda_1(r_1^Tr_1-1)\]</div>
+<p>derivative of <span class="math notranslate nohighlight">\(\phi(r_1,\lambda)\)</span> with respect to <span class="math notranslate nohighlight">\(r_1\)</span> set to 0</p>
+<div class="math notranslate nohighlight">
+\[C_Xr_1 - \lambda_1 r_1 = 0\]</div>
+<p><span class="math notranslate nohighlight">\(\lambda_1\)</span> is the root of the equation <span class="math notranslate nohighlight">\(\det(C_X -
+\lambda_1 {\bf I})=0\)</span> and the largest eigenvalue</p>
+<div class="math notranslate nohighlight">
+\[\lambda_1 =  r_1^T C_X r_1\]</div>
 <p>Other  principal components  derived by
-applying additional constraint that components are uncorrelated (e.g., $r^T_2 C_X r_1 = 0$).</p>
+applying additional constraint that components are uncorrelated (e.g., <span class="math notranslate nohighlight">\(r^T_2 C_X r_1 = 0\)</span>).</p>
 </section>
 <section id="singular-value-decomposition-svd">
 <h3>Singular value decomposition (SVD)<a class="headerlink" href="#singular-value-decomposition-svd" title="Permalink to this headline">#</a></h3>
 <p>Common approach is eigenvalue decomposition of the covariance or correlation matrix,
 or singular value decomposition (SVD) of the data matrix</p>
-<p>$$U \Sigma V^T = \frac{1}{\sqrt{N - 1}} X$$</p>
-<p>columns of $U$ are  <em>left-singular vectors</em></p>
-<p>columns of $V$ are the <em>right-singular vectors</em></p>
-<p>The columns of $U$ and $V$ form orthonormal bases ($U^TU = V^TV = I$)</p>
+<div class="math notranslate nohighlight">
+\[U \Sigma V^T = \frac{1}{\sqrt{N - 1}} X\]</div>
+<p>columns of <span class="math notranslate nohighlight">\(U\)</span> are  <em>left-singular vectors</em></p>
+<p>columns of <span class="math notranslate nohighlight">\(V\)</span> are the <em>right-singular vectors</em></p>
+<p>The columns of <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> form orthonormal bases (<span class="math notranslate nohighlight">\(U^TU = V^TV = I\)</span>)</p>
 <p>Covariance matrix is</p>
-<p>$$
-C_X = \left[\frac{1}{\sqrt{N - 1}}X\right]^T \left[\frac{1}{\sqrt{N - 1}}X\right]\nonumber\
-= V \Sigma U^T U \Sigma V^T\nonumber\
-= V \Sigma^2 V^T.
-$$</p>
-<p>right singular vectors $V$ are the principal components so principal from the SVD of $X$ dont need $C_X$.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  C_X = \left[\frac{1}{\sqrt{N - 1}}X\right]^T \left[\frac{1}{\sqrt{N - 1}}X\right]\nonumber\\
+      = V \Sigma U^T U \Sigma V^T\nonumber\\
+      = V \Sigma^2 V^T.
+\end{split}\]</div>
+<p>right singular vectors <span class="math notranslate nohighlight">\(V\)</span> are the principal components so principal from the SVD of <span class="math notranslate nohighlight">\(X\)</span> dont need <span class="math notranslate nohighlight">\(C_X\)</span>.</p>
 </section>
 <section id="application-of-pca">
 <h3>Application of PCA<a class="headerlink" href="#application-of-pca" title="Permalink to this headline">#</a></h3>
-<p>In the following example we have 100 data points in 3 dimensions, $X$, and $R$ as the projection matrix. To compute the PCA components (4 in our case) we use <code class="docutils literal notranslate"><span class="pre">PCA</span></code> from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p>
+<p>In the following example we have 100 data points in 3 dimensions, <span class="math notranslate nohighlight">\(X\)</span>, and <span class="math notranslate nohighlight">\(R\)</span> as the projection matrix. To compute the PCA components (4 in our case) we use <code class="docutils literal notranslate"><span class="pre">PCA</span></code> from <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
@@ -933,13 +943,15 @@ for masking using an iterative PCA reconstruction technique, and resampled to 10
 </section>
 <section id="pca-reconstruction-of-a-spectrum">
 <h2>PCA Reconstruction of a spectrum<a class="headerlink" href="#pca-reconstruction-of-a-spectrum" title="Permalink to this headline">#</a></h2>
-<p>Reconstruction of spectrum, ${x}(k)$, from the
-eigenvectors, ${e}_i(k)$</p>
-<p>$$  {x}<em>i(k) = {\mu}(k) + \sum_j^R \theta</em>{ij} {e}_j(k),$$</p>
-<p>Truncating this expansion (i.e., $r&lt;R$)</p>
-<p>$$
+<p>Reconstruction of spectrum, <span class="math notranslate nohighlight">\({x}(k)\)</span>, from the
+eigenvectors, <span class="math notranslate nohighlight">\({e}_i(k)\)</span></p>
+<div class="math notranslate nohighlight">
+\[  {x}_i(k) = {\mu}(k) + \sum_j^R \theta_{ij} {e}_j(k),\]</div>
+<p>Truncating this expansion (i.e., <span class="math notranslate nohighlight">\(r&lt;R\)</span>)</p>
+<div class="math notranslate nohighlight">
+\[
 {x}_i(k) = {\mu}(k) + \sum_i^{r&lt;R} \theta_i {e}_i(k),
-$$</p>
+\]</div>
 <ul class="simple">
 <li><p>eigenvectors ordered by their associated eigenvalues</p></li>
 <li><p>eigenvalues reflect variance  within each eigenvector (sum of the eigenvalues is total variance of the system).</p></li>
@@ -1050,27 +1062,31 @@ at ten eigenvectors. The lower panel shows the cumulative sum of eigenvalues nor
 </section>
 <section id="pca-with-missing-data">
 <h2>PCA with missing data<a class="headerlink" href="#pca-with-missing-data" title="Permalink to this headline">#</a></h2>
-<p>Observed spectrum, $x^o$ is the true spectrum, ${x}$ plus a wavelength-dependent weight, ${w}$.</p>
-<p>Weight is zero where data are missing and $1/{\sigma}^2$ for rest</p>
-<p>Minimizing the quadratic deviation between  ${x}^o$ truncated reconstruction, $\sum_i \theta_i {e}_i$
-and solving for $\theta_i$ gives</p>
-<p>$$
-\sum_k \theta_i {w}(k) {e}_i(k) {e}_j(k) =
-\sum_k {w}(k) {x}^o(k) {e}_j(k),
-$$</p>
-<p>If $M_{ij} = \sum_k {w}(k) {e}_i(k) {e}_j(k)$ and $F_i = \sum_k {w}(k) {x}^o(k) {e}_i(k)$ then</p>
-<p>$$
-\theta_i = \sum_j M_{ij}^{-1} F_{j},
-$$</p>
+<p>Observed spectrum, <span class="math notranslate nohighlight">\(x^o\)</span> is the true spectrum, <span class="math notranslate nohighlight">\({x}\)</span> plus a wavelength-dependent weight, <span class="math notranslate nohighlight">\({w}\)</span>.</p>
+<p>Weight is zero where data are missing and <span class="math notranslate nohighlight">\(1/{\sigma}^2\)</span> for rest</p>
+<p>Minimizing the quadratic deviation between  <span class="math notranslate nohighlight">\({x}^o\)</span> truncated reconstruction, <span class="math notranslate nohighlight">\(\sum_i \theta_i {e}_i\)</span>
+and solving for <span class="math notranslate nohighlight">\(\theta_i\)</span> gives</p>
+<div class="math notranslate nohighlight">
+\[
+	\sum_k \theta_i {w}(k) {e}_i(k) {e}_j(k) =
+	\sum_k {w}(k) {x}^o(k) {e}_j(k),
+\]</div>
+<p>If <span class="math notranslate nohighlight">\(M_{ij} = \sum_k {w}(k) {e}_i(k) {e}_j(k)\)</span> and <span class="math notranslate nohighlight">\(F_i = \sum_k {w}(k) {x}^o(k) {e}_i(k)\)</span> then</p>
+<div class="math notranslate nohighlight">
+\[
+	\theta_i = \sum_j M_{ij}^{-1} F_{j},
+\]</div>
 <ul class="simple">
-<li><p>$F_j$ are  coefficients derived from  gappy data</p></li>
-<li><p>$M_{ij}^{-1}$ shows how correlated  eigenvectors are over the missing regions.</p></li>
+<li><p><span class="math notranslate nohighlight">\(F_j\)</span> are  coefficients derived from  gappy data</p></li>
+<li><p><span class="math notranslate nohighlight">\(M_{ij}^{-1}\)</span> shows how correlated  eigenvectors are over the missing regions.</p></li>
 </ul>
 <p>An estimate of the uncertainty on the
 reconstruction coefficients is given by</p>
-<p>$$</p>
-<p>{\rm Cov}(\theta_i,\theta_j) = M_{ij}^{-1}.
-$$</p>
+<div class="math notranslate nohighlight">
+\[
+%Cov(\theta_i,\theta_j) = \frac{1}{N}M_{ij}^{-1}
+{\rm Cov}(\theta_i,\theta_j) = M_{ij}^{-1}.
+\]</div>
 <p>Accuracy of this reconstruction will depend on the distribution of
 the gaps within the data vector.</p>
 <p>The principal component vectors defined for the SDSS spectra can be used to interpolate across or reconstruct

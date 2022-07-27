@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -39,8 +39,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -779,11 +781,11 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="parameter-estimation-for-a-gaussian-distribution">
+  <section class="tex2jax_ignore mathjax_ignore" id="parameter-estimation-for-a-gaussian-distribution">
 <h1>Parameter Estimation for a Gaussian Distribution<a class="headerlink" href="#parameter-estimation-for-a-gaussian-distribution" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p>This chapter illustrates the uses of parameter estimation in generating Gaussian distribution for a set of measurement, and investigates how the change of parameters ($\mu,\sigma$) will change the pdf result.
+<p>This chapter illustrates the uses of parameter estimation in generating Gaussian distribution for a set of measurement, and investigates how the change of parameters (<span class="math notranslate nohighlight">\(\mu,\sigma\)</span>) will change the pdf result.
 Moreover, we will compare the posterior parameter estimation with other estimation methods, such as Gaussian distribution and bootstrap estimation.<br />
 See <em>“Statistics, Data Mining, and Machine Learning in Astronomy:
 A Practical Python Guide for the Analysis of Survey Data”</em> Chapter 5.6.1 for reference.</p>
@@ -807,25 +809,25 @@ A Practical Python Guide for the Analysis of Survey Data”</em> Chapter 5.6.1 f
 </section>
 <section id="log-likelihood-for-gaussian-distribution">
 <h2>Log-likelihood for Gaussian Distribution<a class="headerlink" href="#log-likelihood-for-gaussian-distribution" title="Permalink to this headline">#</a></h2>
-<p>Suppose we have N measurements, ${x_i}$. The measurement errors are Gaussian, and the measurement error for each
-measurement is $\sigma_i$ (heteroscedastic errors). This method applies logrithm in searching the posterior probability density function (pdf) as $\mu: p(\mu|{x_i},{\sigma_i})$.<br />
-Given that the likelihood function for a single measurement, $x_i$, is assumed to follow a Gaussian
-distribution $\mathcal{N}(\mu,\sigma)$, the likelihood for all measurements is given by
-$p({x_i}|\mu,\sigma,I) = \prod_{i=1}^N \frac{1}{\sqrt{2\pi} \sigma} exp(\frac{-(x_i-\mu)^2)}{2\sigma^2})$
-Here we have $\sigma$ to be estimated.</p>
-<p>Adopting a uniform prior distribution for the location parameter $\mu$ and a uniform prior distribution for $ln\sigma$, we have
-$p(\mu,\sigma|I)\propto \large{\frac{1}{\sigma}}$, for $\mu_{min}\leq \mu \leq \mu_{max}$
-and $\sigma_{min} \leq \sigma \leq \sigma_{max}$.</p>
+<p>Suppose we have N measurements, <span class="math notranslate nohighlight">\({x_i}\)</span>. The measurement errors are Gaussian, and the measurement error for each
+measurement is <span class="math notranslate nohighlight">\(\sigma_i\)</span> (heteroscedastic errors). This method applies logrithm in searching the posterior probability density function (pdf) as <span class="math notranslate nohighlight">\(\mu: p(\mu|{x_i},{\sigma_i})\)</span>.<br />
+Given that the likelihood function for a single measurement, <span class="math notranslate nohighlight">\(x_i\)</span>, is assumed to follow a Gaussian
+distribution <span class="math notranslate nohighlight">\(\mathcal{N}(\mu,\sigma)\)</span>, the likelihood for all measurements is given by
+<span class="math notranslate nohighlight">\(p({x_i}|\mu,\sigma,I) = \prod_{i=1}^N \frac{1}{\sqrt{2\pi} \sigma} exp(\frac{-(x_i-\mu)^2)}{2\sigma^2})\)</span>
+Here we have <span class="math notranslate nohighlight">\(\sigma\)</span> to be estimated.</p>
+<p>Adopting a uniform prior distribution for the location parameter <span class="math notranslate nohighlight">\(\mu\)</span> and a uniform prior distribution for <span class="math notranslate nohighlight">\(ln\sigma\)</span>, we have
+<span class="math notranslate nohighlight">\(p(\mu,\sigma|I)\propto \large{\frac{1}{\sigma}}\)</span>, for <span class="math notranslate nohighlight">\(\mu_{min}\leq \mu \leq \mu_{max}\)</span>
+and <span class="math notranslate nohighlight">\(\sigma_{min} \leq \sigma \leq \sigma_{max}\)</span>.</p>
 <p>And the logarithm of the posterior pdf is
-$$L_p = constant - (N+1)ln\sigma - \frac{N}{2\sigma^2}((\bar{x}-\mu)^2 + V)$$</p>
+$<span class="math notranslate nohighlight">\(L_p = constant - (N+1)ln\sigma - \frac{N}{2\sigma^2}((\bar{x}-\mu)^2 + V)\)</span>$</p>
 <p>where N is the sample size, and V is defined as
-$V = \normalsize{N^{-1}\sum_{i=1}^N(x_i - \bar{x})^2} = \large{\frac{(N-1)s^2}{N}}$,</p>
-<p>in which s is the sample standard deviation from equation $s=\normalsize{\sqrt{\frac{1}{N-1}\sum_{i=1}^{N}(x_i-\bar{x})^2}}$,<br />
-and $\bar{x}$ is the sample arithmetic mean from $\normalsize{x_i = \frac{1}{N}\sum_{i=1}^{N}x_i}$.</p>
+<span class="math notranslate nohighlight">\(V = \normalsize{N^{-1}\sum_{i=1}^N(x_i - \bar{x})^2} = \large{\frac{(N-1)s^2}{N}}\)</span>,</p>
+<p>in which s is the sample standard deviation from equation <span class="math notranslate nohighlight">\(s=\normalsize{\sqrt{\frac{1}{N-1}\sum_{i=1}^{N}(x_i-\bar{x})^2}}\)</span>,<br />
+and <span class="math notranslate nohighlight">\(\bar{x}\)</span> is the sample arithmetic mean from <span class="math notranslate nohighlight">\(\normalsize{x_i = \frac{1}{N}\sum_{i=1}^{N}x_i}\)</span>.</p>
 <section id="define-function">
 <h3>1. Define function<a class="headerlink" href="#define-function" title="Permalink to this headline">#</a></h3>
-<p>First we define function to calculate Log-likelihood Gaussian distribution. Taking $\bar{x}, V, n, \sigma, \mu$ as parameters.<br />
-In this example, we have N = 10, $\bar{x}$ = 1, and V = 4. The maximum of $L_p$ is renormalized to 0.</p>
+<p>First we define function to calculate Log-likelihood Gaussian distribution. Taking <span class="math notranslate nohighlight">\(\bar{x}, V, n, \sigma, \mu\)</span> as parameters.<br />
+In this example, we have N = 10, <span class="math notranslate nohighlight">\(\bar{x}\)</span> = 1, and V = 4. The maximum of <span class="math notranslate nohighlight">\(L_p\)</span> is renormalized to 0.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the function for calculating log-likelihood Gaussian distribution</span>
@@ -850,8 +852,8 @@ In this example, we have N = 10, $\bar{x}$ = 1, and V = 4. The maximum of $L_p$ 
 </section>
 <section id="generate-distribution-diagram">
 <h3>2. Generate Distribution diagram<a class="headerlink" href="#generate-distribution-diagram" title="Permalink to this headline">#</a></h3>
-<p>Next, we draw a Gaussian distribution using the logarithm of the posterior probability density finction for  $\mu$ and $\sigma$, $L_p(\mu,\sigma)$ in the equation described above.<br />
-In this example, the maximum value of $L_p$ is at $\mu_0 = 1.0$ and $\sigma_0 = 1.8$. Color code for the density is shown in the legend. The contours enclose the regions that contain 0.683, 0.955, and 0.997 of the cumulative (integrated) posterior probability.</p>
+<p>Next, we draw a Gaussian distribution using the logarithm of the posterior probability density finction for  <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>, <span class="math notranslate nohighlight">\(L_p(\mu,\sigma)\)</span> in the equation described above.<br />
+In this example, the maximum value of <span class="math notranslate nohighlight">\(L_p\)</span> is at <span class="math notranslate nohighlight">\(\mu_0 = 1.0\)</span> and <span class="math notranslate nohighlight">\(\sigma_0 = 1.8\)</span>. Color code for the density is shown in the legend. The contours enclose the regions that contain 0.683, 0.955, and 0.997 of the cumulative (integrated) posterior probability.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
@@ -883,22 +885,28 @@ In this example, the maximum value of $L_p$ is at $\mu_0 = 1.0$ and $\sigma_0 = 
 <section id="posterior-for-gaussian-distribution">
 <h2>Posterior for Gaussian Distribution<a class="headerlink" href="#posterior-for-gaussian-distribution" title="Permalink to this headline">#</a></h2>
 <ol class="arabic simple">
-<li><p>We calculate the result from the <strong>posterior probability density function</strong> $p(\mu|{x_i},I)$ using equation</p></li>
+<li><p>We calculate the result from the <strong>posterior probability density function</strong> <span class="math notranslate nohighlight">\(p(\mu|{x_i},I)\)</span> using equation</p></li>
 </ol>
-<p>$$p(\mu|{x_i},I)\propto[1+\frac{(\bar{x}-\mu)^2}{V}]^{\frac{-N}{2}}$$</p>
-<p>with respect to $\mu$ (integral over $\sigma$ for the two-dimensional distribution shown in figure in the above section) when taking uniform prior of $\sigma$ and prior of $\sigma$ that is propotional to $\sigma^{-1}$.<br />
-We compare this result with <strong>Gaussian distribution</strong> calculated using parameters $\bar{x}$ and $\sigma_{\bar{x}}$ from</p>
-<p>$$\normalsize{\bar{x} = \frac{1}{N}\sum_{i=1}^{N}x_i}$$
-$$\sigma_{\bar{x}}=\frac{s}{\sqrt{N}}$$</p>
+<div class="math notranslate nohighlight">
+\[p(\mu|{x_i},I)\propto[1+\frac{(\bar{x}-\mu)^2}{V}]^{\frac{-N}{2}}\]</div>
+<p>with respect to <span class="math notranslate nohighlight">\(\mu\)</span> (integral over <span class="math notranslate nohighlight">\(\sigma\)</span> for the two-dimensional distribution shown in figure in the above section) when taking uniform prior of <span class="math notranslate nohighlight">\(\sigma\)</span> and prior of <span class="math notranslate nohighlight">\(\sigma\)</span> that is propotional to <span class="math notranslate nohighlight">\(\sigma^{-1}\)</span>.<br />
+We compare this result with <strong>Gaussian distribution</strong> calculated using parameters <span class="math notranslate nohighlight">\(\bar{x}\)</span> and <span class="math notranslate nohighlight">\(\sigma_{\bar{x}}\)</span> from</p>
+<div class="math notranslate nohighlight">
+\[\normalsize{\bar{x} = \frac{1}{N}\sum_{i=1}^{N}x_i}\]</div>
+<div class="math notranslate nohighlight">
+\[\sigma_{\bar{x}}=\frac{s}{\sqrt{N}}\]</div>
 <p>we as well compare it with the mean given by the equation above using <strong>bootstrap estimation</strong>.</p>
 <ol class="arabic simple" start="2">
-<li><p>Also we calculate the result from the <strong>posterior probability density function</strong> $p(\sigma|{x_i},I)$ by</p></li>
+<li><p>Also we calculate the result from the <strong>posterior probability density function</strong> <span class="math notranslate nohighlight">\(p(\sigma|{x_i},I)\)</span> by</p></li>
 </ol>
-<p>$$p(\sigma|{x_i},I)\propto \frac{1}{\sigma^N}exp(\frac{-NV}{2\sigma^2})$$</p>
-<p>with respect to $\sigma$ (integral over $\mu$ for the two-dimensional distribution shown in figure in the above section) when taking uniform prior of $\sigma$ and prior of $\sigma$ that is propotional to $\sigma^{-1}$.<br />
-We compare this result with <strong>Gaussian distribution</strong> calculated using parameters $s$ and $\sigma_{s}$ from</p>
-<p>$$s=\sqrt{\frac{1}{N-1}\sum_{i=1}^{N}(x_i-\bar{x})^2}$$
-$$\sigma_s = \frac{s}{\sqrt{2(N-1)}} = \frac{1}{\sqrt{2}}\sqrt{\frac{N}{N-1}}\sigma_{\bar{x}}$$</p>
+<div class="math notranslate nohighlight">
+\[p(\sigma|{x_i},I)\propto \frac{1}{\sigma^N}exp(\frac{-NV}{2\sigma^2})\]</div>
+<p>with respect to <span class="math notranslate nohighlight">\(\sigma\)</span> (integral over <span class="math notranslate nohighlight">\(\mu\)</span> for the two-dimensional distribution shown in figure in the above section) when taking uniform prior of <span class="math notranslate nohighlight">\(\sigma\)</span> and prior of <span class="math notranslate nohighlight">\(\sigma\)</span> that is propotional to <span class="math notranslate nohighlight">\(\sigma^{-1}\)</span>.<br />
+We compare this result with <strong>Gaussian distribution</strong> calculated using parameters <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(\sigma_{s}\)</span> from</p>
+<div class="math notranslate nohighlight">
+\[s=\sqrt{\frac{1}{N-1}\sum_{i=1}^{N}(x_i-\bar{x})^2}\]</div>
+<div class="math notranslate nohighlight">
+\[\sigma_s = \frac{s}{\sqrt{2(N-1)}} = \frac{1}{\sqrt{2}}\sqrt{\frac{N}{N-1}}\sigma_{\bar{x}}\]</div>
 <p>we as well compare it with the mean given by the equation above using <strong>bootstrap estimation</strong>.</p>
 <ol class="arabic simple" start="3">
 <li><p>The result of probability distribution and a cululative distribution will be displayed.</p></li>
@@ -943,7 +951,7 @@ $$\sigma_s = \frac{s}{\sqrt{2(N-1)}} = \frac{1}{\sqrt{2}}\sqrt{\frac{N}{N-1}}\si
 </div>
 </div>
 </div>
-<p>Alternatively, in Python 3.8 we have function NormalDist in statistics, which takes $\mu$ and $\sigma$ as arguments.
+<p>Alternatively, in Python 3.8 we have function NormalDist in statistics, which takes <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> as arguments.
 See <a class="reference external" href="https://docs.python.org/3.8/library/statistics.html?highlight=normaldist#statistics.NormalDist">documentation</a> for more information. Example is shown below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -956,7 +964,7 @@ See <a class="reference external" href="https://docs.python.org/3.8/library/stat
 </section>
 <section id="computation">
 <h3>2. Computation<a class="headerlink" href="#computation" title="Permalink to this headline">#</a></h3>
-<p>Draw a random sample from the distribution, and compute some quantities. Here we take the posterior probability density functions $p(\mu|{x_i},I)$ and $p(\sigma|{x_i},I)$ with N = 10, x = 1 and V = 4 parameters.</p>
+<p>Draw a random sample from the distribution, and compute some quantities. Here we take the posterior probability density functions <span class="math notranslate nohighlight">\(p(\mu|\{x_i\},I)\)</span> and <span class="math notranslate nohighlight">\(p(\sigma|\{x_i\},I)\)</span> with N = 10, x = 1 and V = 4 parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
@@ -1018,14 +1026,14 @@ See <a class="reference external" href="https://docs.python.org/3.8/library/stat
 </section>
 <section id="generate-diagram-of-methods">
 <h3>3. Generate diagram of methods<a class="headerlink" href="#generate-diagram-of-methods" title="Permalink to this headline">#</a></h3>
-<p>The top two diagrams show how the estimated probability density change with the variations of $\sigma$ and $\mu$ parameters, with a comparison of Gaussian distribution and bootstrap estimation of mean value.</p>
+<p>The top two diagrams show how the estimated probability density change with the variations of <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span> parameters, with a comparison of Gaussian distribution and bootstrap estimation of mean value.</p>
 <ul class="simple">
-<li><p>The solid lines represent the posterior pdf with prior of $\sigma$ proportional to $\sigma^{-1}$.</p></li>
-<li><p>The dotted lines represent the same pdf with uniform prior of $\sigma$.</p></li>
+<li><p>The solid lines represent the posterior pdf with prior of <span class="math notranslate nohighlight">\(\sigma\)</span> proportional to <span class="math notranslate nohighlight">\(\sigma^{-1}\)</span>.</p></li>
+<li><p>The dotted lines represent the same pdf with uniform prior of <span class="math notranslate nohighlight">\(\sigma\)</span>.</p></li>
 <li><p>The dashed lines represent Gaussian distribution with parameters calculated using equations given above.</p></li>
 <li><p>The circles represent the bootstrap estimated distribution of mean.</p></li>
 </ul>
-<p>The bottom two diagrams show the percentage confidence from the above methods. The dotted line shows an equivalent result when the prior for $\sigma$ is uniform and is proportional.</p>
+<p>The bottom two diagrams show the percentage confidence from the above methods. The dotted line shows an equivalent result when the prior for <span class="math notranslate nohighlight">\(\sigma\)</span> is uniform and is proportional.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
@@ -1083,12 +1091,12 @@ See <a class="reference external" href="https://docs.python.org/3.8/library/stat
 </section>
 <section id="gaussian-gaussian-distribution">
 <h2>Gaussian/Gaussian distribution<a class="headerlink" href="#gaussian-gaussian-distribution" title="Permalink to this headline">#</a></h2>
-<p>The posterior pdfs correspond to a case where ${x_i}$ are drawn from an unspecifed Gaussian distribution, $\mathcal{N}(\mu, \sigma)$. The width $\sigma$ can be interpreted in two ways: it could correspond to the intrinsic spread $\sigma$ of the measured quantity when measurement errors are always negligible, or it could simply be the unknown <strong>homoscedastic</strong> measurement error when measuring a single-valued quantity. A more general case is when the measured quantity is drawn from some distribution whose parameters we are trying to estimate, and the known measurement errors are <strong>heteroscedastic</strong>.</p>
+<p>The posterior pdfs correspond to a case where <span class="math notranslate nohighlight">\({x_i}\)</span> are drawn from an unspecifed Gaussian distribution, <span class="math notranslate nohighlight">\(\mathcal{N}(\mu, \sigma)\)</span>. The width <span class="math notranslate nohighlight">\(\sigma\)</span> can be interpreted in two ways: it could correspond to the intrinsic spread <span class="math notranslate nohighlight">\(\sigma\)</span> of the measured quantity when measurement errors are always negligible, or it could simply be the unknown <strong>homoscedastic</strong> measurement error when measuring a single-valued quantity. A more general case is when the measured quantity is drawn from some distribution whose parameters we are trying to estimate, and the known measurement errors are <strong>heteroscedastic</strong>.</p>
 <p>If the errors are homoscedastic, the resulting distribution of measurements is Gaussian. If the errors are heteroscedastic, then the resulting distribution of the measurements is not Gaussian. In this section we explore how the distribution behaves when the errors are heteroscedastic, by taking the same steps in the first section.
-A linear superposition of these Gaussian distributions with widths equal to $\sqrt{1 + e_i^2}$ results in a non-Gaussian distribution.</p>
+A linear superposition of these Gaussian distributions with widths equal to <span class="math notranslate nohighlight">\(\sqrt{1 + e_i^2}\)</span> results in a non-Gaussian distribution.</p>
 <section id="create-distributions">
 <h3>1. Create distributions<a class="headerlink" href="#create-distributions" title="Permalink to this headline">#</a></h3>
-<p>The distribution of $10^6$ points drawn from $\mathcal{N}(0,1)$ and sampled with heteroscedastic Gaussian errors with widths, $e_i$, uniformly distributed between 0 and 3.</p>
+<p>The distribution of <span class="math notranslate nohighlight">\(10^6\)</span> points drawn from <span class="math notranslate nohighlight">\(\mathcal{N}(0,1)\)</span> and sampled with heteroscedastic Gaussian errors with widths, <span class="math notranslate nohighlight">\(e_i\)</span>, uniformly distributed between 0 and 3.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># draw underlying points</span>
@@ -1112,8 +1120,8 @@ A linear superposition of these Gaussian distributions with widths equal to $\sq
 <h3>2. Plot fit results<a class="headerlink" href="#plot-fit-results" title="Permalink to this headline">#</a></h3>
 <p>Here we have shadowed histogram representing the original x data generated.</p>
 <ul class="simple">
-<li><p>The solid line shows the best-fit Gaussians centered on the sample median with widths equal to sample standard deviation $\sigma$.</p></li>
-<li><p>The dashed line shows the best-fit Gaussians centered on the sample median with widths equal to the quartile-based deviation $\sigma_G$.</p></li>
+<li><p>The solid line shows the best-fit Gaussians centered on the sample median with widths equal to sample standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>.</p></li>
+<li><p>The dashed line shows the best-fit Gaussians centered on the sample median with widths equal to the quartile-based deviation <span class="math notranslate nohighlight">\(\sigma_G\)</span>.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1141,11 +1149,12 @@ A linear superposition of these Gaussian distributions with widths equal to $\sq
 </section>
 <section id="gaussian-distribution-with-gaussian-errors">
 <h2>Gaussian Distribution with Gaussian Errors<a class="headerlink" href="#gaussian-distribution-with-gaussian-errors" title="Permalink to this headline">#</a></h2>
-<p>The logarithm of the posterior probability density function for $\mu$ and $\sigma$, $L_p(\mu,\sigma)$, for a Gaussian distribution with <strong>heteroscedastic Gaussian measurement errors</strong> (sampled uniformly from the 0-3 interval), given by</p>
-<p>$$L_p = constant - \frac{1}{2}\sum^N_{i=1}(ln(\sigma^2+e_i^2)+\frac{(x_i-\mu)^2}{\sigma^2+e^2_i})$$</p>
+<p>The logarithm of the posterior probability density function for <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>, <span class="math notranslate nohighlight">\(L_p(\mu,\sigma)\)</span>, for a Gaussian distribution with <strong>heteroscedastic Gaussian measurement errors</strong> (sampled uniformly from the 0-3 interval), given by</p>
+<div class="math notranslate nohighlight">
+\[L_p = constant - \frac{1}{2}\sum^N_{i=1}(ln(\sigma^2+e_i^2)+\frac{(x_i-\mu)^2}{\sigma^2+e^2_i})\]</div>
 <section id="id1">
 <h3>1. Define function<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
-<p>We define function based on Gaussian Distribution with Gaussian errors as described above, with input values $\mu = 1$ and $\sigma = 1$, and a randomly generated sample has 10 points.</p>
+<p>We define function based on Gaussian Distribution with Gaussian errors as described above, with input values <span class="math notranslate nohighlight">\(\mu = 1\)</span> and <span class="math notranslate nohighlight">\(\sigma = 1\)</span>, and a randomly generated sample has 10 points.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussgauss_logL</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">ei</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
@@ -1178,8 +1187,8 @@ A linear superposition of these Gaussian distributions with widths equal to $\sq
 </section>
 <section id="id2">
 <h3>2. Generate Distribution diagram<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
-<p>Next, we draw a Gaussian distribution using the logarithm of the posterior probability density finction for  $\mu$ and $\sigma$, $L_p(\mu,\sigma)$ in the equation described above.</p>
-<p>Note that the posterior pdf is not symmetric with respect to the $\mu = 1$ line, and that the outermost contour, which encloses the region that contains 0.997 of the cumulative (integrated) posterior probability, allows solutions with $\sigma = 0$.</p>
+<p>Next, we draw a Gaussian distribution using the logarithm of the posterior probability density finction for  <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>, <span class="math notranslate nohighlight">\(L_p(\mu,\sigma)\)</span> in the equation described above.</p>
+<p>Note that the posterior pdf is not symmetric with respect to the <span class="math notranslate nohighlight">\(\mu = 1\)</span> line, and that the outermost contour, which encloses the region that contains 0.997 of the cumulative (integrated) posterior probability, allows solutions with <span class="math notranslate nohighlight">\(\sigma = 0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the results</span>
@@ -1211,9 +1220,10 @@ A linear superposition of these Gaussian distributions with widths equal to $\sq
 </section>
 <section id="id3">
 <h2>Gaussian Distribution with Gaussian Errors<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
-<p>In this section we compare the <strong>marginalized posterior pdfs</strong> for $\mu$ (left) and $\sigma$ (right) for a Gaussian distribution with heteroscedastic Gaussian measurement errors (i.e., integrals over $\sigma$ and $\mu$ for the two-dimensional distribution), with the distributions of approximate estimates for $\mu$ and $\sigma$ (the median and given by</p>
-<p>$$\sigma_0^2=\zeta^2\sigma^2_G-e^2_{50}$$</p>
-<p>, respectively) for 10,000 <strong>bootstrap resamples</strong> of the same data set. The true values of $\mu$ and $\sigma$ are indicated by the vertical dotted lines.</p>
+<p>In this section we compare the <strong>marginalized posterior pdfs</strong> for <span class="math notranslate nohighlight">\(\mu\)</span> (left) and <span class="math notranslate nohighlight">\(\sigma\)</span> (right) for a Gaussian distribution with heteroscedastic Gaussian measurement errors (i.e., integrals over <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span> for the two-dimensional distribution), with the distributions of approximate estimates for <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> (the median and given by</p>
+<div class="math notranslate nohighlight">
+\[\sigma_0^2=\zeta^2\sigma^2_G-e^2_{50}\]</div>
+<p>, respectively) for 10,000 <strong>bootstrap resamples</strong> of the same data set. The true values of <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> are indicated by the vertical dotted lines.</p>
 <section id="define-functions">
 <h3>1. Define functions<a class="headerlink" href="#define-functions" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
@@ -1299,9 +1309,9 @@ A linear superposition of these Gaussian distributions with widths equal to $\sq
 <section id="plot-and-compare-data">
 <h3>3. Plot and compare data<a class="headerlink" href="#plot-and-compare-data" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
-<li><p>The solid lines show marginalized posterior pdfs for $\mu$ (left) and $\sigma$ (right) for a Gaussian distribution with heteroscedastic Gaussian measurement errors (i.e., integrals over $\sigma$ and $\mu$ for the two-dimensional distribution shown in figure in the above section).</p></li>
-<li><p>The dashed histograms show the distributions of approximate estimates for $\mu$ and $\sigma$ for bootstrap resamples of the same data set.</p></li>
-<li><p>The true values of $\mu$ and $\sigma$ are indicated by the vertical dotted lines.</p></li>
+<li><p>The solid lines show marginalized posterior pdfs for <span class="math notranslate nohighlight">\(\mu\)</span> (left) and <span class="math notranslate nohighlight">\(\sigma\)</span> (right) for a Gaussian distribution with heteroscedastic Gaussian measurement errors (i.e., integrals over <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span> for the two-dimensional distribution shown in figure in the above section).</p></li>
+<li><p>The dashed histograms show the distributions of approximate estimates for <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> for bootstrap resamples of the same data set.</p></li>
+<li><p>The true values of <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> are indicated by the vertical dotted lines.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

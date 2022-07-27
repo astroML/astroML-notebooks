@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -39,8 +39,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -663,21 +665,24 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="gaussian-mixture-models-example">
+  <section class="tex2jax_ignore mathjax_ignore" id="gaussian-mixture-models-example">
 <h1>Gaussian Mixture Models Example<a class="headerlink" href="#gaussian-mixture-models-example" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p><strong>Gaussian mixture model</strong> is a relatively simple and straightfoward numerical method on obtaining data likelihood function, and expectation maximization algorithm for maximizing the likelihood.<br />
-The likelihood of a datum $x_i$ for a Gaussian mixture model is given by</p>
-<p>$$p(x_i|\theta) = \sum_{j=1}^{M} \alpha_{j}\mathcal{N}(\mu_j, \sigma_j)$$</p>
-<p>where vector of parameters $\theta$ is estimated from Gaussian with parameters $\mu_j$ and $\sigma_j$.<br />
-$\alpha_j$ is the normalization factor for each Gaussian, with $\sum_{j=1}^{M} \alpha_{j} = 1$.<br />
+The likelihood of a datum <span class="math notranslate nohighlight">\(x_i\)</span> for a Gaussian mixture model is given by</p>
+<div class="math notranslate nohighlight">
+\[p(x_i|\theta) = \sum_{j=1}^{M} \alpha_{j}\mathcal{N}(\mu_j, \sigma_j)\]</div>
+<p>where vector of parameters <span class="math notranslate nohighlight">\(\theta\)</span> is estimated from Gaussian with parameters <span class="math notranslate nohighlight">\(\mu_j\)</span> and <span class="math notranslate nohighlight">\(\sigma_j\)</span>.<br />
+<span class="math notranslate nohighlight">\(\alpha_j\)</span> is the normalization factor for each Gaussian, with <span class="math notranslate nohighlight">\(\sum_{j=1}^{M} \alpha_{j} = 1\)</span>.<br />
 M is given.</p>
 <p>Both <strong>Akaike information criterion (AIC)</strong> and <strong>Bayesian information criterion (BIC)</strong> are scoring systems for model comparisons in classical statistics dealing with models with different numbers of free parameters.</p>
 <p>Specifically, <strong>AIC</strong> is computed as</p>
-<p>$$AIC \equiv -2 ln(L^0(M)) + 2k + \frac{2k(k+1)}{N-k-1}$$</p>
+<div class="math notranslate nohighlight">
+\[AIC \equiv -2 ln(L^0(M)) + 2k + \frac{2k(k+1)}{N-k-1}\]</div>
 <p><strong>BIC</strong> is computed as</p>
-<p>$$BIC \equiv -2ln[L^0(M)] + k lnN$$</p>
+<div class="math notranslate nohighlight">
+\[BIC \equiv -2ln[L^0(M)] + k lnN\]</div>
 <p>In this notebook, we are going to apply Gaussian mixture model on a dataset of stellar metallicity. Then we will use AIC, and BIC for model comparisons, and then plot the best scored model in BIC.</p>
 <section id="import-data-and-functions">
 <h3>1. Import data and functions<a class="headerlink" href="#import-data-and-functions" title="Permalink to this headline">#</a></h3>

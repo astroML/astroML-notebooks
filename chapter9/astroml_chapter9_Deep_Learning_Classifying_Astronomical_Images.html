@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -39,8 +39,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -767,7 +769,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="deep-learning-classifying-astronomical-images">
+  <section class="tex2jax_ignore mathjax_ignore" id="deep-learning-classifying-astronomical-images">
 <h1>Deep Learning: Classifying Astronomical Images<a class="headerlink" href="#deep-learning-classifying-astronomical-images" title="Permalink to this headline">#</a></h1>
 <!---
 ### January 6, 2020 
@@ -784,23 +786,24 @@ by the structure and function of the brain. A neuron in the brain is a
 core computational unit that takes a series of inputs from branched
 extensions of the neuron called dendrites, operates on these inputs,
 and generates an output that is transmitted along an axon to one or
-more other neurons. In the context of a neural network a neuron, $j$, takes a set of inputs,
-$x_i$, applies a, typically non-linear, function to these inputs and
+more other neurons. In the context of a neural network a neuron, <span class="math notranslate nohighlight">\(j\)</span>, takes a set of inputs,
+<span class="math notranslate nohighlight">\(x_i\)</span>, applies a, typically non-linear, function to these inputs and
 generates an output value. Networks are then created by connecting
 multiple neurons or layers of neurons to one another.</p>
 <p><img alt="Neural Network Diagram" src="../_images/fig_neural_network-1.png" /></p>
 <p>If we consider the simplified network
 inputs are passed to the neurons in the
-network. Each input is weighted by a value, $w_{ij}$ and the sum of
+network. Each input is weighted by a value, <span class="math notranslate nohighlight">\(w_{ij}\)</span> and the sum of
 these weighted inputs is operated on by a response or activation
-function $f(\theta)$, which transform
+function <span class="math notranslate nohighlight">\(f(\theta)\)</span>, which transform
 the input signal so that it varies between 0 and 1 through the
 application of a non-linear response. The output from any neuron is
 then given by,</p>
-<p>$$
+<div class="math notranslate nohighlight">
+\[
 a_j =  f  \left( \sum_i w_{ij} x_i + b_j \right)
-$$</p>
-<p>where $b_j$ is a bias term which determines the input level at which the
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(b_j\)</span> is a bias term which determines the input level at which the
 neuron becomes activated.</p>
 <p>We refer to the neurons between the inputs and the output layers as
 the hidden layers. If the neurons from one layer connect to all
@@ -810,14 +813,15 @@ When the outputs from the neurons only connect to subsequent layers
 network – this is the most common
 structure for a neural network used in classification.</p>
 <p>The final layer in the network is the output layer. As with the hidden
-layer, an activation function, $g(\theta)$, in the output layer acts
+layer, an activation function, <span class="math notranslate nohighlight">\(g(\theta)\)</span>, in the output layer acts
 on the weighted sum of its inputs.  In this figure we have a single
 output node but there can be multiple outputs. For our example  network the
-output from the final neuron, $y_k$, would be given by</p>
-<p>$$
+output from the final neuron, <span class="math notranslate nohighlight">\(y_k\)</span>, would be given by</p>
+<div class="math notranslate nohighlight">
+\[
 y_k = g \left( \sum_j   w_{jk} a_j  + b_k \right)  = g\left( \sum_j
-w_{jk}  f \left( \sum_i w_{ij} x_i + b_j\right) + b_k\right)
-$$</p>
+  w_{jk}  f \left( \sum_i w_{ij} x_i + b_j\right) + b_k\right)
+\]</div>
 <p><strong>Training of the network is simply the learning of the weights and bias values</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1293,18 +1297,18 @@ these components can occur singularly or chained together in multiple
 sequences.</p>
 <p><img alt="Convolutional Neural Network" src="../_images/fig_cnn_1.png" /></p>
 <p><strong>Convolution</strong> in a CNN refers to the convolution  of the input data
-$I(x,y)$ with a kernel $K(x,y)$ which will produce a feature map $F(x,y)$</p>
+<span class="math notranslate nohighlight">\(I(x,y)\)</span> with a kernel <span class="math notranslate nohighlight">\(K(x,y)\)</span> which will produce a feature map <span class="math notranslate nohighlight">\(F(x,y)\)</span></p>
 <p>\begin{equation}
 F(x,y) = K(x,y) * I(x,y)  = \sum_{x_0} \sum_{y_0} I(x-x_0, y-y_0) K(x_0, y_0).
 \end{equation}</p>
 <p>The kernel only responds to pixels within its receptive field (i.e.,
 the size of the kernel), reducing the computational complexity of the
 resulting network. The kernels in the convolution are described by a
-depth (the number of kernels, $K$, applied to the image), and a stride
+depth (the number of kernels, <span class="math notranslate nohighlight">\(K\)</span>, applied to the image), and a stride
 (how many pixels a kernel shifts at each step in the convolution;
-typically one).  Given an $N\times M$ image, the result of the
+typically one).  Given an <span class="math notranslate nohighlight">\(N\times M\)</span> image, the result of the
 convolution step is to transform a single image into a data cube of
-feature maps with a dimension $N \times M \times K$.</p>
+feature maps with a dimension <span class="math notranslate nohighlight">\(N \times M \times K\)</span>.</p>
 <p>Once <strong>learned</strong> the kernels within the convolutional layer can appear
 as physically intuitive operations on the images
 such as edge detection filters.</p>

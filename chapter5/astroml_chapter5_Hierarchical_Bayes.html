@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -39,8 +39,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -819,7 +821,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="hierarchical-bayes-example">
+  <section class="tex2jax_ignore mathjax_ignore" id="hierarchical-bayes-example">
 <h1>Hierarchical Bayes Example<a class="headerlink" href="#hierarchical-bayes-example" title="Permalink to this headline">#</a></h1>
 <section id="january-6-2020">
 <h2>January 6, 2020<a class="headerlink" href="#january-6-2020" title="Permalink to this headline">#</a></h2>
@@ -859,31 +861,33 @@ title="Print to PDF"
 <section id="simple-case-of-gaussian-prior-and-likelihood">
 <h3>Simple case of Gaussian prior and likelihood<a class="headerlink" href="#simple-case-of-gaussian-prior-and-likelihood" title="Permalink to this headline">#</a></h3>
 <blockquote>
-<div><p><em><strong>Bayes’ Theorem:</strong></em> $$p(M|D) = \frac{p(D|M)p(M)}{p(D)} $$</p>
+<div><p><em><strong>Bayes’ Theorem:</strong></em> $<span class="math notranslate nohighlight">\(p(M|D) = \frac{p(D|M)p(M)}{p(D)} \)</span>$</p>
 </div></blockquote>
-<p>Let’s assume a one-dimensional problem: we measure length (or mass, or velocity, or metallicity, or …) $x$, with measurement uncertainty $e$, and we are trying to estimate $\mu$, the true length.</p>
-<p>We have prior information (belief) for the value of $\mu$ that can be summarized as N($\mu_0$, $\sigma_0$). For example, this could be the result of a number of older (prior) measurements.</p>
+<p>Let’s assume a one-dimensional problem: we measure length (or mass, or velocity, or metallicity, or …) <span class="math notranslate nohighlight">\(x\)</span>, with measurement uncertainty <span class="math notranslate nohighlight">\(e\)</span>, and we are trying to estimate <span class="math notranslate nohighlight">\(\mu\)</span>, the true length.</p>
+<p>We have prior information (belief) for the value of <span class="math notranslate nohighlight">\(\mu\)</span> that can be summarized as N(<span class="math notranslate nohighlight">\(\mu_0\)</span>, <span class="math notranslate nohighlight">\(\sigma_0\)</span>). For example, this could be the result of a number of older (prior) measurements.</p>
 </section>
 <section id="id1">
 <h3>Simple case of Gaussian prior and likelihood<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <blockquote>
-<div><p><em><strong>Bayes’ Theorem:</strong></em> $$p(M|D) = \frac{p(D|M)p(M)}{p(D)} $$</p>
+<div><p><em><strong>Bayes’ Theorem:</strong></em> $<span class="math notranslate nohighlight">\(p(M|D) = \frac{p(D|M)p(M)}{p(D)} \)</span>$</p>
 </div></blockquote>
 <p>The posterior probability density function is then</p>
-<p>$$ p(\mu | x, e, \mu_0, \sigma_0) \propto \frac{1}{e\sqrt{2\pi}} \exp\left(\frac{-(\mu - x)^2}{2e^2}\right) \times$$
-$$ \frac{1}{\sigma_0\sqrt{2\pi}} \exp\left(\frac{-(\mu - \mu_0)^2}{2 \sigma_0^2}\right).$$</p>
+<div class="math notranslate nohighlight">
+\[ p(\mu | x, e, \mu_0, \sigma_0) \propto \frac{1}{e\sqrt{2\pi}} \exp\left(\frac{-(\mu - x)^2}{2e^2}\right) \times\]</div>
+<div class="math notranslate nohighlight">
+\[ \frac{1}{\sigma_0\sqrt{2\pi}} \exp\left(\frac{-(\mu - \mu_0)^2}{2 \sigma_0^2}\right).\]</div>
 <p>When the posterior probability density function is a product of two Gaussians,
-it is easy to show that $ p(\mu | x, e, \mu_0, \sigma_0)$ can be summarized as a Gaussian
-$$ p(\mu | x, e, \mu_0, \sigma_0) = \frac{1}{\sigma_p\sqrt{2\pi}} \exp\left(\frac{-(\mu - \mu_p)^2}{2\sigma_p^2}\right),$$</p>
+it is easy to show that <span class="math notranslate nohighlight">\( p(\mu | x, e, \mu_0, \sigma_0)\)</span> can be summarized as a Gaussian
+$<span class="math notranslate nohighlight">\( p(\mu | x, e, \mu_0, \sigma_0) = \frac{1}{\sigma_p\sqrt{2\pi}} \exp\left(\frac{-(\mu - \mu_p)^2}{2\sigma_p^2}\right),\)</span>$</p>
 <p>with
-$$\mu_p = \frac{(x/e^2) + (\mu_0/\sigma_0^2)}{1/e^2 + 1/\sigma_0^2}  $$
-and
-$$ \sigma_p = \left( 1/e^2 + 1/\sigma_0^2 \right)^{-1/2}$$</p>
+$<span class="math notranslate nohighlight">\(\mu_p = \frac{(x/e^2) + (\mu_0/\sigma_0^2)}{1/e^2 + 1/\sigma_0^2}  \)</span><span class="math notranslate nohighlight">\(
+and 
+\)</span><span class="math notranslate nohighlight">\( \sigma_p = \left( 1/e^2 + 1/\sigma_0^2 \right)^{-1/2}\)</span>$</p>
 </section>
 <section id="id2">
 <h3>Simple case of Gaussian prior and likelihood<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
-<p>This result, where $\mu_p$ is obtained by inverse variance weighting,
-$$\mu_p = \frac{(x/e^2) + (\mu_0/\sigma_0^2)}{1/e^2 + 1/\sigma_0^2} ,,,, {\rm and} ,,,, \sigma_p = \left( 1/e^2 + 1/\sigma_0^2 \right)^{-1/2}$$
+<p>This result, where <span class="math notranslate nohighlight">\(\mu_p\)</span> is obtained by inverse variance weighting,
+$<span class="math notranslate nohighlight">\(\mu_p = \frac{(x/e^2) + (\mu_0/\sigma_0^2)}{1/e^2 + 1/\sigma_0^2} \,\,\,\, {\rm and} \,\,\,\, \sigma_p = \left( 1/e^2 + 1/\sigma_0^2 \right)^{-1/2}\)</span>$
 is quite simple, but very educational. Let’s plot an example…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -935,10 +939,10 @@ is quite simple, but very educational. Let’s plot an example…</p>
 </div>
 </div>
 <ul class="simple">
-<li><p>The posterior pdf is <em><strong>narrower</strong></em> than both measurement pdf (i.e. likelihood) and prior pdf (recall that measurement precision often scales as $1/\sqrt{N}$, where $N$ is the number of data points)</p></li>
+<li><p>The posterior pdf is <em><strong>narrower</strong></em> than both measurement pdf (i.e. likelihood) and prior pdf (recall that measurement precision often scales as <span class="math notranslate nohighlight">\(1/\sqrt{N}\)</span>, where <span class="math notranslate nohighlight">\(N\)</span> is the number of data points)</p></li>
 <li><p>The posterior pdf is <em><strong>biased</strong></em> compared to the maximum likelihood estimate!</p></li>
 <li><p>In this example, the likelihood and prior pdfs can be switched and the posterior pdf will remain unchanged</p></li>
-<li><p>The same posterior pdf is the solution when prior is based on $N-1$ data points and likelihood corresponds to the $N$th data point: an online algorithm!</p></li>
+<li><p>The same posterior pdf is the solution when prior is based on <span class="math notranslate nohighlight">\(N-1\)</span> data points and likelihood corresponds to the <span class="math notranslate nohighlight">\(N\)</span>th data point: an online algorithm!</p></li>
 </ul>
 <section id="let-s-now-assume-we-have-n-measurements-data-points">
 <h4>Let’s now assume we have N measurements (data points)<a class="headerlink" href="#let-s-now-assume-we-have-n-measurements-data-points" title="Permalink to this headline">#</a></h4>
@@ -947,10 +951,11 @@ is quite simple, but very educational. Let’s plot an example…</p>
 <section id="estimating-parameters-of-a-gaussian-distribution-using-data-with-homoscedastic-gaussian-uncertainties">
 <h3>Estimating parameters of a Gaussian distribution using data with homoscedastic Gaussian uncertainties<a class="headerlink" href="#estimating-parameters-of-a-gaussian-distribution-using-data-with-homoscedastic-gaussian-uncertainties" title="Permalink to this headline">#</a></h3>
 <p>The data likelihood can be written as:</p>
-<p>$$  p({x_i}|\mu,\sigma,I) = \prod_{i=1}^N  {1 \over \sqrt{2\pi} (\sigma^2+e^2)^{1/2}}
-\exp{\left({-(x_i-\mu)^2 \over 2 (\sigma^2+e^2)}\right)}$$</p>
-<p>Here, $\mu$ and $\sigma$ can still describe the prior pdf (after rearragning to posterior pdf
-via Bayes’ theorem). But we can also interpret $\mu$ and $\sigma$ as describing an additional
+<div class="math notranslate nohighlight">
+\[  p(\{x_i\}|\mu,\sigma,I) = \prod_{i=1}^N  {1 \over \sqrt{2\pi} (\sigma^2+e^2)^{1/2}}
+                   \exp{\left({-(x_i-\mu)^2 \over 2 (\sigma^2+e^2)}\right)}\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> can still describe the prior pdf (after rearragning to posterior pdf
+via Bayes’ theorem). But we can also interpret <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> as describing an additional
 (part of the) process that generates data, and that are themselves drawn from flat priors - math
 is exactly the same.</p>
 <section id="id3">
@@ -959,39 +964,40 @@ is exactly the same.</p>
 </section>
 <section id="id4">
 <h3>Estimating parameters of a Gaussian distribution using data with homoscedastic Gaussian uncertainties<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
-<p>The posterior pdf for $\mu$ and $\sigma$ is:</p>
-<p>$$  p(\mu,\sigma | {x_i},I) = \prod_{i=1}^N  {1 \over \sqrt{2\pi} (\sigma^2+e^2)^{1/2}}
-\exp{\left({-(x_i-\mu)^2 \over 2 (\sigma^2+e^2)}\right)}$$</p>
-<p>Because errors are homoscedastic (all data points have uncertainty $e$), there is a
-closed-form solution. For example, we can estimate $\sigma^2$ by subtracting $e^2$ from
-the variance of ${x_i}$ (i.e. if $\sigma=0$, the width of ${x_i}$ distribution would be simply $e$).</p>
+<p>The posterior pdf for <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[  p(\mu,\sigma | \{x_i\},I) = \prod_{i=1}^N  {1 \over \sqrt{2\pi} (\sigma^2+e^2)^{1/2}}
+                   \exp{\left({-(x_i-\mu)^2 \over 2 (\sigma^2+e^2)}\right)}\]</div>
+<p>Because errors are homoscedastic (all data points have uncertainty <span class="math notranslate nohighlight">\(e\)</span>), there is a
+closed-form solution. For example, we can estimate <span class="math notranslate nohighlight">\(\sigma^2\)</span> by subtracting <span class="math notranslate nohighlight">\(e^2\)</span> from
+the variance of <span class="math notranslate nohighlight">\(\{x_i\}\)</span> (i.e. if <span class="math notranslate nohighlight">\(\sigma=0\)</span>, the width of <span class="math notranslate nohighlight">\(\{x_i\}\)</span> distribution would be simply <span class="math notranslate nohighlight">\(e\)</span>).</p>
 <section id="here-is-another-relatively-simple-case-to-bring-us-closer-to-the-main-idea-of-hierarchical-bayes">
 <h4>Here is another relatively simple case to bring us closer to the main idea of Hierarchical Bayes:<a class="headerlink" href="#here-is-another-relatively-simple-case-to-bring-us-closer-to-the-main-idea-of-hierarchical-bayes" title="Permalink to this headline">#</a></h4>
 </section>
 </section>
 <section id="estimating-parameters-of-a-gaussian-distribution-using-data-with-heteroscedastic-gaussian-uncertainties">
 <h3>Estimating parameters of a Gaussian distribution using data with heteroscedastic Gaussian uncertainties<a class="headerlink" href="#estimating-parameters-of-a-gaussian-distribution-using-data-with-heteroscedastic-gaussian-uncertainties" title="Permalink to this headline">#</a></h3>
-<p>The posterior pdf for $\mu$ and $\sigma$ is:<br />
-$$  p(\mu,\sigma | {x_i},I) = \prod_{i=1}^N  {1 \over \sqrt{2\pi} (\sigma^2+e_i^2)^{1/2}}
-\exp{\left({-(x_i-\mu)^2 \over 2 (\sigma^2+e_i^2)}\right)}$$</p>
+<p>The posterior pdf for <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> is:<br />
+$<span class="math notranslate nohighlight">\(  p(\mu,\sigma | \{x_i\},I) = \prod_{i=1}^N  {1 \over \sqrt{2\pi} (\sigma^2+e_i^2)^{1/2}}
+                   \exp{\left({-(x_i-\mu)^2 \over 2 (\sigma^2+e_i^2)}\right)}\)</span>$</p>
 <p>There is no closed-form solution here because errors are heteroscedastic (each data point
-has a different uncertainty $e_i$), but we can easily evaluate posterior pdf (say, with uniform priors)
-on a grid of $\mu$ and $\sigma$ (or use more sophisticated methods such as MCMC).</p>
+has a different uncertainty <span class="math notranslate nohighlight">\(e_i\)</span>), but we can easily evaluate posterior pdf (say, with uniform priors)
+on a grid of <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> (or use more sophisticated methods such as MCMC).</p>
 </section>
 <section id="id5">
 <h3>Estimating parameters of a Gaussian distribution using data with heteroscedastic Gaussian uncertainties<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
-<p>The posterior pdf for $\mu$ and $\sigma$ is:<br />
-$$  p(\mu,\sigma | {x_i},I) = \prod_{i=1}^N  {1 \over \sqrt{2\pi} (\sigma^2+e_i^2)^{1/2}}
-\exp{\left({-(x_i-\mu)^2 \over 2 (\sigma^2+e_i^2)}\right)}$$</p>
+<p>The posterior pdf for <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> is:<br />
+$<span class="math notranslate nohighlight">\(  p(\mu,\sigma | \{x_i\},I) = \prod_{i=1}^N  {1 \over \sqrt{2\pi} (\sigma^2+e_i^2)^{1/2}}
+                   \exp{\left({-(x_i-\mu)^2 \over 2 (\sigma^2+e_i^2)}\right)}\)</span>$</p>
 <p>There is no closed-form solution here because errors are heteroscedastic (each data point
-has a different uncertainty $e_i$), but we can easily evaluate posterior pdf (say, with uniform priors)
-on a grid of $\mu$ and $\sigma$ (or use more sophisticated methods such as MCMC).</p>
-<p>The key point is that the scatter of ${x_i}$ is larger than it would be for $\sigma=0$ (that is, $\chi^2&gt;1$)
-and thus it constrains $\sigma$.</p>
+has a different uncertainty <span class="math notranslate nohighlight">\(e_i\)</span>), but we can easily evaluate posterior pdf (say, with uniform priors)
+on a grid of <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> (or use more sophisticated methods such as MCMC).</p>
+<p>The key point is that the scatter of <span class="math notranslate nohighlight">\(\{x_i\}\)</span> is larger than it would be for <span class="math notranslate nohighlight">\(\sigma=0\)</span> (that is, <span class="math notranslate nohighlight">\(\chi^2&gt;1\)</span>)
+and thus it constrains <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
 </section>
 <section id="an-astrophysical-example-radial-velocity-dispersion-for-a-cluster">
 <h3>An astrophysical example: radial velocity dispersion for a cluster<a class="headerlink" href="#an-astrophysical-example-radial-velocity-dispersion-for-a-cluster" title="Permalink to this headline">#</a></h3>
-<p>Consider measurements of the radial velocities of $N$ stars from a stellar or
+<p>Consider measurements of the radial velocities of <span class="math notranslate nohighlight">\(N\)</span> stars from a stellar or
 galaxy cluster.</p>
 <p>Assume that the cluster radial velocity distribution can be
 fully characterized by its mean, the systemic velocity (because the whole
@@ -1001,7 +1007,7 @@ the cluster and have orbital motions).</p>
 </section>
 <section id="id6">
 <h3>An astrophysical example: radial velocity dispersion for a cluster<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
-<p>Consider measurements of the radial velocities of $N$ stars from a stellar or
+<p>Consider measurements of the radial velocities of <span class="math notranslate nohighlight">\(N\)</span> stars from a stellar or
 galaxy cluster.</p>
 <p>The observed dispersion (i.e. standard deviation) of measured velocities
 is always larger than the cluster velocity dispersion because of measurement
@@ -1014,9 +1020,9 @@ dispersion (i.e. standard deviation) of measured velocities.</p>
 <h3>An astrophysical example: radial velocity dispersion for a cluster<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
 <p>When errors are heteroscedastic, we don’t have a closed-form solution.</p>
 <p>We can assume that the true radial velocity of a single object is drawn
-from a Gaussian described by $\mu$ (systemic velocity) and $\sigma$ (velocity
+from a Gaussian described by <span class="math notranslate nohighlight">\(\mu\)</span> (systemic velocity) and <span class="math notranslate nohighlight">\(\sigma\)</span> (velocity
 dispersion). But we don’t know them and thus they need to be estimated from data!</p>
-<p>In case of many objects, they will collectively constrain $\mu$ and $\sigma$.
+<p>In case of many objects, they will collectively constrain <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>.
 Many independent measurement sets (here a set of one measurement per object)
 that share same priors constrain them better together than can any single
 measurement alone. This is the key idea of Hierarchical Bayes modeling.</p>
@@ -1028,7 +1034,7 @@ on unknown variables, the hyperparameters, that describe the group (population)
 level probabilistic model.</p>
 <p>Their priors, called hyperpriors, resemble the priors in simple (single-level)
 Bayesian models.</p>
-<p>In the radial velocity example above, $\mu$ and $\sigma$ are priors, and their
+<p>In the radial velocity example above, <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> are priors, and their
 corresponding prior distributions (assumed flat below), are hyperpriors.</p>
 </section>
 <section id="id8">

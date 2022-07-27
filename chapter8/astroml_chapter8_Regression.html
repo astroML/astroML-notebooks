@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -39,8 +39,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -633,7 +635,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="measurement-errors-in-linear-regression">
+  <section class="tex2jax_ignore mathjax_ignore" id="measurement-errors-in-linear-regression">
 <h1>Measurement Errors in Linear Regression<a class="headerlink" href="#measurement-errors-in-linear-regression" title="Permalink to this headline">#</a></h1>
 <section id="lets-use-simulated-data-here">
 <h2>Lets use simulated data here.<a class="headerlink" href="#lets-use-simulated-data-here" title="Permalink to this headline">#</a></h2>
@@ -668,14 +670,14 @@ title="Print to PDF"
 </section>
 <section id="simple-linear-regression">
 <h2>Simple linear regression<a class="headerlink" href="#simple-linear-regression" title="Permalink to this headline">#</a></h2>
-<p>Regression defined as the relation between a dependent variable, $y$, and a set of independent variables, $x$,
-that describes the expectation value of y given x: $ E[y|x] $</p>
+<p>Regression defined as the relation between a dependent variable, <span class="math notranslate nohighlight">\(y\)</span>, and a set of independent variables, <span class="math notranslate nohighlight">\(x\)</span>,
+that describes the expectation value of y given x: <span class="math notranslate nohighlight">\( E[y|x] \)</span></p>
 <p>We will start with the most familiar linear regression, a straight-line fit to data.
 A straight-line fit is a model of the form
-$$
+$<span class="math notranslate nohighlight">\(
 y = ax + b
-$$
-where $a$ is commonly known as the <em>slope</em>, and $b$ is commonly known as the <em>intercept</em>.</p>
+\)</span><span class="math notranslate nohighlight">\(
+where \)</span>a<span class="math notranslate nohighlight">\( is commonly known as the *slope*, and \)</span>b$ is commonly known as the <em>intercept</em>.</p>
 <p>We can use Scikit-Learn’s LinearRegression estimator to fit this data and construct the best-fit line:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -750,8 +752,9 @@ where $a$ is commonly known as the <em>slope</em>, and $b$ is commonly known as 
 <section id="polynomial-basis-functions">
 <h3>Polynomial basis functions<a class="headerlink" href="#polynomial-basis-functions" title="Permalink to this headline">#</a></h3>
 <p>polynomial regression:</p>
-<p>$$y=a_0+a_1x+a_2x^2+a_3x^3+…$$</p>
-<p>Notice that this is still a linear model—the linearity refers to the fact that the coefficients $a_n$ never multiply or divide each other. What we have effectively done here is to take our one-dimensional $x$ values and projected them into a higher dimension, so that a linear fit can fit more complicated relationships between $x$ and $y$.</p>
+<div class="math notranslate nohighlight">
+\[y=a_0+a_1x+a_2x^2+a_3x^3+...\]</div>
+<p>Notice that this is still a linear model—the linearity refers to the fact that the coefficients <span class="math notranslate nohighlight">\(a_n\)</span> never multiply or divide each other. What we have effectively done here is to take our one-dimensional <span class="math notranslate nohighlight">\(x\)</span> values and projected them into a higher dimension, so that a linear fit can fit more complicated relationships between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.linear_model</span> <span class="kn">import</span> <span class="n">PolynomialRegression</span>
@@ -788,7 +791,7 @@ where $a$ is commonly known as the <em>slope</em>, and $b$ is commonly known as 
 <section id="gaussian-basis-functions">
 <h3>Gaussian basis functions<a class="headerlink" href="#gaussian-basis-functions" title="Permalink to this headline">#</a></h3>
 <p>Of course, other basis functions are possible.
-For example, one useful pattern is to fit a model that is not a sum of polynomial bases, but a sum of Gaussian bases. E.g. we could substitute $x^2$ for Gaussians (where we fix $\sigma$ and $\mu$ and fit for the amplitude) as long as the attribute we are fitting for is linear. This is called basis function regression.</p>
+For example, one useful pattern is to fit a model that is not a sum of polynomial bases, but a sum of Gaussian bases. E.g. we could substitute <span class="math notranslate nohighlight">\(x^2\)</span> for Gaussians (where we fix <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span> and fit for the amplitude) as long as the attribute we are fitting for is linear. This is called basis function regression.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.linear_model</span> <span class="kn">import</span> <span class="n">BasisFunctionRegression</span>

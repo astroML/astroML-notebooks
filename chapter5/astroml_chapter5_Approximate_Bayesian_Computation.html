@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -39,8 +39,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -669,7 +671,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="approximate-bayesian-computation-example">
+  <section class="tex2jax_ignore mathjax_ignore" id="approximate-bayesian-computation-example">
 <h1>Approximate Bayesian Computation Example<a class="headerlink" href="#approximate-bayesian-computation-example" title="Permalink to this headline">#</a></h1>
 <section id="january-6-2020">
 <h2>January 6, 2020<a class="headerlink" href="#january-6-2020" title="Permalink to this headline">#</a></h2>
@@ -693,16 +695,17 @@ title="Print to PDF"
 <p>The basic idea of ABC is quite simple: produce a large number of models (simulations) by sampling the plausible (prior) values of input parameters and select those that “look like the data”.</p>
 <p>The distribution of input parameters for the selected subset then approximates the true posterior pdf.</p>
 <p>And then repeat until reaching some pre-defined agreement between the values of a distance metric computed with real and simulated data sets.</p>
-<p>We will consider here a simple example of a 1-dimensional gaussian sample with a known std. deviation. We will use ABC to constrain its location parameter: $\mu$ in $N(\mu, \sigma)$.</p>
+<p>We will consider here a simple example of a 1-dimensional gaussian sample with a known std. deviation. We will use ABC to constrain its location parameter: <span class="math notranslate nohighlight">\(\mu\)</span> in <span class="math notranslate nohighlight">\(N(\mu, \sigma)\)</span>.</p>
 <p>This toy example is trivial - we already know that <em>the sample mean is the best estimator of the location parameter</em>. Nevertheless, the structure of more complex examples is identical: only the sample simulator, and perhaps distance metric need to be changed.</p>
 <p>For example, we could have a simulator of the distribution of galaxies on the sky and use two-point correlation function as a metric, or a simulator of the star formation process that generates luminosities of stars and use luminosity function to construct the distance metric.</p>
 </section>
 <section id="abc-algorithm">
 <h2>ABC algorithm:<a class="headerlink" href="#abc-algorithm" title="Permalink to this headline">#</a></h2>
-<p>Let’s assume that data are described by vector ${x_i}$, that we have a simulator for producing a model outcome (simulated data vector ${y_i}$) given a vector of input parameters $\theta$, and that their prior distribution, p$_0(\theta)$, is known.</p>
-<p>In the first iteration, input parameters $\theta$ are repeatedly sampled from the prior until the simulated dataset ${y_i}$ agrees with the data ${x_i}$, using some distance metric, and within some initial tolerance
-$\epsilon$ (which can be very large).</p>
-<p>$$ D({x_i}|{y_i}) &lt; \epsilon$$</p>
+<p>Let’s assume that data are described by vector <span class="math notranslate nohighlight">\(\{x_i\}\)</span>, that we have a simulator for producing a model outcome (simulated data vector <span class="math notranslate nohighlight">\(\{y_i\}\)</span>) given a vector of input parameters <span class="math notranslate nohighlight">\(\theta\)</span>, and that their prior distribution, p<span class="math notranslate nohighlight">\(_0(\theta)\)</span>, is known.</p>
+<p>In the first iteration, input parameters <span class="math notranslate nohighlight">\(\theta\)</span> are repeatedly sampled from the prior until the simulated dataset <span class="math notranslate nohighlight">\(\{y_i\}\)</span> agrees with the data <span class="math notranslate nohighlight">\(\{x_i\}\)</span>, using some distance metric, and within some initial tolerance
+<span class="math notranslate nohighlight">\(\epsilon\)</span> (which can be very large).</p>
+<div class="math notranslate nohighlight">
+\[ D(\{x_i\}|\{y_i\}) &lt; \epsilon\]</div>
 </section>
 <section id="id3">
 <h2>ABC algorithm:<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
@@ -711,21 +714,23 @@ $\epsilon$ (which can be very large).</p>
 </section>
 <section id="id4">
 <h2>ABC algorithm:<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
-<p>Just as in the first iteration, new input parameter values are repeatedly drawn from p$_j(\theta_j)$ until</p>
-<p>$$ D({x_i}|{y_i}) &lt; \epsilon_j$$</p>
+<p>Just as in the first iteration, new input parameter values are repeatedly drawn from p<span class="math notranslate nohighlight">\(_j(\theta_j)\)</span> until</p>
+<div class="math notranslate nohighlight">
+\[ D(\{x_i\}|\{y_i\}) &lt; \epsilon_j\]</div>
 <p>is satisfied.</p>
 </section>
 <section id="id5">
 <h2>ABC algorithm:<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
-<p>p$_j(\theta_j)$ is generated using the $\theta$ values from the previous iteration in a step akin to MCMC, which
+<p>p<span class="math notranslate nohighlight">\(_j(\theta_j)\)</span> is generated using the <span class="math notranslate nohighlight">\(\theta\)</span> values from the previous iteration in a step akin to MCMC, which
 effectively selects “particles” from the previous weighted pool, and then perturbs them using the kernel K.</p>
-<p>In each iteration j, the threshold value $\epsilon_j$ decreases; it is typically taken as a value in the
-70%–90% range of the cumulative distribution of $D({x_i}|{y_i})$ in the previous iteration.
+<p>In each iteration j, the threshold value <span class="math notranslate nohighlight">\(\epsilon_j\)</span> decreases; it is typically taken as a value in the
+70%–90% range of the cumulative distribution of <span class="math notranslate nohighlight">\(D(\{x_i\}|\{y_i\})\)</span> in the previous iteration.
 This sampling algorithm is called <em>Population Monte Carlo ABC</em>.</p>
-<p>The ABC method typically relies on a low-dimensional summary statistic of the data, S(x), such as the sample mean, rather than the full data set. For example, the distance metric between ${x_i}$ and ${y_i}$ is often defined as</p>
-<p>$$ D({x_i}|{y_i}) = D(S(x)|S(y))  = |, {\rm mean}(x) - {\rm mean}(y) ,|.$$</p>
-<p>Another example of a distance metric would be $\chi^2$ between two luminosity functions (data vs. simulation), or two two-point correlation functions.</p>
-<p>When $S(x)$ is a sufficient statistic, ABC converges to the true posterior.</p>
+<p>The ABC method typically relies on a low-dimensional summary statistic of the data, S(x), such as the sample mean, rather than the full data set. For example, the distance metric between <span class="math notranslate nohighlight">\(\{x_i\}\)</span> and <span class="math notranslate nohighlight">\(\{y_i\}\)</span> is often defined as</p>
+<div class="math notranslate nohighlight">
+\[ D(\{x_i\}|\{y_i\}) = D(S(x)|S(y))  = |\, {\rm mean}(x) - {\rm mean}(y) \,|.\]</div>
+<p>Another example of a distance metric would be <span class="math notranslate nohighlight">\(\chi^2\)</span> between two luminosity functions (data vs. simulation), or two two-point correlation functions.</p>
+<p>When <span class="math notranslate nohighlight">\(S(x)\)</span> is a sufficient statistic, ABC converges to the true posterior.</p>
 <p>In summary, the two key ABC aspects are the use of low-dimensional summary statistics of the data (instead of data likelihood) and MCMC-like intelligent parameter optimization.</p>
 <p>The following code is modeled after  Figure 5.29 from the book:
 https://www.astroml.org/book_figures/chapter5/fig_ABCexample.html</p>
@@ -1026,7 +1031,7 @@ https://www.astroml.org/book_figures/chapter5/fig_ABCexample.html</p>
 <section id="conclusions">
 <h2>Conclusions:<a class="headerlink" href="#conclusions" title="Permalink to this headline">#</a></h2>
 <p>As shown in the top middle panel in the above figure, the ABC algorithm converges to the correct solution in about 15 iterations.</p>
-<p>Between the 15th and the 25th iteration, the tolerance $\epsilon$ decreases from 0.1 to 0.01 and the acceptance probability decreases from 25% to 2.7%. As a result, the total number of simulation evaluations increases by about a factor of six (from about 30,000 to about 180,000), although there is very little gain for our inference of $\mu$.</p>
+<p>Between the 15th and the 25th iteration, the tolerance <span class="math notranslate nohighlight">\(\epsilon\)</span> decreases from 0.1 to 0.01 and the acceptance probability decreases from 25% to 2.7%. As a result, the total number of simulation evaluations increases by about a factor of six (from about 30,000 to about 180,000), although there is very little gain for our inference of <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
 </section>
 <section id="id6">
 <h2>Conclusions:<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h2>

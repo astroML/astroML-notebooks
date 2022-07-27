@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -39,8 +39,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -891,7 +893,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="modeling-toolkit-for-time-series-analysis">
+  <section class="tex2jax_ignore mathjax_ignore" id="modeling-toolkit-for-time-series-analysis">
 <h1>Modeling Toolkit For Time Series Analysis<a class="headerlink" href="#modeling-toolkit-for-time-series-analysis" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
@@ -904,8 +906,8 @@ The main data sets used in this chapter include light curves obtained by the <a 
 </section>
 <section id="main-concepts-for-time-series-analysis">
 <h2>Main concepts for time series analysis<a class="headerlink" href="#main-concepts-for-time-series-analysis" title="Permalink to this headline">#</a></h2>
-<p>The time series discussed here will be limited to two-dimensional scalar data sets: pairs of random variables, ($t_1$, $y_1$),…,($t_N$; $y_N$), with no assumptions about the sampling of the time coordinate t. In many ways, analysis methods discussed here are closely related to the parameter estimation and model selection problems discussed in the context of regression. However, unlike regression problems where different y measurements are typically treated as independent random
-variables, in such models the value of $y_{i+1}$ directly depends on the preceding value $y_i$.</p>
+<p>The time series discussed here will be limited to two-dimensional scalar data sets: pairs of random variables, (<span class="math notranslate nohighlight">\(t_1\)</span>, <span class="math notranslate nohighlight">\(y_1\)</span>),…,(<span class="math notranslate nohighlight">\(t_N\)</span>; <span class="math notranslate nohighlight">\(y_N\)</span>), with no assumptions about the sampling of the time coordinate t. In many ways, analysis methods discussed here are closely related to the parameter estimation and model selection problems discussed in the context of regression. However, unlike regression problems where different y measurements are typically treated as independent random
+variables, in such models the value of <span class="math notranslate nohighlight">\(y_{i+1}\)</span> directly depends on the preceding value <span class="math notranslate nohighlight">\(y_i\)</span>.</p>
 <p>The main tasks of time series analysis are:</p>
 <ol class="arabic simple">
 <li><p>To characterize the presumed temporal correlation between different values of y, including its significance.</p></li>
@@ -956,28 +958,34 @@ an approximation precision level similar to the measurement precision.</p>
 <section id="some-useful-concepts">
 <h2>Some useful concepts<a class="headerlink" href="#some-useful-concepts" title="Permalink to this headline">#</a></h2>
 <p>The <strong>Fourier transform</strong> of function h(t) is defined as</p>
-<p>$$H(f)=\int_{-\infty}^{\infty} h(t) exp(-i2\pi ft)dt$$</p>
+<div class="math notranslate nohighlight">
+\[H(f)=\int_{-\infty}^{\infty} h(t) exp(-i2\pi ft)dt\]</div>
 <p>with <strong>inverse transformation</strong></p>
-<p>$$h(t)=\int_{-\infty}^{\infty} H(t) exp(-i2\pi ft)df$$</p>
+<div class="math notranslate nohighlight">
+\[h(t)=\int_{-\infty}^{\infty} H(t) exp(-i2\pi ft)df\]</div>
 <p>where t is time and f is frequency (for time in seconds, the unit for frequency is hertz, or Hz; the
 units for H(f) are the product of the units for h(t) and inverse hertz.<br />
 For a real function h(t), H(f) is in general a complex function.<br />
 In the special case when h(t) is an even function such that h(-t) = h(t), H(f) is real and even as well. For example, the
-Fourier transform of a pdf of a zero-mean Gaussian $N(0, \sigma)$ in the time domain is a Gaussian
-$H(f) = exp(-2\pi^2 \sigma^2 f^2)$ in the frequency domain.<br />
+Fourier transform of a pdf of a zero-mean Gaussian <span class="math notranslate nohighlight">\(N(0, \sigma)\)</span> in the time domain is a Gaussian
+<span class="math notranslate nohighlight">\(H(f) = exp(-2\pi^2 \sigma^2 f^2)\)</span> in the frequency domain.<br />
 When the time axis of an arbitrary function
-h(t) is shifted by $\Delta t$, then the Fourier transform of $h(t + \Delta t)$ is</p>
-<p>$$\int_{-\infty}^{\infty}h(t+\Delta t)exp(-i2\pi ft)dt = H(f)exp(i2\pi f\Delta t)$$</p>
-<p>Therefore, the <strong>Fourier transform of a Gaussian $N(\mu, \sigma)$</strong> is</p>
-<p>$$H_{Gauss}(f)=exp(-2\pi^2\sigma^2f^2)[cos(2\pi f\mu)+isin(2\pi f \mu)]$$</p>
+h(t) is shifted by <span class="math notranslate nohighlight">\(\Delta t\)</span>, then the Fourier transform of <span class="math notranslate nohighlight">\(h(t + \Delta t)\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\int_{-\infty}^{\infty}h(t+\Delta t)exp(-i2\pi ft)dt = H(f)exp(i2\pi f\Delta t)\]</div>
+<p>Therefore, the <strong>Fourier transform of a Gaussian <span class="math notranslate nohighlight">\(N(\mu, \sigma)\)</span></strong> is</p>
+<div class="math notranslate nohighlight">
+\[H_{Gauss}(f)=exp(-2\pi^2\sigma^2f^2)[cos(2\pi f\mu)+isin(2\pi f \mu)]\]</div>
 <p>This is known as <strong>“white noise”</strong> since there is no frequency
 dependence (also known as “thermal noise” or Johnson’s noise).<br />
 An important quantity in time series analysis is the one-sided <strong>power spectral density (PSD)</strong> function
-(or power spectrum) defined for $0 \leq f &lt; \infty$ as</p>
-<p>$$PSD(f) \equiv |H(f)|^2+|H(-f)|^2$$</p>
+(or power spectrum) defined for <span class="math notranslate nohighlight">\(0 \leq f &lt; \infty\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[PSD(f) \equiv |H(f)|^2+|H(-f)|^2\]</div>
 <p>The PSD gives the amount of power contained in the frequency interval between f and f + df.<br />
 The total power is the same whether computed in the frequency or the time domain:</p>
-<p>$$P_{tot} \equiv \int_0^{\infty}PSD(f)df=\int_{-\infty}^{\infty}|h(t)|^2dt$$</p>
+<div class="math notranslate nohighlight">
+\[P_{tot} \equiv \int_0^{\infty}PSD(f)df=\int_{-\infty}^{\infty}|h(t)|^2dt\]</div>
 <p>This result is known as <strong>Parseval’s theorem</strong>.</p>
 <section id="fourier-reconstruction-of-rr-lyrae-templates">
 <h3>(1) Fourier Reconstruction of RR-Lyrae Templates<a class="headerlink" href="#fourier-reconstruction-of-rr-lyrae-templates" title="Permalink to this headline">#</a></h3>
@@ -1047,18 +1055,20 @@ The total power is the same whether computed in the frequency or the time domain
 </section>
 <section id="convolution-theorem">
 <h3>(2) Convolution Theorem<a class="headerlink" href="#convolution-theorem" title="Permalink to this headline">#</a></h3>
-<p>A convolution of two functions $a(t)$ and $b(t)$ is given by</p>
-<p>$$(a*b)(t) \equiv \int_{-\infty}^{\infty} a(t’)b(t-t’)dt’$$</p>
+<p>A convolution of two functions <span class="math notranslate nohighlight">\(a(t)\)</span> and <span class="math notranslate nohighlight">\(b(t)\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[(a*b)(t) \equiv \int_{-\infty}^{\infty} a(t')b(t-t')dt'\]</div>
 <p>In the above equation, the function a can
-be thought of as the “convolving pattern” of the measuring apparatus, and the function $b$ is the
-signal. In practice, we measure the convolved (or smoothed) version of our signal, $<span class="xref myst">a * b</span>$, and
-seek to uncover the original signal $b$ using the presumably known $a$.<br />
-The convolution theorem states that if $h = a * b$, then the Fourier transforms of $h$, $a$, and $b$ are
+be thought of as the “convolving pattern” of the measuring apparatus, and the function <span class="math notranslate nohighlight">\(b\)</span> is the
+signal. In practice, we measure the convolved (or smoothed) version of our signal, <span class="math notranslate nohighlight">\([a * b](t)\)</span>, and
+seek to uncover the original signal <span class="math notranslate nohighlight">\(b\)</span> using the presumably known <span class="math notranslate nohighlight">\(a\)</span>.<br />
+The convolution theorem states that if <span class="math notranslate nohighlight">\(h = a * b\)</span>, then the Fourier transforms of <span class="math notranslate nohighlight">\(h\)</span>, <span class="math notranslate nohighlight">\(a\)</span>, and <span class="math notranslate nohighlight">\(b\)</span> are
 related by their pointwise products:</p>
-<p>$$H(f)=A(f)B(f)$$</p>
+<div class="math notranslate nohighlight">
+\[H(f)=A(f)B(f)\]</div>
 <p>Thus a convolution of two functions is transformed into a simple multiplication of the associated
-Fourier representations. Therefore, to obtain $b$, we can simply take the inverse Fourier transform
-of the ratio $H(f)=A(f)$. In the absence of noise, this operation is exact.</p>
+Fourier representations. Therefore, to obtain <span class="math notranslate nohighlight">\(b\)</span>, we can simply take the inverse Fourier transform
+of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In the absence of noise, this operation is exact.</p>
 <p>For further explanation, we will see a schematic representation of the convolution theorem below.</p>
 <section id="generate-data-and-define-function">
 <h4>Generate data and define function<a class="headerlink" href="#generate-data-and-define-function" title="Permalink to this headline">#</a></h4>
@@ -1082,7 +1092,7 @@ of the ratio $H(f)=A(f)$. In the absence of noise, this operation is exact.</p>
 </section>
 <section id="show-data-and-window-function">
 <h4>Show data and window function<a class="headerlink" href="#show-data-and-window-function" title="Permalink to this headline">#</a></h4>
-<p>The graph below show simulated data $D(x)$ in black line, and top-hat window function $W(x)$ in gray boxes.</p>
+<p>The graph below show simulated data <span class="math notranslate nohighlight">\(D(x)\)</span> in black line, and top-hat window function <span class="math notranslate nohighlight">\(W(x)\)</span> in gray boxes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the plots</span>
@@ -1124,7 +1134,7 @@ of the ratio $H(f)=A(f)$. In the absence of noise, this operation is exact.</p>
 </section>
 <section id="show-fourier-transform-result-of-two-functions">
 <h4>Show Fourier Transform result of two functions<a class="headerlink" href="#show-fourier-transform-result-of-two-functions" title="Permalink to this headline">#</a></h4>
-<p>The function on the top shows the Fourier transform of $D(x)$ and the bottom shows the transform of $W(x)$.</p>
+<p>The function on the top shows the Fourier transform of <span class="math notranslate nohighlight">\(D(x)\)</span> and the bottom shows the transform of <span class="math notranslate nohighlight">\(W(x)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the plots</span>
@@ -1162,7 +1172,7 @@ of the ratio $H(f)=A(f)$. In the absence of noise, this operation is exact.</p>
 </section>
 <section id="calculate-the-product-of-fourier-transforms">
 <h4>Calculate the product of Fourier transforms<a class="headerlink" href="#calculate-the-product-of-fourier-transforms" title="Permalink to this headline">#</a></h4>
-<p>We multiply the above two Fourier transform functions and get the product of them (shown below). The inverse transformation of this product give us the convolution of $<span class="xref myst">D*W</span>$.</p>
+<p>We multiply the above two Fourier transform functions and get the product of them (shown below). The inverse transformation of this product give us the convolution of <span class="math notranslate nohighlight">\([D*W](x)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
@@ -1185,7 +1195,7 @@ of the ratio $H(f)=A(f)$. In the absence of noise, this operation is exact.</p>
 </section>
 <section id="perform-the-convolution">
 <h4>Perform the convolution<a class="headerlink" href="#perform-the-convolution" title="Permalink to this headline">#</a></h4>
-<p>Use equation $(a*b)(t) \equiv \int_{-\infty}^{\infty} a(t’)b(t-t’)dt’$ we take the convolution of D(x) and W(x).</p>
+<p>Use equation <span class="math notranslate nohighlight">\((a*b)(t) \equiv \int_{-\infty}^{\infty} a(t')b(t-t')dt'\)</span> we take the convolution of D(x) and W(x).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">w</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
@@ -1204,7 +1214,7 @@ of the ratio $H(f)=A(f)$. In the absence of noise, this operation is exact.</p>
 </section>
 <section id="show-convolution-result">
 <h4>Show convolution result<a class="headerlink" href="#show-convolution-result" title="Permalink to this headline">#</a></h4>
-<p>The result of $<span class="xref myst">D*W</span>$ can be viewed as the data signal smoothed with the window (top-hat) function.</p>
+<p>The result of <span class="math notranslate nohighlight">\([D*W](x)\)</span> can be viewed as the data signal smoothed with the window (top-hat) function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the convolution</span>
@@ -1235,10 +1245,10 @@ of the ratio $H(f)=A(f)$. In the absence of noise, this operation is exact.</p>
 <h4>Show Convolution Diagram<a class="headerlink" href="#show-convolution-diagram" title="Permalink to this headline">#</a></h4>
 <p>Here we take all the process together and express them in a clockwise order.</p>
 <ul class="simple">
-<li><p>Top-left are the original data signal $D(x)$ (solid line) and top-hat window functions $W(x)$ (gray box).</p></li>
-<li><p>Moving on to the top-right panel, we have the Fourier transform of two functions, with $F(D)$ as the Fourier of $D(x)$ at the top, and $F(W)$ as the Fourier of $W(x)$ at the bottom.</p></li>
-<li><p>Next we multiply $F(D)$ and $F(W)$ to get a pointwise function in the bottom-right panel.</p></li>
-<li><p>At last, we can take the inverse Fourier of $F(D) \cdot F(W)$ and get the convolution of function $D(x)$ and $W(x)$, as shown in the bottom-left panel.</p></li>
+<li><p>Top-left are the original data signal <span class="math notranslate nohighlight">\(D(x)\)</span> (solid line) and top-hat window functions <span class="math notranslate nohighlight">\(W(x)\)</span> (gray box).</p></li>
+<li><p>Moving on to the top-right panel, we have the Fourier transform of two functions, with <span class="math notranslate nohighlight">\(F(D)\)</span> as the Fourier of <span class="math notranslate nohighlight">\(D(x)\)</span> at the top, and <span class="math notranslate nohighlight">\(F(W)\)</span> as the Fourier of <span class="math notranslate nohighlight">\(W(x)\)</span> at the bottom.</p></li>
+<li><p>Next we multiply <span class="math notranslate nohighlight">\(F(D)\)</span> and <span class="math notranslate nohighlight">\(F(W)\)</span> to get a pointwise function in the bottom-right panel.</p></li>
+<li><p>At last, we can take the inverse Fourier of <span class="math notranslate nohighlight">\(F(D) \cdot F(W)\)</span> and get the convolution of function <span class="math notranslate nohighlight">\(D(x)\)</span> and <span class="math notranslate nohighlight">\(W(x)\)</span>, as shown in the bottom-left panel.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1370,38 +1380,43 @@ the discrete Fourier transform is a powerful tool.
 Although in astronomy, temporal data are rarely sampled with uniform spacing (LIGO data, however, as a counterexample, will be discussed in the later notebook), uniformly sampled data is a good place to start because we have fast algorithm for this situation.<br />
 When computing the Fourier transform for discretely and uniformly sampled data, the Fourier
 integrals from</p>
-<p>$$H(f)=\int_{-\infty}^{\infty} h(t) exp(-i2\pi ft)dt$$
-$$h(t)=\int_{-\infty}^{\infty} H(t) exp(-i2\pi ft)df$$</p>
+<div class="math notranslate nohighlight">
+\[H(f)=\int_{-\infty}^{\infty} h(t) exp(-i2\pi ft)dt\]</div>
+<div class="math notranslate nohighlight">
+\[h(t)=\int_{-\infty}^{\infty} H(t) exp(-i2\pi ft)df\]</div>
 <p>are translated to sums. Here we have t for time and f for frequency.</p>
 <p>The discrete Fourier transform of the vector of values hj is a complex vector of length N defined
 by</p>
-<p>$$H_k=\sum_{j=0}^{N-1}h_j exp[-i2\pi jk/N]$$</p>
+<div class="math notranslate nohighlight">
+\[H_k=\sum_{j=0}^{N-1}h_j exp[-i2\pi jk/N]\]</div>
 <p>where k=0,…,(N-1).<br />
 The corresponding inverse discrete Fourier transform is defined by</p>
-<p>$$h_j=\sum_{j=0}^{N-1}H_k exp[-i2\pi jk/N]$$</p>
-<p>where j=0,…,(N-1). Unlike the continuous transforms, here the units for $H_k$ are the same as
-the units for $h_j$ . Given $H_k$, we can represent the function described by $h_j$ as a sum of sinusoids,
+<div class="math notranslate nohighlight">
+\[h_j=\sum_{j=0}^{N-1}H_k exp[-i2\pi jk/N]\]</div>
+<p>where j=0,…,(N-1). Unlike the continuous transforms, here the units for <span class="math notranslate nohighlight">\(H_k\)</span> are the same as
+the units for <span class="math notranslate nohighlight">\(h_j\)</span> . Given <span class="math notranslate nohighlight">\(H_k\)</span>, we can represent the function described by <span class="math notranslate nohighlight">\(h_j\)</span> as a sum of sinusoids,
 as was done in the first figure.</p>
 <section id="the-nyquist-sampling-theorem">
 <h3>(1) The Nyquist sampling theorem<a class="headerlink" href="#the-nyquist-sampling-theorem" title="Permalink to this headline">#</a></h3>
-<p>Let us define $h(t)$ to be band limited if $H(f) = 0$ for $|f| &gt; f_c$, where $f_c$ is the band limit, or the
-Nyquist critical frequency. If $h(t)$ is band limited, then there is some “resolution” limit in $t$ space,
-$t_c = 1/(2f_c)$ below which h(t) appears “smooth.” When $h(t)$ is band limited, then according to the Nyquist sampling theorem we can exactly reconstruct h(t) from evenly sampled data when $\Delta t &lt; t_c$,
+<p>Let us define <span class="math notranslate nohighlight">\(h(t)\)</span> to be band limited if <span class="math notranslate nohighlight">\(H(f) = 0\)</span> for <span class="math notranslate nohighlight">\(|f| &gt; f_c\)</span>, where <span class="math notranslate nohighlight">\(f_c\)</span> is the band limit, or the
+Nyquist critical frequency. If <span class="math notranslate nohighlight">\(h(t)\)</span> is band limited, then there is some “resolution” limit in <span class="math notranslate nohighlight">\(t\)</span> space,
+<span class="math notranslate nohighlight">\(t_c = 1/(2f_c)\)</span> below which h(t) appears “smooth.” When <span class="math notranslate nohighlight">\(h(t)\)</span> is band limited, then according to the Nyquist sampling theorem we can exactly reconstruct h(t) from evenly sampled data when <span class="math notranslate nohighlight">\(\Delta t &lt; t_c\)</span>,
 as</p>
-<p>$$h(t)=\frac{\Delta t}{t_c} \sum_{k=-\infty}^{k=\infty} h_k \frac{sin[2\pi f_c (t-k\Delta t)]}{2\pi f_c (t-k\Delta t)}$$</p>
+<div class="math notranslate nohighlight">
+\[h(t)=\frac{\Delta t}{t_c} \sum_{k=-\infty}^{k=\infty} h_k \frac{sin[2\pi f_c (t-k\Delta t)]}{2\pi f_c (t-k\Delta t)}\]</div>
 <p>This result is known as the Whittaker-Shannon, or often just Shannon, interpolation formula
 (or “sinc-shifting” formula).<br />
 Note that the summation goes to infinity, but also that the term
-multiplying $h_k$ vanishes for large values of $|t - k\Delta t|$.<br />
-For example $h(t) = sin(2 \pi t/P )$ has a period
-P and is band limited with $f_c = 1/P$. If it is sampled with $\Delta t$ not larger than $P/2$, it can be fully
-reconstructed at any $t$ (it is important to note that this entire discussion assumes that there is no
-noise associated with sampled values $h_j$ ). On the other hand, when the sampled function h(t) is not
-band limited, or when the sampling rate is not sufficient (i.e., $\Delta t &gt; t_c$), an effect called <strong>“aliasing”</strong>
+multiplying <span class="math notranslate nohighlight">\(h_k\)</span> vanishes for large values of <span class="math notranslate nohighlight">\(|t - k\Delta t|\)</span>.<br />
+For example <span class="math notranslate nohighlight">\(h(t) = sin(2 \pi t/P )\)</span> has a period
+P and is band limited with <span class="math notranslate nohighlight">\(f_c = 1/P\)</span>. If it is sampled with <span class="math notranslate nohighlight">\(\Delta t\)</span> not larger than <span class="math notranslate nohighlight">\(P/2\)</span>, it can be fully
+reconstructed at any <span class="math notranslate nohighlight">\(t\)</span> (it is important to note that this entire discussion assumes that there is no
+noise associated with sampled values <span class="math notranslate nohighlight">\(h_j\)</span> ). On the other hand, when the sampled function h(t) is not
+band limited, or when the sampling rate is not sufficient (i.e., <span class="math notranslate nohighlight">\(\Delta t &gt; t_c\)</span>), an effect called <strong>“aliasing”</strong>
 prevents us from exactly reconstructing h(t). In such a case, all of the power
-spectral density from frequencies $|f| &gt; f_c$ is aliased (falsely transferred) into the $-f_c &lt; f &lt; f_c$
+spectral density from frequencies <span class="math notranslate nohighlight">\(|f| &gt; f_c\)</span> is aliased (falsely transferred) into the <span class="math notranslate nohighlight">\(-f_c &lt; f &lt; f_c\)</span>
 range. The aliasing can be thought of as inability to resolve details in a time series at a finer detail
-than that set by $f_c$. The figure below will show us the effect of aliasing.</p>
+than that set by <span class="math notranslate nohighlight">\(f_c\)</span>. The figure below will show us the effect of aliasing.</p>
 <section id="define-functions-and-terms">
 <h4>Define functions and terms<a class="headerlink" href="#define-functions-and-terms" title="Permalink to this headline">#</a></h4>
 <p>Here we defind a Gaussian shaped data and its Fourier transform as an example.</p>
@@ -1436,7 +1451,7 @@ We have two sets of four panels, and in each set:</p>
 <li><p>the bottom-right panel shows the convolution of the Fourier-space representations</p></li>
 </ul>
 <p>In the top four panels, the data is well sampled, and there is little to no aliasing.<br />
-In the bottom panels, the data is not well sampled (the spacing between two data points is larger) which leads to aliasing, as seen in the overlap of the convolved Fourier transforms. The aliasing effect can be recognized if the Fourier transform is nonzero at $|f| = 1/(2 \Delta t)$ in this example.</p>
+In the bottom panels, the data is not well sampled (the spacing between two data points is larger) which leads to aliasing, as seen in the overlap of the convolved Fourier transforms. The aliasing effect can be recognized if the Fourier transform is nonzero at <span class="math notranslate nohighlight">\(|f| = 1/(2 \Delta t)\)</span> in this example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Two plots: one well-sampled, one over-sampled</span>
@@ -1560,7 +1575,7 @@ In the bottom panels, the data is not well sampled (the spacing between two data
 <h3>(2) The window function<a class="headerlink" href="#the-window-function" title="Permalink to this headline">#</a></h3>
 <p>The figure above shows the relationship between sampling and the window function: the sampling window
 function in the time domain can be expressed as the sum of delta functions placed at sampled
-observation times. The Fourier transform of a set of delta functions with spacing $\Delta t$ is another set of delta functions with spacing $1/\Delta t$; this result is at the core of the Nyquist sampling theorem. By the convolution theorem, pointwise multiplication of this sampling window with the data is equivalent to the convolution of their Fourier
+observation times. The Fourier transform of a set of delta functions with spacing <span class="math notranslate nohighlight">\(\Delta t\)</span> is another set of delta functions with spacing <span class="math notranslate nohighlight">\(1/\Delta t\)</span>; this result is at the core of the Nyquist sampling theorem. By the convolution theorem, pointwise multiplication of this sampling window with the data is equivalent to the convolution of their Fourier
 representations, as seen in the right-hand panels. When data are nonuniformly sampled, the impact of sampling can be understood using the same framework.<br />
 The sampling window is the sum of delta functions, but because the delta functions
 are not regularly spaced, the Fourier transform is a more complicated, and in general complex,
@@ -1634,7 +1649,7 @@ We will see an example of an irregular sampling window in the figure below.</p>
 <h4>Show figure<a class="headerlink" href="#show-figure" title="Permalink to this headline">#</a></h4>
 <p>An illustration of the impact of a sampling window function of resulting PSD.</p>
 <ul class="simple">
-<li><p>The top-left panel shows a simulated data set with 40 points drawn from the function $y(t|P) = sin(t)$ (i.e., $f = 1/(2\pi) ~ 0.16$).</p></li>
+<li><p>The top-left panel shows a simulated data set with 40 points drawn from the function <span class="math notranslate nohighlight">\(y(t|P) = sin(t)\)</span> (i.e., <span class="math notranslate nohighlight">\(f = 1/(2\pi) ~ 0.16\)</span>).</p></li>
 <li><p>The bottom-left panel shows radom sampling illustracted by the vertical lines.</p></li>
 <li><p>The bottom-right panel shows the PSD of sampling times, or spectral window.</p></li>
 <li><p>The top-right panel shows the PSD computed for the data set from the top-left panel; it is equal to a convolution of the single peak (shaded in gray) with the window PSD shown in the bottom-right panel (e.g., the peak at f ~ 0.42 in the top-right panel can be traced to a peak at f ~ 0.26 in the bottom-right panel).</p></li>

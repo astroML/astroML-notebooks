@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -39,8 +39,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -602,7 +604,11 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-chi-2-distribution">
-   The $\chi^2$ distribution
+   The
+   <span class="math notranslate nohighlight">
+    \(\chi^2\)
+   </span>
+   distribution
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -770,7 +776,11 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-chi-2-distribution">
-   The $\chi^2$ distribution
+   The
+   <span class="math notranslate nohighlight">
+    \(\chi^2\)
+   </span>
+   distribution
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -850,7 +860,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="univariate-distribution-functions">
+  <section class="tex2jax_ignore mathjax_ignore" id="univariate-distribution-functions">
 <h1>Univariate Distribution Functions<a class="headerlink" href="#univariate-distribution-functions" title="Permalink to this headline">#</a></h1>
 <section id="a-note-on-the-following-graphs">
 <h2>A note on the following graphs<a class="headerlink" href="#a-note-on-the-following-graphs" title="Permalink to this headline">#</a></h2>
@@ -879,11 +889,13 @@ Note that with <code class="docutils literal notranslate"><span class="pre">uset
 <section id="the-uniform-distribution">
 <h2>The uniform distribution<a class="headerlink" href="#the-uniform-distribution" title="Permalink to this headline">#</a></h2>
 <p>The uniform distribution is given by</p>
-<p>$$ p(x|\mu,W) = \frac{1}{W}::\text{for}::|x-\mu|\le \frac{W}{2}$$</p>
-<p>and zero otherwise. Both the mean and the median are equal to $\mu$, and the width of the ‘box’ is $W$. For a uniform distribution, every point in the continuous range of $W$ has an equally likely chance of appearing, resulting in the familiar “top-hat” shape.</p>
-<p>Additionally, the distribution’s shape is unimpacted by varying its location along the x-axis or multiplying x by a scalar, allowing us to define $z=\frac{x-\mu}{W}$ and</p>
-<p>$$ p(z) = 1 \text{ for |z| }{\leq \frac{1}{2}}\text{ and } p(z) = 0 \text{ for |z| &gt; }\frac{1}{2} $$</p>
-<p>In the following example, we will plot three uniform distributions of different widths with $\mu = 0$. The uniform distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.uniform</span></code> – after importing the module, we will define $\mu$, $W$, and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers $x$ to plot against.</p>
+<div class="math notranslate nohighlight">
+\[ p(x|\mu,W) = \frac{1}{W}\:\:\text{for}\:\:|x-\mu|\le \frac{W}{2}\]</div>
+<p>and zero otherwise. Both the mean and the median are equal to <span class="math notranslate nohighlight">\(\mu\)</span>, and the width of the ‘box’ is <span class="math notranslate nohighlight">\(W\)</span>. For a uniform distribution, every point in the continuous range of <span class="math notranslate nohighlight">\(W\)</span> has an equally likely chance of appearing, resulting in the familiar “top-hat” shape.</p>
+<p>Additionally, the distribution’s shape is unimpacted by varying its location along the x-axis or multiplying x by a scalar, allowing us to define <span class="math notranslate nohighlight">\(z=\frac{x-\mu}{W}\)</span> and</p>
+<div class="math notranslate nohighlight">
+\[ p(z) = 1 \text{ for |z| }{\leq \frac{1}{2}}\text{ and } p(z) = 0 \text{ for |z| &gt; }\frac{1}{2} \]</div>
+<p>In the following example, we will plot three uniform distributions of different widths with <span class="math notranslate nohighlight">\(\mu = 0\)</span>. The uniform distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.uniform</span></code> – after importing the module, we will define <span class="math notranslate nohighlight">\(\mu\)</span>, <span class="math notranslate nohighlight">\(W\)</span>, and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers <span class="math notranslate nohighlight">\(x\)</span> to plot against.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">uniform</span>
@@ -896,7 +908,7 @@ Note that with <code class="docutils literal notranslate"><span class="pre">uset
 </div>
 </div>
 </div>
-<p>Next, we plot the distributions. The <code class="docutils literal notranslate"><span class="pre">uniform</span></code> function takes two main arguments: the left edge and the width of the distribution. To find the left edge, we calculate $\mu - 0.5 W$ for each value of W.</p>
+<p>Next, we plot the distributions. The <code class="docutils literal notranslate"><span class="pre">uniform</span></code> function takes two main arguments: the left edge and the width of the distribution. To find the left edge, we calculate <span class="math notranslate nohighlight">\(\mu - 0.5 W\)</span> for each value of W.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">))</span>
@@ -961,9 +973,10 @@ Note that with <code class="docutils literal notranslate"><span class="pre">uset
 <section id="the-gaussian-normal-distribution">
 <h2>The Gaussian (normal) distribution<a class="headerlink" href="#the-gaussian-normal-distribution" title="Permalink to this headline">#</a></h2>
 <p>The Gaussian distribution, also known as the normal distribution, is given by</p>
-<p>$$p(x|\mu,\sigma) = \frac{1}{\sigma\sqrt{2\pi}}\text{exp}\bigg(\frac{-(x-\mu)^2}{2\sigma ^2}\bigg) $$</p>
-<p>This distribution shows up often in statistics, and it is recognizable by its familiar “bell” shape. Here, $\mu$ (location parameter) is the mean, and $\sigma$ (scale parameter) is the standard deviation of the function. Thus it follows that Gaussian functions are centered at $\mu$, and its width is dependent on the value of $\sigma$.</p>
-<p>In the following example, we will plot three Gaussian distributions of different $\sigma$ values with $\mu = 0$. The Gaussian distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.norm</span></code> – after importing the module, we will define $\mu$, $\sigma$, and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers $x$ to plot against.</p>
+<div class="math notranslate nohighlight">
+\[p(x|\mu,\sigma) = \frac{1}{\sigma\sqrt{2\pi}}\text{exp}\bigg(\frac{-(x-\mu)^2}{2\sigma ^2}\bigg) \]</div>
+<p>This distribution shows up often in statistics, and it is recognizable by its familiar “bell” shape. Here, <span class="math notranslate nohighlight">\(\mu\)</span> (location parameter) is the mean, and <span class="math notranslate nohighlight">\(\sigma\)</span> (scale parameter) is the standard deviation of the function. Thus it follows that Gaussian functions are centered at <span class="math notranslate nohighlight">\(\mu\)</span>, and its width is dependent on the value of <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<p>In the following example, we will plot three Gaussian distributions of different <span class="math notranslate nohighlight">\(\sigma\)</span> values with <span class="math notranslate nohighlight">\(\mu = 0\)</span>. The Gaussian distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.norm</span></code> – after importing the module, we will define <span class="math notranslate nohighlight">\(\mu\)</span>, <span class="math notranslate nohighlight">\(\sigma\)</span>, and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers <span class="math notranslate nohighlight">\(x\)</span> to plot against.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
@@ -1049,9 +1062,10 @@ Note that with <code class="docutils literal notranslate"><span class="pre">uset
 <section id="the-binomial-distribution">
 <h2>The binomial distribution<a class="headerlink" href="#the-binomial-distribution" title="Permalink to this headline">#</a></h2>
 <p>The binomial distribution is given by</p>
-<p>$$p(k|b,N) = \frac{N!}{k!(N-k)!}b^k(1-b)^{N-k} $$</p>
-<p>This distribution differs from the previous two in that it describes the distribution of a <strong>discrete</strong> variable that can only take two values (such as an event occurring or not occuring). We define $b$ as the probability of success, and the distribution of a discrete variable $k$ measures how many times success occurred in $N$ trials. Here, $k$ is an integer (not a real number as in the prior distributions).</p>
-<p>In the following example, we will plot three binomial distributions of different $b$ and $N$ values. The binomial distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.binom</span></code> – after importing the module, we will define $N$, $b$, and use <code class="docutils literal notranslate"><span class="pre">np.arange</span></code> to create a sequence of evenly spaced <strong>integers</strong> $k$ to plot against.</p>
+<div class="math notranslate nohighlight">
+\[p(k|b,N) = \frac{N!}{k!(N-k)!}b^k(1-b)^{N-k} \]</div>
+<p>This distribution differs from the previous two in that it describes the distribution of a <strong>discrete</strong> variable that can only take two values (such as an event occurring or not occuring). We define <span class="math notranslate nohighlight">\(b\)</span> as the probability of success, and the distribution of a discrete variable <span class="math notranslate nohighlight">\(k\)</span> measures how many times success occurred in <span class="math notranslate nohighlight">\(N\)</span> trials. Here, <span class="math notranslate nohighlight">\(k\)</span> is an integer (not a real number as in the prior distributions).</p>
+<p>In the following example, we will plot three binomial distributions of different <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(N\)</span> values. The binomial distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.binom</span></code> – after importing the module, we will define <span class="math notranslate nohighlight">\(N\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, and use <code class="docutils literal notranslate"><span class="pre">np.arange</span></code> to create a sequence of evenly spaced <strong>integers</strong> <span class="math notranslate nohighlight">\(k\)</span> to plot against.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">binom</span>
@@ -1138,10 +1152,11 @@ Note that with <code class="docutils literal notranslate"><span class="pre">uset
 </section>
 <section id="the-poisson-distribution">
 <h2>The Poisson distribution<a class="headerlink" href="#the-poisson-distribution" title="Permalink to this headline">#</a></h2>
-<p>The Poisson distribution is a particular case of the binomial distribution, and thus it’s also discrete. If the number of trials, $N$, for a binomial distribution goes to infinity such that the probability of success, $p = k/N$, stays fixed, then the distribution of the number of successes, $k$, is controlled by $\mu = pN$ and given by</p>
-<p>$$ p(k|\mu) = \frac{\mu^k\text{exp}(-\mu)}{k!} $$</p>
-<p>The Poisson distribution is fully described by its mean, $\mu$.</p>
-<p>In the following example, we will plot three Poisson distributions of different $\mu$ values. The Poisson distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.poisson</span></code> – after importing the module, we will define $\mu$ and use <code class="docutils literal notranslate"><span class="pre">np.arange</span></code> to create a sequence of evenly spaced integers $k$ to plot against.</p>
+<p>The Poisson distribution is a particular case of the binomial distribution, and thus it’s also discrete. If the number of trials, <span class="math notranslate nohighlight">\(N\)</span>, for a binomial distribution goes to infinity such that the probability of success, <span class="math notranslate nohighlight">\(p = k/N\)</span>, stays fixed, then the distribution of the number of successes, <span class="math notranslate nohighlight">\(k\)</span>, is controlled by <span class="math notranslate nohighlight">\(\mu = pN\)</span> and given by</p>
+<div class="math notranslate nohighlight">
+\[ p(k|\mu) = \frac{\mu^k\text{exp}(-\mu)}{k!} \]</div>
+<p>The Poisson distribution is fully described by its mean, <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
+<p>In the following example, we will plot three Poisson distributions of different <span class="math notranslate nohighlight">\(\mu\)</span> values. The Poisson distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.poisson</span></code> – after importing the module, we will define <span class="math notranslate nohighlight">\(\mu\)</span> and use <code class="docutils literal notranslate"><span class="pre">np.arange</span></code> to create a sequence of evenly spaced integers <span class="math notranslate nohighlight">\(k\)</span> to plot against.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">poisson</span>
@@ -1219,10 +1234,11 @@ Note that with <code class="docutils literal notranslate"><span class="pre">uset
 <section id="the-cauchy-lorentzian-distribution">
 <h2>The Cauchy (Lorentzian) distribution<a class="headerlink" href="#the-cauchy-lorentzian-distribution" title="Permalink to this headline">#</a></h2>
 <p>The Cauchy, or Lorentzian distribution is defined as</p>
-<p>$$ p(x|\mu,\gamma) = \frac{1}{\pi\gamma}\bigg(\frac{\gamma^2}{\gamma^2+(x-\mu)^2}\bigg) $$</p>
-<p>The median and mode are equal to the location parameter $\mu$, and $\gamma$ is the scale parameter known as the interquartile range for  ${x_i}$.</p>
-<p>This distribution is different from the ones we’ve looked at so far in that the mean, variance, standard deviation, and higher moments do not exist. The probability decreases relatively slowly as $|x|$ increases due to the graph’s broad tails – because of this, outliers easily influence and sway the mean. Furthermore, the large scatter around $\mu$ doesn’t decrease with the sample size, and the probability of getting an outlier never decreases. Thus, we use a more robust estimator to describe the distribution: the median.</p>
-<p>In the following example, we will plot three Cauchy distributions of different $\gamma$ values with $\mu = 0$. The Cauchy distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.cauchy</span></code> – after importing the module, we will define $\mu$, $\gamma$, and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers $x$ to plot against.</p>
+<div class="math notranslate nohighlight">
+\[ p(x|\mu,\gamma) = \frac{1}{\pi\gamma}\bigg(\frac{\gamma^2}{\gamma^2+(x-\mu)^2}\bigg) \]</div>
+<p>The median and mode are equal to the location parameter <span class="math notranslate nohighlight">\(\mu\)</span>, and <span class="math notranslate nohighlight">\(\gamma\)</span> is the scale parameter known as the interquartile range for  <span class="math notranslate nohighlight">\(\{x_i\}\)</span>.</p>
+<p>This distribution is different from the ones we’ve looked at so far in that the mean, variance, standard deviation, and higher moments do not exist. The probability decreases relatively slowly as <span class="math notranslate nohighlight">\(|x|\)</span> increases due to the graph’s broad tails – because of this, outliers easily influence and sway the mean. Furthermore, the large scatter around <span class="math notranslate nohighlight">\(\mu\)</span> doesn’t decrease with the sample size, and the probability of getting an outlier never decreases. Thus, we use a more robust estimator to describe the distribution: the median.</p>
+<p>In the following example, we will plot three Cauchy distributions of different <span class="math notranslate nohighlight">\(\gamma\)</span> values with <span class="math notranslate nohighlight">\(\mu = 0\)</span>. The Cauchy distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.cauchy</span></code> – after importing the module, we will define <span class="math notranslate nohighlight">\(\mu\)</span>, <span class="math notranslate nohighlight">\(\gamma\)</span>, and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers <span class="math notranslate nohighlight">\(x\)</span> to plot against.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">cauchy</span>
@@ -1288,9 +1304,10 @@ Note that with <code class="docutils literal notranslate"><span class="pre">uset
 <section id="the-laplace-exponential-distribution">
 <h2>The Laplace (exponential) distribution<a class="headerlink" href="#the-laplace-exponential-distribution" title="Permalink to this headline">#</a></h2>
 <p>The Laplace distribution is given by:</p>
-<p>$$ p(x|\mu,\Delta) = \frac{1}{2\Delta}\text{exp}\bigg(\frac{-|x-\mu|}{\Delta}\bigg) $$</p>
-<p>If we define $x &gt; 0$, the above expression becomes the one-sided exponential distribution. Since the Laplace distribution is symmetric around $\mu$, its mean, mode, and median are $\mu$, and its skewness is 0. The standard deviation is $\sigma = \sqrt{2\Delta}$.</p>
-<p>In the following example, we will plot three laplacian distributions with different $\Delta$ values and $\mu = 0$. The Laplacian distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.laplace</span></code> – after importing the module, we will define $\mu$, $\Delta$, and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers $x$ to plot against.</p>
+<div class="math notranslate nohighlight">
+\[ p(x|\mu,\Delta) = \frac{1}{2\Delta}\text{exp}\bigg(\frac{-|x-\mu|}{\Delta}\bigg) \]</div>
+<p>If we define <span class="math notranslate nohighlight">\(x &gt; 0\)</span>, the above expression becomes the one-sided exponential distribution. Since the Laplace distribution is symmetric around <span class="math notranslate nohighlight">\(\mu\)</span>, its mean, mode, and median are <span class="math notranslate nohighlight">\(\mu\)</span>, and its skewness is 0. The standard deviation is <span class="math notranslate nohighlight">\(\sigma = \sqrt{2\Delta}\)</span>.</p>
+<p>In the following example, we will plot three laplacian distributions with different <span class="math notranslate nohighlight">\(\Delta\)</span> values and <span class="math notranslate nohighlight">\(\mu = 0\)</span>. The Laplacian distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.laplace</span></code> – after importing the module, we will define <span class="math notranslate nohighlight">\(\mu\)</span>, <span class="math notranslate nohighlight">\(\Delta\)</span>, and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers <span class="math notranslate nohighlight">\(x\)</span> to plot against.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">laplace</span>
@@ -1327,7 +1344,7 @@ Note that with <code class="docutils literal notranslate"><span class="pre">uset
 </div>
 </div>
 </div>
-<p>We can see the same example but defined for $x&gt;0$. Thus we will use <code class="docutils literal notranslate"><span class="pre">scipy.stats.expon</span></code> instead and change the lower limit of $x$ to zero, excluding zero itself.</p>
+<p>We can see the same example but defined for <span class="math notranslate nohighlight">\(x&gt;0\)</span>. Thus we will use <code class="docutils literal notranslate"><span class="pre">scipy.stats.expon</span></code> instead and change the lower limit of <span class="math notranslate nohighlight">\(x\)</span> to zero, excluding zero itself.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">expon</span>
@@ -1400,14 +1417,16 @@ Note that with <code class="docutils literal notranslate"><span class="pre">uset
 </section>
 </section>
 <section id="the-chi-2-distribution">
-<h2>The $\chi^2$ distribution<a class="headerlink" href="#the-chi-2-distribution" title="Permalink to this headline">#</a></h2>
-<p>The $\chi^2$ distribution has the form:</p>
-<p>$$ p(Q|k) \equiv \chi^2(Q|k) = \frac{1}{2^{k/2}\Gamma(k/2)}Q^{k/2-1}\text{exp}(-Q/2): \text{for}: Q&gt;0 $$</p>
-<p>It has $k$ degrees of freedom, and $\Gamma$ is the gamma function. The distribution of $Q$ values depends only on the sample size, and not on the actual values of $\mu$ and $\sigma$. If $\mu$ and $\sigma$ are set to 0 and 1, the $\chi^2$ is the sum of $k$ standardized Gaussians.</p>
-<p>We can define the $\chi^2$ distribution <em>per degree of freedom</em> as</p>
-<p>$$\chi^2_{dof}(Q|k) \equiv \chi^2(Q/k|k)$$</p>
-<p>The mean value for $\chi^2_{dof}$ is 1, the standard deviation is $\sqrt{2/k}$, and as k increases, $\chi^2_{dof}$ tends to $N(1,\sqrt{2/k})$.</p>
-<p>In the following example, we will plot four $\chi^2$ distributions with different $k$ values and $\mu = 0$. The $\chi^2$ distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.chi2</span></code> – after importing the module, we will define $\mu$, $k$, and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers $x$ to plot against.</p>
+<h2>The <span class="math notranslate nohighlight">\(\chi^2\)</span> distribution<a class="headerlink" href="#the-chi-2-distribution" title="Permalink to this headline">#</a></h2>
+<p>The <span class="math notranslate nohighlight">\(\chi^2\)</span> distribution has the form:</p>
+<div class="math notranslate nohighlight">
+\[ p(Q|k) \equiv \chi^2(Q|k) = \frac{1}{2^{k/2}\Gamma(k/2)}Q^{k/2-1}\text{exp}(-Q/2)\: \text{for}\: Q&gt;0 \]</div>
+<p>It has <span class="math notranslate nohighlight">\(k\)</span> degrees of freedom, and <span class="math notranslate nohighlight">\(\Gamma\)</span> is the gamma function. The distribution of <span class="math notranslate nohighlight">\(Q\)</span> values depends only on the sample size, and not on the actual values of <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>. If <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> are set to 0 and 1, the <span class="math notranslate nohighlight">\(\chi^2\)</span> is the sum of <span class="math notranslate nohighlight">\(k\)</span> standardized Gaussians.</p>
+<p>We can define the <span class="math notranslate nohighlight">\(\chi^2\)</span> distribution <em>per degree of freedom</em> as</p>
+<div class="math notranslate nohighlight">
+\[\chi^2_{dof}(Q|k) \equiv \chi^2(Q/k|k)\]</div>
+<p>The mean value for <span class="math notranslate nohighlight">\(\chi^2_{dof}\)</span> is 1, the standard deviation is <span class="math notranslate nohighlight">\(\sqrt{2/k}\)</span>, and as k increases, <span class="math notranslate nohighlight">\(\chi^2_{dof}\)</span> tends to <span class="math notranslate nohighlight">\(N(1,\sqrt{2/k})\)</span>.</p>
+<p>In the following example, we will plot four <span class="math notranslate nohighlight">\(\chi^2\)</span> distributions with different <span class="math notranslate nohighlight">\(k\)</span> values and <span class="math notranslate nohighlight">\(\mu = 0\)</span>. The <span class="math notranslate nohighlight">\(\chi^2\)</span> distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.chi2</span></code> – after importing the module, we will define <span class="math notranslate nohighlight">\(\mu\)</span>, <span class="math notranslate nohighlight">\(k\)</span>, and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers <span class="math notranslate nohighlight">\(x\)</span> to plot against.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">chi2</span>
@@ -1493,9 +1512,10 @@ Note that with <code class="docutils literal notranslate"><span class="pre">uset
 <section id="students-t-distribution">
 <h2>Student’s t distribution<a class="headerlink" href="#students-t-distribution" title="Permalink to this headline">#</a></h2>
 <p>Student’s t distribution has the form:</p>
-<p>$$ p(x|k) = \frac{\Gamma(\frac{k+1}{2})}{\sqrt{\pi k}\Gamma(\frac{k}{2})}\bigg(1+\frac{x^2}{k}\bigg)^{-\frac{k+1}{2}}$$</p>
-<p>where $k$ is the number of degrees of freedom. This curve appears similar in shape to a Gaussian but with thicker tails. The mean, median, and mode are zero for $k &gt; 1$ and undefined for $k = 1$.</p>
-<p>In the following example, we will plot four Student’s t distributions with different $k$ values and $\mu = 0$. Student’s t distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.t</span></code> – after importing the module, we will define $\mu$, k, and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers $x$ to plot against.</p>
+<div class="math notranslate nohighlight">
+\[ p(x|k) = \frac{\Gamma(\frac{k+1}{2})}{\sqrt{\pi k}\Gamma(\frac{k}{2})}\bigg(1+\frac{x^2}{k}\bigg)^{-\frac{k+1}{2}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(k\)</span> is the number of degrees of freedom. This curve appears similar in shape to a Gaussian but with thicker tails. The mean, median, and mode are zero for <span class="math notranslate nohighlight">\(k &gt; 1\)</span> and undefined for <span class="math notranslate nohighlight">\(k = 1\)</span>.</p>
+<p>In the following example, we will plot four Student’s t distributions with different <span class="math notranslate nohighlight">\(k\)</span> values and <span class="math notranslate nohighlight">\(\mu = 0\)</span>. Student’s t distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.t</span></code> – after importing the module, we will define <span class="math notranslate nohighlight">\(\mu\)</span>, k, and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers <span class="math notranslate nohighlight">\(x\)</span> to plot against.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">t</span> <span class="k">as</span> <span class="n">student_t</span>
@@ -1574,12 +1594,14 @@ Note that with <code class="docutils literal notranslate"><span class="pre">uset
 </section>
 <section id="fishers-f-distribution">
 <h2>Fisher’s F distribution<a class="headerlink" href="#fishers-f-distribution" title="Permalink to this headline">#</a></h2>
-<p>For $x \geq 0$, $ d_1 &gt; 0$, and $ d_2 &gt; 0$, Fisher’s F distribution is given by</p>
-<p>$$ p(x|d_1,d_2) = C \bigg(1+\frac{d_1}{d_2}x\bigg)^{-\frac{d_1+d_2}{2}}x^{\frac{d_1}{2}-1}$$</p>
-<p>where $d_1$ and $d_2$ are degrees of freedom, the normalization constant C is equal to</p>
-<p>$$ C = \frac{1}{B(d_1/2,d_2/2)}\bigg(\frac{d_1}{d_2}\bigg)^{d_1/2} $$</p>
-<p>and $B$ is the beta function.</p>
-<p>In the following example, we will plot four Fisher’s F distributions with different $d_1$ and $d_2$ values and $\mu = 0$. Fisher’s F distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.f</span></code> – after importing the module, we will define $\mu$, $d_1$, $d_2$, and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers $x$ to plot against (removing x = 0).</p>
+<p>For <span class="math notranslate nohighlight">\(x \geq 0\)</span>, <span class="math notranslate nohighlight">\( d_1 &gt; 0\)</span>, and <span class="math notranslate nohighlight">\( d_2 &gt; 0\)</span>, Fisher’s F distribution is given by</p>
+<div class="math notranslate nohighlight">
+\[ p(x|d_1,d_2) = C \bigg(1+\frac{d_1}{d_2}x\bigg)^{-\frac{d_1+d_2}{2}}x^{\frac{d_1}{2}-1}\]</div>
+<p>where <span class="math notranslate nohighlight">\(d_1\)</span> and <span class="math notranslate nohighlight">\(d_2\)</span> are degrees of freedom, the normalization constant C is equal to</p>
+<div class="math notranslate nohighlight">
+\[ C = \frac{1}{B(d_1/2,d_2/2)}\bigg(\frac{d_1}{d_2}\bigg)^{d_1/2} \]</div>
+<p>and <span class="math notranslate nohighlight">\(B\)</span> is the beta function.</p>
+<p>In the following example, we will plot four Fisher’s F distributions with different <span class="math notranslate nohighlight">\(d_1\)</span> and <span class="math notranslate nohighlight">\(d_2\)</span> values and <span class="math notranslate nohighlight">\(\mu = 0\)</span>. Fisher’s F distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.f</span></code> – after importing the module, we will define <span class="math notranslate nohighlight">\(\mu\)</span>, <span class="math notranslate nohighlight">\(d_1\)</span>, <span class="math notranslate nohighlight">\(d_2\)</span>, and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers <span class="math notranslate nohighlight">\(x\)</span> to plot against (removing x = 0).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">f</span> <span class="k">as</span> <span class="n">fisher_f</span>
@@ -1655,10 +1677,11 @@ Note that with <code class="docutils literal notranslate"><span class="pre">uset
 </section>
 <section id="the-beta-distribution">
 <h2>The beta distribution<a class="headerlink" href="#the-beta-distribution" title="Permalink to this headline">#</a></h2>
-<p>For $0 &lt; x &lt; 1$, the beta distribution is given by</p>
-<p>$$ p(x|\alpha,\beta) = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)} x^{\alpha-1}(1-x)^{\beta-1}$$</p>
-<p>where $\alpha$ and $\beta$ are shape parameters both greater than zero.</p>
-<p>In the following example, we will plot four beta distributions with various $\alpha$ and $\beta$ values. The beta distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.beta</span></code> – after importing the module, we will define $\alpha$, $\beta$, and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers $x$ to plot against.</p>
+<p>For <span class="math notranslate nohighlight">\(0 &lt; x &lt; 1\)</span>, the beta distribution is given by</p>
+<div class="math notranslate nohighlight">
+\[ p(x|\alpha,\beta) = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)} x^{\alpha-1}(1-x)^{\beta-1}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> are shape parameters both greater than zero.</p>
+<p>In the following example, we will plot four beta distributions with various <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> values. The beta distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.beta</span></code> – after importing the module, we will define <span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(\beta\)</span>, and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers <span class="math notranslate nohighlight">\(x\)</span> to plot against.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">beta</span>
@@ -1733,10 +1756,11 @@ Note that with <code class="docutils literal notranslate"><span class="pre">uset
 </section>
 <section id="the-gamma-distribution">
 <h2>The gamma distribution<a class="headerlink" href="#the-gamma-distribution" title="Permalink to this headline">#</a></h2>
-<p>For 0 &lt; x &lt; $\infty$, the gamma distribution is given by</p>
-<p>$$ p(x|k,\theta) = \frac{1}{\theta^k}\frac{x^{k-1}e^{-x/\theta}}{\Gamma(k)}$$</p>
-<p>where k is the shape parameter and $\theta$ is the scale parameter.</p>
-<p>In the following example, we will plot four gamma distributions with various k and $\theta$ values. The Weibull distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.gamma</span></code> – after importing the module, we will define k, $\theta$ and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers $x$ to plot against.</p>
+<p>For 0 &lt; x &lt; <span class="math notranslate nohighlight">\(\infty\)</span>, the gamma distribution is given by</p>
+<div class="math notranslate nohighlight">
+\[ p(x|k,\theta) = \frac{1}{\theta^k}\frac{x^{k-1}e^{-x/\theta}}{\Gamma(k)}\]</div>
+<p>where k is the shape parameter and <span class="math notranslate nohighlight">\(\theta\)</span> is the scale parameter.</p>
+<p>In the following example, we will plot four gamma distributions with various k and <span class="math notranslate nohighlight">\(\theta\)</span> values. The Weibull distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.gamma</span></code> – after importing the module, we will define k, <span class="math notranslate nohighlight">\(\theta\)</span> and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers <span class="math notranslate nohighlight">\(x\)</span> to plot against.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">gamma</span>
@@ -1810,11 +1834,12 @@ Note that with <code class="docutils literal notranslate"><span class="pre">uset
 </section>
 <section id="the-weibull-distribution">
 <h2>The Weibull distribution<a class="headerlink" href="#the-weibull-distribution" title="Permalink to this headline">#</a></h2>
-<p>For $x \geq 0$, the Weilbull distribution is given by</p>
-<p>$$ p(x|k,\lambda) = \frac{k}{\lambda}\bigg(\frac{x}{\lambda}\bigg)^{k-1}e^{-(x/\lambda)^k}$$</p>
-<p>where $\lambda$ is the scale parameter and k is the shape parameter. The mean is given by $\lambda\Gamma(1+1/k)$ and the median is $\lambda (\ln2)^{1/k}$.</p>
-<p>The shape parameter can be used to interpolate between the exponential distribution (k=1) and the Rayleigh distribution (k=2). As k tends to infinity, the Weibull distribution transforms into a Dirac $\delta$ function.</p>
-<p>In the following example, we will plot four Weibull distributions of various k and $\lambda$ values. The Weibull distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.weibull_min</span></code> – after importing the module, we will define k, $\lambda$, $\mu$, and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers $x$ to plot against. Note that $\mu$ is the location parameter.</p>
+<p>For <span class="math notranslate nohighlight">\(x \geq 0\)</span>, the Weilbull distribution is given by</p>
+<div class="math notranslate nohighlight">
+\[ p(x|k,\lambda) = \frac{k}{\lambda}\bigg(\frac{x}{\lambda}\bigg)^{k-1}e^{-(x/\lambda)^k}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\lambda\)</span> is the scale parameter and k is the shape parameter. The mean is given by <span class="math notranslate nohighlight">\(\lambda\Gamma(1+1/k)\)</span> and the median is <span class="math notranslate nohighlight">\(\lambda (\ln2)^{1/k}\)</span>.</p>
+<p>The shape parameter can be used to interpolate between the exponential distribution (k=1) and the Rayleigh distribution (k=2). As k tends to infinity, the Weibull distribution transforms into a Dirac <span class="math notranslate nohighlight">\(\delta\)</span> function.</p>
+<p>In the following example, we will plot four Weibull distributions of various k and <span class="math notranslate nohighlight">\(\lambda\)</span> values. The Weibull distribution is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.weibull_min</span></code> – after importing the module, we will define k, <span class="math notranslate nohighlight">\(\lambda\)</span>, <span class="math notranslate nohighlight">\(\mu\)</span>, and use <code class="docutils literal notranslate"><span class="pre">np.linspace</span></code> to create a sequence of evenly spaced numbers <span class="math notranslate nohighlight">\(x\)</span> to plot against. Note that <span class="math notranslate nohighlight">\(\mu\)</span> is the location parameter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">weibull_min</span>

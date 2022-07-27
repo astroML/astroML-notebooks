@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -39,8 +39,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -647,25 +649,28 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="measurement-errors-in-both-dependent-and-independent-variables">
+  <section class="tex2jax_ignore mathjax_ignore" id="measurement-errors-in-both-dependent-and-independent-variables">
 <h1>Measurement errors in both dependent and independent variables<a class="headerlink" href="#measurement-errors-in-both-dependent-and-independent-variables" title="Permalink to this headline">#</a></h1>
-<p>Regression defined as the relation between a dependent variable, $\eta_i$, and a set of independent
-variables, $\xi_i$, that describes the expectation value of $\eta_i$ given $\xi_i$.
-There may be intrinsic scatter, $\epsilon_i$, too.</p>
-<p>In most cases, however, what we observe are values $x_i$ and $y_i$ and
-associated measurement errors, $\epsilon_{x,i}$ and $\epsilon_{y,i}$.
+<p>Regression defined as the relation between a dependent variable, <span class="math notranslate nohighlight">\(\eta_i\)</span>, and a set of independent
+variables, <span class="math notranslate nohighlight">\(\xi_i\)</span>, that describes the expectation value of <span class="math notranslate nohighlight">\(\eta_i\)</span> given <span class="math notranslate nohighlight">\(\xi_i\)</span>.
+There may be intrinsic scatter, <span class="math notranslate nohighlight">\(\epsilon_i\)</span>, too.</p>
+<p>In most cases, however, what we observe are values <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(y_i\)</span> and
+associated measurement errors, <span class="math notranslate nohighlight">\(\epsilon_{x,i}\)</span> and <span class="math notranslate nohighlight">\(\epsilon_{y,i}\)</span>.
 Following <a class="reference external" href="https://iopscience.iop.org/article/10.1086/519947/pdf">Kelly 2007</a>,
 we can write the regression relationship as:</p>
-<p>$$\eta_{i} = \alpha + \beta \xi_{i} + \epsilon_{i}$$</p>
+<div class="math notranslate nohighlight">
+\[\eta_{i} = \alpha + \beta \xi_{i} + \epsilon_{i}\]</div>
 <p>and</p>
-<p>$$x_{i} = \xi_{i} + \epsilon_{x,i}$$
-$$y_{i} = \eta_{i} + \epsilon_{y,i}$$</p>
+<div class="math notranslate nohighlight">
+\[x_{i} = \xi_{i} + \epsilon_{x,i}\]</div>
+<div class="math notranslate nohighlight">
+\[y_{i} = \eta_{i} + \epsilon_{y,i}\]</div>
 <section id="data-sets-used-in-the-examples-below">
 <h2>Data sets used in the examples below<a class="headerlink" href="#data-sets-used-in-the-examples-below" title="Permalink to this headline">#</a></h2>
 <p>Use simulation data from <a class="reference external" href="https://iopscience.iop.org/article/10.1086/519947/pdf">Kelly 2007</a>.
 This simulator, called <code class="docutils literal notranslate"><span class="pre">simulation_kelly</span></code>  is available from <code class="docutils literal notranslate"><span class="pre">astroML.datasets</span></code>.</p>
-<p>The function returns the $\xi_i$, $\eta_i$, $x_i$, $y_i$, $\epsilon_{x,i}$, $\epsilon_{y,i}$ and
-the input regression coefficients $\alpha$ and $\beta$ and intrinsic scatter $\epsilon$.
+<p>The function returns the <span class="math notranslate nohighlight">\(\xi_i\)</span>, <span class="math notranslate nohighlight">\(\eta_i\)</span>, <span class="math notranslate nohighlight">\(x_i\)</span>, <span class="math notranslate nohighlight">\(y_i\)</span>, <span class="math notranslate nohighlight">\(\epsilon_{x,i}\)</span>, <span class="math notranslate nohighlight">\(\epsilon_{y,i}\)</span> and
+the input regression coefficients <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span> and intrinsic scatter <span class="math notranslate nohighlight">\(\epsilon\)</span>.
 A total of <code class="docutils literal notranslate"><span class="pre">size</span></code> values generated, measurement errors are scaled by parameters <code class="docutils literal notranslate"><span class="pre">scalex</span></code> and
 <code class="docutils literal notranslate"><span class="pre">scaley</span></code> following secion 7.1 in <a class="reference external" href="https://iopscience.iop.org/article/10.1086/519947/pdf">Kelly 2007</a>.</p>
 <div class="cell docutils container">
@@ -680,7 +685,7 @@ A total of <code class="docutils literal notranslate"><span class="pre">size</sp
 </div>
 <section id="plot-the-generated-data">
 <h3>Plot the generated data<a class="headerlink" href="#plot-the-generated-data" title="Permalink to this headline">#</a></h3>
-<p>Plot both the simulated $\xi$, $\eta$ dataset as well the generated observed values of $x_i$ and $y_i$
+<p>Plot both the simulated <span class="math notranslate nohighlight">\(\xi\)</span>, <span class="math notranslate nohighlight">\(\eta\)</span> dataset as well the generated observed values of <span class="math notranslate nohighlight">\(x_i\)</span> and <span class="math notranslate nohighlight">\(y_i\)</span>
 including their measurement errors for different values of the scale parameters <code class="docutils literal notranslate"><span class="pre">scalex</span></code> and <code class="docutils literal notranslate"><span class="pre">scaley</span></code>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -777,8 +782,9 @@ to start up significantly faster.</p>
 <h2>Multivariate regression<a class="headerlink" href="#multivariate-regression" title="Permalink to this headline">#</a></h2>
 <p>For multivariate data (where we fit a hyperplane rather than a straight line) we simply extend the description
 of the regression function to multiple dimensions. The formalism used in the previous example becomes:</p>
-<p>$$ \eta_i = \alpha + \beta^T \xi_i + \epsilon_i $$</p>
-<p>where both $\beta^T$ and $\xi_i$ are now N-element vectors.</p>
+<div class="math notranslate nohighlight">
+\[ \eta_i = \alpha + \beta^T \xi_i + \epsilon_i \]</div>
+<p>where both <span class="math notranslate nohighlight">\(\beta^T\)</span> and <span class="math notranslate nohighlight">\(\xi_i\)</span> are now N-element vectors.</p>
 <section id="generate-a-dataset">
 <h3>Generate a dataset:<a class="headerlink" href="#generate-a-dataset" title="Permalink to this headline">#</a></h3>
 <p>We use the same function as above to generate 100 datapoints in 2 dimensions. Note that the size of the <code class="docutils literal notranslate"><span class="pre">beta</span></code>

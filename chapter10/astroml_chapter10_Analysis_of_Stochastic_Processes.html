@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -39,8 +39,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -556,7 +558,15 @@ title="Print to PDF"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#examples-of-stochastic-processes-1-f-and-1-f-2-processes">
-     Examples of stochastic processes: $1/f$ and $1/f^2$ processes
+     Examples of stochastic processes:
+     <span class="math notranslate nohighlight">
+      \(1/f\)
+     </span>
+     and
+     <span class="math notranslate nohighlight">
+      \(1/f^2\)
+     </span>
+     processes
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -663,7 +673,15 @@ title="Print to PDF"
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#examples-of-stochastic-processes-1-f-and-1-f-2-processes">
-     Examples of stochastic processes: $1/f$ and $1/f^2$ processes
+     Examples of stochastic processes:
+     <span class="math notranslate nohighlight">
+      \(1/f\)
+     </span>
+     and
+     <span class="math notranslate nohighlight">
+      \(1/f^2\)
+     </span>
+     processes
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -744,7 +762,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="analysis-of-stochastic-processes">
+  <section class="tex2jax_ignore mathjax_ignore" id="analysis-of-stochastic-processes">
 <h1>Analysis of Stochastic Processes<a class="headerlink" href="#analysis-of-stochastic-processes" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
@@ -782,36 +800,39 @@ Despite their seemingly irregular behavior, stochastic processes can be quantifi
 <h2>The autocorrelation and structure functions<a class="headerlink" href="#the-autocorrelation-and-structure-functions" title="Permalink to this headline">#</a></h2>
 <p>One of the main statistical tools for the analysis of stochastic variability is the <strong>autocorrelation
 function</strong>. It represents a specialized case of the correlation function of two functions, f(t) and g(t),
-scaled by their standard deviations, and defined at time lag $\Delta t$ as</p>
-<p>$$CF(\Delta t) = \frac{lim_{T \rightarrow \infty} \frac{1}{T} \int_{(T)}f(t)g(t+ \Delta t)dt}{\sigma_f \sigma_g}$$</p>
-<p>where $\sigma_f$ and $\sigma_g$ are standard deviations of f(t) and g(t), respectively. With this normalization, the
-correlation function is unity for $\Delta t$ = 0 (without normalization by standard deviation, the above
+scaled by their standard deviations, and defined at time lag <span class="math notranslate nohighlight">\(\Delta t\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[CF(\Delta t) = \frac{lim_{T \rightarrow \infty} \frac{1}{T} \int_{(T)}f(t)g(t+ \Delta t)dt}{\sigma_f \sigma_g}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma_f\)</span> and <span class="math notranslate nohighlight">\(\sigma_g\)</span> are standard deviations of f(t) and g(t), respectively. With this normalization, the
+correlation function is unity for <span class="math notranslate nohighlight">\(\Delta t\)</span> = 0 (without normalization by standard deviation, the above
 expression is equal to the covariance function). It is assumed that both f and g are statistically
 weakly stationary functions, which means that their mean and autocorrelation function (see below)
 do not depend on time. The correlation function yields information about the time delay
 between two processes. If one time series is produced from another one by simply shifting the time
-axis by tlag, their correlation function has a peak at $\Delta t = t_{lag}$.</p>
-<p>With $f(t) = g(t) = y(t)$, the autocorrelation of y(t) defined at time lag $\Delta t$ is</p>
-<p>$$ACF(\Delta t) = \frac{lim_{T \rightarrow \infty} \frac{1}{T} \int_{(T)}y(t)y(t+ \Delta t)dt}{\sigma_y^2}$$</p>
+axis by tlag, their correlation function has a peak at <span class="math notranslate nohighlight">\(\Delta t = t_{lag}\)</span>.</p>
+<p>With <span class="math notranslate nohighlight">\(f(t) = g(t) = y(t)\)</span>, the autocorrelation of y(t) defined at time lag <span class="math notranslate nohighlight">\(\Delta t\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[ACF(\Delta t) = \frac{lim_{T \rightarrow \infty} \frac{1}{T} \int_{(T)}y(t)y(t+ \Delta t)dt}{\sigma_y^2}\]</div>
 <p>The autocorrelation function yields information about the variable timescales present in a process.
-When y values are uncorrelated (e.g., due to white noise without any signal), $ACF(\Delta t) = 0$, except for $ACF(0) =1$. For processes that “retain memory” of previous states only for some characteristic
-time $\tau$, the autocorrelation function vanishes for $\Delta t \gg \tau$.</p>
-<p>The autocorrelation function and the PSD of function y(t) (i.e. $PSD(f) \equiv |H(f)|^2 + |H(-f)|^2$) are Fourier pairs; this
+When y values are uncorrelated (e.g., due to white noise without any signal), <span class="math notranslate nohighlight">\(ACF(\Delta t) = 0\)</span>, except for <span class="math notranslate nohighlight">\(ACF(0) =1\)</span>. For processes that “retain memory” of previous states only for some characteristic
+time <span class="math notranslate nohighlight">\(\tau\)</span>, the autocorrelation function vanishes for <span class="math notranslate nohighlight">\(\Delta t \gg \tau\)</span>.</p>
+<p>The autocorrelation function and the PSD of function y(t) (i.e. <span class="math notranslate nohighlight">\(PSD(f) \equiv |H(f)|^2 + |H(-f)|^2\)</span>) are Fourier pairs; this
 fact is known as the Wiener-Khinchin theorem and applies to stationary random processes. The
 former represents an analysis method in the time domain, and the latter in the frequency domain.</p>
 <p>The <strong>structure function</strong> is another quantity closely related to the autocorrelation function,</p>
-<p>$$SF(\Delta t) = SF_\infty [1-ACF(\Delta t)]^{\frac{1}{2}}$$</p>
-<p>where $SF_\infty$ is the standard deviation of the time series evaluated over an infinitely large time
-interval (or at least much longer than any characteristic timescale $\tau$).</p>
+<div class="math notranslate nohighlight">
+\[SF(\Delta t) = SF_\infty [1-ACF(\Delta t)]^{\frac{1}{2}}\]</div>
+<p>where <span class="math notranslate nohighlight">\(SF_\infty\)</span> is the standard deviation of the time series evaluated over an infinitely large time
+interval (or at least much longer than any characteristic timescale <span class="math notranslate nohighlight">\(\tau\)</span>).</p>
 <section id="examples-of-stochastic-processes-1-f-and-1-f-2-processes">
-<h3>Examples of stochastic processes: $1/f$ and $1/f^2$ processes<a class="headerlink" href="#examples-of-stochastic-processes-1-f-and-1-f-2-processes" title="Permalink to this headline">#</a></h3>
+<h3>Examples of stochastic processes: <span class="math notranslate nohighlight">\(1/f\)</span> and <span class="math notranslate nohighlight">\(1/f^2\)</span> processes<a class="headerlink" href="#examples-of-stochastic-processes-1-f-and-1-f-2-processes" title="Permalink to this headline">#</a></h3>
 <p>For a given autocorrelation function or PSD, the corresponding time series can be generated using
 the algorithm described in <a class="reference external" href="http://adsabs.harvard.edu/full/1995A%26A...300..707T">On generating power law noise</a>. Essentially, the amplitude of the Fourier transform is given by the
 PSD, and phases are assigned randomly; the inverse Fourier transform then generates time series.<br />
-The connection between the PSD and the appearance of time series of two power-law PSDs: $1/f$ and $1/f^2$ is illustrated in figure below.</p>
+The connection between the PSD and the appearance of time series of two power-law PSDs: <span class="math notranslate nohighlight">\(1/f\)</span> and <span class="math notranslate nohighlight">\(1/f^2\)</span> is illustrated in figure below.</p>
 <section id="generate-data-for-plotting">
 <h4>1. Generate data for plotting<a class="headerlink" href="#generate-data-for-plotting" title="Permalink to this headline">#</a></h4>
-<p>Let us use 1024 data points, and let $\Delta t = 0.01$ in this case.</p>
+<p>Let us use 1024 data points, and let <span class="math notranslate nohighlight">\(\Delta t = 0.01\)</span> in this case.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">1024</span>
@@ -831,15 +852,15 @@ The connection between the PSD and the appearance of time series of two power-la
 In the plot below shows examples of stochastic time series generated from power-law PSDs.</p>
 <ul class="simple">
 <li><p>Plots of generated data (top panels) and the corresponding PSD (bottom panels) are shown.</p></li>
-<li><p>Results from $1/f$ power-law (left panels) and from $1/f^2$ (right panel) are shown.</p></li>
+<li><p>Results from <span class="math notranslate nohighlight">\(1/f\)</span> power-law (left panels) and from <span class="math notranslate nohighlight">\(1/f^2\)</span> (right panel) are shown.</p></li>
 <li><p>Dashed lines indicate input PSD, and solid lines are determined from time series shown in the top panels.</p></li>
 </ul>
 <p>The PSD normalization is such that both cases have similar
 power at low frequencies. For this reason, the overall amplitudes (more precisely, the variance) of
-the two time series are similar. The power at high frequencies is much larger for the $1/f$ case, and
+the two time series are similar. The power at high frequencies is much larger for the <span class="math notranslate nohighlight">\(1/f\)</span> case, and
 this is why the corresponding time series has the appearance of noisy data.<br />
-The structure function for the $1/f$ process is constant, and proportional to $t^{1/2}$ for
-the $1/f^2$ process (remember that we defined structure function with a square root).</p>
+The structure function for the <span class="math notranslate nohighlight">\(1/f\)</span> process is constant, and proportional to <span class="math notranslate nohighlight">\(t^{1/2}\)</span> for
+the <span class="math notranslate nohighlight">\(1/f^2\)</span> process (remember that we defined structure function with a square root).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">))</span>
@@ -889,32 +910,35 @@ the $1/f^2$ process (remember that we defined structure function with a square r
 <h2>Autocorrelation and structure function for evenly and unevenly sampled data<a class="headerlink" href="#autocorrelation-and-structure-function-for-evenly-and-unevenly-sampled-data" title="Permalink to this headline">#</a></h2>
 <section id="evenly-sampled-data">
 <h3>Evenly sampled data<a class="headerlink" href="#evenly-sampled-data" title="Permalink to this headline">#</a></h3>
-<p>In the case of <strong>evenly sampled data</strong>, with $t_i = (i-1)\Delta t$, the autocorrelation function of a discretely sampled $y(t)$ is defined as</p>
-<p>$$ACF(j) = \frac{\sum^{N-j}<em>{i=1} [(y_i-\bar{y})(y</em>{i+j}-\bar{y})]}{\sum^{N}_{i=1}(y_i-\bar{y})^2}$$</p>
+<p>In the case of <strong>evenly sampled data</strong>, with <span class="math notranslate nohighlight">\(t_i = (i-1)\Delta t\)</span>, the autocorrelation function of a discretely sampled <span class="math notranslate nohighlight">\(y(t)\)</span> is defined as</p>
+<div class="math notranslate nohighlight">
+\[ACF(j) = \frac{\sum^{N-j}_{i=1} [(y_i-\bar{y})(y_{i+j}-\bar{y})]}{\sum^{N}_{i=1}(y_i-\bar{y})^2}\]</div>
 <p>The uncertainty of the mean is</p>
-<p>$$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{N}}[1+2 \sum^N_{j=1}(1-\frac{j}{N})ACF(j)]^{1/2}$$</p>
-<p>where $\sigma$ is the homoscedastic measurement error.<br />
-When a time series has a nonvanishing ACF, the uncertainty of its mean is larger than for an uncorrelated data set, where $\sigma_{\bar{x}} = \frac{s}{\sqrt{N}}$.<br />
+<div class="math notranslate nohighlight">
+\[\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{N}}[1+2 \sum^N_{j=1}(1-\frac{j}{N})ACF(j)]^{1/2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the homoscedastic measurement error.<br />
+When a time series has a nonvanishing ACF, the uncertainty of its mean is larger than for an uncorrelated data set, where <span class="math notranslate nohighlight">\(\sigma_{\bar{x}} = \frac{s}{\sqrt{N}}\)</span>.<br />
 When data are unevenly sampled, the ACF cannot be computed using equations above.</p>
 </section>
 <section id="unevenly-sampled-data">
 <h3>Unevenly sampled data<a class="headerlink" href="#unevenly-sampled-data" title="Permalink to this headline">#</a></h3>
 <p>For the case of <strong>unevenly sampled data</strong>, Edelson and Krolik proposed the <strong>“discrete correlation function” (DCF)</strong> in an astronomical context (called the “slot autocorrelation function” in physics). See <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1988ApJ...333..646E/abstract">The Discrete Correlation Function</a>.<br />
 For discrete unevenly sampled data with homoscedastic errors, they defined a quantity</p>
-<p>$$UDCF_{ij} = \frac{(y_i-\bar{y})(g_j-\bar{g})}{[(\sigma_y^2-e_y^2)(\sigma_g^2-e_g^2)^{1/2}]}$$</p>
-<p>where $e_y$ and $e_g$ are homoscedastic measurement errors for time series y and g. The associated time
-lag is $\Delta t_{ij} = ti - tj$. The discrete correlation function at time lag $\Delta t$ is then computed by binning
-and averaging $UDCF_{ij}$ over M pairs of points for which $\Delta t-\delta t=2 \leq \delta t_{ij} \leq \Delta t+\delta t/2$, where $\delta t$ is
-the bin size. The bin size is a trade-of between accuracy of $DCF(\Delta t)$ and its resolution. Edelson and Krolik showed that even uncorrelated time series will produce values of the cross-correlation $DCF(\Delta t) \sim \pm 1/ \sqrt{M}$.</p>
+<div class="math notranslate nohighlight">
+\[UDCF_{ij} = \frac{(y_i-\bar{y})(g_j-\bar{g})}{[(\sigma_y^2-e_y^2)(\sigma_g^2-e_g^2)^{1/2}]}\]</div>
+<p>where <span class="math notranslate nohighlight">\(e_y\)</span> and <span class="math notranslate nohighlight">\(e_g\)</span> are homoscedastic measurement errors for time series y and g. The associated time
+lag is <span class="math notranslate nohighlight">\(\Delta t_{ij} = ti - tj\)</span>. The discrete correlation function at time lag <span class="math notranslate nohighlight">\(\Delta t\)</span> is then computed by binning
+and averaging <span class="math notranslate nohighlight">\(UDCF_{ij}\)</span> over M pairs of points for which <span class="math notranslate nohighlight">\(\Delta t-\delta t=2 \leq \delta t_{ij} \leq \Delta t+\delta t/2\)</span>, where <span class="math notranslate nohighlight">\(\delta t\)</span> is
+the bin size. The bin size is a trade-of between accuracy of <span class="math notranslate nohighlight">\(DCF(\Delta t)\)</span> and its resolution. Edelson and Krolik showed that even uncorrelated time series will produce values of the cross-correlation <span class="math notranslate nohighlight">\(DCF(\Delta t) \sim \pm 1/ \sqrt{M}\)</span>.</p>
 <p>Scargle has developed different techniques to evaluate the discrete Fourier transform, correlation
 function and autocorrelation function of unevenly sampled time series (see <a class="reference external" href="https://www.osti.gov/biblio/5344858-studies-astronomical-time-series-analysis-iii-fourier-transforms-autocorrelation-functions-cross-correlation-functions-unevenly-spaced-data">Studies in astronomical time series analysis. III.</a>).<br />
 Given an unevenly sampled time series, y(t), the essential steps of Scargle’s
 procedure are as follows:</p>
 <ol class="arabic simple">
-<li><p>Compute the generalized Lomb-Scargle periodogram for $y(t_i), i = 1,…, N$, namely $P_{LS}(\omega)$.</p></li>
-<li><p>Compute the sampling window function using the generalized Lomb-Scargle periodogram using $z(t_i) = 1, i = 1,…, N$, namely $P_{LS}^W(\omega)$.</p></li>
-<li><p>Compute inverse Fourier transforms for $P_{LS}(\omega)$ and $P^W_{LS}(\omega)$, namely $\rho(t)$ and $\rho^W(t)$, respectively.</p></li>
-<li><p>The autocorrelation function at lag t is $ACF(t) = \rho(t)/ \rho^W(t)$.</p></li>
+<li><p>Compute the generalized Lomb-Scargle periodogram for <span class="math notranslate nohighlight">\(y(t_i), i = 1,..., N\)</span>, namely <span class="math notranslate nohighlight">\(P_{LS}(\omega)\)</span>.</p></li>
+<li><p>Compute the sampling window function using the generalized Lomb-Scargle periodogram using <span class="math notranslate nohighlight">\(z(t_i) = 1, i = 1,..., N\)</span>, namely <span class="math notranslate nohighlight">\(P_{LS}^W(\omega)\)</span>.</p></li>
+<li><p>Compute inverse Fourier transforms for <span class="math notranslate nohighlight">\(P_{LS}(\omega)\)</span> and <span class="math notranslate nohighlight">\(P^W_{LS}(\omega)\)</span>, namely <span class="math notranslate nohighlight">\(\rho(t)\)</span> and <span class="math notranslate nohighlight">\(\rho^W(t)\)</span>, respectively.</p></li>
+<li><p>The autocorrelation function at lag t is <span class="math notranslate nohighlight">\(ACF(t) = \rho(t)/ \rho^W(t)\)</span>.</p></li>
 </ol>
 </section>
 <section id="edelson-and-krolik-s-dcf-method-and-the-scargle-method-demonstration">
@@ -1027,25 +1051,28 @@ is crucial when fitting models to the autocorrelation function.</p>
 Autoregressive models provide a good general description of processes that “retain memory”
 of previous states (but are not periodic). An example of such a model is the <strong>random walk</strong>, where
 each new value is obtained by adding noise to the preceding value:</p>
-<p>$$y_i = y_{i-1} + e_i$$</p>
-<p>When $y_{i-1}$ is multiplied by a constant factor greater than 1, the model is known as a geometric
+<div class="math notranslate nohighlight">
+\[y_i = y_{i-1} + e_i\]</div>
+<p>When <span class="math notranslate nohighlight">\(y_{i-1}\)</span> is multiplied by a constant factor greater than 1, the model is known as a geometric
 random walk model (used extensively to model stock market data). The noise need not be Gaussian.</p>
 <p>The random walk can be generalized to the <strong>linear autoregressive (AR) model</strong> with dependencies
 on k past values (i.e., not just one as in the case of random walk). An autoregressive process of
 order k, AR(k), for a discrete data set is defined by</p>
-<p>$$y_i = \sum^{k}<em>{j=1} a_j y</em>{i-j} + e_i$$</p>
+<div class="math notranslate nohighlight">
+\[y_i = \sum^{k}_{j=1} a_j y_{i-j} + e_i\]</div>
 <p>That is, the latest value of y is expressed as a linear combination of the k previous values of y, with
 the addition of noise (for random walk, k = 1 and a1 = 1). If the data are drawn from a stationary
 process, coefficients aj satisfy certain conditions. The ACF for an AR(k) process is nonzero for all
 lags, but it decays quickly.</p>
-<p>An autoregressive process defined by $y_i = \sum^{k}<em>{j=1} a_j y</em>{i-j} + e_i$ applies only to evenly sampled time series. A
+<p>An autoregressive process defined by <span class="math notranslate nohighlight">\(y_i = \sum^{k}_{j=1} a_j y_{i-j} + e_i\)</span> applies only to evenly sampled time series. A
 generalization is called the <strong>continuous autoregressive process, CAR(k)</strong>; see <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2009ApJ...698..895K/abstract">Are the Variations in Quasar Optical Flux Driven by Thermal Fluctuations</a>. The CAR(1)
 process has recently received a lot of attention in the context of quasar variability.</p>
 <p>In addition to autoregressive models, data can be modeled using the <strong>covariance matrix</strong> (e.g., using
 Gaussian process in Gaussian process regression section). For example, for the CAR(1) process,</p>
-<p>$$S_{ij} = \sigma^2 exp(-|t_{ij} / \tau|)$$</p>
-<p>where $\sigma$ and $\tau$ are model parameters; $\sigma^2$ controls the short timescale covariance ($t_{ij} \ll \tau$),
-which decays exponentially on a timescale given by $\tau$. A number of other convenient models
+<div class="math notranslate nohighlight">
+\[S_{ij} = \sigma^2 exp(-|t_{ij} / \tau|)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\tau\)</span> are model parameters; <span class="math notranslate nohighlight">\(\sigma^2\)</span> controls the short timescale covariance (<span class="math notranslate nohighlight">\(t_{ij} \ll \tau\)</span>),
+which decays exponentially on a timescale given by <span class="math notranslate nohighlight">\(\tau\)</span>. A number of other convenient models
 and parametrizations for the covariance matrix are discussed in the context of quasar variability
 in <a class="reference external" href="https://arxiv.org/abs/1202.3783">Is quasar variability a damped random walk?</a>.</p>
 </section>
@@ -1055,19 +1082,23 @@ in <a class="reference external" href="https://arxiv.org/abs/1202.3783">Is quasa
 term that pushes y(t) back to its mean (see <a class="reference external" href="https://arxiv.org/abs/1202.3783">Is quasar variability a damped random walk?</a>);</p>
 <p>hence, it is also known as damped random walk. In analogy with calling random walk “drunkard’s walk,” damped random walk could
 be called “married drunkard’s walk” (who always comes home instead of drifting away).
-Following $S_{ij} = \sigma^2 exp(-|t_{ij} / \tau|)$, the autocorrelation function for a damped random walk is</p>
-<p>$$ACF(t) = exp(-t/ \tau)$$</p>
-<p>where $\tau$ is the characteristic timescale (relaxation time, or damping timescale). Given the $ACF$,
+Following <span class="math notranslate nohighlight">\(S_{ij} = \sigma^2 exp(-|t_{ij} / \tau|)\)</span>, the autocorrelation function for a damped random walk is</p>
+<div class="math notranslate nohighlight">
+\[ACF(t) = exp(-t/ \tau)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\tau\)</span> is the characteristic timescale (relaxation time, or damping timescale). Given the <span class="math notranslate nohighlight">\(ACF\)</span>,
 it is easy to show that the structure function is</p>
-<p>$$SF(t) = SF_{\infty} [1-exp(-t/ \tau)]^{1/2}$$</p>
-<p>where $SF_{\infty}$ is the asymptotic value of the structure function equal to $\sqrt{2} \sigma$, where $\sigma$ has the same definition as in $S_{ij} = \sigma^2 exp(-|t_{ij} / \tau|)$. When the structure function applies to differences of the analyzed process</p>
-<p>$$PSD(f) = \frac{\tau^2 SF^2_{\infty}}{1+(2 \pi f \tau)^2}$$</p>
-<p>Therefore, the damped random walk is a $1/f^2$ process at high frequencies, just as ordinary random
-walk. The “damped nature” is seen as the at PSD at low frequencies ($f \ll 2\pi / \tau$). In the previous figure demonstrating E-K method and Scargle method, a light curve generated using a damped random walk is shown in the top panel.</p>
-<p>For evenly sampled data, the $CAR(1)$ process is equivalent to the $AR(1)$ process with $a_1 =
-exp(-1 / \tau)$, that is, the next value of $y$ is the damping factor times the previous value plus noise.
-The noise for the $AR(1)$ process, $\sigma_{AR}$ is related to $SF_{\infty}$ via</p>
-<p>$$\sigma_{AR} = \frac{SF_{\infty}}{\sqrt{2}} [1-exp(-2 / \tau)]^{1/2}$$</p>
+<div class="math notranslate nohighlight">
+\[SF(t) = SF_{\infty} [1-exp(-t/ \tau)]^{1/2}\]</div>
+<p>where <span class="math notranslate nohighlight">\(SF_{\infty}\)</span> is the asymptotic value of the structure function equal to <span class="math notranslate nohighlight">\(\sqrt{2} \sigma\)</span>, where <span class="math notranslate nohighlight">\(\sigma\)</span> has the same definition as in <span class="math notranslate nohighlight">\(S_{ij} = \sigma^2 exp(-|t_{ij} / \tau|)\)</span>. When the structure function applies to differences of the analyzed process</p>
+<div class="math notranslate nohighlight">
+\[PSD(f) = \frac{\tau^2 SF^2_{\infty}}{1+(2 \pi f \tau)^2}\]</div>
+<p>Therefore, the damped random walk is a <span class="math notranslate nohighlight">\(1/f^2\)</span> process at high frequencies, just as ordinary random
+walk. The “damped nature” is seen as the at PSD at low frequencies (<span class="math notranslate nohighlight">\(f \ll 2\pi / \tau\)</span>). In the previous figure demonstrating E-K method and Scargle method, a light curve generated using a damped random walk is shown in the top panel.</p>
+<p>For evenly sampled data, the <span class="math notranslate nohighlight">\(CAR(1)\)</span> process is equivalent to the <span class="math notranslate nohighlight">\(AR(1)\)</span> process with <span class="math notranslate nohighlight">\(a_1 =
+exp(-1 / \tau)\)</span>, that is, the next value of <span class="math notranslate nohighlight">\(y\)</span> is the damping factor times the previous value plus noise.
+The noise for the <span class="math notranslate nohighlight">\(AR(1)\)</span> process, <span class="math notranslate nohighlight">\(\sigma_{AR}\)</span> is related to <span class="math notranslate nohighlight">\(SF_{\infty}\)</span> via</p>
+<div class="math notranslate nohighlight">
+\[\sigma_{AR} = \frac{SF_{\infty}}{\sqrt{2}} [1-exp(-2 / \tau)]^{1/2}\]</div>
 </section>
 </section>
 

@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -39,8 +39,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -769,7 +771,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="temporally-localized-signals">
+  <section class="tex2jax_ignore mathjax_ignore" id="temporally-localized-signals">
 <h1>Temporally localized signals<a class="headerlink" href="#temporally-localized-signals" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
@@ -806,18 +808,19 @@ these two examples.</p>
 </section>
 <section id="matched-filter-burst-search">
 <h2>Matched Filter Burst Search<a class="headerlink" href="#matched-filter-burst-search" title="Permalink to this headline">#</a></h2>
-<p>Consider a model where the signal is stationary, $y(t) = b_0 + \epsilon$, and at some unknown time, T, it
+<p>Consider a model where the signal is stationary, <span class="math notranslate nohighlight">\(y(t) = b_0 + \epsilon\)</span>, and at some unknown time, T, it
 suddenly increases, followed by a decay to the original level b0 over some unknown time period.
 Let us describe such a burst by</p>
-<p>$$y_b=(t|T,A,\theta)=A_{gB}(t-T|\theta)$$</p>
-<p>where the function $gB$ describes the shape of the burst signal $(gB(t &lt; 0) = 0)$. This function is
-specified by a vector of parameters $\theta$ and can be analytic, tabulated in the form of a template,
+<div class="math notranslate nohighlight">
+\[y_b=(t|T,A,\theta)=A_{gB}(t-T|\theta)\]</div>
+<p>where the function <span class="math notranslate nohighlight">\(gB\)</span> describes the shape of the burst signal <span class="math notranslate nohighlight">\((gB(t &lt; 0) = 0)\)</span>. This function is
+specified by a vector of parameters <span class="math notranslate nohighlight">\(\theta\)</span> and can be analytic, tabulated in the form of a template,
 or treated in a nonparametric form.<br />
 Typically, MCMC methods are used to estimate model parameters.</p>
 <section id="set-up-a-burst-model-example">
 <h3>1. set up a burst model example<a class="headerlink" href="#set-up-a-burst-model-example" title="Permalink to this headline">#</a></h3>
-<p>Using equation $y_b=(t|T,A,\theta)=A_{gB}(t-T|\theta)$, we set up a burst model as an example to show the matched filter search.<br />
-Here we consider a case with $gB(t|\alpha) = exp(-\alpha t)$. The burst data set is shown in the plot below.</p>
+<p>Using equation <span class="math notranslate nohighlight">\(y_b=(t|T,A,\theta)=A_{gB}(t-T|\theta)\)</span>, we set up a burst model as an example to show the matched filter search.<br />
+Here we consider a case with <span class="math notranslate nohighlight">\(gB(t|\alpha) = exp(-\alpha t)\)</span>. The burst data set is shown in the plot below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up toy dataset</span>
@@ -855,7 +858,7 @@ Here we consider a case with $gB(t|\alpha) = exp(-\alpha t)$. The burst data set
 </section>
 <section id="set-up-and-run-the-mcmc-sampling">
 <h3>2. Set up and run the MCMC sampling<a class="headerlink" href="#set-up-and-run-the-mcmc-sampling" title="Permalink to this headline">#</a></h3>
-<p>We use MCMC to compute the posterior parameters in the equation, in order to fit this burst model. The parameters we estimate using MCMC are $b_0$, $A$, $T$, and $\alpha$.<br />
+<p>We use MCMC to compute the posterior parameters in the equation, in order to fit this burst model. The parameters we estimate using MCMC are <span class="math notranslate nohighlight">\(b_0\)</span>, <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(T\)</span>, and <span class="math notranslate nohighlight">\(\alpha\)</span>.<br />
 This cell may take more than 2 minutes to run.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -891,8 +894,8 @@ This cell may take more than 2 minutes to run.</p>
 <h3>3. Show estimated model<a class="headerlink" href="#show-estimated-model" title="Permalink to this headline">#</a></h3>
 <p>A matched filter search for a burst signal in time series data.</p>
 <ul class="simple">
-<li><p>The top-right panel shows simulated data set generated from a model of the form $y(t) = b_0$ for $t &lt; T$ and $y = b_0 + A exp[-a(t - T)]$ for $t &gt; T$, with homoscedastic Gaussian errors with sigma = 2.</p></li>
-<li><p>The posterior pdf for the four model parameters ($b_0$, $A$, $T$, and $\alpha$) is determined using MCMC and shown in the other panels.</p></li>
+<li><p>The top-right panel shows simulated data set generated from a model of the form <span class="math notranslate nohighlight">\(y(t) = b_0\)</span> for <span class="math notranslate nohighlight">\(t &lt; T\)</span> and <span class="math notranslate nohighlight">\(y = b_0 + A exp[-a(t - T)]\)</span> for <span class="math notranslate nohighlight">\(t &gt; T\)</span>, with homoscedastic Gaussian errors with sigma = 2.</p></li>
+<li><p>The posterior pdf for the four model parameters (<span class="math notranslate nohighlight">\(b_0\)</span>, <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(T\)</span>, and <span class="math notranslate nohighlight">\(\alpha\)</span>) is determined using MCMC and shown in the other panels.</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -927,12 +930,13 @@ This cell may take more than 2 minutes to run.</p>
 </section>
 <section id="matched-filter-chirp-search">
 <h2>Matched Filter Chirp Search<a class="headerlink" href="#matched-filter-chirp-search" title="Permalink to this headline">#</a></h2>
-<p>Here we consider a chirp signal, added to a stationary signal $b_0$,</p>
-<p>$$y(t) = b_0 + Asin[\omega t + \beta t^2]$$</p>
+<p>Here we consider a chirp signal, added to a stationary signal <span class="math notranslate nohighlight">\(b_0\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[y(t) = b_0 + Asin[\omega t + \beta t^2]\]</div>
 <p>and analyze it using essentially the same code as for the burst signal.</p>
 <section id="set-up-a-chirp-model-example">
 <h3>1. set up a chirp model example<a class="headerlink" href="#set-up-a-chirp-model-example" title="Permalink to this headline">#</a></h3>
-<p>Using equation $y(t) = b_0 + Asin[\omega t + \beta t^2])$, we set up a chirp model as an example to show the matched filter search.<br />
+<p>Using equation <span class="math notranslate nohighlight">\(y(t) = b_0 + Asin[\omega t + \beta t^2])\)</span>, we set up a chirp model as an example to show the matched filter search.<br />
 The chirp data set is shown in the plot below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -968,7 +972,7 @@ The chirp data set is shown in the plot below.</p>
 </section>
 <section id="id1">
 <h3>2. Set up and run the MCMC sampling<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
-<p>We use MCMC to compute the posterior parameters in the equation, in order to fit this chirp model. The parameters we estimate using MCMC are $b_0$, $A$, $\omega$, and $\beta$.</p>
+<p>We use MCMC to compute the posterior parameters in the equation, in order to fit this chirp model. The parameters we estimate using MCMC are <span class="math notranslate nohighlight">\(b_0\)</span>, <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(\omega\)</span>, and <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up MCMC sampling</span>
@@ -1002,12 +1006,12 @@ The chirp data set is shown in the plot below.</p>
 <h3>3. Show estimated model<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <p>A matched filter search for a chirp signal in time series data.</p>
 <ul class="simple">
-<li><p>The top-right panel shows a simulated data set generated from a model of the form $y = b_0+Asin[\omega t + \beta t^2]$, with homoscedastic Gaussian errors with sigma = 2.</p></li>
-<li><p>The posterior pdf for the four model parameters ($b_0$, $A$, $\omega$, and $\beta$) is determined using MCMC and shown in the other panels.</p></li>
+<li><p>The top-right panel shows a simulated data set generated from a model of the form <span class="math notranslate nohighlight">\(y = b_0+Asin[\omega t + \beta t^2]\)</span>, with homoscedastic Gaussian errors with sigma = 2.</p></li>
+<li><p>The posterior pdf for the four model parameters (<span class="math notranslate nohighlight">\(b_0\)</span>, <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(\omega\)</span>, and <span class="math notranslate nohighlight">\(\beta\)</span>) is determined using MCMC and shown in the other panels.</p></li>
 </ul>
-<p>Note that here the second term in the argument of the sine function above ($\beta t^2$) produces the
+<p>Note that here the second term in the argument of the sine function above (<span class="math notranslate nohighlight">\(\beta t^2\)</span>) produces the
 effect of increasing frequency in the signal seen in the top-right panel. The resulting fit shows a
-strong inverse correlation between $\beta$ and $\omega$. This is expected because they both act to increase the
+strong inverse correlation between <span class="math notranslate nohighlight">\(\beta\)</span> and <span class="math notranslate nohighlight">\(\omega\)</span>. This is expected because they both act to increase the
 frequency: starting from a given model, slightly increasing one while slightly decreasing the other
 leads to a very similar prediction.</p>
 <div class="cell docutils container">
@@ -1037,14 +1041,15 @@ leads to a very similar prediction.</p>
 </section>
 </section>
 </section>
-<section id="id3">
+<section class="tex2jax_ignore mathjax_ignore" id="id3">
 <h1>Matched Filter Chirp Search<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h1>
 <p>A more complex ten-parameter case of chirp modeling is show in this matched filter chirp search example. The chirp signal is
 temporally localized and it decays exponentially for t &gt; T:</p>
-<p>$$y_C(t|T, A, \phi, \omega, \beta) = A sin[\phi + \omega(t - T) + \beta(t - T)^2] exp[-\alpha(t - T)]$$</p>
+<div class="math notranslate nohighlight">
+\[y_C(t|T, A, \phi, \omega, \beta) = A sin[\phi + \omega(t - T) + \beta(t - T)^2] exp[-\alpha(t - T)]\]</div>
 <section id="id4">
 <h2>1. set up a chirp model example<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
-<p>Using equation $y(t) = b_0 + Asin[\omega t + \beta t^2])$, we set up a chirp model as an example to show the matched filter search.<br />
+<p>Using equation <span class="math notranslate nohighlight">\(y(t) = b_0 + Asin[\omega t + \beta t^2])\)</span>, we set up a chirp model as an example to show the matched filter search.<br />
 The chirp data set is shown in the plot below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1101,7 +1106,7 @@ The chirp data set is shown in the plot below.</p>
 </section>
 <section id="id5">
 <h2>2. Set up and run the MCMC sampling<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
-<p>We use MCMC to compute the posterior parameters in the equation, in order to fit this chirp model. The parameters we estimate using MCMC are $T$, $A$, $\omega$, and $\beta$.</p>
+<p>We use MCMC to compute the posterior parameters in the equation, in order to fit this chirp model. The parameters we estimate using MCMC are <span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(\omega\)</span>, and <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up and run MCMC sampling</span>
@@ -1143,7 +1148,7 @@ The chirp data set is shown in the plot below.</p>
 <p>A matched filter search for a chirp signal in time series data.</p>
 <ul class="simple">
 <li><p>The top-right panel shows a simulated data set generated from the chirp model.</p></li>
-<li><p>The posterior pdf for the four model parameters ($T$, $A$, $\omega$, and $\beta$) is determined using MCMC and shown in the other panels.</p></li>
+<li><p>The posterior pdf for the four model parameters (<span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(\omega\)</span>, and <span class="math notranslate nohighlight">\(\beta\)</span>) is determined using MCMC and shown in the other panels.</p></li>
 <li><p>Seven of the parameters can be considered nuisance parameters, and we marginalize over them in the likelihood contours shown here.</p></li>
 </ul>
 <div class="cell docutils container">
@@ -1176,8 +1181,9 @@ The chirp data set is shown in the plot below.</p>
 <section id="chirp-wavelet-psd">
 <h2>Chirp wavelet PSD<a class="headerlink" href="#chirp-wavelet-psd" title="Permalink to this headline">#</a></h2>
 <p>The signal in the absence of chirp is taken as</p>
-<p>$$y(t) = b_0 + b_1 sin(\omega_1 t) sin(\omega_2 t)$$</p>
-<p>Here, we can consider parameters $A$, $\omega$, $\beta$, and $\alpha$ as “interesting,” and other parameters can
+<div class="math notranslate nohighlight">
+\[y(t) = b_0 + b_1 sin(\omega_1 t) sin(\omega_2 t)\]</div>
+<p>Here, we can consider parameters <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(\omega\)</span>, <span class="math notranslate nohighlight">\(\beta\)</span>, and <span class="math notranslate nohighlight">\(\alpha\)</span> as “interesting,” and other parameters can
 be treated as “nuisance.”<br />
 We will take the same chirp signal above and draw a wavelet PSD for demonstration.</p>
 <section id="compute-the-wavelet-psd-of-chirp-model">

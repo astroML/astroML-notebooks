@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -39,8 +39,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -677,17 +679,19 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="parameter-estimation-for-the-cauchy-lorentzian-distribution">
+  <section class="tex2jax_ignore mathjax_ignore" id="parameter-estimation-for-the-cauchy-lorentzian-distribution">
 <h1>Parameter estimation for the Cauchy (Lorentzian) distribution<a class="headerlink" href="#parameter-estimation-for-the-cauchy-lorentzian-distribution" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
-<p><strong>Cauchy (Lorentzian) distribution</strong> is a symmetric distribution described by location parameter $\mu$ and a scale parameter $\gamma$ as</p>
-<p>$$p(x|\mu, \gamma) = \frac{1}{\pi \gamma} (\frac{\gamma^2}{\gamma^2+(x-\mu)^2})$$</p>
-<p>Because its tails decrease as slowly as $x^{-2}$ for large $|x|$, the mean, variance, standard deviation, and higher moments do not exist. Therefore we cannot estimate location and scale parameter from the mean, standard deviation. Instead, we can estimate it from median value and interquartile range for {$x_i$} using a Bayesian approach.</p>
-<p>Suppose we want to determine the location of a lighthouse signal along the coastline. Let coastline located at y = 0, and the lighthouse is at distance $\gamma$ away from the coastline. Define the angle between the line of light and coastline as $\theta$, then the position is expressed as $x = \mu + \gamma tan(\theta)$. From $-\pi/2 \leq \theta \leq \pi/2$, and angle $\theta$ is distributed uniformly, we can find data likelihood using $p(x) = (\pi dx/d\theta)^{-1}p(\theta)$.<br />
-The datalikelihood for a set of data {$x_i$} with Cauchy distribution is</p>
-<p>$$p({x_i}|\mu,\gamma,I) = \prod_{i=1}^N \frac{1}{\pi}(\frac{\gamma}{\gamma^2+(x_i-\mu)^2})$$</p>
-<p>In this notebook, we will explore how the changes of $\mu$ and $\gamma$ affect the estimated probability density function (pdf).</p>
+<p><strong>Cauchy (Lorentzian) distribution</strong> is a symmetric distribution described by location parameter <span class="math notranslate nohighlight">\(\mu\)</span> and a scale parameter <span class="math notranslate nohighlight">\(\gamma\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[p(x|\mu, \gamma) = \frac{1}{\pi \gamma} (\frac{\gamma^2}{\gamma^2+(x-\mu)^2})\]</div>
+<p>Because its tails decrease as slowly as <span class="math notranslate nohighlight">\(x^{-2}\)</span> for large <span class="math notranslate nohighlight">\(|x|\)</span>, the mean, variance, standard deviation, and higher moments do not exist. Therefore we cannot estimate location and scale parameter from the mean, standard deviation. Instead, we can estimate it from median value and interquartile range for {<span class="math notranslate nohighlight">\(x_i\)</span>} using a Bayesian approach.</p>
+<p>Suppose we want to determine the location of a lighthouse signal along the coastline. Let coastline located at y = 0, and the lighthouse is at distance <span class="math notranslate nohighlight">\(\gamma\)</span> away from the coastline. Define the angle between the line of light and coastline as <span class="math notranslate nohighlight">\(\theta\)</span>, then the position is expressed as <span class="math notranslate nohighlight">\(x = \mu + \gamma tan(\theta)\)</span>. From <span class="math notranslate nohighlight">\(-\pi/2 \leq \theta \leq \pi/2\)</span>, and angle <span class="math notranslate nohighlight">\(\theta\)</span> is distributed uniformly, we can find data likelihood using <span class="math notranslate nohighlight">\(p(x) = (\pi dx/d\theta)^{-1}p(\theta)\)</span>.<br />
+The datalikelihood for a set of data {<span class="math notranslate nohighlight">\(x_i\)</span>} with Cauchy distribution is</p>
+<div class="math notranslate nohighlight">
+\[p({x_i}|\mu,\gamma,I) = \prod_{i=1}^N \frac{1}{\pi}(\frac{\gamma}{\gamma^2+(x_i-\mu)^2})\]</div>
+<p>In this notebook, we will explore how the changes of <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\gamma\)</span> affect the estimated probability density function (pdf).</p>
 </section>
 <section id="import-functions">
 <h2>Import Functions<a class="headerlink" href="#import-functions" title="Permalink to this headline">#</a></h2>
@@ -707,14 +711,16 @@ The datalikelihood for a set of data {$x_i$} with Cauchy distribution is</p>
 </section>
 <section id="log-likelihood-for-cauchy-distribution">
 <h2>Log-likelihood for Cauchy Distribution<a class="headerlink" href="#log-likelihood-for-cauchy-distribution" title="Permalink to this headline">#</a></h2>
-<p>Given a data set of measured positions {$x_i$}, we need to estimate $\mu$ and $\gamma$. Analogously to the Gaussian case discussed in the prevoius chapter, we shall adopt a uniform prior distribution for the location parameter $\mu$, and a uniform prior distribution for ln$\gamma$, for $\mu_{min} \leq \mu \leq \mu_{max}$ and $\gamma_{min} \leq \gamma \leq \gamma_{max}$.</p>
+<p>Given a data set of measured positions {<span class="math notranslate nohighlight">\(x_i\)</span>}, we need to estimate <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\gamma\)</span>. Analogously to the Gaussian case discussed in the prevoius chapter, we shall adopt a uniform prior distribution for the location parameter <span class="math notranslate nohighlight">\(\mu\)</span>, and a uniform prior distribution for ln<span class="math notranslate nohighlight">\(\gamma\)</span>, for <span class="math notranslate nohighlight">\(\mu_{min} \leq \mu \leq \mu_{max}\)</span> and <span class="math notranslate nohighlight">\(\gamma_{min} \leq \gamma \leq \gamma_{max}\)</span>.</p>
 <p>The logarithm of the posterior pdf is</p>
-<p>$$L_p \equiv ln[p(\mu,\gamma|{x_i},I)] = constant + (N-1)ln\gamma - \sum^N_{i=1}ln[\gamma^2 + (x_i-\mu)^2]$$</p>
+<div class="math notranslate nohighlight">
+\[L_p \equiv ln[p(\mu,\gamma|{x_i},I)] = constant + (N-1)ln\gamma - \sum^N_{i=1}ln[\gamma^2 + (x_i-\mu)^2]\]</div>
 <section id="define-function">
 <h3>1. Define function<a class="headerlink" href="#define-function" title="Permalink to this headline">#</a></h3>
 <p>We define the log-likelihood function as</p>
-<p>$$L_p \equiv ln[p(\mu,\gamma|{x_i},I)] = constant + (N-1)ln\gamma - \sum^N_{i=1}ln[\gamma^2 + (x_i-\mu)^2]$$</p>
-<p>In this example, we will use N = 10 values of $x_i$, $\mu$ = 0, and $\gamma$ = 2.</p>
+<div class="math notranslate nohighlight">
+\[L_p \equiv ln[p(\mu,\gamma|{x_i},I)] = constant + (N-1)ln\gamma - \sum^N_{i=1}ln[\gamma^2 + (x_i-\mu)^2]\]</div>
+<p>In this example, we will use N = 10 values of <span class="math notranslate nohighlight">\(x_i\)</span>, <span class="math notranslate nohighlight">\(\mu\)</span> = 0, and <span class="math notranslate nohighlight">\(\gamma\)</span> = 2.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cauchy_logL</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">mu</span><span class="p">):</span>
@@ -746,9 +752,9 @@ The datalikelihood for a set of data {$x_i$} with Cauchy distribution is</p>
 </section>
 <section id="find-mu-and-gamma-at-max-data-likelihood">
 <h3>2. Find mu and gamma at max data likelihood<a class="headerlink" href="#find-mu-and-gamma-at-max-data-likelihood" title="Permalink to this headline">#</a></h3>
-<p>We can find $\mu$ and $\gamma$ that maximize L by setting the derivative of L to 0, as $\frac{dlnL(\mu)}{d\mu}\Big|_{\mu^0} \equiv 0$. Here in this example, the result is $\mu = -0.36$, and $\gamma = 0.81$.</p>
-<p>Median and interquartile range imply $\mu = -0.26$ and $\gamma = 1.11$. The interquartile range for the Cauchy distribution is equal to $2\gamma$ and thus
-$$\sigma_G = 1.483\gamma$$</p>
+<p>We can find <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\gamma\)</span> that maximize L by setting the derivative of L to 0, as <span class="math notranslate nohighlight">\(\frac{dlnL(\mu)}{d\mu}\Big|_{\mu^0} \equiv 0\)</span>. Here in this example, the result is <span class="math notranslate nohighlight">\(\mu = -0.36\)</span>, and <span class="math notranslate nohighlight">\(\gamma = 0.81\)</span>.</p>
+<p>Median and interquartile range imply <span class="math notranslate nohighlight">\(\mu = -0.26\)</span> and <span class="math notranslate nohighlight">\(\gamma = 1.11\)</span>. The interquartile range for the Cauchy distribution is equal to <span class="math notranslate nohighlight">\(2\gamma\)</span> and thus
+$<span class="math notranslate nohighlight">\(\sigma_G = 1.483\gamma\)</span>$</p>
 <p>When using this shortcut, the bootstrap method can be used to estimate parameter uncertainties as shown in the next section.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -769,8 +775,8 @@ $$\sigma_G = 1.483\gamma$$</p>
 </section>
 <section id="plot-the-results">
 <h3>3. Plot the results<a class="headerlink" href="#plot-the-results" title="Permalink to this headline">#</a></h3>
-<p>Here we show the result of the logarithm of posterior probability distribution for $\mu$ and $\gamma$ for $L_p(\mu,\gamma)$ given above.<br />
-This example uses N = 10, $\mu$ = 0 and $\gamma$ = 2. The maximum of L is renormalized to 0, and color coded as shown in the legend. The contours enclose the regions that contain 0.683, 0.955 and 0.997 of the cumulative (integrated) posterior probability.</p>
+<p>Here we show the result of the logarithm of posterior probability distribution for <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\gamma\)</span> for <span class="math notranslate nohighlight">\(L_p(\mu,\gamma)\)</span> given above.<br />
+This example uses N = 10, <span class="math notranslate nohighlight">\(\mu\)</span> = 0 and <span class="math notranslate nohighlight">\(\gamma\)</span> = 2. The maximum of L is renormalized to 0, and color coded as shown in the legend. The contours enclose the regions that contain 0.683, 0.955 and 0.997 of the cumulative (integrated) posterior probability.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
@@ -801,7 +807,7 @@ This example uses N = 10, $\mu$ = 0 and $\gamma$ = 2. The maximum of L is renorm
 </section>
 <section id="posterior-for-cauchy-distribution">
 <h2>Posterior for Cauchy Distribution<a class="headerlink" href="#posterior-for-cauchy-distribution" title="Permalink to this headline">#</a></h2>
-<p>In the prevoius secsion, we use the interquartile range shortcut expressed by $\sigma_G = 1.483\gamma$ Here we will use a bootstrap method to estimate parameter uncertainties.</p>
+<p>In the prevoius secsion, we use the interquartile range shortcut expressed by <span class="math notranslate nohighlight">\(\sigma_G = 1.483\gamma\)</span> Here we will use a bootstrap method to estimate parameter uncertainties.</p>
 <section id="id1">
 <h3>1. define function<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
@@ -817,7 +823,7 @@ This example uses N = 10, $\mu$ = 0 and $\gamma$ = 2. The maximum of L is renorm
 </section>
 <section id="generate-sample-and-use-bootstrap-estimation">
 <h3>2. Generate sample and use Bootstrap estimation<a class="headerlink" href="#generate-sample-and-use-bootstrap-estimation" title="Permalink to this headline">#</a></h3>
-<p>Draw a random sample from the cauchy distribution, and compute marginalized posteriors of mu and gamma. Here we have a Cauchy distributed sample with N = 10, $\mu = 0$, $\gamma = 2$.</p>
+<p>Draw a random sample from the cauchy distribution, and compute marginalized posteriors of mu and gamma. Here we have a Cauchy distributed sample with N = 10, <span class="math notranslate nohighlight">\(\mu = 0\)</span>, <span class="math notranslate nohighlight">\(\gamma = 2\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">44</span><span class="p">)</span>
@@ -854,7 +860,7 @@ This example uses N = 10, $\mu$ = 0 and $\gamma$ = 2. The maximum of L is renorm
 </section>
 <section id="plot-results">
 <h3>3. Plot results<a class="headerlink" href="#plot-results" title="Permalink to this headline">#</a></h3>
-<p>We will draw a bootstrap estimation (blue dotted lines) of this Cauchy distributed sample along with the posterior pdf (black solid lines). The left two plots show how the result changes with the change of posterior $\mu$, and the right two plots show how the result changes with the posterior $\gamma$.<br />
+<p>We will draw a bootstrap estimation (blue dotted lines) of this Cauchy distributed sample along with the posterior pdf (black solid lines). The left two plots show how the result changes with the change of posterior <span class="math notranslate nohighlight">\(\mu\)</span>, and the right two plots show how the result changes with the posterior <span class="math notranslate nohighlight">\(\gamma\)</span>.<br />
 The bottom two plots show the cumulative probability distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

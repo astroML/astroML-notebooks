@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -39,8 +39,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -653,7 +655,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="parameter-estimation-for-a-binomial-distribution">
+  <section class="tex2jax_ignore mathjax_ignore" id="parameter-estimation-for-a-binomial-distribution">
 <h1>Parameter Estimation for a Binomial Distribution<a class="headerlink" href="#parameter-estimation-for-a-binomial-distribution" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
@@ -667,20 +669,22 @@ binomial distribution describes the distribution of a variable that can take onl
 (say, 0 or 1, or success vs. failure, or an event happening or not). If the probability of success is <strong>b</strong>,
 then the distribution of a discrete variable k (an integer number, unlike x which is a real number)
 that measures how many times success occurred in N trials (i.e., measurements), is given by</p>
-<p>$$p(k|b,N)=\frac{N!}{k!(N-k)!}b^k(1-b)^{N-k}$$</p>
-<p>Here we have the mean of the binomial distribution given by $\bar{k} = bN$.<br />
-The standard deviation is $\sigma_k = [N b(1-b)]^{1/2}$.<br />
-And the uncertainty (standard error) is $\sigma_b = \sigma_k/N$.</p>
+<div class="math notranslate nohighlight">
+\[p(k|b,N)=\frac{N!}{k!(N-k)!}b^k(1-b)^{N-k}\]</div>
+<p>Here we have the mean of the binomial distribution given by <span class="math notranslate nohighlight">\(\bar{k} = bN\)</span>.<br />
+The standard deviation is <span class="math notranslate nohighlight">\(\sigma_k = [N b(1-b)]^{1/2}\)</span>.<br />
+And the uncertainty (standard error) is <span class="math notranslate nohighlight">\(\sigma_b = \sigma_k/N\)</span>.</p>
 </section>
 <section id="posterior-probability-distribution-in-binomial-distribution">
 <h2>Posterior probability distribution in binomial distribution<a class="headerlink" href="#posterior-probability-distribution-in-binomial-distribution" title="Permalink to this headline">#</a></h2>
-<p>Given a set of N measurements (or trials), ${x_i}$, drawn from a binomial distribution described with parameter b, we seek the posterior probability distribution $p(b|{x_i}$).</p>
-<p>When N is large, b and its (presumably Gaussian) uncertainty $\sigma_b$ can be determined using the equation above. For small N, the proper procedure is as follows.
+<p>Given a set of N measurements (or trials), <span class="math notranslate nohighlight">\({x_i}\)</span>, drawn from a binomial distribution described with parameter b, we seek the posterior probability distribution <span class="math notranslate nohighlight">\(p(b|{x_i}\)</span>).</p>
+<p>When N is large, b and its (presumably Gaussian) uncertainty <span class="math notranslate nohighlight">\(\sigma_b\)</span> can be determined using the equation above. For small N, the proper procedure is as follows.
 Assuming that the prior for b is at in the range 0-1, the posterior probability for b is</p>
-<p>$$p(b|k,N)=Cb^k(1-b)^{N-k}$$</p>
+<div class="math notranslate nohighlight">
+\[p(b|k,N)=Cb^k(1-b)^{N-k}\]</div>
 <p>where k is now the actual observed number of successes in a data set of N values, and C is a normalization factor with
-can be determined from the condition $\int_0^1 p(b|k,N)db = 1$.
-The maximum posterior occurs at $b_0 = k/N$.</p>
+can be determined from the condition <span class="math notranslate nohighlight">\(\int_0^1 p(b|k,N)db = 1\)</span>.
+The maximum posterior occurs at <span class="math notranslate nohighlight">\(b_0 = k/N\)</span>.</p>
 </section>
 <section id="import-data-and-functions">
 <h2>Import Data and Functions<a class="headerlink" href="#import-data-and-functions" title="Permalink to this headline">#</a></h2>
@@ -697,7 +701,7 @@ The maximum posterior occurs at $b_0 = k/N$.</p>
 <section id="define-functions-and-calculate-result-from-data">
 <h3>Define functions and calculate result from data<a class="headerlink" href="#define-functions-and-calculate-result-from-data" title="Permalink to this headline">#</a></h3>
 <p>Here we vary the b value and draw the resulted posterior probability distribution from our data set. The equation is described below:
-$$p(b|k,N)=Cb^k(1-b)^{N-k}$$
+$<span class="math notranslate nohighlight">\(p(b|k,N)=Cb^k(1-b)^{N-k}\)</span>$
 In comparison, we also calculate a Gaussian distribution from the same data set.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -726,11 +730,11 @@ In comparison, we also calculate a Gaussian distribution from the same data set.
 <section id="show-comparison-result">
 <h3>Show comparison result<a class="headerlink" href="#show-comparison-result" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
-<li><p>The solid line in the left panel shows the posterior pdf $p(b|k,N)$ for k = 4
+<li><p>The solid line in the left panel shows the posterior pdf <span class="math notranslate nohighlight">\(p(b|k,N)\)</span> for k = 4
 and N = 10. The dashed line shows a Gaussian approximation.</p></li>
 <li><p>The right panel shows the corresponding cumulative distributions.<br />
 In comparison, a value of 0.1 is marginally likely according to the Gaussian approximation
-($p_{approx}$(&lt; 0.1) $\approx$ 0.03) but strongly rejected by the true distribution ($p_{true}$(&lt; 0.1) $\approx$ 0.003).</p></li>
+(<span class="math notranslate nohighlight">\(p_{approx}\)</span>(&lt; 0.1) <span class="math notranslate nohighlight">\(\approx\)</span> 0.03) but strongly rejected by the true distribution (<span class="math notranslate nohighlight">\(p_{true}\)</span>(&lt; 0.1) <span class="math notranslate nohighlight">\(\approx\)</span> 0.003).</p></li>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -767,11 +771,11 @@ In comparison, a value of 0.1 is marginally likely according to the Gaussian app
 </section>
 <section id="log-likelihood-for-binomial-distribution">
 <h2>Log-likelihood for Binomial Distribution<a class="headerlink" href="#log-likelihood-for-binomial-distribution" title="Permalink to this headline">#</a></h2>
-<p>Suppose we have N measurements, ${x_i}$. The measurement errors are gaussian, and the measurement error for each
-measurement is $\sigma_i$. This method applies logrithm in searching the posterior probability density function (pdf).
-Given that the likelihood function for a single measurement, $x_i$, is assumed to follow a Gaussian
-distribution $\mathcal{N}(\mu,\sigma)$, the likelihood for all measurements is given by
-$$L_p({x_i}|b,k,N) = ln[p(b,k,N|{x_i})]$$</p>
+<p>Suppose we have N measurements, <span class="math notranslate nohighlight">\({x_i}\)</span>. The measurement errors are gaussian, and the measurement error for each
+measurement is <span class="math notranslate nohighlight">\(\sigma_i\)</span>. This method applies logrithm in searching the posterior probability density function (pdf).
+Given that the likelihood function for a single measurement, <span class="math notranslate nohighlight">\(x_i\)</span>, is assumed to follow a Gaussian
+distribution <span class="math notranslate nohighlight">\(\mathcal{N}(\mu,\sigma)\)</span>, the likelihood for all measurements is given by
+$<span class="math notranslate nohighlight">\(L_p({x_i}|b,k,N) = ln[p(b,k,N|{x_i})]\)</span>$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the function for calculating log-likelihood Binomial distribution</span>

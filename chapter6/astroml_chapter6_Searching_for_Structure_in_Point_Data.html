@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -39,8 +39,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -657,7 +659,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="searching-for-structure-in-point-data">
+  <section class="tex2jax_ignore mathjax_ignore" id="searching-for-structure-in-point-data">
 <h1>Searching for Structure in Point Data<a class="headerlink" href="#searching-for-structure-in-point-data" title="Permalink to this headline">#</a></h1>
 <section id="first-we-import-data">
 <h2>First we import data<a class="headerlink" href="#first-we-import-data" title="Permalink to this headline">#</a></h2>
@@ -755,9 +757,9 @@ this is the same data used in the Bayesian Blocks figure</p>
 <h2>Plot the results<a class="headerlink" href="#plot-the-results" title="Permalink to this headline">#</a></h2>
 <section id="kernel-density-estimation-kde">
 <h3>Kernel Density Estimation (KDE)<a class="headerlink" href="#kernel-density-estimation-kde" title="Permalink to this headline">#</a></h3>
-<p>We often use Gaussian Kernel in KDE. Function $K(u)$ represents the weight at a given point, which is normalized such that $\int K(u)du = 1$.<br />
+<p>We often use Gaussian Kernel in KDE. Function <span class="math notranslate nohighlight">\(K(u)\)</span> represents the weight at a given point, which is normalized such that <span class="math notranslate nohighlight">\(\int K(u)du = 1\)</span>.<br />
 For a Gaussian Kernel:
-$$K(u) = \frac{1}{ {2\pi}^{\frac{D}{2}} } e^{\frac{-{u}^2}{2}}$$</p>
+$<span class="math notranslate nohighlight">\(K(u) = \frac{1}{ {2\pi}^{\frac{D}{2}} } e^{\frac{-{u}^2}{2}}\)</span>$</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># with functions</span>

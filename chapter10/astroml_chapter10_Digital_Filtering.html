@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -39,8 +39,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -825,7 +827,7 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="digital-filtering">
+  <section class="tex2jax_ignore mathjax_ignore" id="digital-filtering">
 <h1>Digital Filtering<a class="headerlink" href="#digital-filtering" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
@@ -866,18 +868,20 @@ Survey (SDSS).</p>
 <h2>1. Low-pass filters<a class="headerlink" href="#low-pass-filters" title="Permalink to this headline">#</a></h2>
 <p>The power spectrum for common Gaussian noise is
 at and will extend to frequencies as high as
-the Nyquist limit, $f_N = 1=(2\Delta t)$. If the data are band limited to a lower frequency, $f_c &lt; f_N$, then
-they can be smoothed without much impact by suppressing frequencies $|f| &gt; f_c$. Given a filter
-in frequency space, $\Phi (f)$, we can obtain a smoothed version of data by taking the inverse Fourier
+the Nyquist limit, <span class="math notranslate nohighlight">\(f_N = 1=(2\Delta t)\)</span>. If the data are band limited to a lower frequency, <span class="math notranslate nohighlight">\(f_c &lt; f_N\)</span>, then
+they can be smoothed without much impact by suppressing frequencies <span class="math notranslate nohighlight">\(|f| &gt; f_c\)</span>. Given a filter
+in frequency space, <span class="math notranslate nohighlight">\(\Phi (f)\)</span>, we can obtain a smoothed version of data by taking the inverse Fourier
 transform of</p>
-<p>$$\hat{Y}(f)=Y(f) \Phi(f)$$</p>
-<p>where $Y(f)$ is the discrete Fourier transform of data. At least in principle, we could simply set
-$\Phi(f)$ to zero for $|f| &gt; f_c$, but this approach would result in ringing (i.e., unwanted oscillations)
+<div class="math notranslate nohighlight">
+\[\hat{Y}(f)=Y(f) \Phi(f)\]</div>
+<p>where <span class="math notranslate nohighlight">\(Y(f)\)</span> is the discrete Fourier transform of data. At least in principle, we could simply set
+<span class="math notranslate nohighlight">\(\Phi(f)\)</span> to zero for <span class="math notranslate nohighlight">\(|f| &gt; f_c\)</span>, but this approach would result in ringing (i.e., unwanted oscillations)
 in the signal. Instead, the optimal filter for this purpose is constructed by minimizing the MISE
-between $\hat{Y}(f)$ and $Y(f)$ (for detailed derivation see NumRec) and is called the <strong>Wiener filter</strong>:</p>
-<p>$$\Phi(f) = \frac{P_S(f)}{P_S(f)+P_N(f)}$$</p>
-<p>Here $P_S(f)$ and $P_N(f)$ represent components of a two-component (signal and noise) fit to the
-PSD of input data, $PSD_Y (f) = P_S(f) + P_N(f)$, which holds as long as the signal and noise are
+between <span class="math notranslate nohighlight">\(\hat{Y}(f)\)</span> and <span class="math notranslate nohighlight">\(Y(f)\)</span> (for detailed derivation see NumRec) and is called the <strong>Wiener filter</strong>:</p>
+<div class="math notranslate nohighlight">
+\[\Phi(f) = \frac{P_S(f)}{P_S(f)+P_N(f)}\]</div>
+<p>Here <span class="math notranslate nohighlight">\(P_S(f)\)</span> and <span class="math notranslate nohighlight">\(P_N(f)\)</span> represent components of a two-component (signal and noise) fit to the
+PSD of input data, <span class="math notranslate nohighlight">\(PSD_Y (f) = P_S(f) + P_N(f)\)</span>, which holds as long as the signal and noise are
 uncorrelated. We will see how the filtering works in the example below.</p>
 <section id="create-the-noisy-data">
 <h3>Create the noisy data<a class="headerlink" href="#create-the-noisy-data" title="Permalink to this headline">#</a></h3>
@@ -942,7 +946,7 @@ uncorrelated. We will see how the filtering works in the example below.</p>
 </section>
 <section id="set-up-the-savitzky-golay-filter">
 <h3>Set up the Savitzky-Golay filter<a class="headerlink" href="#set-up-the-savitzky-golay-filter" title="Permalink to this headline">#</a></h3>
-<p>We use a fourth-order <strong>Savitzky-Golay</strong> filter with a window size of $\Delta \lambda = 10$ to filter the vales.
+<p>We use a fourth-order <strong>Savitzky-Golay</strong> filter with a window size of <span class="math notranslate nohighlight">\(\Delta \lambda = 10\)</span> to filter the vales.
 The Savitzky-Golay filter is a very simple but powerful method as a low-pass filter. It fits low-order polynomials
 to data (in the time domain) using sliding windows (it is also known as the least-squares filter).
 For a detailed discussion, see NumRec.</p>
@@ -993,7 +997,8 @@ For a detailed discussion, see NumRec.</p>
 <li><p>The lower panel shows the Wiener-filtered power spectral density (PSD) distributions.</p></li>
 </ul>
 <p>The two curves in the upper panel represent two-component fit to PSD given by equation</p>
-<p>$$\Phi(f) = \frac{P_S(f)}{P_S(f)+P_N(f)}$$</p>
+<div class="math notranslate nohighlight">
+\[\Phi(f) = \frac{P_S(f)}{P_S(f)+P_N(f)}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
@@ -1048,13 +1053,14 @@ For a detailed discussion, see NumRec.</p>
 <h3>Wiener Filter and kernel smoothing Connection<a class="headerlink" href="#wiener-filter-and-kernel-smoothing-connection" title="Permalink to this headline">#</a></h3>
 <p>There is an interesting connection between the kernel density estimation method discussed in the KDE notebook
 and Wiener filtering. By the convolution theorem, the Wiener-filtered result is equivalent to the
-convolution of the unfiltered signal with the inverse Fourier transform of $\Phi(f)$.</p>
+convolution of the unfiltered signal with the inverse Fourier transform of <span class="math notranslate nohighlight">\(\Phi(f)\)</span>.</p>
 <p>This convolution is equivalent to kernel density estimation. When Wiener filtering is viewed in this way, it effectively says that we believe the signal is as wide as the central
 peak, and the statistics of the noise are such that the minor peaks in the
 wings work to cancel out noise in the major peak.</p>
 <p>Hence, the modeling of the PSD in the frequency
 domain via</p>
-<p>$$\Phi(f) = \frac{P_S(f)}{P_S(f)+P_N(f)}$$</p>
+<div class="math notranslate nohighlight">
+\[\Phi(f) = \frac{P_S(f)}{P_S(f)+P_N(f)}\]</div>
 <p>corresponds to choosing the optimal kernel width. Just as detailed modeling
 of the Wiener filter is not of paramount importance, the choice of kernel is not either.</p>
 <p>We will use the same data as the previous Wiener filter figure as an example to explore this connection.</p>
@@ -1093,7 +1099,7 @@ space (i.e. using the standard Wiener filter above) but we will do it in the slo
 <section id="show-kernel-and-smoothing-results">
 <h3>Show kernel and smoothing results<a class="headerlink" href="#show-kernel-and-smoothing-results" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
-<li><p>The left panel shows the inverse Fourier transform of the Wiener filter $\Phi(f)$ applied in the sample data we used previously.</p></li>
+<li><p>The left panel shows the inverse Fourier transform of the Wiener filter <span class="math notranslate nohighlight">\(\Phi(f)\)</span> applied in the sample data we used previously.</p></li>
 <li><p>The right panel shows the data smoothed by this kernel, which is equivalent to the Wiener filter smoothing in the previous figure.</p></li>
 </ul>
 <p>By the convolution theorem, the Wiener-filtered result is equivalent to the convolution of the unfiltered signal with

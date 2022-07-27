@@ -21,7 +21,7 @@
     href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
@@ -39,8 +39,10 @@
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
     <script src="../_static/togglebutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -652,20 +654,23 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="density-estimation-for-sdss-great-wall">
+  <section class="tex2jax_ignore mathjax_ignore" id="density-estimation-for-sdss-great-wall">
 <h1>Density Estimation for SDSS “Great Wall”<a class="headerlink" href="#density-estimation-for-sdss-great-wall" title="Permalink to this headline">#</a></h1>
 <section id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
 <p>In this notebook, we are going to estimate density of galaxies in the SDSS “Great Wall” using different methods.<br />
 Raw data are often displayed in a way like scattered point or sorted with different sized bins in histogram. However, it hard to see a smooth distribution pattern in dots and histogram bins. Therefore, we need estimators for mining the underlying distribution pattern.</p>
 <p>Firstly, we will apply <strong>Kernal Density Estimation (KDE)</strong> with different kernels (Gaussian, top-hat, and exponential kernels).
-For a set of measurements ${x_i}$, the KDE at x is</p>
-<p>$$\hat{f_{N}}(x) = \frac{1}{Nh^D} \sum_{i=1}^{N} K(\frac{d(x,x_i)}{h})$$</p>
+For a set of measurements <span class="math notranslate nohighlight">\({x_i}\)</span>, the KDE at x is</p>
+<div class="math notranslate nohighlight">
+\[\hat{f_{N}}(x) = \frac{1}{Nh^D} \sum_{i=1}^{N} K(\frac{d(x,x_i)}{h})\]</div>
 <p>where D is the dimensions of the parameter space.</p>
 <p>Secondly, we will use <strong>K-Nearest-Neighbor Estimation</strong> with different structure scales (different K values). The estimated function is calculated as</p>
-<p>$$\hat{f_K}(x) = \frac{K}{V_D(d_K)}$$</p>
+<div class="math notranslate nohighlight">
+\[\hat{f_K}(x) = \frac{K}{V_D(d_K)}\]</div>
 <p>Lastly, we will use <strong>Gaussian Mixture Model (GMM)</strong> on the same dataset. The density function of points is given by</p>
-<p>$$\rho(x) = Np(x) = N \sum_{j=1}^{M} \alpha_j \mathcal{N}(\mu_j, \Sigma_j)$$</p>
+<div class="math notranslate nohighlight">
+\[\rho(x) = Np(x) = N \sum_{j=1}^{M} \alpha_j \mathcal{N}(\mu_j, \Sigma_j)\]</div>
 </section>
 <section id="import-data-and-methods">
 <h2>Import Data and Methods<a class="headerlink" href="#import-data-and-methods" title="Permalink to this headline">#</a></h2>
@@ -730,7 +735,7 @@ The main methods used here are KernalDensity, KNeighborsDensity, and GaussianMix
 </section>
 <section id="show-input-data-in-scattered-points">
 <h2>Show Input Data in Scattered Points<a class="headerlink" href="#show-input-data-in-scattered-points" title="Permalink to this headline">#</a></h2>
-<p>The plot projects galaxies in SDSS “Great Wall” as scatted points by their spatial locations onto the equatorial plane (declination ~ 0$^{\circ}$). The graph below shows the location of each point, but it is hard to get “clustered information” from.</p>
+<p>The plot projects galaxies in SDSS “Great Wall” as scatted points by their spatial locations onto the equatorial plane (declination ~ 0<span class="math notranslate nohighlight">\(^{\circ}\)</span>). The graph below shows the location of each point, but it is hard to get “clustered information” from.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch the great wall data</span>
@@ -762,10 +767,11 @@ The main methods used here are KernalDensity, KNeighborsDensity, and GaussianMix
 </section>
 <section id="evaluate-kde-with-gaussian-kernel">
 <h2>Evaluate KDE with Gaussian Kernel<a class="headerlink" href="#evaluate-kde-with-gaussian-kernel" title="Permalink to this headline">#</a></h2>
-<p>Use a <em>Gaussian kernel</em> to evaluate the kernel density. The function $K(u)$, a smooth function, represents the weight at a given point, which is normalized such that $\int K(u)du = 1$.<br />
+<p>Use a <em>Gaussian kernel</em> to evaluate the kernel density. The function <span class="math notranslate nohighlight">\(K(u)\)</span>, a smooth function, represents the weight at a given point, which is normalized such that <span class="math notranslate nohighlight">\(\int K(u)du = 1\)</span>.<br />
 The expression for Gaussian kernel is</p>
-<p>$$K(u) = \frac{1}{ {2\pi}^{\frac{D}{2}} } e^{\frac{-{u}^2}{2}}$$</p>
-<p>where D is the number of dimensions of the parameter space and $u = d(x, x_i) /h$.</p>
+<div class="math notranslate nohighlight">
+\[K(u) = \frac{1}{ {2\pi}^{\frac{D}{2}} } e^{\frac{-{u}^2}{2}}\]</div>
+<p>where D is the number of dimensions of the parameter space and <span class="math notranslate nohighlight">\(u = d(x, x_i) /h\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># evaluate Gaussian kernel</span>
@@ -796,10 +802,11 @@ The expression for Gaussian kernel is</p>
 <section id="evaluate-kde-with-top-hat-kernel">
 <h2>Evaluate KDE with Top-hat Kernel<a class="headerlink" href="#evaluate-kde-with-top-hat-kernel" title="Permalink to this headline">#</a></h2>
 <p>Use a <em>top-hat (box) kernel</em> to evaluate the kernel density. The expression for top-hat kernel is</p>
-<p>$$f(z) = \left{ \begin{array}{rcl}
-\frac{1}{V_{D}(1)} &amp; \mbox{if} &amp; |u|\leq1, \
+<div class="math notranslate nohighlight">
+\[\begin{split}f(z) = \left\{ \begin{array}{rcl}
+\frac{1}{V_{D}(1)} &amp; \mbox{if} &amp; |u|\leq1, \\
 0 &amp; \mbox{if} &amp; |u|&gt;1.
-\end{array}\right.$$</p>
+\end{array}\right.\end{split}\]</div>
 <p>This kernel gives the most “spread out” estimation for each distribution freature.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -825,8 +832,9 @@ The expression for Gaussian kernel is</p>
 <section id="evaluate-kde-with-exponential-kernel">
 <h2>Evaluate KDE with Exponential Kernel<a class="headerlink" href="#evaluate-kde-with-exponential-kernel" title="Permalink to this headline">#</a></h2>
 <p>Use a <em>exponential kernel</em> to evaluate the kernel density. The expression for exponential kernel is</p>
-<p>$$K(u) = \frac{1}{D!V_{D}(1)}e^{-|u|}.$$</p>
-<p>where $V_D(r)$ is the volume of a D-dimensional hypersphere of radius r.<br />
+<div class="math notranslate nohighlight">
+\[K(u) = \frac{1}{D!V_{D}(1)}e^{-|u|}.\]</div>
+<p>where <span class="math notranslate nohighlight">\(V_D(r)\)</span> is the volume of a D-dimensional hypersphere of radius r.<br />
 This kernel gives the “sharpest” estimation for each distribution feature.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -852,11 +860,13 @@ This kernel gives the “sharpest” estimation for each distribution feature.</
 <section id="evaluate-density-using-k-nearest-neighbor-estimation">
 <h2>Evaluate density using K-Nearest-Neighbor Estimation<a class="headerlink" href="#evaluate-density-using-k-nearest-neighbor-estimation" title="Permalink to this headline">#</a></h2>
 <p>Another estimator is the K-nearest-neighbor estimator, originally proposed by <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1980ApJ...236..351D/abstract">Dressler et al. 1980</a> . In this method, the implied point density at an arbitrary position x is estimated as</p>
-<p>$$\hat{f_K}(x) = \frac{K}{V_D(d_K)}$$</p>
-<p>where $V_D$ is evaluated volume, and D is the problem dimensionality.</p>
+<div class="math notranslate nohighlight">
+\[\hat{f_K}(x) = \frac{K}{V_D(d_K)}\]</div>
+<p>where <span class="math notranslate nohighlight">\(V_D\)</span> is evaluated volume, and D is the problem dimensionality.</p>
 <p>By taking the assumption that the underlying density field is locally constant, we can further simplify this method as</p>
-<p>$$\hat{f_K}(x) = \frac{C}{d_K^D}$$</p>
-<p>where C is a scaling factor evaluated by requiring that the sum of the product of $\hat{f_K}(x)$ and
+<div class="math notranslate nohighlight">
+\[\hat{f_K}(x) = \frac{C}{d_K^D}\]</div>
+<p>where C is a scaling factor evaluated by requiring that the sum of the product of <span class="math notranslate nohighlight">\(\hat{f_K}(x)\)</span> and
 pixel volume is equal to the total number of data points.</p>
 <p>In this method, we can change parameter k to get different estimation result.
 K should be at least 5 because the estimator is biased and has a large variance for smaller K; see <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/1985ApJ...298...80C/abstract">Casertano, S. and Hut, P.</a></p>
@@ -960,8 +970,9 @@ K should be at least 5 because the estimator is biased and has a large variance 
 <section id="use-gaussian-mixture-model">
 <h2>Use Gaussian Mixture Model<a class="headerlink" href="#use-gaussian-mixture-model" title="Permalink to this headline">#</a></h2>
 <p>GMM calculate the underlying pdf of a point as a sum of multi-dimensional Gaussians using the equation below</p>
-<p>$$\rho(x) = Np(x) = N \sum_{j=1}^{M} \alpha_j \mathcal{N}(\mu_j, \Sigma_j)$$</p>
-<p>where M is the number of Gaussians, $\mu_j$ is the the location, and $\Sigma_j$ is the covariance of a Gaussian.</p>
+<div class="math notranslate nohighlight">
+\[\rho(x) = Np(x) = N \sum_{j=1}^{M} \alpha_j \mathcal{N}(\mu_j, \Sigma_j)\]</div>
+<p>where M is the number of Gaussians, <span class="math notranslate nohighlight">\(\mu_j\)</span> is the the location, and <span class="math notranslate nohighlight">\(\Sigma_j\)</span> is the covariance of a Gaussian.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate GMM</span>
