@@ -5,7 +5,7 @@ jupytext:
     extension: .md
     format_name: myst
     format_version: 0.13
-    jupytext_version: 1.11.1
+    jupytext_version: 1.11.4
 kernelspec:
   display_name: Python 3
   language: python
@@ -100,7 +100,6 @@ device_lib.list_local_devices()
 
 ```{code-cell} ipython3
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 from astroML.utils import split_samples
 %matplotlib inline
@@ -230,19 +229,32 @@ def plot_model_history(history):
 The data we are using is taken from a survey for NEOs by Lori Allen and collaborators using DECam on the Blanco 4m Telescope at CTIO. The data comprise a stack of images taken over a period of 5 nights. Within these images we search for slowly moving sources (TNOs) along potential orbital trajectories. Given these trajectories we coadd the images. Our goal is to determine whether there is a point source within the coadded images. The training sample includes images of simulated TNOs (true positives; stamps_sources.npz) and random trajectories where there is no known source (false positives; stamps_noise.npz). The true positives range in signal-to-noise from 100 to 3
 
 ```{code-cell} ipython3
-from google_drive_downloader import GoogleDriveDownloader as gd
-gd.download_file_from_google_drive(file_id='1UT2BCf-IDUEpvTmcU4bq6nDcY3Ayw5vJ', dest_path='./data/stamps_noise.npy', unzip=False)
-gd.download_file_from_google_drive(file_id='1cZaMCA0z_nPX6GB_meLGouwOidEROcwc', dest_path='./data/stamps_sources.npy', unzip=False)
+# Brute force direct downloads source and noise images to circumvent size limitations 
+# for google drive internal virus scan. Download may take some time.
+
+import os
+import requests
+
+files = {'sources': (os.path.join('data', 'stamps_noise.npy'), '1UT2BCf-IDUEpvTmcU4bq6nDcY3Ayw5vJ'),
+         'noise': (os.path.join('data', 'stamps_sources.npy'), '1cZaMCA0z_nPX6GB_meLGouwOidEROcwc')}
+
+for name, file_id in files.values():
+    if not os.path.exists(name):
+        print(f"Downloading file {name}.")
+        
+        os.makedirs(os.path.dirname(name), exist_ok=True)
+        url = f"https://docs.google.com/uc?export=download&id={file_id}&confirm=t"
+        response = requests.post(url)
+        with open(name, 'wb') as file:
+            file.write(response.content) 
+    print(f"File {name} is downloaded")
+            
+sources = np.load(files['sources'][0])
+noise = np.load(files['noise'][0])
 ```
 
 ```{code-cell} ipython3
-import numpy as np
-import matplotlib.pyplot as plt
-
-#read in source and noise images
-path = './data/'
-sources = np.load(path+'stamps_sources.npy')
-noise = np.load(path+'stamps_noise.npy')
+# normalizing images
 
 point_source_stamps = []
 for image in sources:
@@ -254,7 +266,7 @@ for image in noise:
 ```
 
 ```{code-cell} ipython3
-#plot sample of images
+# plot sample of images
 plot_image_array(no_point_source_stamps, title='false positives')
 plot_image_array(point_source_stamps, title='true positives')
 ```
@@ -361,9 +373,7 @@ import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, Flatten, Activation
 from tensorflow.keras.utils import to_categorical
-import matplotlib.pyplot as plt
 
-import numpy as np
 def simple(input_shape=(21, 21, 1), n_classes: int = 2):
 
     model = tf.keras.models.Sequential(name='simple')
@@ -552,9 +562,7 @@ import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, Flatten
 from tensorflow.keras.utils import to_categorical
-import matplotlib.pyplot as plt
 
-import numpy as np
 def vgg6(input_shape=(21, 21, 1), n_classes: int = 2):
     """
         VGG6
@@ -688,7 +696,6 @@ ax.imshow(np.array(heatmap), alpha=0.5, cmap=mycmap)
 
 ```{code-cell} ipython3
 # Based on https://github.com/priya-dwivedi/Deep-Learning/blob/master/resnet_keras/Residual_Networks_yourself.ipynb
-import numpy as np
 import tensorflow as tf
 from tensorflow.keras.layers import Input, Add, Dense, Activation, ZeroPadding2D, BatchNormalization, Flatten, Conv2D, AveragePooling2D, MaxPooling2D, GlobalMaxPooling2D
 from tensorflow.keras.initializers import glorot_uniform
