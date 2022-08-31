@@ -8,7 +8,7 @@ statistics. It also introduces several important probability distribution functi
 ---
 maxdepth: 1
 ---
-
+astroml_chapter3_Descriptive_Statistics
 astroml_chapter3_Univariate_Distribution_Functions
 astroml_chapter3_The_Central_Limit_Theorem
 astroml_chapter3_Bivariate_and_Multivariate_Distribution_Functions
