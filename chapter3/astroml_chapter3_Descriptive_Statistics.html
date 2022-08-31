@@ -1,0 +1,1069 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Descriptive Statistics &#8212; AstroML Notebooks</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Univariate Distribution Functions" href="astroml_chapter3_Univariate_Distribution_Functions.html" />
+    <link rel="prev" title="Chapter 3: Probability and Statistical Distributions" href="README.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/astroml_logo.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">AstroML Notebooks</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="README.html">
+   Chapter 3: Probability and Statistical Distributions
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Descriptive Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroml_chapter3_Univariate_Distribution_Functions.html">
+     Univariate Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroml_chapter3_The_Central_Limit_Theorem.html">
+     The Central Limit Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroml_chapter3_Bivariate_and_Multivariate_Distribution_Functions.html">
+     Bivariate and multivariate distribution functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter5/README.html">
+   Chapter 5: Bayesian Statistical Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution.html">
+     Parameter Estimation for a Gaussian Distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Binomial_Distribution.html">
+     Parameter Estimation for a Binomial Distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Cauchy_Distribution.html">
+     Parameter estimation for the Cauchy (Lorentzian) distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Approximate_Bayesian_Computation.html">
+     Approximate Bayesian Computation Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Hierarchical_Bayes.html">
+     Hierarchical Bayes Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter6/README.html">
+   Chapter 6: Searching for Structure in Point Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall.html">
+     Density Estimation for SDSS “Great Wall”
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Searching_for_Structure_in_Point_Data.html">
+     Searching for Structure in Point Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Gaussian_Mixture_Models.html">
+     Gaussian Mixture Models Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Extreme_Deconvolution.html">
+     Extreme Deconvolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter7/README.html">
+   Chapter 7: Dimensionality and its Reduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter7/astroml_chapter7_Dimensionality_Reduction.html">
+     Dimensionality reduction
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter8/README.html">
+   Chapter 8: Regression and Model Fitting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter8/astroml_chapter8_Regression.html">
+     Measurement Errors in Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter8/astroml_chapter8_Regression_with_Errors_on_Dependent_and_Independent_Variables.html">
+     Measurement errors in both dependent and independent variables
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter9/README.html">
+   Chapter 9: Classification
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter9/astroml_chapter9_Classification.html">
+     Classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter9/astroml_chapter9_Deep_Learning_Classifying_Astronomical_Images.html">
+     Deep Learning: Classifying Astronomical Images
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter10/README.html">
+   Chapter 10: Time Series Analysis
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.html">
+     Modeling Toolkit For Time Series Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Wavelets.html">
+     Wavelets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Digital_Filtering.html">
+     Digital Filtering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Temporally_Localized_Signals.html">
+     Temporally localized signals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Analysis_of_Stochastic_Processes.html">
+     Analysis of Stochastic Processes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?urlpath=tree/chapter3/astroml_chapter3_Descriptive_Statistics.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/astroML/astroML-notebooks/blob/main/chapter3/astroml_chapter3_Descriptive_Statistics.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2Fchapter3/astroml_chapter3_Descriptive_Statistics.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter3/astroml_chapter3_Descriptive_Statistics.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/chapter3/astroml_chapter3_Descriptive_Statistics.ipynb.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definitions-of-descriptive-statistics">
+   Definitions of descriptive statistics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#useful-numpy-and-scipy-functions">
+     Useful NumPy and SciPy functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-based-estimates-of-descriptive-statistics">
+   Data-based estimates of descriptive statistics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uncertainty-in-our-estimators-overline-x-and-s">
+     Uncertainty in our estimators
+     <span class="math notranslate nohighlight">
+      \(\overline{x}\)
+     </span>
+     and
+     <span class="math notranslate nohighlight">
+      \(s\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-of-standard-deviation-vs-standard-error">
+     Example of standard deviation vs. standard error
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estimator-efficiency">
+     Estimator efficiency
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#robust-descriptive-statistics">
+     Robust descriptive statistics
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Descriptive Statistics</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definitions-of-descriptive-statistics">
+   Definitions of descriptive statistics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#useful-numpy-and-scipy-functions">
+     Useful NumPy and SciPy functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-based-estimates-of-descriptive-statistics">
+   Data-based estimates of descriptive statistics
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#uncertainty-in-our-estimators-overline-x-and-s">
+     Uncertainty in our estimators
+     <span class="math notranslate nohighlight">
+      \(\overline{x}\)
+     </span>
+     and
+     <span class="math notranslate nohighlight">
+      \(s\)
+     </span>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-of-standard-deviation-vs-standard-error">
+     Example of standard deviation vs. standard error
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#estimator-efficiency">
+     Estimator efficiency
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#robust-descriptive-statistics">
+     Robust descriptive statistics
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="descriptive-statistics">
+<h1>Descriptive Statistics<a class="headerlink" href="#descriptive-statistics" title="Permalink to this headline">#</a></h1>
+<p>An arbitrary distribution function <span class="math notranslate nohighlight">\(h(x)\)</span> can be characterized by it’s “location” parameters, “scale” parameters, and “shape” parameters. These parameters are known as descriptive statistics.  “When these parameters are based on the distribution <span class="math notranslate nohighlight">\(h(x)\)</span> itself, we talk about population statistics; when based on a finite-size data set sampled from <span class="math notranslate nohighlight">\(h(x)\)</span>, they are called sample statistics.”</p>
+<section id="definitions-of-descriptive-statistics">
+<h2>Definitions of descriptive statistics<a class="headerlink" href="#definitions-of-descriptive-statistics" title="Permalink to this headline">#</a></h2>
+<p><strong>Arithmetic mean (expectation value):</strong> a location parameter that quantifies where most of the probability density is located.</p>
+<div class="math notranslate nohighlight">
+\[\mu = E(x) = \int_{-\infty}^\infty x h(x)\:d x\]</div>
+<p><strong>Variance:</strong> a scale parameter that quantifies how wide a distribution is, calculated by the average of the squared differences from the mean.</p>
+<div class="math notranslate nohighlight">
+\[ V = \int_{-\infty}^\infty (x-\mu)^2 h(x)d x\]</div>
+<p><strong>Standard deviation:</strong> the square root of variance; it’s a scale sometimes preferred over variance since it’s units are the same as that of the mean rather than units<span class="math notranslate nohighlight">\(^2\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\sigma = \sqrt{V}\]</div>
+<p><strong>Skewness:</strong> a shape parameter that quantifies how asymmetric a distribution is. Symmetric distributions, such as uniform, Gaussian, and Laplace distributions, have no skewness.</p>
+<div class="math notranslate nohighlight">
+\[ \Sigma = \int_{-\infty}^\infty \bigg(\frac{x-\mu}{\sigma}\bigg)^3   h(x) d x\]</div>
+<p><strong>Kurtosis:</strong> a shape parameter that quantifies the “tailedness”    (the weight of a distribution’s tails relative to the center) of a probability distribution. Highly peaked (“leptokurtic”) distributions have positive kurtosis, and flat-topped (“platykurtic”) distributions have negative kurtosis. The Gaussian distribution is “mesokurtic”, meaning it has zero kurtosis.</p>
+<div class="math notranslate nohighlight">
+\[K = \int_{-\infty}^\infty\bigg(\frac{x-\mu}{\sigma}\bigg)^4 h(x) d x -3\]</div>
+<p><em>Note: the definition that the textbook uses is sometimes called “excess kurtosis” in other sources.</em></p>
+<p><strong>Absolute deviation about d:</strong> the average distance between each data point and the mean. When taken about the median, the absolute deviation is minimized.</p>
+<div class="math notranslate nohighlight">
+\[\delta = \int_{-\infty}^\infty |x-d|h(x) dx\]</div>
+<p><strong>Mode:</strong> a location parameter that corresponds to the most probable values, which occur where the derivative is zero (i.e. peaks). However, this isn’t the most reliable location parameter;
+it can be misleading distributions with multiple sharp but narrow peaks. It can also be hard to estimate from samples.</p>
+<div class="math notranslate nohighlight">
+\[ \bigg(\frac{dh(x)}{dx}\bigg)_{x_m} =0\]</div>
+<p><strong>Percent quantiles:</strong> segments dividing the range of a probability distribution into continuous intervals with equal probabilities. The most often used quantiles are the median, <span class="math notranslate nohighlight">\(q_{50}\)</span>, and the first and third quartile, <span class="math notranslate nohighlight">\(q_{25}\)</span> and <span class="math notranslate nohighlight">\(q_{75}\)</span>. The difference between the third and the first quartiles is called the interquartile range.</p>
+<div class="math notranslate nohighlight">
+\[\frac{p}{100} = \int_{-\infty}^{q_p}h(x)dx\]</div>
+<hr class="docutils" />
+<p><em>Note: The higher a moment is, the harder it is to estimate it with small samples. Furthermore, there is more sensitivity to outliers (less robustness); for these reasons, higher-order moments, such as skewness and kurtosis, should be used with caution when samples are small.</em></p>
+<p><em>Additionally, some distributions, such as the Cauchy distribution, do not have finite variance. So, when the distribution’s variance is infinite (i.e., the tails of <span class="math notranslate nohighlight">\(h(x)\)</span> do not decrease faster than <span class="math notranslate nohighlight">\(x\)</span>−3 for large <span class="math notranslate nohighlight">\(|x|\)</span>), the skewness and kurtosis will diverge as well.</em></p>
+<hr class="docutils" />
+<p>In the example below, we’ll show distributions with different skewness (top panel) and kurtosis (bottom panel). In the top panel, we’ll plot a Gaussian, a modified Gaussian, and a log-normal distribution with <span class="math notranslate nohighlight">\(\sigma = 1.2\)</span>. The modified Gaussian is a normal distribution multiplied by a Gram-Charlier series <span class="math notranslate nohighlight">\( h(x) = N(\mu,\sigma)\sum_{k=0}^\infty a_k H_k(z)\)</span> with <span class="math notranslate nohighlight">\(a_0 = 2\)</span>, <span class="math notranslate nohighlight">\(a_1 = 1\)</span>, and <span class="math notranslate nohighlight">\(a_2 = 0.5\)</span>. For the kurtosis panel, we’ll plot a uniform, Laplace, cosine, and Gaussian distribution.</p>
+<p>We can find the values for skewness and kurtosis for each distribution by importing the desired distribution from<code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>. For example, we can call <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">scipy.stats</span> <span class="pre">import</span> <span class="pre">uniform</span></code> and then call <code class="docutils literal notranslate"><span class="pre">uniform.stats(moments='sk')</span></code> to get the skewness and kurtosis for a uniform distribution. For the modified Gaussian however, we will hard-code <span class="math notranslate nohighlight">\(\Sigma = -0.36.\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">uniform</span><span class="p">,</span> <span class="n">norm</span><span class="p">,</span> <span class="n">laplace</span><span class="p">,</span> <span class="n">cosine</span><span class="p">,</span> <span class="n">lognorm</span>
+
+<span class="n">uni</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">uniform</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">moments</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">))</span>
+<span class="n">lap</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">laplace</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">moments</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">))</span>
+<span class="n">cos</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">cosine</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">moments</span> <span class="o">=</span> <span class="s1">&#39;k&#39;</span><span class="p">))</span>
+<span class="n">log</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">lognorm</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">moments</span> <span class="o">=</span> <span class="s1">&#39;s&#39;</span><span class="p">))</span>
+
+<span class="n">gauss</span> <span class="o">=</span> <span class="n">norm</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">moments</span> <span class="o">=</span> <span class="s1">&#39;sk&#39;</span><span class="p">)</span>
+<span class="n">skew_gauss</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">gauss</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">kurt_gauss</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">gauss</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we’ll plot the distributions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">7.5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
+
+<span class="c1"># First show distributions with different skeq</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">l1</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">N</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span>
+              <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gaussian, $\Sigma=</span><span class="si">{}</span><span class="s1">$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">skew_gauss</span><span class="p">))</span>
+<span class="n">l2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">N</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)),</span>
+              <span class="s1">&#39;--k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span> <span class="s1">&#39;mod. Gauss, $\Sigma=-0.36$&#39;</span><span class="p">)</span>
+<span class="n">l3</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">499</span><span class="p">:],</span> <span class="n">stats</span><span class="o">.</span><span class="n">lognorm</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">499</span><span class="p">:]),</span> <span class="s1">&#39;-.k&#39;</span><span class="p">,</span>
+              <span class="n">label</span><span class="o">=</span><span class="s1">&#39;log normal, $\Sigma=</span><span class="si">{}</span><span class="s1">$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">log</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.7001</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+<span class="c1"># trick to show multiple legends</span>
+<span class="n">leg1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="n">l1</span><span class="p">],</span> <span class="p">[</span><span class="n">l1</span><span class="o">.</span><span class="n">get_label</span><span class="p">()],</span> <span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">leg2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="n">l2</span><span class="p">,</span> <span class="n">l3</span><span class="p">],</span> <span class="p">(</span><span class="n">l2</span><span class="o">.</span><span class="n">get_label</span><span class="p">(),</span> <span class="n">l3</span><span class="o">.</span><span class="n">get_label</span><span class="p">()),</span> <span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">leg1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Skew $\Sigma$ and Kurtosis $K$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+
+<span class="c1"># next show distributions with different kurtosis</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">212</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">l1</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">laplace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;--k&#39;</span><span class="p">,</span>
+              <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Laplace, K=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lap</span><span class="p">))</span>
+<span class="n">l2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span>
+              <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Gaussian K=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kurt_gauss</span><span class="p">))</span>
+<span class="n">l3</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">cosine</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-.k&#39;</span><span class="p">,</span>
+              <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Cosine, K=-0.59&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">cos</span><span class="p">,</span><span class="mi">2</span><span class="p">)))</span>
+<span class="n">l4</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">stats</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;:k&#39;</span><span class="p">,</span>
+              <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Uniform, K=-1.2&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uni</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+
+<span class="c1"># trick to show multiple legends</span>
+<span class="n">leg1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">),</span> <span class="p">(</span><span class="n">l1</span><span class="o">.</span><span class="n">get_label</span><span class="p">(),</span> <span class="n">l2</span><span class="o">.</span><span class="n">get_label</span><span class="p">()),</span> <span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">leg2</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">((</span><span class="n">l3</span><span class="p">,</span> <span class="n">l4</span><span class="p">),</span> <span class="p">(</span><span class="n">l3</span><span class="o">.</span><span class="n">get_label</span><span class="p">(),</span> <span class="n">l4</span><span class="o">.</span><span class="n">get_label</span><span class="p">()),</span> <span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_artist</span><span class="p">(</span><span class="n">leg1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5e6d08f62daa727249f2d649f3f94afc73ac43ab8f8c7454db9eac5c507a0b76.png" src="../_images/5e6d08f62daa727249f2d649f3f94afc73ac43ab8f8c7454db9eac5c507a0b76.png" />
+</div>
+</div>
+<p>Note that the highly peaked Laplace distribution has positive kurtosis while the flat-topped uniform distribution has negative kurtosis. As for skew, the modified distribution with a longer tail on the left has a negative skew, whereas the log-normal distribution with a longer tail on the right has a positive skew.</p>
+<section id="useful-numpy-and-scipy-functions">
+<h3>Useful NumPy and SciPy functions<a class="headerlink" href="#useful-numpy-and-scipy-functions" title="Permalink to this headline">#</a></h3>
+<p>The cell below computes multiple statistical functions on a one-dimensional array <strong>x</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># 100 random numbers </span>
+
+<span class="n">q25</span><span class="p">,</span> <span class="n">q50</span><span class="p">,</span> <span class="n">q75</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">])</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">median</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> 
+<span class="n">variance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> 
+<span class="n">standard_deviation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">skew</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">skew</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">kurtosis</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">kurtosis</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">mode</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">mode</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="data-based-estimates-of-descriptive-statistics">
+<h2>Data-based estimates of descriptive statistics<a class="headerlink" href="#data-based-estimates-of-descriptive-statistics" title="Permalink to this headline">#</a></h2>
+<p>Any of these quantities can be estimated directly from data, in which case they are called sample statistics (instead of population statistics). Assume we are given <span class="math notranslate nohighlight">\(N\)</span> measurements, <span class="math notranslate nohighlight">\(x_i\)</span>, where <span class="math notranslate nohighlight">\(i\)</span> ranges from 1 to <span class="math notranslate nohighlight">\(N\)</span>. In general, when estimating the above quantities for a sample of N measurements, the integrals of the form <span class="math notranslate nohighlight">\(\int_{-\infty}^{\infty} g(x)h(x)dx\)</span> become <span class="math notranslate nohighlight">\(\frac{1}{N} \sum_{i=1}^N g(x_i)\)</span>.</p>
+<p>For example, the equation for the arithmetic mean, <span class="math notranslate nohighlight">\(\mu = \int_{-\infty}^\infty x h(x)\:dx \)</span> becomes</p>
+<div class="math notranslate nohighlight">
+\[ \overline{x} = \frac{1}{N} \sum_{i=1}^{N} x_i, \]</div>
+<p>and the equation for standard deviation,  <span class="math notranslate nohighlight">\( \sigma = \sqrt{V} = \sqrt{\int_{-\infty}^\infty (x-\mu)^2 h(x)d x}\)</span>  becomes</p>
+<div class="math notranslate nohighlight">
+\[ s = \sqrt{\frac{1}{N-1}\sum_{i=1}^{N}(x_i - \overline{x})^2} \]</div>
+<p>when working with sample statistics. The reason for the <span class="math notranslate nohighlight">\((N-1)\)</span> term instead of <span class="math notranslate nohighlight">\(N\)</span> is related to the fact that <span class="math notranslate nohighlight">\(\overline{x}\)</span> also comes from data. By replacing <span class="math notranslate nohighlight">\(N\)</span> with <span class="math notranslate nohighlight">\(N-1\)</span>, the sample variance <span class="math notranslate nohighlight">\(s^2\)</span> becomes unbiased (and the sample standard deviation becomes less biased) – this is  known as Bessel’s correction.</p>
+<p>When we say bias, we mean that if we drew a large number of samples and calculated the uncorrected sample standard deviation, we would notice that each sample would underestimate the population variance. The amount that it’s underestimated depends on the size of <span class="math notranslate nohighlight">\(N\)</span>: 20% for <span class="math notranslate nohighlight">\(N=2\)</span>, 3% for <span class="math notranslate nohighlight">\(N = 10\)</span>, and less than 1% for <span class="math notranslate nohighlight">\(N \gt 30\)</span>. As <span class="math notranslate nohighlight">\(N \rightarrow \infty\)</span>, the percentage goes to zero.</p>
+<p>We use different symbols in the above two equations (<span class="math notranslate nohighlight">\(\overline{x}\)</span> and <span class="math notranslate nohighlight">\(s\)</span>) rather than <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> because the latter represents the “truth” (they are definitions based on the true <span class="math notranslate nohighlight">\(h(x)\)</span>, whatever it may be); the former are simply estimators of that truth based on a finite-size sample (<span class="math notranslate nohighlight">\(\hat{x}\)</span> is often used instead of <span class="math notranslate nohighlight">\(x\)</span>). These estimators have a variance and a bias, and often they are judged by comparing their mean squared errors,</p>
+<div class="math notranslate nohighlight">
+\[\text{MSE} = V + \text{bias}^2 \]</div>
+<p>where <span class="math notranslate nohighlight">\(V\)</span> is the variance, and the <strong>bias</strong> is defined as <strong>the expectation value of the difference between the estimator and its true (population) value.</strong> Estimators whose variance and bias vanish as the sample size goes to infinity are called consistent estimators.</p>
+<p>We can demonstrate Bessel’s correction by generating a bunch of <span class="math notranslate nohighlight">\(N = 5\)</span> samples from a standard Gaussian and calculating the uncorrected sample standard deviation for each set of 5. A histogram of the uncorrected sample standard deviations should have a mean noticeably below 1, while the corrected sample standard deviation should have a mean closer to 1. To calculate the corrected and uncorrected samples, we can use <code class="docutils literal notranslate"><span class="pre">np.std</span></code>; for the corrected sample, we can set <code class="docutils literal notranslate"><span class="pre">ddof</span> <span class="pre">=</span> <span class="pre">1</span></code> whereas for the uncorrected sample, <code class="docutils literal notranslate"><span class="pre">numpy</span></code> defaults <code class="docutils literal notranslate"><span class="pre">ddof</span> <span class="pre">=</span> <span class="pre">0</span></code>. The divisor used by <code class="docutils literal notranslate"><span class="pre">numpy</span></code> is <span class="math notranslate nohighlight">\(N - \text{ddof}\)</span>, where <span class="math notranslate nohighlight">\(N\)</span> represents the number of elements.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">uncorrected</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">corrected</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5000</span><span class="p">):</span>
+    <span class="n">samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+    <span class="n">uncorrected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="n">corrected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>   
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">uncorrected</span><span class="p">);</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">corrected</span><span class="p">);</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.65</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;mean = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">uncorrected</span><span class="p">)</span><span class="si">:</span><span class="s1">.2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">bbox</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;facecolor&#39;</span><span class="p">:</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;pad&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;boxstyle&#39;</span><span class="p">:</span><span class="s2">&quot;round&quot;</span><span class="p">})</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.85</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;mean = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">corrected</span><span class="p">)</span><span class="si">:</span><span class="s1">.2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">bbox</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;facecolor&#39;</span><span class="p">:</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="s1">&#39;alpha&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;pad&#39;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;boxstyle&#39;</span><span class="p">:</span><span class="s2">&quot;round&quot;</span><span class="p">})</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Uncorrected Standard Deviations&quot;</span><span class="p">);</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Corrected Standard Deviations&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/100bf6c448668cff9a4efe9a2609d7a6a63fd3f5d1911d0ff16c34a05daa9257.png" src="../_images/100bf6c448668cff9a4efe9a2609d7a6a63fd3f5d1911d0ff16c34a05daa9257.png" />
+</div>
+</div>
+<p>We expect the biased sample to underestimate the population variance, which we can see in the graph on the left. Note that the shape of the histogram is the same, just shifted slightly left.</p>
+<section id="uncertainty-in-our-estimators-overline-x-and-s">
+<h3>Uncertainty in our estimators <span class="math notranslate nohighlight">\(\overline{x}\)</span> and <span class="math notranslate nohighlight">\(s\)</span><a class="headerlink" href="#uncertainty-in-our-estimators-overline-x-and-s" title="Permalink to this headline">#</a></h3>
+<p>When <span class="math notranslate nohighlight">\(N\)</span> is large (at least ten or so), and if the variance of <span class="math notranslate nohighlight">\(h(x)\)</span> is finite, we expect from the central limit theorem (in chapter 3.4) that <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(s\)</span> will be distributed around their values given by eqs. 1 and 2 according to Gaussian distributions with the widths (standard errors) equal to</p>
+<div class="math notranslate nohighlight">
+\[ \sigma_{\overline{x}} = \frac{s}{\sqrt{N}},\]</div>
+<p>which is called <em>the standard error of the mean</em>, and</p>
+<div class="math notranslate nohighlight">
+\[ \sigma_s = \frac{s}{\sqrt{2(N-1)}} = \frac{1}{\sqrt{2}}\sqrt{\frac{N}{N-1}} \sigma_\overline{x},\]</div>
+<p>which is the <em>error of the standard deviation.</em></p>
+<p>Note that for large <span class="math notranslate nohighlight">\(N\)</span>, the uncertainty of the location parameter is about 40% larger than the uncertainty of the scale parameter (<span class="math notranslate nohighlight">\(\sigma_\overline{x}\)</span> <span class="math notranslate nohighlight">\(\sim\)</span> <span class="math notranslate nohighlight">\(\sqrt{2}\sigma_s\)</span>). Note also that for small <span class="math notranslate nohighlight">\(N\)</span>, <span class="math notranslate nohighlight">\(\sigma_s\)</span> is not much smaller than <span class="math notranslate nohighlight">\(s\)</span> itself.</p>
+</section>
+<section id="example-of-standard-deviation-vs-standard-error">
+<h3>Example of standard deviation vs. standard error<a class="headerlink" href="#example-of-standard-deviation-vs-standard-error" title="Permalink to this headline">#</a></h3>
+<p><strong>Standard deviation</strong>: Imagine we flip a coin 16 times; this will be one trial. As the number of trials goes to infinity, the number of heads flipped in one trial will yield a normal distribution with mean <span class="math notranslate nohighlight">\(\mu\)</span> = 8 and std <span class="math notranslate nohighlight">\(\sigma\)</span> = 2. No matter how many measurements we perform, the standard deviation will not reduce as its a property intrinsic to the nature of the coin.</p>
+<p><strong>Standard error</strong>: The average number of heads in a 16 flip coin toss is eight since each side has a 50/50 chance of being landed on. With enough measurements, the error of that estimate of the mean number of heads can become arbitrarily small.</p>
+<p>Below is the distribution of a 16-flip coin toss for <span class="math notranslate nohighlight">\(N = 5000\)</span> and <span class="math notranslate nohighlight">\(N = 15000\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> 
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>   
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">15000</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">m</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span> <span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">k</span><span class="p">)</span> <span class="c1"># N trials of 16 flip toss</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">17</span><span class="p">):</span>
+        <span class="n">values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="n">i</span><span class="p">))</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">values</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="si">:</span><span class="s1">.2</span><span class="si">}</span><span class="s1">, Std = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="si">:</span><span class="s1">.2</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean = 8.0, Std = 2.0
+Mean = 8.0, Std = 2.0
+</pre></div>
+</div>
+<img alt="../_images/55af3eac500db3b2b5f61639e7ebd427896cb7259d96dbc40a52db0128b9bcfd.png" src="../_images/55af3eac500db3b2b5f61639e7ebd427896cb7259d96dbc40a52db0128b9bcfd.png" />
+</div>
+</div>
+<p>Thus we can see that increasing <span class="math notranslate nohighlight">\(N\)</span> <em>does not</em> decrease the standard deviation.</p>
+<p>The standard error of the mean, on the other hand, <em>does</em> decrease with increasing <span class="math notranslate nohighlight">\(N\)</span>. We’ll import <code class="docutils literal notranslate"><span class="pre">sem</span></code> from <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>, which computes the standard error. Then we’ll use <code class="docutils literal notranslate"><span class="pre">np.random.binomial</span></code> again to simulate a 16-flip coin toss and increase the size of <span class="math notranslate nohighlight">\(N\)</span> on each iteration.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">sem</span>
+<span class="n">j</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">1000</span><span class="p">]:</span>
+    <span class="n">sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">sample</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">sem</span><span class="p">(</span><span class="n">sample</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">j</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sample</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[0.88, 0.35, 0.17, 0.06]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="estimator-efficiency">
+<h3>Estimator efficiency<a class="headerlink" href="#estimator-efficiency" title="Permalink to this headline">#</a></h3>
+<p>Estimators can be compared in terms of their <strong>efficiency</strong>, which measures how large a sample is required to obtain a given accuracy.</p>
+<p>For example, the median determined from data drawn from a Gaussian distribution shows a scatter around the true location parameter, <span class="math notranslate nohighlight">\(\mu\)</span>, larger by a factor of <span class="math notranslate nohighlight">\(\pi/2 \sim 1.253\)</span> than the scatter of the mean value (see eq. 3 below). Since the scatter decreases with <span class="math notranslate nohighlight">\(1/\sqrt{N}\)</span>, the efficiency of the mean is <span class="math notranslate nohighlight">\(\pi/2\)</span> times larger than the efficiency of the median.</p>
+<p>An estimator is asymptotically normal if its distribution around the true value approaches a Gaussian distribution for large sample size, with variance decreasing proportionally to <span class="math notranslate nohighlight">\(1/N\)</span>.
+The smallest attainable variance for an unbiased estimator is called the <strong>minimum variance bound (MVB)</strong> and such an estimator is called the <strong>minimum variance unbiased estimator (MVUE).</strong></p>
+</section>
+<section id="robust-descriptive-statistics">
+<h3>Robust descriptive statistics<a class="headerlink" href="#robust-descriptive-statistics" title="Permalink to this headline">#</a></h3>
+<p>For the case of real data, which can have “outliers,” quantiles offer a more robust method for determining location and scale parameters than the mean and standard deviation.</p>
+<ul class="simple">
+<li><p>The median is a much more robust estimator of the location than the mean</p></li>
+<li><p>The interquartile range <span class="math notranslate nohighlight">\((q_{75} − q_{25})\)</span> is a more robust estimator of the scale parameter than the standard deviation.</p></li>
+</ul>
+<p>In other words, the median and interquartile range are much less affected by the presence of outliers than the mean and standard deviation.</p>
+<p>For example, if you take 25% of your measurements that are larger than <span class="math notranslate nohighlight">\(q_{75}\)</span> and arbitrarily modify them by adding a large number to all of them (or multiply them all by a large number/different large numbers), both the mean and the standard deviation will be severely affected. However, the median and the interquartile range will remain constant.</p>
+<p>Furthermore, even in the absence of outliers, for some distributions that do not have finite variance, such as the Cauchy distribution, the median and the interquartile range are the best choices for estimating location and scale parameters. We often see the interquartile range renormalized so that the width estimator, <span class="math notranslate nohighlight">\(\sigma_G\)</span>, becomes an unbiased estimator of <span class="math notranslate nohighlight">\(\sigma\)</span> for a Gaussian distribution,</p>
+<div class="math notranslate nohighlight">
+\[\sigma_G = 0.7413(q_{75}-q_{25}) \]</div>
+<p>AstroML provides a convienent way to calculate <span class="math notranslate nohighlight">\(\sigma_G\)</span>. We can import <code class="docutils literal notranslate"><span class="pre">stats</span></code> from <code class="docutils literal notranslate"><span class="pre">astroML</span></code>, define <span class="math notranslate nohighlight">\(x\)</span> as <span class="math notranslate nohighlight">\(N\)</span> normally distributed points, and call <code class="docutils literal notranslate"><span class="pre">stats.sigmaG(x)</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">astroML</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span> <span class="c1"># 1000 normally distributed points </span>
+<span class="n">stats</span><span class="o">.</span><span class="n">sigmaG</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9676727191694041
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are downsides to robustness; as we have already discussed, the efficiency of the median as a location parameter is worse than that of the mean in the case of a Gaussian distribution. Additionally, it’s much easier to compute the mean than the median for large samples. However, to avoid the possibility of outliers severely affecting results, one might be willing to pay the price of <span class="math notranslate nohighlight">\(\sim\)</span> 25% larger errors.</p>
+<p>To compute the standard error, <span class="math notranslate nohighlight">\(\sigma_{qp}\)</span> for an arbitrary quantile <span class="math notranslate nohighlight">\(q_p\)</span>, we can use</p>
+<div class="math notranslate nohighlight">
+\[\sigma_{qp} = \frac{1}{h_p}\sqrt{\frac{p(1-p)}{N}} \]</div>
+<p>where <span class="math notranslate nohighlight">\(h_p\)</span> is the value of the probability distribution function at the <span class="math notranslate nohighlight">\(p\)</span>th percentile (e.g., for the median, <span class="math notranslate nohighlight">\(p = 0.5\)</span>). For a Gaussian, the standard error for the median is</p>
+<div class="math notranslate nohighlight">
+\[ \sigma_{q^{50}} = s\sqrt{\frac{\pi}{2N}} \]</div>
+<p>with <span class="math notranslate nohighlight">\(h_{50} = 1/(s\sqrt{2\pi})\)</span> and <span class="math notranslate nohighlight">\(s \sim \sigma\)</span> in the limit of large <span class="math notranslate nohighlight">\(N\)</span>.</p>
+<p>To demonstrate robust statistics, we’ll sample a Gaussian with and without outliers. We expect the mean and standard deviation to be heavily affected by the outliers, but the median and <span class="math notranslate nohighlight">\(\sigma_G\)</span> to be less affected. To represent the Gaussian with outliers, we’ll put together a sample where we’ll draw 95% of the data from a normal Gaussian distribution and 5% from a Cauchy distribution. We’ll draw the Gaussian samples using <code class="docutils literal notranslate"><span class="pre">np.random.normal</span></code>. For the 5% outliers, we’ll import <code class="docutils literal notranslate"><span class="pre">Cauchy</span></code> from <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> and call <code class="docutils literal notranslate"><span class="pre">cauchy.rvs</span></code> to draw five samples from a Cauchy distribution. Then we’ll concatenate the 95 normal samples with five outlier data points to create a Gaussian with outliers. We’ll set the location parameter <span class="math notranslate nohighlight">\(\mu\)</span> to eight to prevent our graph from going negative for a more readable graph.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">astroML</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">cauchy</span>
+  
+<span class="n">normal</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span> <span class="c1"># 100 samples from a Gaussian</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">95</span><span class="p">)</span> <span class="c1">#95 samples from a Gaussian</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">cauchy</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="c1">#5 samples from a Cauchy</span>
+<span class="n">normal_with_outliers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">])</span> <span class="c1"># combine to create Gaussian with outliers</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we’ll plot two bar graphs: one that shows the mean and standard deviations and one with the median and <span class="math notranslate nohighlight">\(\sigma_G\)</span> for both the normal distribution and the normal with outliers.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;no outliers&#39;</span><span class="p">,</span> <span class="s1">&#39;with outliers&#39;</span><span class="p">]</span>
+<span class="n">means</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">normal</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">normal_with_outliers</span><span class="p">)]</span>
+<span class="n">standard_deviations</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">normal</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">normal_with_outliers</span><span class="p">)]</span>
+<span class="n">medians</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">normal</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">normal_with_outliers</span><span class="p">)]</span>
+<span class="n">sigmaG</span> <span class="o">=</span> <span class="p">[</span><span class="n">stats</span><span class="o">.</span><span class="n">sigmaG</span><span class="p">(</span><span class="n">normal</span><span class="p">),</span> <span class="n">stats</span><span class="o">.</span><span class="n">sigmaG</span><span class="p">(</span><span class="n">normal_with_outliers</span><span class="p">)]</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span>  <span class="c1"># the label locations</span>
+<span class="n">width</span> <span class="o">=</span> <span class="mf">0.35</span>  <span class="c1"># the width of the bars</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>   
+<span class="n">rects1</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">means</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+<span class="n">rects2</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">standard_deviations</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;std&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;darkorange&#39;</span><span class="p">)</span>
+<span class="n">rects3</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">medians</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;olivedrab&#39;</span><span class="p">)</span>
+<span class="n">rects4</span> <span class="o">=</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">sigmaG</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;sigmaG&#39;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;gold&#39;</span><span class="p">)</span>
+
+<span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;means and std&#39;s&quot;</span><span class="p">,</span><span class="s2">&quot;medians and sigmaG&#39;s&quot;</span><span class="p">]</span>
+<span class="n">rected</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+<span class="n">combined</span> <span class="o">=</span> <span class="n">means</span> <span class="o">+</span> <span class="n">standard_deviations</span> <span class="o">+</span> <span class="n">medians</span> <span class="o">+</span> <span class="n">sigmaG</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">combined</span><span class="p">)</span><span class="o">+</span><span class="mf">0.5</span><span class="p">])</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bar_label</span><span class="p">(</span><span class="n">rects1</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bar_label</span><span class="p">(</span><span class="n">rects2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar_label</span><span class="p">(</span><span class="n">rects3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bar_label</span><span class="p">(</span><span class="n">rects4</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c590c0b7aa3ec712744a10eeccc72d05e910dffa8b85f3e41ee55300ac61be92.png" src="../_images/c590c0b7aa3ec712744a10eeccc72d05e910dffa8b85f3e41ee55300ac61be92.png" />
+</div>
+</div>
+<p>We can see that the median and <span class="math notranslate nohighlight">\(\sigma_G\)</span> are mostly unaffected by the presence of outliers, whereas the mean and standard deviation are more affected.</p>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="README.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 3: Probability and Statistical Distributions</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="astroml_chapter3_Univariate_Distribution_Functions.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Univariate Distribution Functions</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By AstroML developers<br/>
+  
+      &copy; Copyright 2020-2021, AstroML developers.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
