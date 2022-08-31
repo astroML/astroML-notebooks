@@ -1,4 +1,8 @@
-# AstroML notebooks
+# AstroML Interactive Book
+
+
+# TODO: Abstract and description of what this is (@connolly)
+
 
 ## Content
 
