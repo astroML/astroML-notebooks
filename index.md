@@ -1,8 +1,6 @@
 # AstroML Interactive Book
 
 
-# TODO: Abstract and description of what this is (@connolly)
-
 astroML is a Python module for machine learning and data mining that
 accompanies the book
 ["Statistics, Data Mining, and Machine Learning in Astronomy"](https://press.princeton.edu/books/hardcover/9780691198309/statistics-data-mining-and-machine-learning-in-astronomy),
