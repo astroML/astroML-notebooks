@@ -30,7 +30,10 @@ own computer, or be executed directly using
 maxdepth: 2
 ---
 
+chapter1/README
+chapter2/README
 chapter3/README
+chapter4/README
 chapter5/README
 chapter6/README
 chapter7/README
