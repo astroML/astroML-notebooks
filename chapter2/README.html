@@ -6,44 +6,46 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>AstroML notebooks &#8212; AstroML Notebooks</title>
+    <title>Chapter 2: Fast Computation and Massive Datasets &#8212; AstroML Notebooks</title>
     
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 3: Probability and Statistical Distributions" href="../chapter3/README.html" />
+    <link rel="prev" title="Chapter 1: Introduction and Data Sets" href="../chapter1/README.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -78,26 +80,26 @@
 <div class="bd-sidebar noprint" id="site-navigation">
     <div class="bd-sidebar__content">
         <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
+    <a class="navbar-brand text-wrap" href="../index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
         
       
       
-      <img src="_static/astroml_logo.gif" class="logo" alt="logo">
+      <img src="../_static/astroml_logo.gif" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">AstroML Notebooks</h1>
       
     </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="chapter1/README.html">
+  <a class="reference internal" href="../chapter1/README.html">
    Chapter 1: Introduction and Data Sets
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
@@ -108,11 +110,11 @@
   <ul class="simple">
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="chapter2/README.html">
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
    Chapter 2: Fast Computation and Massive Datasets
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
@@ -121,7 +123,7 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="chapter3/README.html">
+  <a class="reference internal" href="../chapter3/README.html">
    Chapter 3: Probability and Statistical Distributions
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
@@ -131,29 +133,29 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter3/astroml_chapter3_Descriptive_Statistics.html">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Descriptive_Statistics.html">
      Descriptive Statistics
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter3/astroml_chapter3_Univariate_Distribution_Functions.html">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Univariate_Distribution_Functions.html">
      Univariate Distribution Functions
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter3/astroml_chapter3_The_Central_Limit_Theorem.html">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_The_Central_Limit_Theorem.html">
      The Central Limit Theorem
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter3/astroml_chapter3_Bivariate_and_Multivariate_Distribution_Functions.html">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Bivariate_and_Multivariate_Distribution_Functions.html">
      Bivariate and multivariate distribution functions
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="chapter4/README.html">
+  <a class="reference internal" href="../chapter4/README.html">
    Chapter 4: Classical Statistical Inference
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
@@ -165,7 +167,7 @@
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="chapter5/README.html">
+  <a class="reference internal" href="../chapter5/README.html">
    Chapter 5: Bayesian Statistical Inference
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
@@ -175,34 +177,34 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter5/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution.html">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution.html">
      Parameter Estimation for a Gaussian Distribution
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter5/astroml_chapter5_Parameter_Estimation_for_Binomial_Distribution.html">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Binomial_Distribution.html">
      Parameter Estimation for a Binomial Distribution
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter5/astroml_chapter5_Parameter_Estimation_for_Cauchy_Distribution.html">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Cauchy_Distribution.html">
      Parameter estimation for the Cauchy (Lorentzian) distribution
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter5/astroml_chapter5_Approximate_Bayesian_Computation.html">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Approximate_Bayesian_Computation.html">
      Approximate Bayesian Computation Example
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter5/astroml_chapter5_Hierarchical_Bayes.html">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Hierarchical_Bayes.html">
      Hierarchical Bayes Example
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="chapter6/README.html">
+  <a class="reference internal" href="../chapter6/README.html">
    Chapter 6: Searching for Structure in Point Data
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
@@ -212,29 +214,29 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter6/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall.html">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall.html">
      Density Estimation for SDSS “Great Wall”
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter6/astroml_chapter6_Searching_for_Structure_in_Point_Data.html">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Searching_for_Structure_in_Point_Data.html">
      Searching for Structure in Point Data
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter6/astroml_chapter6_Gaussian_Mixture_Models.html">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Gaussian_Mixture_Models.html">
      Gaussian Mixture Models Example
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter6/astroml_chapter6_Extreme_Deconvolution.html">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Extreme_Deconvolution.html">
      Extreme Deconvolution
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="chapter7/README.html">
+  <a class="reference internal" href="../chapter7/README.html">
    Chapter 7: Dimensionality and its Reduction
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
@@ -244,14 +246,14 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter7/astroml_chapter7_Dimensionality_Reduction.html">
+    <a class="reference internal" href="../chapter7/astroml_chapter7_Dimensionality_Reduction.html">
      Dimensionality reduction
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="chapter8/README.html">
+  <a class="reference internal" href="../chapter8/README.html">
    Chapter 8: Regression and Model Fitting
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
@@ -261,19 +263,19 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter8/astroml_chapter8_Regression.html">
+    <a class="reference internal" href="../chapter8/astroml_chapter8_Regression.html">
      Measurement Errors in Linear Regression
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter8/astroml_chapter8_Regression_with_Errors_on_Dependent_and_Independent_Variables.html">
+    <a class="reference internal" href="../chapter8/astroml_chapter8_Regression_with_Errors_on_Dependent_and_Independent_Variables.html">
      Measurement errors in both dependent and independent variables
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="chapter9/README.html">
+  <a class="reference internal" href="../chapter9/README.html">
    Chapter 9: Classification
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
@@ -283,19 +285,19 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter9/astroml_chapter9_Classification.html">
+    <a class="reference internal" href="../chapter9/astroml_chapter9_Classification.html">
      Classification
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter9/astroml_chapter9_Deep_Learning_Classifying_Astronomical_Images.html">
+    <a class="reference internal" href="../chapter9/astroml_chapter9_Deep_Learning_Classifying_Astronomical_Images.html">
      Deep Learning: Classifying Astronomical Images
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="chapter10/README.html">
+  <a class="reference internal" href="../chapter10/README.html">
    Chapter 10: Time Series Analysis
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
@@ -305,27 +307,27 @@
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.html">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.html">
      Modeling Toolkit For Time Series Analysis
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter10/astroml_chapter10_Wavelets.html">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Wavelets.html">
      Wavelets
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter10/astroml_chapter10_Digital_Filtering.html">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Digital_Filtering.html">
      Digital Filtering
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter10/astroml_chapter10_Temporally_Localized_Signals.html">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Temporally_Localized_Signals.html">
      Temporally localized signals
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="chapter10/astroml_chapter10_Analysis_of_Stochastic_Processes.html">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Analysis_of_Stochastic_Processes.html">
      Analysis of Stochastic Processes
     </a>
    </li>
@@ -421,7 +423,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2FREADME.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2Fchapter2/README.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -438,7 +440,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/astroML/astroML-notebooks/edit/main/README.rst"
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter2/README.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -466,7 +468,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="_sources/README.rst.txt"
+        <a href="../_sources/chapter2/README.md.txt"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -477,7 +479,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.rst</span>
+<span class="headerbtn__text-container">.md</span>
 </a>
 
       </li>
@@ -503,94 +505,23 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#contributing">
-   Contributing
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#smaller-changes">
-     Smaller changes
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#editing-ipynb">
-     Editing ipynb
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rendering-the-notebooks">
-     Rendering the notebooks
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>AstroML notebooks</h1>
+                <h1>Chapter 2: Fast Computation and Massive Datasets</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#contributing">
-   Contributing
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#smaller-changes">
-     Smaller changes
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#editing-ipynb">
-     Editing ipynb
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rendering-the-notebooks">
-     Rendering the notebooks
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -598,41 +529,11 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="astroml-notebooks">
-<h1>AstroML notebooks<a class="headerlink" href="#astroml-notebooks" title="Permalink to this headline">#</a></h1>
-<p>This repository shares notebooks developed for AstroML. The material
-reproduces many of the figures from the book <cite>Statistics, Data Mining, and
-Machine Learning in Astronomy</cite>, and therefore organized in topics following
-the chapters. We focused on the later chapters that
-have actual applications using astronomical data.
-Narrative commentary is provided, however some sections maybe less
-self-explanatory without the book as a reference.
-The table of contents of the book can be found on the main astroML webpage, <cite>www.astroml.org</cite>.</p>
-<section id="contributing">
-<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">#</a></h2>
-<p>Contributions are welcome in the form of pull requests.</p>
-<p>This repository uses Jupytext and MyST Markdown Notebook to generate static
-html pages. We store both the linked <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> and <code class="docutils literal notranslate"><span class="pre">.md</span></code> files.</p>
-<section id="smaller-changes">
-<h3>Smaller changes<a class="headerlink" href="#smaller-changes" title="Permalink to this headline">#</a></h3>
-<p>For making smaller changes to the text content of the notebooks, please edit
-the .md files using either the GitHub interface or a text editor.</p>
-</section>
-<section id="editing-ipynb">
-<h3>Editing ipynb<a class="headerlink" href="#editing-ipynb" title="Permalink to this headline">#</a></h3>
-<p>For larger changes to the code and outputs, the easiest approach is to edit
-the notebooks directly.</p>
-</section>
-<section id="rendering-the-notebooks">
-<h3>Rendering the notebooks<a class="headerlink" href="#rendering-the-notebooks" title="Permalink to this headline">#</a></h3>
-<p>You will need to install some extra dependencies for rendering the notebooks to html pages, install them via:</p>
-<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-r</span> <span class="pre">doc-requirements.txt</span></code></p>
-<p>Running some of the notebooks takes significant time, therefore we store the outputs in them and therefore
-building the pages without executing the notebooks:</p>
-<p><code class="docutils literal notranslate"><span class="pre">sphinx-build</span> <span class="pre">-b</span> <span class="pre">html</span> <span class="pre">-D</span> <span class="pre">jupyter_execute_notebooks=off</span> <span class="pre">.</span> <span class="pre">_build/html</span></code></p>
-<p>The rendered notebooks then available in <code class="docutils literal notranslate"><span class="pre">_build/html/index.html</span></code></p>
-</section>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="chapter-2-fast-computation-and-massive-datasets">
+<h1>Chapter 2: Fast Computation and Massive Datasets<a class="headerlink" href="#chapter-2-fast-computation-and-massive-datasets" title="Permalink to this headline">#</a></h1>
+<p>This chapter discusses computational strategies for large datasets.</p>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
 
@@ -643,6 +544,20 @@ building the pages without executing the notebooks:</p>
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../chapter1/README.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 1: Introduction and Data Sets</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../chapter3/README.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 3: Probability and Statistical Distributions</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>
@@ -664,7 +579,7 @@ building the pages without executing the notebooks:</p>
     </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
 
 
   </body>
