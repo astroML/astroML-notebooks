@@ -1,0 +1,1299 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Overview of Probability and Random Variables &#8212; AstroML Notebooks</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Descriptive Statistics" href="astroml_chapter3_Descriptive_Statistics.html" />
+    <link rel="prev" title="Chapter 3: Probability and Statistical Distributions" href="README.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/astroml_logo.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">AstroML Notebooks</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter1/README.html">
+   Chapter 1: Introduction and Data Sets
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="simple">
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter2/README.html">
+   Chapter 2: Fast Computation and Massive Datasets
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="simple">
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="README.html">
+   Chapter 3: Probability and Statistical Distributions
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Overview of Probability and Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroml_chapter3_Descriptive_Statistics.html">
+     Descriptive Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroml_chapter3_Univariate_Distribution_Functions.html">
+     Univariate Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroml_chapter3_The_Central_Limit_Theorem.html">
+     The Central Limit Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroml_chapter3_Bivariate_and_Multivariate_Distribution_Functions.html">
+     Bivariate and multivariate distribution functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter4/README.html">
+   Chapter 4: Classical Statistical Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="simple">
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter5/README.html">
+   Chapter 5: Bayesian Statistical Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution.html">
+     Parameter Estimation for a Gaussian Distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Binomial_Distribution.html">
+     Parameter Estimation for a Binomial Distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Cauchy_Distribution.html">
+     Parameter estimation for the Cauchy (Lorentzian) distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Approximate_Bayesian_Computation.html">
+     Approximate Bayesian Computation Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Hierarchical_Bayes.html">
+     Hierarchical Bayes Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter6/README.html">
+   Chapter 6: Searching for Structure in Point Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall.html">
+     Density Estimation for SDSS “Great Wall”
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Searching_for_Structure_in_Point_Data.html">
+     Searching for Structure in Point Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Gaussian_Mixture_Models.html">
+     Gaussian Mixture Models Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Extreme_Deconvolution.html">
+     Extreme Deconvolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter7/README.html">
+   Chapter 7: Dimensionality and its Reduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter7/astroml_chapter7_Dimensionality_Reduction.html">
+     Dimensionality reduction
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter8/README.html">
+   Chapter 8: Regression and Model Fitting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter8/astroml_chapter8_Regression.html">
+     Measurement Errors in Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter8/astroml_chapter8_Regression_with_Errors_on_Dependent_and_Independent_Variables.html">
+     Measurement errors in both dependent and independent variables
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter9/README.html">
+   Chapter 9: Classification
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter9/astroml_chapter9_Classification.html">
+     Classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter9/astroml_chapter9_Deep_Learning_Classifying_Astronomical_Images.html">
+     Deep Learning: Classifying Astronomical Images
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter10/README.html">
+   Chapter 10: Time Series Analysis
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.html">
+     Modeling Toolkit For Time Series Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Wavelets.html">
+     Wavelets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Digital_Filtering.html">
+     Digital Filtering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Temporally_Localized_Signals.html">
+     Temporally localized signals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Analysis_of_Stochastic_Processes.html">
+     Analysis of Stochastic Processes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?urlpath=tree/chapter3/astroml_chapter3_Overview_of_Probability_and_Random_Variables.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/astroML/astroML-notebooks/blob/main/chapter3/astroml_chapter3_Overview_of_Probability_and_Random_Variables.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2Fchapter3/astroml_chapter3_Overview_of_Probability_and_Random_Variables.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter3/astroml_chapter3_Overview_of_Probability_and_Random_Variables.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/chapter3/astroml_chapter3_Overview_of_Probability_and_Random_Variables.ipynb.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#probability-axioms">
+   Probability axioms
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classical-inference-vs-bayesian-inference">
+     Classical inference vs. Bayesian inference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#random-variables">
+   Random variables
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conditional-probability-and-bayes-rule">
+   Conditional probability and Bayes’ rule
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-monty-hall-problem">
+   Example: Monty Hall problem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#formal-derivation-of-the-solution-using-bayes-rule">
+     Formal derivation of the solution using Bayes’ rule
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-22-contingency-table">
+   Example: 2×2 contingency table
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformations-of-random-variables">
+   Transformations of random variables
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Overview of Probability and Random Variables</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#probability-axioms">
+   Probability axioms
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#classical-inference-vs-bayesian-inference">
+     Classical inference vs. Bayesian inference
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#random-variables">
+   Random variables
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conditional-probability-and-bayes-rule">
+   Conditional probability and Bayes’ rule
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-monty-hall-problem">
+   Example: Monty Hall problem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#formal-derivation-of-the-solution-using-bayes-rule">
+     Formal derivation of the solution using Bayes’ rule
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example-22-contingency-table">
+   Example: 2×2 contingency table
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transformations-of-random-variables">
+   Transformations of random variables
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="overview-of-probability-and-random-variables">
+<h1>Overview of Probability and Random Variables<a class="headerlink" href="#overview-of-probability-and-random-variables" title="Permalink to this headline">#</a></h1>
+<p>This function adjusts <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> settings for a uniform feel in the textbook. Note that with <code class="docutils literal notranslate"><span class="pre">usetex=True,</span></code> fonts are rendered with LaTeX. This may result in an error if LaTeX is not installed on your system. In that case, you can set <code class="docutils literal notranslate"><span class="pre">usetex</span></code> to <code class="docutils literal notranslate"><span class="pre">False.</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s2">&quot;setup_text_plots&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="probability-axioms">
+<h2>Probability axioms<a class="headerlink" href="#probability-axioms" title="Permalink to this headline">#</a></h2>
+<p>Given an event <span class="math notranslate nohighlight">\(A\)</span>, such as the outcome of a coin toss, we assign it a real number <span class="math notranslate nohighlight">\(p(A)\)</span>, called the probability of <span class="math notranslate nohighlight">\(A\)</span>. Note that <span class="math notranslate nohighlight">\(p(A)\)</span> could also correspond to a probability that a value of <span class="math notranslate nohighlight">\(x\)</span> falls in a <span class="math notranslate nohighlight">\(dx\)</span> wide interval around <span class="math notranslate nohighlight">\(x\)</span>. To qualify as a probability, <span class="math notranslate nohighlight">\(p(A)\)</span> must satisfy three Kolmogorov axioms:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(p(A) \geq 0\)</span> for each <span class="math notranslate nohighlight">\(A\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(p(\Omega) = 1\)</span>, where <span class="math notranslate nohighlight">\(\Omega\)</span> is the set of all possible outcomes.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A_1\)</span>, <span class="math notranslate nohighlight">\(A_2\)</span>, … are disjoint events, then <span class="math notranslate nohighlight">\(p (\bigcup^{\infty}_{i=1}A_i) = \sum_{i=1}^{\infty}p(A_i)\)</span> where <span class="math notranslate nohighlight">\(\bigcup\)</span> stands for “union.”</p></li>
+</ol>
+<p>Several useful rules can be derived as a consequence of these axioms.</p>
+<p><strong>Sum rule</strong>:  The probability that the union of two events, <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>, will happen is given by,</p>
+<div class="math notranslate nohighlight">
+\[\qquad\qquad p(A \cup B) = p(A) + p(B) - p(A \cap B)\qquad\qquad\qquad(1)\]</div>
+<p>which is the sum of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>’s respective probabilities minus the probability that both <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> will happen. The union of two events is the probability that <em>either</em> event occurs. The <span class="math notranslate nohighlight">\(\cap\)</span> in the equation stands for “intersection”, and subtracting the last term, <span class="math notranslate nohighlight">\(p(A \cap B)\)</span>, avoids double counting the places that <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> overlap. In the figure below, we show this in a diagram.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># create plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">yticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># draw intersecting circles</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="mf">2.2</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_patch</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">Circle</span><span class="p">((</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">),</span> <span class="mf">2.2</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+
+<span class="c1"># add text</span>
+<span class="n">text_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">1.6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;$p(A)$&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">text_kwargs</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.6</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;$p(B)$&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">text_kwargs</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="s2">&quot;$p(A \cap B)$&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">text_kwargs</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">2.3</span><span class="p">,</span> <span class="s2">&quot;$p(A \cup B) = p(A) + p(B) - p(A \cap B)$&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">text_kwargs</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e0beee04187c0a9ff401dc9211f74335e3a5962f52fbba4b9df68a6b6c38acec.png" src="../_images/e0beee04187c0a9ff401dc9211f74335e3a5962f52fbba4b9df68a6b6c38acec.png" />
+</div>
+</div>
+<p><strong>Rule of complementary events</strong>: The probability of an event happening plus the probability of it not happening is equal to 1.
+$<span class="math notranslate nohighlight">\( p(A) + p(\overline{A}) = 1 \)</span>$</p>
+<p><strong>Rule of multiplication</strong>: The probability that both events <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> occur is equal to the probability that event <span class="math notranslate nohighlight">\(B\)</span> occurs times the probability that event <span class="math notranslate nohighlight">\(A\)</span> occurs given that <span class="math notranslate nohighlight">\(B\)</span> has occurred. Switching <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> yields an equivalent statement.</p>
+<div class="math notranslate nohighlight">
+\[ p(A \cap B) = p(A|B)p(B) = p(B|A)p(A)\]</div>
+<p>In the equation above, “|” is pronounced “given,” and <span class="math notranslate nohighlight">\(p(A|B)\)</span> is the probability of event <span class="math notranslate nohighlight">\(A\)</span> occurring given that B has occurred.</p>
+<p><strong>Example</strong>: Find the probability of rolling an odd number greater than 2.</p>
+<blockquote>
+<div><p>Event A: Rolling an odd number</p>
+<p>Event B: Rolling a number greater than 2</p>
+<p><span class="math notranslate nohighlight">\(P(\text{odd and greater than 2}) = P(\text{odd|if} &gt;2) \times P(&gt; 2)\)</span></p>
+<ul class="simple">
+<li><p>All outcomes: 1 2 3 4 5 6</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(\text{is}\)</span> &gt; 2) = count(3 4 5 6) / count (1 2 3 4 5 6) = 4/6</p></li>
+<li><p>the probability that a number is odd if it’s greater than two:  3,5</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(\text{is odd| if} &gt; 2)\)</span> = count(3 5) / count (3 4 5 6) = 1/2</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(P(\text{odd and greater than 2})\)</span> = 4/6 <span class="math notranslate nohighlight">\(\times\)</span> 1/2 = <span class="math notranslate nohighlight">\(\fbox{1/3}\)</span></p>
+<p>We can get the same answer by determining the odd numbers greater than two on a die (2) and dividing by the total possibilities (6) to get 1/3.</p>
+</div></blockquote>
+<p><strong>The law of total probability</strong>: if events <span class="math notranslate nohighlight">\(B_i, i=1,..., N\)</span> are disjoint and their union is the set of all possible outcomes, then</p>
+<div class="math notranslate nohighlight">
+\[p(A) = \sum_i p(A \cap B_i) = \sum_i p(A|B_i)p(B_i).\]</div>
+<p>Conditional probabilities also satisfy the law of total probability. Assuming that an event <span class="math notranslate nohighlight">\(C\)</span> is not mutually exclusive with <span class="math notranslate nohighlight">\(A\)</span> or any of <span class="math notranslate nohighlight">\(B_i\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[    p(A|C) = \sum\limits_{i}p(A|C \cap B_i)p(B_i|C)  \]</div>
+<p><strong>Example</strong>: Assume we have a box with three bags of marbles: one bag has 3 green and 7 blue marbles, another bag has 6 green and 4 blue marbles, and the last bag has 2 green and 8 blue marbles. We want to find the total probability of grabbing a green marble from any of the three bags.</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(P(G)\)</span> = probability of choosing a green marble:</p>
+<p><span class="math notranslate nohighlight">\(P(G|B_i)\)</span> = probability of choosing a green marble from bag B<span class="math notranslate nohighlight">\(_i\)</span>:</p>
+<ul class="simple">
+<li><p>Bag 1: <span class="math notranslate nohighlight">\(P(G|B_1)\)</span> = 3/10</p></li>
+<li><p>Bag 2: <span class="math notranslate nohighlight">\(P(G|B_2)\)</span> = 6/10</p></li>
+<li><p>Bag 3: <span class="math notranslate nohighlight">\(P(G|B_3)\)</span> = 2/10</p></li>
+</ul>
+<p>Using <span class="math notranslate nohighlight">\(P(G) = \sum_i P(G|B_i)*P(B_i)\)</span> where <span class="math notranslate nohighlight">\(B_1 = B_2 = B_3 = \frac{1}{3}\)</span></p>
+<p><span class="math notranslate nohighlight">\(P(G) = \big(\frac{3}{10} \times \frac{1}{3}\big) + \big(\frac{6}{10} \times \frac{1}{3}\big) + \big(\frac{2}{10} \times \frac{1}{3}\big) = \frac{11}{30} = 0.37\)</span></p>
+<p>Thus, if we randomly select one of the bags and then randomly select one marble from that bag, the probability we choose a green marble is 0.37.</p>
+</div></blockquote>
+<section id="classical-inference-vs-bayesian-inference">
+<h3>Classical inference vs. Bayesian inference<a class="headerlink" href="#classical-inference-vs-bayesian-inference" title="Permalink to this headline">#</a></h3>
+<p>Classical inference and Bayesian inference differ fundamentally in the interpretation of the resulting probabilities, which will be discussed in detail in chapters 4 and 5. Briefly, classical statistical inference is concerned with <span class="math notranslate nohighlight">\(p(A)\)</span>, interpreted as the long-term outcome or frequency with which <span class="math notranslate nohighlight">\(A\)</span> occurs (or would occur) in identical repeats of an experiment; events are restricted to propositions about random variables (see below). Bayesian inference is concerned with <span class="math notranslate nohighlight">\(p(A|B)\)</span>, interpreted as the plausibility of a proposition <span class="math notranslate nohighlight">\(A\)</span>, conditional on the truth of <span class="math notranslate nohighlight">\(B\)</span>, and <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> can be any logical proposition (i.e., they are not restricted to propositions about random variables).</p>
+</section>
+</section>
+<section id="random-variables">
+<h2>Random variables<a class="headerlink" href="#random-variables" title="Permalink to this headline">#</a></h2>
+<p>A random, or stochastic, variable is, roughly speaking, a variable whose value results from the measurement of a quantity subject to random variations. Unlike normal mathematical variables, a random variable can take on a set of possible different values, each with an associated probability.</p>
+<p>There are two main types of random variables: discrete and continuous.</p>
+<ul class="simple">
+<li><p>The outcomes of <strong>discrete</strong> random variables form a <strong>countable set.</strong></p></li>
+<li><p>The outcomes of <strong>continuous</strong> random variables <strong>usually map onto the real number set</strong> (though one can define mapping to the complex plane or use matrices instead of real numbers, etc.).</p></li>
+</ul>
+<p>The function which ascribes a probability value to each outcome of the random variable is the <strong>probability density function (pdf).</strong> <em>Note that other sources may use <strong>“probability mass function”</strong> for discrete variables.</em></p>
+<p><strong>Independent identically distributed (iid)</strong> random variables are drawn from the same distribution and are independent. Two random variables, <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are independent if and only if</p>
+<div class="math notranslate nohighlight">
+\[p(x,y) = p(x)p(y)\]</div>
+<p>for all values of <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>. Recall that <span class="math notranslate nohighlight">\(p(x,y) = p(x)p(y|x)\)</span> is true of any variables, but for independent variables, <span class="math notranslate nohighlight">\(p(y|x) = p(y)\)</span> since the knowledge of the value of <span class="math notranslate nohighlight">\(x\)</span> tells us <strong>nothing</strong> about the value of <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<p><strong>Example</strong>: Find the probability of rolling a 1 and then rolling a 3.</p>
+<blockquote>
+<div><p>p(second is 3, first is 1) = p(second is 3 | first is 1) <span class="math notranslate nohighlight">\(\times\)</span> p(first is 1)</p>
+<p>= p(second is 3) <span class="math notranslate nohighlight">\(\times\)</span>  p(first is 1)</p>
+<p>= 1/6 <span class="math notranslate nohighlight">\(\times\)</span>  1/6 = 1/36</p>
+<p>Because the two events are independent since the first roll tells us nothing about the second roll, the term <span class="math notranslate nohighlight">\(\text{p(second is 3}| \text{first is 1})\)</span> simplified to <span class="math notranslate nohighlight">\(\text{p(second is 3})\)</span>.</p>
+</div></blockquote>
+<p><strong>Example:</strong> Suppose we have a deck of cards (52 cards) with 13 of each suit (spades, clubs, diamonds, and hearts). What’s the probability of drawing two diamonds in a row?</p>
+<blockquote>
+<div><p>These are dependent events, so we will use <span class="math notranslate nohighlight">\(p(x,y) = p(x|y)p(y)\)</span></p>
+<p><span class="math notranslate nohighlight">\(p(y)\)</span>: Drawing a diamond on the first draw = 13/52</p>
+<ul class="simple">
+<li><p>there is an equally likely chance of drawing any of the 4 suits in a full deck of cards</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(p(x|y)\)</span>: Drawing a diamond on the second draw = 12/51</p>
+<ul class="simple">
+<li><p>given that we don’t replace the card we just drew, we now have a deck of 51 cards.</p></li>
+<li><p>since we are assuming we’ve drawn a diamond on the first draw (x “given” y), we now have 12 diamonds in the deck.</p></li>
+</ul>
+<p><span class="math notranslate nohighlight">\(p(x,y) = \frac{13}{52} \times \frac{12}{51} = \frac{1}{17}\)</span></p>
+<p><strong>However, assume we put the card we drew back</strong></p>
+<p><span class="math notranslate nohighlight">\(p(y)\)</span> stays the same, but <span class="math notranslate nohighlight">\(p(x|y)\)</span> becomes <span class="math notranslate nohighlight">\(p(x)\)</span> since the first draw now tells us nothing about the second draw; these have become independent events. Drawing a diamond on the second draw now has the same probability as our first draw.</p>
+<p><span class="math notranslate nohighlight">\(p(x,y) = \frac{13}{52} \times \frac{13}{52} = \frac{1}{16}\)</span></p>
+</div></blockquote>
+</section>
+<section id="conditional-probability-and-bayes-rule">
+<h2>Conditional probability and Bayes’ rule<a class="headerlink" href="#conditional-probability-and-bayes-rule" title="Permalink to this headline">#</a></h2>
+<p>When two continuous random variables are not independent, it follows from eq. 1</p>
+<div class="math notranslate nohighlight">
+\[\qquad\qquad p(x,y) = p(x|y)p(y) = p(y|x)p(x).\qquad\qquad\qquad\quad\,(2)\]</div>
+<p>The <em>marginal probability function</em> is defined as</p>
+<div class="math notranslate nohighlight">
+\[\qquad\qquad\qquad p(x) = \int p(x,y)\:dy \qquad\qquad\qquad\qquad\qquad\, (3) \]</div>
+<p>and analogously for <span class="math notranslate nohighlight">\(p(y)\)</span>. Note that complete knowledge of the conditional pdf <span class="math notranslate nohighlight">\(p(y|x)\)</span>, and the marginal probability <span class="math notranslate nohighlight">\(p(x)\)</span>, is sufficient to fully reconstruct <span class="math notranslate nohighlight">\(p(x,y)\)</span> (the same is true with <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> reversed).</p>
+<p>Combining eq. 2 and 3, we get a continuous version of the law of total probability,</p>
+<div class="math notranslate nohighlight">
+\[\qquad\qquad\qquad p(x) = \int p(x|y)\: p(y)\: dy \qquad\qquad\qquad\qquad\: (4)\]</div>
+<p>In the figure below, we will show an example of a two-dimensional probability distribution together with corresponding marginal and conditional probability distributions. Note that <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are <strong>not</strong> independent in this case.</p>
+<ul class="simple">
+<li><p>The marginal probabilities will be the left and bottom panels of the graph on the left. From equation 3 above, we see that the marginal probabilities will be the integral along the <span class="math notranslate nohighlight">\(x\)</span> direction for a given <span class="math notranslate nohighlight">\(y\)</span> (left side panel) or the integral along the <span class="math notranslate nohighlight">\(y\)</span> direction for a given <span class="math notranslate nohighlight">\(x\)</span> (bottom panel).</p></li>
+<li><p>The three panels on the right will show the conditional probability (of x) for three y values: <span class="math notranslate nohighlight">\(y = 0.5, 1,\)</span> and <span class="math notranslate nohighlight">\(1.5\)</span> Note that the conditional probability distributions <span class="math notranslate nohighlight">\(p(x|y = y_0)\)</span> are simply one-dimensional “slices” through the two-dimensional image <span class="math notranslate nohighlight">\(p(x,y)\)</span> at given values of <span class="math notranslate nohighlight">\(y_0\)</span>, and then divided (renormalized) by the value of the marginal distribution <span class="math notranslate nohighlight">\(p(y)\)</span> at <span class="math notranslate nohighlight">\(y = y_0\)</span>. As a result of this renormalization, the integral of <span class="math notranslate nohighlight">\(p(x|y)\)</span> (over <span class="math notranslate nohighlight">\(x\)</span>) is unity.</p></li>
+</ul>
+<p>First we will define a random 2D distribution, generate the data, and compute the normalized 2D histogram.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">NullFormatter</span>
+
+<span class="k">def</span> <span class="nf">banana_distribution</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This generates random points in a banana shape&quot;&quot;&quot;</span>
+    <span class="c1"># create a truncated normal distribution</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+    <span class="n">theta</span><span class="p">[</span><span class="n">theta</span> <span class="o">&gt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">]</span> <span class="o">/=</span> <span class="mi">2</span>
+    <span class="n">theta</span><span class="p">[</span><span class="n">theta</span> <span class="o">&lt;=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">]</span> <span class="o">/=</span> <span class="mi">2</span>
+    <span class="c1"># define the curve parametrically</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">1.</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">r</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.08</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Generate the data and compute the normalized 2D histogram</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">banana_distribution</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="n">Ngrid</span> <span class="o">=</span> <span class="mi">41</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">Ngrid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">H</span><span class="p">,</span> <span class="n">xbins</span><span class="p">,</span> <span class="n">ybins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram2d</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">grid</span><span class="p">)</span>
+<span class="n">H</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we’ll plot the results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the result</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># define axes</span>
+<span class="n">ax_Pxy</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">))</span>
+<span class="n">ax_Px</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">,</span> <span class="mf">0.27</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">))</span>
+<span class="n">ax_Py</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">))</span>
+<span class="n">ax_cb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.48</span><span class="p">,</span> <span class="mf">0.34</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.52</span><span class="p">))</span>
+<span class="n">ax_Px_y</span> <span class="o">=</span> <span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.62</span><span class="p">,</span> <span class="mf">0.32</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">)),</span>
+           <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.38</span><span class="p">,</span> <span class="mf">0.32</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">)),</span>
+           <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">((</span><span class="mf">0.65</span><span class="p">,</span> <span class="mf">0.14</span><span class="p">,</span> <span class="mf">0.32</span><span class="p">,</span> <span class="mf">0.23</span><span class="p">))]</span>
+
+<span class="c1"># set axis label formatters</span>
+<span class="n">ax_Px_y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">NullFormatter</span><span class="p">())</span>
+<span class="n">ax_Px_y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+<span class="n">ax_Pxy</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">NullFormatter</span><span class="p">())</span>
+<span class="n">ax_Pxy</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+<span class="n">ax_Px</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">NullFormatter</span><span class="p">())</span>
+<span class="n">ax_Py</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+<span class="c1"># draw the joint probability</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">ax_Pxy</span><span class="p">)</span>
+<span class="n">H</span> <span class="o">*=</span> <span class="mi">1000</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s1">&#39;nearest&#39;</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span>
+           <span class="n">extent</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">binary</span><span class="p">)</span>
+
+<span class="n">cb</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">cax</span><span class="o">=</span><span class="n">ax_cb</span><span class="p">)</span>
+<span class="n">cb</span><span class="o">.</span><span class="n">set_label</span><span class="p">(</span><span class="s1">&#39;$p(x, y)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\times 10^{-3}$&#39;</span><span class="p">,</span>
+         <span class="n">transform</span><span class="o">=</span><span class="n">ax_cb</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="c1"># draw p(x) distribution</span>
+<span class="n">ax_Px</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xbins</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">H</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">drawstyle</span><span class="o">=</span><span class="s1">&#39;steps&#39;</span><span class="p">)</span>
+
+<span class="c1"># draw p(y) distribution</span>
+<span class="n">ax_Py</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">H</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">ybins</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">drawstyle</span><span class="o">=</span><span class="s1">&#39;steps&#39;</span><span class="p">)</span>
+
+<span class="c1"># define axis limits</span>
+<span class="n">ax_Pxy</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ax_Pxy</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ax_Px</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ax_Py</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># label axes</span>
+<span class="n">ax_Pxy</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax_Pxy</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax_Px</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax_Px</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax_Px</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_label_position</span><span class="p">(</span><span class="s1">&#39;right&#39;</span><span class="p">)</span>
+<span class="n">ax_Py</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax_Py</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p(y)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax_Py</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_label_position</span><span class="p">(</span><span class="s1">&#39;top&#39;</span><span class="p">)</span>
+
+<span class="n">ax_Px</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax_Py</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># draw marginal probabilities</span>
+<span class="n">iy</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span> <span class="o">*</span> <span class="n">Ngrid</span> <span class="o">//</span> <span class="mi">4</span><span class="p">,</span> <span class="n">Ngrid</span> <span class="o">//</span> <span class="mi">2</span><span class="p">,</span> <span class="n">Ngrid</span> <span class="o">//</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="s1">&#39;rgc&#39;</span>
+<span class="n">axis</span> <span class="o">=</span> <span class="n">ax_Pxy</span><span class="o">.</span><span class="n">axis</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="c1"># overplot range on joint probability</span>
+    <span class="n">ax_Pxy</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                <span class="p">[</span><span class="n">ybins</span><span class="p">[</span><span class="n">iy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">ybins</span><span class="p">[</span><span class="n">iy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+                 <span class="n">ybins</span><span class="p">[</span><span class="n">iy</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">ybins</span><span class="p">[</span><span class="n">iy</span><span class="p">[</span><span class="n">i</span><span class="p">]]],</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">Px_y</span> <span class="o">=</span> <span class="n">H</span><span class="p">[</span><span class="n">iy</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">/</span> <span class="n">H</span><span class="p">[</span><span class="n">iy</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="n">ax_Px_y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xbins</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">Px_y</span><span class="p">,</span> <span class="n">drawstyle</span><span class="o">=</span><span class="s1">&#39;steps&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">ax_Px_y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">NullFormatter</span><span class="p">())</span>
+    <span class="n">ax_Px_y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$p(x | y = </span><span class="si">%.1f</span><span class="s1">)$&#39;</span> <span class="o">%</span> <span class="n">ybins</span><span class="p">[</span><span class="n">iy</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+    <span class="n">ax_Px_y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">ax_Pxy</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span>
+
+<span class="n">ax_Px_y</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+
+<span class="n">ax_Pxy</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Joint Probability&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">18</span><span class="p">)</span>
+<span class="n">ax_Px_y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Conditional Probability&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">18</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f548c3c842762a8b0fcb1cd4a14161eab5d39b055af1fa9c6b0255d69499447e.png" src="../_images/f548c3c842762a8b0fcb1cd4a14161eab5d39b055af1fa9c6b0255d69499447e.png" />
+</div>
+</div>
+<p>Eq’s. 2 and 4 can be combined to yield <em>Bayes’ rule</em>:</p>
+<div class="math notranslate nohighlight">
+\[ \qquad\qquad p(y|x) = \frac{p(x|y)p(y)}{p(x)} = \frac{p(x|y)p(y)}{\int p(x|y)p(y)dy} \qquad\qquad\qquad(5) \]</div>
+<p>Bayes’ rule relates conditional and marginal probabilities to each other. In the case of a discrete random variable, <span class="math notranslate nohighlight">\(y_j\)</span>, with <span class="math notranslate nohighlight">\(M\)</span> possible values, the integral in eq. 5 becomes a sum:</p>
+<div class="math notranslate nohighlight">
+\[p(y_j|x) = \frac{p(x|y_j)p(y_j)}{p(x)} = \frac{p(x|y_j)p(y_j)}{\sum_{j=1}^M p(x|y_j)p(y_j)} \]</div>
+</section>
+<section id="example-monty-hall-problem">
+<h2>Example: Monty Hall problem<a class="headerlink" href="#example-monty-hall-problem" title="Permalink to this headline">#</a></h2>
+<p>The following problem illustrates how different probabilistic inferences can be derived about the same physical system depending on the available prior information.</p>
+<p>There are <span class="math notranslate nohighlight">\(N=1000\)</span> boxes, of which 999 are empty, and one contains some “prize.” You choose a box at random; the probability that it contains the prize is 1/1000. This box remains closed while another person who knows which box contains the prize opens 998 <strong>empty boxes</strong> chosen from the 999 remaining boxes.</p>
+<p>At this point, two boxes remain: the one you chose at random and the last unopened box. This remaining box is almost certain to contain the prize; the probability is 999/1000 because there is a chance of only 1 in 1000 that the prize is in the box you chose initially, and the probabilities for the two unopened boxes must add up to 1. If you were offered to switch the box you initially chose with another unopened box, you would increase the chances of getting the prize by a factor of 999 (from 1/1000 to 999/1000).</p>
+<p>On the other hand, if a third person walked in and had to choose one of the two remaining unopened boxes, but without knowing that initially there were 1000 boxes, nor which one you initially chose, <strong>they would pick the box with the prize with a probability of 1/2</strong>. The difference in expected outcomes is due to different prior information, and it nicely illustrates that the probabilities we assign to events reflect the state of our knowledge.</p>
+<section id="formal-derivation-of-the-solution-using-bayes-rule">
+<h3>Formal derivation of the solution using Bayes’ rule<a class="headerlink" href="#formal-derivation-of-the-solution-using-bayes-rule" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(H_i\)</span> is the hypothesis that the prize is in the <span class="math notranslate nohighlight">\(i\)</span>th box</p></li>
+<li><p><span class="math notranslate nohighlight">\(p(H_i|I) = 1/N\)</span> is its prior probability given background information <span class="math notranslate nohighlight">\(I\)</span>.</p></li>
+<li><p>The “data” that <span class="math notranslate nohighlight">\(N − 2\)</span> boxes, all but the first box and the <span class="math notranslate nohighlight">\(k\)</span>th box <span class="math notranslate nohighlight">\((k &gt; 1)\)</span>, are empty is <span class="math notranslate nohighlight">\(d_k\)</span></p></li>
+</ul>
+<p>Without a loss of generality, the box chosen initially can be enumerated as the first box. The probability that the prize is in the first box, given <span class="math notranslate nohighlight">\(I\)</span> and <span class="math notranslate nohighlight">\(k\)</span>, can be evaluated using Bayes’ rule (see eq. 3.11)</p>
+<div class="math notranslate nohighlight">
+\[p(H_1|d_k,I) = \frac{p(d_k|H_1,I)p(H_1|I)}{p(d_k|I)} \]</div>
+<p>The probability that the <span class="math notranslate nohighlight">\(k\)</span>th box remains unopened given that <span class="math notranslate nohighlight">\(H_1\)</span> is true, <span class="math notranslate nohighlight">\(p(d_k|H_1,I)\)</span> is <span class="math notranslate nohighlight">\(1/(N−1)\)</span> because this box is randomly chosen from <span class="math notranslate nohighlight">\(N − 1\)</span> boxes. The denominator can be expanded using
+the law of total probability,</p>
+<div class="math notranslate nohighlight">
+\[ p(d_k|I) = \sum\limits_{i=1}^N p(d_k|H_i, I)p(H_i|I) \]</div>
+<p>The probability that the <span class="math notranslate nohighlight">\(k\)</span>th box stays unopened, given that <span class="math notranslate nohighlight">\(H_i\)</span> is true, is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split} p(d_k| H_i, I) =  \begin{cases} 1 \text{ for } k = i\\0 \text{ otherwise} \end{cases} \end{split}\]</div>
+<p>except when <span class="math notranslate nohighlight">\(i = 1\)</span>. This reduces the sum to only two terms:</p>
+<div class="math notranslate nohighlight">
+\[ p(d_k|I) = p(d_k|H_1,I)p(H_1|I)+ p(d_k|H_k,I)p(H_k|I) = \frac{1}{(N-1)N}+\frac{1}{N}=\frac{1}{N-1} \]</div>
+<p>This result might appear to agree with our intuition because there are <span class="math notranslate nohighlight">\(N − 1\)</span> ways to choose one box out of <span class="math notranslate nohighlight">\(N − 1\)</span> boxes, but this interpretation is not correct: the <span class="math notranslate nohighlight">\(k\)</span>th box is not chosen randomly in the case when the prize is not in the first box, but instead, it must be chosen (the second term in the sum above). Hence, from eq. 3.12, the probability that the prize is in the first (initially chosen) box is</p>
+<div class="math notranslate nohighlight">
+\[p(H_1|d_k,I) = \frac{\frac{1}{(N-1)}\frac{1}{N}}{\frac{1}{(N-1)}} = \frac{1}{N}\]</div>
+<p>It is easy to show that <span class="math notranslate nohighlight">\(p(H_k|d_k,I) = (N −1)/N\)</span>. Note that <span class="math notranslate nohighlight">\(p(H_1|d_k,I)\)</span> is equal to the prior probability <span class="math notranslate nohighlight">\(p(H_1|I)\)</span>; that is, the opening of <span class="math notranslate nohighlight">\(N − 2\)</span> empty boxes (data <span class="math notranslate nohighlight">\(d_k\)</span>) did not improve our knowledge of the content of the first box (but it did improve our knowledge of the content of the <span class="math notranslate nohighlight">\(k\)</span>th box by a factor of <span class="math notranslate nohighlight">\(N −1\)</span>).</p>
+</section>
+</section>
+<section id="example-22-contingency-table">
+<h2>Example: 2×2 contingency table<a class="headerlink" href="#example-22-contingency-table" title="Permalink to this headline">#</a></h2>
+<p>Assume we have a test for a disease. One variable is the result of the test T: the test can be negative (0) or positive (1); the second variable is the presence of disease D: the patient can have a disease (1) or not (0).</p>
+<p>There are four possible combinations in this sample space:
+$<span class="math notranslate nohighlight">\(T =0;D=0 \quad\text{True negative}\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(T =0;D=1 \quad\text{False negative}\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(T =1;D=0 \quad\text{False positive}\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(T =1;D=1 \quad\text{True positive}\)</span>$</p>
+<p>We also know that the probabilities for false positive and false negative are
+$<span class="math notranslate nohighlight">\(p(T =1|D=0) = \epsilon_{fP}\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(p(T =0|D=1) = \epsilon_{fN}\)</span>$</p>
+<p>where <span class="math notranslate nohighlight">\(\epsilon_{fP}\)</span> and <span class="math notranslate nohighlight">\(\epsilon_{fN}\)</span> are typically small. Then the probabilities for true positive and true negative are
+$<span class="math notranslate nohighlight">\(p(T =0|D=0) = 1-\epsilon_{fP}\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(p(T =1|D=1) = 1-\epsilon_{fN}\)</span>$</p>
+<p>We’ll visualize the information so far in a contingency table below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">yticks</span><span class="o">=</span><span class="p">[],</span> <span class="n">frameon</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+
+<span class="n">kwds</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.15</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.15</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">1.15</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">1.15</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">1.25</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+
+<span class="n">kwds</span><span class="p">[</span><span class="s1">&#39;size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">18</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;$\epsilon_</span><span class="si">{fP}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;$1 - \epsilon_</span><span class="si">{fP}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;$\epsilon_</span><span class="si">{fN}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;$1 - \epsilon_</span><span class="si">{fN}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6e718e3f6e965a3e0db1a646d8ffaff74d49de760c1a6492dadb041926f432fe.png" src="../_images/6e718e3f6e965a3e0db1a646d8ffaff74d49de760c1a6492dadb041926f432fe.png" />
+</div>
+</div>
+<p>Let us assume that we also know that the prior probability (in the absence of any testing based on some large population studies unrelated to our test) for the disease in question is <span class="math notranslate nohighlight">\(p(D = 1) = \epsilon_D\)</span>, where <span class="math notranslate nohighlight">\(\epsilon_D\)</span> is a small number. This makes <span class="math notranslate nohighlight">\(p(D = 0) = 1-\epsilon_D\)</span>.</p>
+<p>Our patient takes a test and it comes out positive <span class="math notranslate nohighlight">\((T=1)\)</span> What is the probability that our patient has contracted the disease, <span class="math notranslate nohighlight">\(p(D = 1|T = 1)\)</span>? Using Bayes’ rule (eq. 5), we have</p>
+<div class="math notranslate nohighlight">
+\[p(D=1|T=1) = \frac{p(T=1|D=1)p(D=1)}{p(T=1|D=0)p(D=0) + p(T=1|D=1)p(D=1)}. \]</div>
+<p>Given our assumptions,</p>
+<div class="math notranslate nohighlight">
+\[ p(D=1|T=1) = \frac{(1-\epsilon_{fN})\epsilon_{D}}{\epsilon_{fP}(1-\epsilon_D)+(1-\epsilon_{fN})\epsilon_{D}}, \]</div>
+<p>which simplifies to</p>
+<div class="math notranslate nohighlight">
+\[ p(D =1|T=1) = \frac{\epsilon_D-\epsilon_{fN}\epsilon_D}{\epsilon_D+\epsilon_{fP}- [\epsilon_D(\epsilon_{fP}+\epsilon_{fN})]} \approx \frac{\epsilon_D}{\epsilon_D + \epsilon_{fP}}.\]</div>
+<p>This is an interesting result: we can only reliably diagnose a disease (i.e., p(D = 1|T = 1) <span class="math notranslate nohighlight">\(\sim\)</span> 1) if <span class="math notranslate nohighlight">\(\epsilon_{fP} \ll \epsilon_D\)</span>. For rare diseases, the test must have an exceedingly low false-positive rate! On the other hand, if <span class="math notranslate nohighlight">\(\epsilon_{fP} \gg \epsilon_D\)</span>, then <span class="math notranslate nohighlight">\(p(D = 1|T = 1) \sim \epsilon_D/\epsilon_{fP} \ll 1\)</span> and the testing does not produce conclusive evidence. The false-negative rate is not quantitatively important as long as it is not much larger than the other two parameters.</p>
+<p>Consider a sample of 1000 tested people. Assume we have a disease rate of 1% (<span class="math notranslate nohighlight">\(\epsilon_D = 0.01\)</span>) and a false positive rate of 2% (<span class="math notranslate nohighlight">\(\epsilon_{fp} = 0.02\)</span>).</p>
+<div class="math notranslate nohighlight">
+\[ p(D=1|T=1) = \frac{0.01}{0.02+0.01} = 0.33 \]</div>
+<p>Then in a sample of, e.g., 1000 people, 10 people test positive and actually have the disease (1000 <span class="math notranslate nohighlight">\(\times\)</span>  0.01), but another 20 will test positive while healthy (1000 <span class="math notranslate nohighlight">\(\times\)</span>  0.02). Therefore, in that sample of 30 people who tested positive, only 1/3 has the disease (not 98%).</p>
+</section>
+<section id="transformations-of-random-variables">
+<h2>Transformations of random variables<a class="headerlink" href="#transformations-of-random-variables" title="Permalink to this headline">#</a></h2>
+<p>Any function of a random variable is itself a random variable. It is a common case in practice that we measure the value of some variable <span class="math notranslate nohighlight">\(x\)</span>, but the interesting final result is a function <span class="math notranslate nohighlight">\(y(x)\)</span>. If we know the probability density distribution <span class="math notranslate nohighlight">\(p(x)\)</span>, where <span class="math notranslate nohighlight">\(x\)</span> is a random variable, what is the distribution <span class="math notranslate nohighlight">\(p(y)\)</span>, where <span class="math notranslate nohighlight">\(y = \Phi(x)\)</span> (with <span class="math notranslate nohighlight">\(x = \Phi−1(y)\)</span>)? It is easy to show that</p>
+<div class="math notranslate nohighlight">
+\[ p(y) = p\big[\Phi ^ {-1} (y)\big] \bigg|\frac{d\Phi^{-1}(y)}{dy}\bigg|.\]</div>
+<p>For example, if <span class="math notranslate nohighlight">\(y=\Phi(x)= \text{exp}(x)\)</span>, then <span class="math notranslate nohighlight">\(x=\Phi^{−1}(y)=\text{ln}(y)\)</span>. If <span class="math notranslate nohighlight">\(p(x)=1 \)</span> for <span class="math notranslate nohighlight">\(0\leq x \leq 1 \)</span> and 0 otherwise (a uniform distribution), the equation above leads to <span class="math notranslate nohighlight">\(p(y) = 1/y\)</span>, with <span class="math notranslate nohighlight">\(1 \leq y \leq e\)</span>. That is, a uniform distribution of <span class="math notranslate nohighlight">\(x\)</span> is transformed into a nonuniform distribution of <span class="math notranslate nohighlight">\(y\)</span>.</p>
+<p>Below is an example of transforming a uniform distribution. In the left panel, <span class="math notranslate nohighlight">\(x\)</span> is sampled from a uniform distribution of unit width centered on <span class="math notranslate nohighlight">\(x = 0.5\)</span> (<span class="math notranslate nohighlight">\(\mu = 0\)</span> and <span class="math notranslate nohighlight">\(W = 1\)</span>; see §3.3.1). In the right panel, the distribution is transformed via <span class="math notranslate nohighlight">\(y\)</span> = exp(<span class="math notranslate nohighlight">\(x\)</span>). The form of the resulting pdf is computed from the equation above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># Set up the data</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># create a uniform distribution</span>
+<span class="n">uniform_dist</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">x_sample</span> <span class="o">=</span> <span class="n">uniform_dist</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">Px</span> <span class="o">=</span> <span class="n">uniform_dist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># transform the data</span>
+<span class="n">y_sample</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x_sample</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">Py</span> <span class="o">=</span> <span class="n">Px</span> <span class="o">/</span> <span class="n">y</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.11</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.17</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">x_sample</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;#CCCCCC&#39;</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">Px</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.4001</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$p_x(x) = {\rm Uniform}(x)$&#39;</span><span class="p">,</span>
+        <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$p_x(x)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">y_sample</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;#CCCCCC&#39;</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">Py</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.85</span><span class="p">,</span> <span class="mf">2.9</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="s1">&#39;$y=\exp(x)$</span><span class="se">\n</span><span class="s1">$p_y(y)=p_x(\ln y) / y$&#39;</span><span class="p">,</span>
+        <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span>
+        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">,</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$p_y(y)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fe3ed5a022dc3f5bf87f25f2e5a6cafea253d2554a4e79f54bdc0ee3e382a52d.png" src="../_images/fe3ed5a022dc3f5bf87f25f2e5a6cafea253d2554a4e79f54bdc0ee3e382a52d.png" />
+</div>
+</div>
+<p>If some value of <span class="math notranslate nohighlight">\(x\)</span>, say <span class="math notranslate nohighlight">\(x_0\)</span>, is determined with an uncertainty <span class="math notranslate nohighlight">\(\sigma_x\)</span>, then we can use a Taylor series expansion to estimate the uncertainty in <span class="math notranslate nohighlight">\(y\)</span>, say <span class="math notranslate nohighlight">\(\sigma_y\)</span>, at <span class="math notranslate nohighlight">\(y_0 = \Phi(x_0)\)</span> as</p>
+<p>$<span class="math notranslate nohighlight">\(\sigma_y = \bigg|\frac{d\Phi(x)}{dx}\bigg|_0 \sigma_x \)</span>$.</p>
+<p>where the derivative is evaluated at <span class="math notranslate nohighlight">\(x_0\)</span>. While often used, this approach can produce misleading results when it is insufficient to keep only the first term in the Taylor series. For example, if the flux measurements follow a Gaussian distribution with a relative accuracy of a few percent, then the corresponding distribution of astronomical magnitudes (the logarithm of flux; see appendix C) is close to a Gaussian distribution. However, if the relative flux accuracy is 20% (corresponding to the so-called “<span class="math notranslate nohighlight">\(5 − \sigma\)</span>” detection limit), then the distribution of magnitudes is skewed and non-Gaussian. Furthermore, the mean magnitude is not equal to the logarithm of the mean flux (but the medians still correspond to each other!).</p>
+<p>Below is an example of relatively high Gaussian flux errors becoming non-Gaussian magnitude errors; additionally, we’ll show relatively low Gaussian flux errors becoming mostly Gaussian magnitude errors. The dotted line shows the location of the mean flux <span class="math notranslate nohighlight">\(-\)</span> note that this is not coincident with the peak of the magnitude distribution for high Gaussian flux errors. However, for low Gaussian flux errors, the dotted line roughly passes through the peak of the magnitude distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># create distribution with 1% flux errors</span>
+<span class="n">dist</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+<span class="n">flux</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">flux_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">pdf_flux_fit</span> <span class="o">=</span> <span class="n">dist</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">flux_fit</span><span class="p">)</span>
+
+<span class="c1"># transform this distribution into magnitude space</span>
+<span class="n">mag</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">flux</span><span class="p">)</span>
+<span class="n">mag_fit</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">flux_fit</span><span class="p">)</span>
+<span class="n">pdf_mag_fit</span> <span class="o">=</span> <span class="n">pdf_flux_fit</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">pdf_mag_fit</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">/=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">mag_fit</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">mag_fit</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">pdf_mag_fit</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">pdf_mag_fit</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="nb">abs</span><span class="p">(</span><span class="n">mag_fit</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">mag_fit</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+<span class="c1"># create distribution with 25% flux errors</span>
+<span class="n">dist25</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.20</span><span class="p">)</span>
+<span class="n">flux25</span> <span class="o">=</span> <span class="n">dist25</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">flux_fit25</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.001</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">pdf_flux_fit25</span> <span class="o">=</span> <span class="n">dist25</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">flux_fit25</span><span class="p">)</span>
+
+<span class="c1"># transform this distribution into magnitude space</span>
+<span class="n">mag25</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">flux25</span><span class="p">)</span>
+<span class="n">mag_fit25</span> <span class="o">=</span> <span class="o">-</span><span class="mf">2.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">flux_fit25</span><span class="p">)</span>
+<span class="n">pdf_mag_fit25</span> <span class="o">=</span> <span class="n">pdf_flux_fit25</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">pdf_mag_fit25</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">/=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">mag_fit25</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">mag_fit25</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">pdf_mag_fit25</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">pdf_mag_fit25</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="nb">abs</span><span class="p">(</span><span class="n">mag_fit25</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">mag_fit25</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we’ll plot the distributions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>                
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span><span class="mi">11</span><span class="p">)</span>   
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">(</span><span class="n">w_pad</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">h_pad</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+
+<span class="c1">#------------------------------------------------------------ 1% flux error</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">flux</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+        <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">flux_fit</span><span class="p">,</span> <span class="n">pdf_flux_fit</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">42</span><span class="p">],</span> <span class="s1">&#39;:k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">1.25</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;${\rm flux}$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p({\rm flux})$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;${\rm 1\%\ flux\ error}$&#39;</span><span class="p">,</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="c1">#------------------------------------------------------------ 1% magnitude error</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">mag</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+        <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mag_fit</span><span class="p">,</span> <span class="n">pdf_mag_fit</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">42</span><span class="p">],</span> <span class="s1">&#39;:k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;${\rm mag}$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p({\rm mag})$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;${\rm mag} = -2.5\log_</span><span class="si">{10}</span><span class="s1">({\rm flux})$&#39;</span><span class="p">,</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="c1">#------------------------------------------------------------ 20% flux error</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">flux25</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+        <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">flux_fit25</span><span class="p">,</span> <span class="n">pdf_flux_fit25</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">],</span> <span class="s1">&#39;:k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">2.1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;${\rm flux}$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p({\rm flux})$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;${\rm 20\%\ flux\ error}$&#39;</span><span class="p">,</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">)</span>
+
+<span class="c1">#------------------------------------------------------------ 20% magnitude error</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">mag25</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">50</span><span class="p">),</span>
+        <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">mag_fit25</span><span class="p">,</span> <span class="n">pdf_mag_fit25</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;:k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;${\rm mag}$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p({\rm mag})$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;${\rm mag} = -2.5\log_</span><span class="si">{10}</span><span class="s1">({\rm flux})$&#39;</span><span class="p">,</span>
+        <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">transAxes</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/563f6d821ef2d6d96ebcbc9d449e46b0f754d3ad567a757c62754826136e426d.png" src="../_images/563f6d821ef2d6d96ebcbc9d449e46b0f754d3ad567a757c62754826136e426d.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="README.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 3: Probability and Statistical Distributions</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="astroml_chapter3_Descriptive_Statistics.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Descriptive Statistics</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By AstroML developers<br/>
+  
+      &copy; Copyright 2020-2021, AstroML developers.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
