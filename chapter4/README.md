@@ -8,5 +8,6 @@ This chapter develops the classical or “frequentist” approach to statistics.
 maxdepth: 1
 ---
 
+astroml_chapter4_Gaussian_mixtures
 
 ```
