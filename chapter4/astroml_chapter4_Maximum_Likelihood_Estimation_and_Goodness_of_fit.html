@@ -1,0 +1,1318 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Maximum Likelihood Estimation (MLE) &#8212; AstroML Notebooks</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 5: Bayesian Statistical Inference" href="../chapter5/README.html" />
+    <link rel="prev" title="Chapter 4: Classical Statistical Inference" href="README.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/astroml_logo.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">AstroML Notebooks</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter1/README.html">
+   Chapter 1: Introduction and Data Sets
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="simple">
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter2/README.html">
+   Chapter 2: Fast Computation and Massive Datasets
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="simple">
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter3/README.html">
+   Chapter 3: Probability and Statistical Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Overview_of_Probability_and_Random_Variables.html">
+     Overview of Probability and Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Descriptive_Statistics.html">
+     Descriptive Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Univariate_Distribution_Functions.html">
+     Univariate Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_The_Central_Limit_Theorem.html">
+     The Central Limit Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Bivariate_and_Multivariate_Distribution_Functions.html">
+     Bivariate and multivariate distribution functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="README.html">
+   Chapter 4: Classical Statistical Inference
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Maximum Likelihood Estimation (MLE)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter5/README.html">
+   Chapter 5: Bayesian Statistical Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution.html">
+     Parameter Estimation for a Gaussian Distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Binomial_Distribution.html">
+     Parameter Estimation for a Binomial Distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Cauchy_Distribution.html">
+     Parameter estimation for the Cauchy (Lorentzian) distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Approximate_Bayesian_Computation.html">
+     Approximate Bayesian Computation Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Hierarchical_Bayes.html">
+     Hierarchical Bayes Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter6/README.html">
+   Chapter 6: Searching for Structure in Point Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall.html">
+     Density Estimation for SDSS “Great Wall”
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Searching_for_Structure_in_Point_Data.html">
+     Searching for Structure in Point Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Gaussian_Mixture_Models.html">
+     Gaussian Mixture Models Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Extreme_Deconvolution.html">
+     Extreme Deconvolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter7/README.html">
+   Chapter 7: Dimensionality and its Reduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter7/astroml_chapter7_Dimensionality_Reduction.html">
+     Dimensionality reduction
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter8/README.html">
+   Chapter 8: Regression and Model Fitting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter8/astroml_chapter8_Regression.html">
+     Measurement Errors in Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter8/astroml_chapter8_Regression_with_Errors_on_Dependent_and_Independent_Variables.html">
+     Measurement errors in both dependent and independent variables
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter9/README.html">
+   Chapter 9: Classification
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter9/astroml_chapter9_Classification.html">
+     Classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter9/astroml_chapter9_Deep_Learning_Classifying_Astronomical_Images.html">
+     Deep Learning: Classifying Astronomical Images
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter10/README.html">
+   Chapter 10: Time Series Analysis
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.html">
+     Modeling Toolkit For Time Series Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Wavelets.html">
+     Wavelets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Digital_Filtering.html">
+     Digital Filtering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Temporally_Localized_Signals.html">
+     Temporally localized signals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Analysis_of_Stochastic_Processes.html">
+     Analysis of Stochastic Processes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?urlpath=tree/chapter4/astroml_chapter4_Maximum_Likelihood_Estimation_and_Goodness_of_fit.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/astroML/astroML-notebooks/blob/main/chapter4/astroml_chapter4_Maximum_Likelihood_Estimation_and_Goodness_of_fit.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2Fchapter4/astroml_chapter4_Maximum_Likelihood_Estimation_and_Goodness_of_fit.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter4/astroml_chapter4_Maximum_Likelihood_Estimation_and_Goodness_of_fit.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/chapter4/astroml_chapter4_Maximum_Likelihood_Estimation_and_Goodness_of_fit.ipynb.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classical-or-frequentist">
+   Classical or frequentist:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bayesian">
+   Bayesian
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Maximum likelihood estimation (MLE)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mle-approach">
+     MLE approach
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-likelihood-function">
+     The Likelihood Function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mle-applied-to-homoscedastic-gaussian-likelihood">
+     MLE applied to homoscedastic Gaussian likelihood
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mle-approach-for-our-problem">
+       MLE approach for our problem
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-probability-of-obtaining-a-particular-measurement">
+       The Probability of Obtaining a Particular Measurement
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-probability-of-the-dataset">
+       The Probability of the Dataset
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#maximizing-l">
+       Maximizing L
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plotting-our-dataset-and-l">
+       Plotting our dataset and L
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#properties-of-maximum-likelihood-estimators">
+   Properties of maximum likelihood estimators
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mle-confidence-intervals">
+   MLE confidence intervals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-mle-applied-to-a-heteroscedastic-gaussian-likelihood">
+   The MLE applied to a heteroscedastic Gaussian likelihood
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-mle-in-the-case-of-truncated-and-censored-data">
+   The MLE in the case of truncated and censored data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-goodness-of-fit-and-model-selection">
+   The goodness of fit and model selection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-goodness-of-fit-for-a-model">
+   The goodness of fit for a model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-comparison">
+   Model comparison
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Maximum Likelihood Estimation (MLE)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#classical-or-frequentist">
+   Classical or frequentist:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bayesian">
+   Bayesian
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Maximum likelihood estimation (MLE)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mle-approach">
+     MLE approach
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-likelihood-function">
+     The Likelihood Function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#mle-applied-to-homoscedastic-gaussian-likelihood">
+     MLE applied to homoscedastic Gaussian likelihood
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#mle-approach-for-our-problem">
+       MLE approach for our problem
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-probability-of-obtaining-a-particular-measurement">
+       The Probability of Obtaining a Particular Measurement
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-probability-of-the-dataset">
+       The Probability of the Dataset
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#maximizing-l">
+       Maximizing L
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#plotting-our-dataset-and-l">
+       Plotting our dataset and L
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#properties-of-maximum-likelihood-estimators">
+   Properties of maximum likelihood estimators
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mle-confidence-intervals">
+   MLE confidence intervals
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-mle-applied-to-a-heteroscedastic-gaussian-likelihood">
+   The MLE applied to a heteroscedastic Gaussian likelihood
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-mle-in-the-case-of-truncated-and-censored-data">
+   The MLE in the case of truncated and censored data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-goodness-of-fit-and-model-selection">
+   The goodness of fit and model selection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-goodness-of-fit-for-a-model">
+   The goodness of fit for a model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#model-comparison">
+   Model comparison
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="maximum-likelihood-estimation-mle">
+<h1>Maximum Likelihood Estimation (MLE)<a class="headerlink" href="#maximum-likelihood-estimation-mle" title="Permalink to this headline">#</a></h1>
+<p>This notebook will go over maximum likelihood estimation (MLE) and goodness of fit. We’ll start off with a quick overview of classical vs Bayesian statistics.</p>
+<section id="classical-or-frequentist">
+<h2>Classical or frequentist:<a class="headerlink" href="#classical-or-frequentist" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Probabilities refer to relative frequencies of events. They are objective properties of the real world.</p></li>
+<li><p>Parameters (such as the fraction of coin flips, for a particular coin, that are heads) are fixed, unknown constants. Because they are not fluctuating, probability statements about parameters are meaningless.</p></li>
+<li><p>Statistical procedures should have well-defined long-run frequency properties. For example, a 95% confidence interval should bracket the true value of the parameter with a limiting frequency of at least 95%.</p></li>
+</ul>
+</section>
+<section id="bayesian">
+<h2>Bayesian<a class="headerlink" href="#bayesian" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Probability describes the degree of subjective belief, not the limiting frequency. Probability statements can be made about things other than data, including model parameters and models themselves.</p></li>
+<li><p>Inferences about a parameter are made by producing its probability distribution — this distribution quantifies the uncertainty of our knowledge about that parameter. Various point estimates, such as expectation value, may then be readily extracted from this distribution.</p></li>
+</ul>
+<p><strong>Example</strong>:</p>
+<blockquote>
+<div><p>A frequentist and a Bayesian statistician gather to watch a man flip a coin. He asks both of them before flipping the coin, “what is the probability of it landing on tails?” Both answer 50%. He then flips the coin and catches it in his hand, not allowing either statistician to see. He asks again what the probability of it having landed on tails is. The Bayesian statistician states, “well, obviously, for me, it’s still 50%”. On the other hand, the frequentist exclaims, “that’s a silly question; there is no probability to it! Although I do not know the answer, the coin is either heads up or tails up right at this moment. The probability of it being tails up is either 100% or 0%.”</p>
+</div></blockquote>
+<p>Note that both are equally concerned with uncertainties about estimates. The main difference is whether one is allowed or not to discuss the “probability” of some aspect of the fixed universe having a certain value (e.g., the coin being heads or tails after it has already landed.)</p>
+</section>
+<section id="id1">
+<h2>Maximum likelihood estimation (MLE)<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<section id="mle-approach">
+<h3>MLE approach<a class="headerlink" href="#mle-approach" title="Permalink to this headline">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>The model</strong>: Define a model <span class="math notranslate nohighlight">\(M\)</span>, <span class="math notranslate nohighlight">\(p(D|M)\)</span>, which is a hypothesis about how the data is generated. The accuracy of the resulting inferences relies heavily on the quality of our hypothesis, or how well the model describes the actual data generation process. Models are denoted <span class="math notranslate nohighlight">\(M(\boldsymbol{\theta})\)</span> where <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> is a set of model parameters.</p></li>
+<li><p><strong>Parameter estimates</strong>: search for the best model parameters (<span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span>) which <em>maximize</em> <span class="math notranslate nohighlight">\(p(D|M)\)</span>. From this, we obtain MLE <em>point estimates</em> <span class="math notranslate nohighlight">\(\boldsymbol{\theta^0}\)</span> (i.e., we obtain k estimates, <span class="math notranslate nohighlight">\(\boldsymbol{\theta^0_p}, p = 1, . . . , k)\)</span>.</p></li>
+<li><p><strong>Confidence intervals</strong>: Determine the confidence region for model parameters. Such a confidence estimate can be obtained analytically in MLE using mathematical derivations specific to the chosen model. It can also be done numerically for arbitrary models using general frequentist techniques.</p></li>
+<li><p><strong>Hypothesis testing</strong>: Perform <em>hypothesis tests</em> as needed to make conclusions about models and point estimates.</p></li>
+</ol>
+</section>
+<section id="the-likelihood-function">
+<h3>The Likelihood Function<a class="headerlink" href="#the-likelihood-function" title="Permalink to this headline">#</a></h3>
+<p>Given a known or assumed behavior about how our data is generated (i.e., the distribution from which our sample was drawn), we can calculate the probability or likelihood of observing any given value. For example, assume that we draw our data {<span class="math notranslate nohighlight">\(x_i\)</span>} from a Gaussian parent distribution, then the likelihood of a given value <span class="math notranslate nohighlight">\(x_i\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[p(x|\mu,\sigma) = \frac{1}{\sigma\sqrt{2\pi}}\text{exp}\bigg(\frac{-(x-\mu)^2}{2\sigma ^2}\bigg).\]</div>
+<p>We assume <span class="math notranslate nohighlight">\(x_i ... x_n\)</span> are independent and identically distributed random samples from a pmf or pdf (e.g., they would <strong>not</strong> be independent in the case of drawing from a small parent sample without replacement). This assumption allows us to define the likelihood of the entire data set, <span class="math notranslate nohighlight">\(L\)</span> as the <em>product</em> of likelihoods for each particular value,</p>
+<div class="math notranslate nohighlight">
+\[L \equiv p(\{x_i\}|M(\boldsymbol{\theta})) = \prod \limits_{i=1}^n p(x_i|M(\boldsymbol{\theta})),\]</div>
+<p>where <span class="math notranslate nohighlight">\(M\)</span> is the model, <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> are the unknown parameters, and <span class="math notranslate nohighlight">\(x_i ... x_n\)</span> are the data samples. <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> is a vector with components <span class="math notranslate nohighlight">\(\theta_p\)</span> for <span class="math notranslate nohighlight">\(p = 1 ... k\)</span>. Note that instead of the specific one-dimensional set {<span class="math notranslate nohighlight">\(x_i\)</span>}, we often use <span class="math notranslate nohighlight">\(D\)</span> for data in general cases. Additionally, since the product of likelihoods is no longer normalized to 1, we often use <span class="math notranslate nohighlight">\(L\)</span>’s logarithm as it can take on extremely small values when a data set is large.</p>
+<p>If this is still unclear, <span class="math notranslate nohighlight">\(L\)</span> is just the joint probability of obtaining the entire data set; recall that for independent events, the joint probability is simply the product of individual probabilities – i.e., <span class="math notranslate nohighlight">\(p(A)p(B)\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(L\)</span> can be considered both as a function of the data and as a function of the model. When computing the likelihood of some data value <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(L\)</span> is a function of <span class="math notranslate nohighlight">\(x\)</span> for some fixed model parameters. Given some fixed data set, it can be considered as a function of the model parameters instead. These parameters can then be varied to maximize the likelihood of observing this specific data set, as described next.</p>
+</section>
+<section id="mle-applied-to-homoscedastic-gaussian-likelihood">
+<h3>MLE applied to homoscedastic Gaussian likelihood<a class="headerlink" href="#mle-applied-to-homoscedastic-gaussian-likelihood" title="Permalink to this headline">#</a></h3>
+<p><strong>Example</strong>: Assume we want to measure the apparent magnitude (brightness from Earth) of a non-variable star a fixed distance away from Earth. We have a series of measurements <span class="math notranslate nohighlight">\(\{x_i\}\)</span>. Our goal is to find the maximum likelihood estimate for the star’s apparent magnitude and its confidence interval.</p>
+<section id="mle-approach-for-our-problem">
+<h4>MLE approach for our problem<a class="headerlink" href="#mle-approach-for-our-problem" title="Permalink to this headline">#</a></h4>
+<p><strong>1.</strong> We determine a hypothesis (model) where</p>
+<ul class="simple">
+<li><p>The observed star does not move nor fluctuate in brightness</p></li>
+<li><p>The measurement errors are known to be Gaussian, and all the measurements have the same known error <span class="math notranslate nohighlight">\(\sigma\)</span> (homoscedastic).</p></li>
+</ul>
+<p><strong>2.</strong> We derive the expression for the likelihood of there being a star of a particular magnitude that gives rise to our individual measurements. We find the value of <span class="math notranslate nohighlight">\(\mu\)</span> for which our observations are maximally likely (maximize the likelihood function).</p>
+<p><strong>3.</strong> We determine the error bars (confidence intervals) on our measurement.</p>
+<p><strong>4.</strong> We test whether what we’ve observed is consistent with our adopted model. For example, is it possible that the star was really a misidentified variable star that fluctuates in brightness?</p>
+</section>
+<section id="the-probability-of-obtaining-a-particular-measurement">
+<h4>The Probability of Obtaining a Particular Measurement<a class="headerlink" href="#the-probability-of-obtaining-a-particular-measurement" title="Permalink to this headline">#</a></h4>
+<p>As our measurement errors are Gaussian, the probability density of each measurement is given by:</p>
+<div class="math notranslate nohighlight">
+\[ p(x| M(\boldsymbol{\theta})) = p(x|\mu,\sigma) = \frac{1}{\sqrt{2\pi}\sigma} \exp \bigg(\frac{-(x_i-\mu)^2}{2\sigma^2}\bigg) \]</div>
+</section>
+<section id="the-probability-of-the-dataset">
+<h4>The Probability of the Dataset<a class="headerlink" href="#the-probability-of-the-dataset" title="Permalink to this headline">#</a></h4>
+<p>If we want to know the joint probability of obtaining that entire set, we compute the product of all the individual probabilities:</p>
+<div class="math notranslate nohighlight">
+\[ \qquad\qquad L \equiv p(\{x_i\}|\mu,\sigma) = \prod_{i=1}^N \frac{1}{\sqrt{2\pi}\sigma} \exp \bigg(\frac{-(x_i-\mu)^2}{2\sigma^2}\bigg)\qquad\qquad (1)\]</div>
+<p>Here there is only one model parameter, that is, <span class="math notranslate nohighlight">\(k = 1\)</span> and <span class="math notranslate nohighlight">\(\theta_p = \mu\)</span> (recall that all the measurements have the same known error <span class="math notranslate nohighlight">\(\sigma\)</span>). Now we can find the maximum likelihood estimate, <span class="math notranslate nohighlight">\(\mu_0\)</span>, as the value of <span class="math notranslate nohighlight">\(\mu\)</span> that maximizes <span class="math notranslate nohighlight">\(L\)</span>, as follows.</p>
+</section>
+<section id="maximizing-l">
+<h4>Maximizing L<a class="headerlink" href="#maximizing-l" title="Permalink to this headline">#</a></h4>
+<p>The log-likelihood function is defined by <span class="math notranslate nohighlight">\(\ln L \equiv \ln[L(\boldsymbol\theta)]\)</span>. Its maximum occurs at the same place as that of the likelihood function, and the same is true of the likelihood function times any constant. The value of the model parameter <span class="math notranslate nohighlight">\(\mu\)</span> that maximizes <span class="math notranslate nohighlight">\(\ln L\)</span> can be determined using the condition</p>
+<div class="math notranslate nohighlight">
+\[ \frac{d\ln L(\mu)}{d\mu}\bigg|_{\mu^0} \equiv 0,\]</div>
+<p>which is the location where the first derivative of L is zero. It might be helpful to know that we can write the product of the exponentials as the exponential of the sum of the arguments,</p>
+<div class="math notranslate nohighlight">
+\[ L = \bigg(\prod_{i=1}^n \frac{1}{\sigma\sqrt{2\pi}}\bigg)\exp\bigg(-\frac{1}{2}\sum\bigg[\frac{(x_i -\mu)}{\sigma}\bigg]^2\bigg). \]</div>
+<p>Taking the natural log of <span class="math notranslate nohighlight">\(L\)</span> yields
+$<span class="math notranslate nohighlight">\(\ln L(\mu) = \text{constant} - \sum_{i=1}^N \frac{(x_i - \mu)^2}{2\sigma^2}, \)</span>$</p>
+<p>and taking of derivative with respect to <span class="math notranslate nohighlight">\(\mu\)</span> gives</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^N \frac{x_i-\mu^0}{\sigma^2} = 0. \]</div>
+<p>Now we can ignore <span class="math notranslate nohighlight">\(\sigma\)</span> since it’s constant and algebraically solve for <span class="math notranslate nohighlight">\(\mu\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^N x_i - \sum^N_{i=1} \mu^0 = 0 \]</div>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^N x_i = N\mu^0 \]</div>
+<div class="math notranslate nohighlight">
+\[\mu^0 =\frac{1}{N}\sum_{i=1}^N x_i  = \overline{x} \]</div>
+<p>Thus <span class="math notranslate nohighlight">\(\mu^0\)</span> is simply the arithmetic mean of all measurements!</p>
+</section>
+<section id="plotting-our-dataset-and-l">
+<h4>Plotting our dataset and L<a class="headerlink" href="#plotting-our-dataset-and-l" title="Permalink to this headline">#</a></h4>
+<p>We have 120 measurements for the apparent magnitude of our star drawn from a Gaussian distribution with <span class="math notranslate nohighlight">\(\mu = 8\)</span> (mean apparent magnitude) and <span class="math notranslate nohighlight">\(\sigma = 2\)</span> (the error in our measurements). In the figure on the left, we will plot the histogram of our measurements along with the true parent distribution plotted over top of it. In the figure on the right, we will calculate <span class="math notranslate nohighlight">\(L\)</span> using equation (1), varying the value of <span class="math notranslate nohighlight">\(\mu\)</span> from 0 to 16.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">Nsamples</span><span class="o">=</span> <span class="mi">120</span>
+<span class="n">mu_true</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># draw 120 pints from a Gaussian with mu = 8 and sigma = 2</span>
+<span class="n">measurements</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu_true</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">Nsamples</span><span class="p">)</span>
+
+<span class="c1"># caluclate L for 1000 possible values of mu from 0 to 16</span>
+<span class="n">products</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">:</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">measurements</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="n">products</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+
+<span class="c1"># plot the results</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>                
+<span class="n">fig</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>   
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">measurements</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;fd&#39;</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">);</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">norm</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">));</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;frequency&#39;</span><span class="p">,</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">products</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">107</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$\mu$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$L(\mu)$&#39;</span><span class="p">,</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">);</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;Mean of our dataset: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">measurements</span><span class="p">)</span><span class="si">:</span><span class="s2">.2</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">The value of mu that maximizes L: </span><span class="si">{</span><span class="n">x</span><span class="p">[</span><span class="n">products</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">products</span><span class="p">))]</span><span class="si">:</span><span class="s2">.2</span><span class="si">}</span><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean of our dataset: 7.8
+The value of mu that maximizes L: 7.8
+</pre></div>
+</div>
+<img alt="../_images/7c58a81b089c2720156e5df5daf5a55e6ed6451808ac0b02ee06ec325a486d99.png" src="../_images/7c58a81b089c2720156e5df5daf5a55e6ed6451808ac0b02ee06ec325a486d99.png" />
+</div>
+</div>
+<p>As we expect, the value of <span class="math notranslate nohighlight">\(\mu\)</span>, which maximizes <span class="math notranslate nohighlight">\(L\)</span>, is the average of our measurements!</p>
+</section>
+</section>
+</section>
+<section id="properties-of-maximum-likelihood-estimators">
+<h2>Properties of maximum likelihood estimators<a class="headerlink" href="#properties-of-maximum-likelihood-estimators" title="Permalink to this headline">#</a></h2>
+<p>Maximum likelihood estimators have several optimality properties under certain assumptions. The critical assumption is that the data truly come from the specified model class (e.g., they really are drawn from a Gaussian, if that is the model used). Additional assumptions include some relatively mild regularity conditions, which amount to various smoothness conditions, certain derivatives existing, etc.</p>
+<p>Maximum likelihood estimators have the following properties:</p>
+<ul class="simple">
+<li><p>They are <strong>consistent estimators</strong>; that is, they can be proven to converge to the true parameter value as the number of data points increases.</p></li>
+<li><p>They are <strong>asymptotically normal estimators</strong>. The distribution of the parameter estimate, as the number of data points increases to infinity, approaches a normal distribution centered at the MLE, with a certain spread. This spread can often be easily calculated and used as a confidence band around the estimate, as discussed below.</p></li>
+<li><p>They <strong>asymptotically achieve the theoretical minimum possible variance, called the Cramér – Rao bound</strong>. In other words, they achieve the best possible error given the data at hand; that is, no other estimator can do better in terms of efficiently using each data point to reduce the total error of the estimate (<span class="math notranslate nohighlight">\(\text{MSE} = V + \text{bias}^2\)</span>).</p></li>
+</ul>
+</section>
+<section id="mle-confidence-intervals">
+<h2>MLE confidence intervals<a class="headerlink" href="#mle-confidence-intervals" title="Permalink to this headline">#</a></h2>
+<p>To determine the uncertainty of an MLE, we can take the second partial derivative of its natural log with respect to the parameter(s) in question</p>
+<div class="math notranslate nohighlight">
+\[ \qquad\qquad\qquad F_{jk} = -\frac{d^2 \ln{L}}{d\theta_j d\theta_k}\bigg|_{\theta = \theta_0}\qquad\qquad\qquad\qquad (2) \]</div>
+<p>These uncertainties form a covariance matrix <span class="math notranslate nohighlight">\(\Sigma\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\Sigma_{jk} = [F^{-1}]_{jk},\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\sigma_{j} = \sqrt{\Sigma_{jj}}.\]</div>
+<p>The diagonal elements, <span class="math notranslate nohighlight">\(\Sigma_{ii}\)</span>, correspond to marginal error bars for parameters <span class="math notranslate nohighlight">\(\theta_i\)</span>. If <span class="math notranslate nohighlight">\(\Sigma_{jk}\)</span> = 0 for <span class="math notranslate nohighlight">\(j\neq k\)</span>, then the estimated values of parameters are uncorrelated (i.e., the error in one parameter does not affect other parameters)</p>
+<p>If <span class="math notranslate nohighlight">\(\Sigma_{jk} \neq 0\)</span> when <span class="math notranslate nohighlight">\(j \neq k\)</span>, errors for parameters <span class="math notranslate nohighlight">\(\theta_j\)</span> and <span class="math notranslate nohighlight">\(\theta_k\)</span> are correlated (e.g., in the two-dimensional case, the likelihood surface is a bivariate Gaussian with principal axes that are not aligned with coordinate axes). This correlation tells us that some combinations of parameters are better determined than others.</p>
+<p>In our example where we had homoscedastic errors from a Gaussian distribution, the uncertainty of the mean <span class="math notranslate nohighlight">\(\mu\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\sigma_\mu = \bigg(-\frac{d^2\ln L(\mu)}{d\mu^2}\bigg|_{\mu^0}\bigg) ^{-1/2} = \bigg(\sum^N_{i=1}\frac{1}{\sigma_i^2}\bigg)^{-1/2} = \frac{\sigma}{\sqrt{N}} \]</div>
+<p>since <span class="math notranslate nohighlight">\(\sigma\)</span> was constant. Note that this is the same equation for the standard error of the mean.</p>
+</section>
+<section id="the-mle-applied-to-a-heteroscedastic-gaussian-likelihood">
+<h2>The MLE applied to a heteroscedastic Gaussian likelihood<a class="headerlink" href="#the-mle-applied-to-a-heteroscedastic-gaussian-likelihood" title="Permalink to this headline">#</a></h2>
+<p>With heteroscedastic errors, the uncertainty for each measurement varies, but the values for <span class="math notranslate nohighlight">\(\sigma\)</span> are still known. Perhaps the light of the moon or inconsistent weather were affecting our measurements. Everything else is the same (i.e, the measurements still come from a Gaussian) but since <span class="math notranslate nohighlight">\(\sigma\)</span> is no longer constant, the expression for the log-likelihood becomes</p>
+<div class="math notranslate nohighlight">
+\[\ln L = \text{constant} - \sum_{i=1}^N \frac{(x_i - \mu)^2}{2\sigma_i^2}. \]</div>
+<p>Taking the derivative, we get</p>
+<div class="math notranslate nohighlight">
+\[ \frac{d\ln L(\mu)}{d\mu}\bigg|_{\mu^0} = \sum_{i=1}^N \frac{(x_i - \mu^0)}{\sigma_i^2} = 0.\]</div>
+<p>Now we can algebraically solve for <span class="math notranslate nohighlight">\(\mu^0\)</span></p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^N \frac{x_i}{\sigma_i^2} = \sum_{i=1}^N \frac{\mu^0}{\sigma_i^2},\]</div>
+<p>and to simplify our expression, we can set the weights <span class="math notranslate nohighlight">\(\sigma_i^{-2}\)</span> to <span class="math notranslate nohighlight">\(w_i\)</span></p>
+<div class="math notranslate nohighlight">
+\[\mu^0 = \frac{\sum_{i=1}^N \frac{x_i}{\sigma_i^2}}{\sum_{i=1}^N \frac{1}{\sigma_i^2}} = \frac{\sum^N_i w_ix_i}{\sum_i^N w_i}. \]</div>
+<p>Thus, <span class="math notranslate nohighlight">\(\mu^0\)</span> is simply a weighted arithmetic mean of all measurements. We can also calculate the uncertainty of <span class="math notranslate nohighlight">\(\mu^0\)</span> using eq <span class="math notranslate nohighlight">\((2)\)</span> above.</p>
+<div class="math notranslate nohighlight">
+\[\sigma_\mu = \bigg(-\frac{d^2\ln L(\mu)}{d\mu^2}\bigg|_{\mu^0}\bigg) ^{-1/2}  = \bigg(\sum^N_{i=1}\frac{1}{\sigma_i^2}\bigg)^{-1/2} = \bigg(\sum^N_i w_i\bigg)^{-1/2} \]</div>
+</section>
+<section id="the-mle-in-the-case-of-truncated-and-censored-data">
+<h2>The MLE in the case of truncated and censored data<a class="headerlink" href="#the-mle-in-the-case-of-truncated-and-censored-data" title="Permalink to this headline">#</a></h2>
+<p>The probability of drawing a measurement <span class="math notranslate nohighlight">\(x\)</span> is quantified using the selection probability, or selection function, <span class="math notranslate nohighlight">\(S(x)\)</span>. When <span class="math notranslate nohighlight">\(S(x)=0\)</span> for <span class="math notranslate nohighlight">\(x &gt; x_{\text{max}}\)</span> (analogously for <span class="math notranslate nohighlight">\(x &lt; x_\text{min}\)</span>), the data set is <strong>truncated</strong> and we know nothing about sources with <span class="math notranslate nohighlight">\(x &gt; _{\text{max}}\)</span> (not even whether they exist or not). A related but different concept is censored data sets, where a measurement of an existing source was attempted, but the value is outside of some known interval (a familiar astronomical case is an “upper limit” for flux measurement when we look for, e.g., an X-ray source in an optical image of the same region on the sky but do not find it).</p>
+<p>Looking back at our Gaussian example, we will now show how to account for data truncation using the MLE approach. For simplicity, we will assume that the selection function <span class="math notranslate nohighlight">\(S(x)=1\)</span> for <span class="math notranslate nohighlight">\(x_\text{min} \leq x \leq x_{\text{max}} \)</span> and <span class="math notranslate nohighlight">\(S(x)=0\)</span> otherwise.</p>
+<p>When dealing with truncated data, the likelihood for a single datum must be a properly normalized pdf; this is accounted for with a renormalization constant. In the case of a Gaussian error distribution (we assume that <span class="math notranslate nohighlight">\(\sigma\)</span> is known), the likelihood for a single data point is</p>
+<div class="math notranslate nohighlight">
+\[ p(x_i|\mu,\sigma,x_{\text{min}},x_{\text{max}}) = C(\mu,\sigma, x_{\text{min}},x_{\text{max}}) \frac{1}{\sqrt{2\pi}\sigma} \exp \bigg(\frac{-(x_i-\mu)^2}{2\sigma^2}\bigg)\]</div>
+<p>where the renormalization constant is evaluated as</p>
+<div class="math notranslate nohighlight">
+\[ C(\mu,\sigma,x_{\text{min}},x_{\text{max}}) = (P(x_{\text{max}}|\mu, \sigma) - P(x_{\text{min}}|\mu,\sigma))^{-1} \]</div>
+<p>with the cumulative distribution function (cdf) for a Gaussian centered at <span class="math notranslate nohighlight">\(\mu\)</span> with a standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> (see equation 3.47 in the textbook).</p>
+<p>The log-likelihood is</p>
+<div class="math notranslate nohighlight">
+\[ \quad \ln L(\mu) = \text{constant} - \sum^N_{i=1} \frac{(x_i-\mu)^2}{2\sigma^2} + N \ln [C(\mu,\sigma, x_{\text{min}},x_{\text{max}})].\quad (3) \]</div>
+<p>This is very close to the equation we had before; the difference is in our third term, which accounts for truncation. Note that because the cdf contains the Gauss error function, there isn’t a simple close-form expression for <span class="math notranslate nohighlight">\(\mu^0\)</span>.</p>
+<p><em><strong>EXAMPLE</strong></em></p>
+<blockquote>
+<div><p>On the planet of Caladan, meteorites frequently hit the surface. Suppose some collectors are creating a museum of large meteorites, which they’ve defined as any meteorite larger than 45 meters in diameter. Before they get entered into the museum, they are held in a back room so a new exhibit can be set up. We also know that on this planet, meteorites are normally distributed, centered at 25 meters, with a standard deviation of 13. Suppose you were to enter the back room and find a meteorite of diameter <span class="math notranslate nohighlight">\(S_d\)</span>. What is your best estimate for the mean diameter of the meteorites that land on Caladan if you knew that the standard deviation is 13 but didn’t know the mean was 25?</p>
+</div></blockquote>
+<p>We can answer this by finding the maximum of <span class="math notranslate nohighlight">\(\ln{L}\)</span> given by equation <span class="math notranslate nohighlight">\((3)\)</span>, evaluated for <span class="math notranslate nohighlight">\(x_\text{min}\)</span> = 45, <span class="math notranslate nohighlight">\(x_\text{max} = \infty \)</span>, <span class="math notranslate nohighlight">\(N\)</span> = 1, <span class="math notranslate nohighlight">\(x_1=S_d\)</span>, and <span class="math notranslate nohighlight">\(\sigma\)</span> = 13. Whether <span class="math notranslate nohighlight">\(\mu^0\)</span>, the value of <span class="math notranslate nohighlight">\(\mu\)</span> which maximizes <span class="math notranslate nohighlight">\(L\)</span>, is larger or smaller than 25 depends on the exact value of <span class="math notranslate nohighlight">\(S_d\)</span>.</p>
+<p>First we will show that the mean value of a <span class="math notranslate nohighlight">\(N\)</span>(25,13) Gaussian truncated at <span class="math notranslate nohighlight">\(x_\text{min}\)</span> = 45 is ~50.75. For this, we will use <code class="docutils literal notranslate"><span class="pre">scipy.stats.truncnorm</span></code> ,which allows us to define the bounds of our truncated Gaussian.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">truncnorm</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">))</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">mean</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">std</span> <span class="o">=</span> <span class="mi">13</span>
+<span class="n">x_min</span> <span class="o">=</span> <span class="mi">45</span>
+<span class="n">x_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
+<span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_min</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">std</span><span class="p">,</span> <span class="p">(</span><span class="n">x_max</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">/</span> <span class="n">std</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">truncnorm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="n">mean</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">std</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">truncnorm</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">loc</span> <span class="o">=</span> <span class="n">mean</span><span class="p">,</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">std</span><span class="p">));</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="s1">&#39;fd&#39;</span><span class="p">,</span> <span class="n">density</span> <span class="o">=</span> <span class="kc">True</span><span class="p">);</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="si">:</span><span class="s1">.3</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean = 50.7
+</pre></div>
+</div>
+<img alt="../_images/f9f4e6d46df036596180e8885bff7d9dadc3ab4c19e0215a04b232f01236503c.png" src="../_images/f9f4e6d46df036596180e8885bff7d9dadc3ab4c19e0215a04b232f01236503c.png" />
+</div>
+</div>
+<p>Next, we need to maximize <span class="math notranslate nohighlight">\(L\)</span>. Taking the derivative of this function is quite difficult as we would need to take the partial derivative of the cumulative distribution function (which contains the Gauss error function) with respect to <span class="math notranslate nohighlight">\(\mu\)</span>. We can avoid this by using <code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize</span></code> on the <em>negative</em> log-likelihood function. First, we will define the log-likelihood function and allow it to take one to two arguments of <span class="math notranslate nohighlight">\(S_d\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="n">const</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mi">13</span><span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
+
+<span class="k">def</span> <span class="nf">neg_log_likelihood</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">x_1</span><span class="p">,</span> <span class="n">x_2</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sum_term_x2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="n">sum_term_x1</span> <span class="o">=</span> <span class="p">((</span><span class="n">x_1</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">13</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+    
+    <span class="k">if</span> <span class="n">x_2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">sum_term_x2</span> <span class="o">=</span> <span class="p">((</span><span class="n">x_2</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="mi">13</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+    
+    <span class="n">norm_constant</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="n">norm</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x_max</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">norm</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x_min</span><span class="p">)))</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">logL</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">const</span> <span class="o">-</span> <span class="p">(</span><span class="n">sum_term_x1</span><span class="o">+</span><span class="n">sum_term_x2</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">norm_constant</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">logL</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then we will minimize it (i.e., maximizing the <em>positive</em> log-likelihood) with <code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize</span></code>, which takes an initial guess for the value of <span class="math notranslate nohighlight">\(\mu\)</span> and our value(s) of <span class="math notranslate nohighlight">\(S_d\)</span>. We’ll see that if <span class="math notranslate nohighlight">\(S_d\)</span> is smaller than ~50.75, the implied mean diameter of the meteorites that land on the surface is less than 25 meters. Conversely, if <span class="math notranslate nohighlight">\(S_d\)</span> is greater than ~50.75, then <span class="math notranslate nohighlight">\(\mu^0\)</span> is greater than 25. As an example, we will show the MLE given <span class="math notranslate nohighlight">\(S_d\)</span> = 49 and <span class="math notranslate nohighlight">\(S_d\)</span> = 52 with initial guesses for <span class="math notranslate nohighlight">\(\mu^0\)</span> equal to 15 and 52 respectively. We can also look at the case given two meteorites <span class="math notranslate nohighlight">\(S_{d1}\)</span> and <span class="math notranslate nohighlight">\(S_{d2}\)</span> just to illustrate the point further.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;Value of μ which maximizes lnL for:</span>
+
+<span class="s2">S_d = 49: </span><span class="si">{</span><span class="n">minimize</span><span class="p">(</span><span class="n">neg_log_likelihood</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="mi">49</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.4</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">S_d = 52: </span><span class="si">{</span><span class="n">minimize</span><span class="p">(</span><span class="n">neg_log_likelihood</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="mi">52</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.4</span><span class="si">}</span><span class="s2"></span>
+
+<span class="s2">Values of μ which maximize] lnL for:</span>
+
+<span class="s2">S_d1 = 49, S_d2 = 50 (both meteorites with diameters below the mean): </span><span class="si">{</span><span class="n">minimize</span><span class="p">(</span><span class="n">neg_log_likelihood</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="mi">49</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.4</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">S_d1 = 50, S_d2 = 51 (one above the mean, one below the mean): </span><span class="si">{</span><span class="n">minimize</span><span class="p">(</span><span class="n">neg_log_likelihood</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">51</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.4</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">S_d1 = 52, S_d2 = 53 (both meteorites with diameters above the mean): </span><span class="si">{</span><span class="n">minimize</span><span class="p">(</span><span class="n">neg_log_likelihood</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="n">args</span> <span class="o">=</span> <span class="p">(</span><span class="mi">52</span><span class="p">,</span><span class="mi">53</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.4</span><span class="si">}</span><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Value of μ which maximizes lnL for:
+
+S_d = 49: 10.21
+S_d = 52: 32.85
+
+Values of μ which maximize] lnL for:
+
+S_d1 = 49, S_d2 = 50 (both meteorites with diameters below the mean): 15.72
+S_d1 = 50, S_d2 = 51 (one above the mean, one below the mean): 24.1
+S_d1 = 52, S_d2 = 53 (both meteorites with diameters above the mean): 35.15
+</pre></div>
+</div>
+</div>
+</div>
+<p>For an arbitrary number of meteorites, their mean diameter must be greater than 50.75 to obtain <span class="math notranslate nohighlight">\(\mu^0 &gt; 25\)</span>. If all the meteorites in the back had a diameter of around 45 meters, bunched next to the selection threshold, it is likely that the mean diameter of meteorites that land is below 25 meters! Therefore, if you run into a large meteorite, do not automatically assume that all meteorites have large diameters on average because it could be due to selection effects.</p>
+</section>
+<section id="the-goodness-of-fit-and-model-selection">
+<h2>The goodness of fit and model selection<a class="headerlink" href="#the-goodness-of-fit-and-model-selection" title="Permalink to this headline">#</a></h2>
+<p>We now know how to estimate the “best-fit” model parameters and their uncertainties using maximum likelihood estimation, but we still don’t know how “good” the fit is. For example, if we assume a Gaussian model when in reality, our data is not Gaussian, our results might not be very insightful. In the following section, we will quantify how well our model fits the data.</p>
+</section>
+<section id="the-goodness-of-fit-for-a-model">
+<h2>The goodness of fit for a model<a class="headerlink" href="#the-goodness-of-fit-for-a-model" title="Permalink to this headline">#</a></h2>
+<p>We will call the maximum value of the likelihood <span class="math notranslate nohighlight">\(L^0\)</span>. Assuming our model is correct, we can then ask how likely it is that this value would have arisen by chance. If it’s very unlikely to obtain <span class="math notranslate nohighlight">\(L^0\)</span> (or <span class="math notranslate nohighlight">\(\ln{L^0}\)</span>) by randomly drawing data from the best-fit distribution, the best-fit model is <strong>not</strong> a good description of the data.</p>
+<p>Going back to our case of a Gaussian likelihood, we can rewrite</p>
+<div class="math notranslate nohighlight">
+\[\ln{L}(\mu) = \text{constant} - \sum^N_{i=1} \frac{(x_i - \mu)^2}{2\sigma^2} \]</div>
+<p>as</p>
+<div class="math notranslate nohighlight">
+\[ \ln{L} = \text{constant} - \frac{1}{2}\chi^2 \]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\qquad\qquad\qquad\chi^2 = \sum^N_{i=1}\bigg( \frac{(x_i-\mu)}{\sigma}\bigg)^2\qquad\qquad\qquad (4)\]</div>
+<p>Thus, the distribution of <span class="math notranslate nohighlight">\(\ln{L}\)</span> can be determined from the <span class="math notranslate nohighlight">\(\chi^2\)</span> distribution with <span class="math notranslate nohighlight">\(N-k\)</span> degrees of freedom, where <span class="math notranslate nohighlight">\(k\)</span> is the number of model parameters determined from data. In our example with homoscedastic errors, <span class="math notranslate nohighlight">\(k = 1\)</span> since <span class="math notranslate nohighlight">\(\sigma\)</span> was fixed, and with heteroscedastic errors, <span class="math notranslate nohighlight">\(k=2\)</span>. Essentially we are checking how likely it is that our value of <span class="math notranslate nohighlight">\(\chi^2\)</span> would arise if our model is correct. If the probability is low, it’s an indication that we might need to rethink our model.</p>
+<p>The distribution of <span class="math notranslate nohighlight">\(\chi^2\)</span> does <strong>not</strong> depend on the values of <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span>; the expectation value of the <span class="math notranslate nohighlight">\(\chi^2\)</span> distribution is <span class="math notranslate nohighlight">\(N-k\)</span> and its standard deviation is <span class="math notranslate nohighlight">\(\sqrt{2(N-k)}\)</span>. For a “good fit”, we expect that <span class="math notranslate nohighlight">\(\chi^2\)</span> per degree of freedom,</p>
+<div class="math notranslate nohighlight">
+\[\chi_{\text{dof}}^2 =\frac{1}{N-k} \sum^N_{i=1} \bigg( \frac{(x_i-\mu)}{\sigma}\bigg)^2 \approx 1 \]</div>
+<p>If instead <span class="math notranslate nohighlight">\((\chi_{\text{dof}}^2 -1)\)</span> is much larger than <span class="math notranslate nohighlight">\(\sqrt{2(N-k)}\)</span>, it is unlikely that the data were generated by the assumed model. The likelihood of a particular value of <span class="math notranslate nohighlight">\(\chi^2\)</span> for a given number of degrees of freedom can be found in tables or evaluated using the function <code class="docutils literal notranslate"><span class="pre">scipy.stats.chi2</span></code>.</p>
+<p>In the example below, we will show an example of a <span class="math notranslate nohighlight">\(\chi^2\)</span> value that fits the model and one that doesn’t. For the correct model, we will draw from a Gaussian distribution and use equation <span class="math notranslate nohighlight">\((4)\)</span> to solve for <span class="math notranslate nohighlight">\(\chi^2\)</span>. For the incorrect model, we will still use equation <span class="math notranslate nohighlight">\((4)\)</span> but instead draw from a Poisson distribution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span><span class="p">,</span> <span class="n">chi2</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">N_samples</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="mi">25</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mi">13</span>
+
+<span class="c1">## Correct model</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">N_samples</span><span class="p">)</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">chi_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">((</span><span class="n">x</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">))</span>
+
+<span class="c1">## Incorrect model</span>
+<span class="n">x_poisson</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">Nsamples</span><span class="p">)</span>
+<span class="n">mu_poisson</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="n">x_poisson</span><span class="p">)</span>
+<span class="n">chi_2_poisson</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">((</span><span class="n">x_poisson</span> <span class="o">-</span> <span class="n">mu_poisson</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span><span class="p">))</span>
+
+<span class="c1">#Plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">))</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">32</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">chi2</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">N_samples</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">chi_2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Correct model = </span><span class="si">{</span><span class="n">chi_2</span><span class="si">:</span><span class="s2">.3</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">chi_2_poisson</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Incorrect model =</span><span class="si">{</span><span class="n">chi_2_poisson</span><span class="si">:</span><span class="s2">.3</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">);</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span> <span class="o">=</span> <span class="s2">&quot;upper right&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/358202681664af429215993976bb983ed02e35203ea30ef04168b6955d6fcfcb.png" src="../_images/358202681664af429215993976bb983ed02e35203ea30ef04168b6955d6fcfcb.png" />
+</div>
+</div>
+<p>As we can see, the <span class="math notranslate nohighlight">\(\chi^2\)</span> value drawn from a Poisson distribution is less likely to occur, whereas the <span class="math notranslate nohighlight">\(\chi^2\)</span> value drawn from the Gaussian is more likely.</p>
+<p><em><strong>EXAMPLE</strong></em></p>
+<blockquote>
+<div><p>Consider the simple case of the luminosity of a single star being measured multiple times. Our model is that of a star with <strong>no intrinsic luminosity variation</strong>.</p>
+</div></blockquote>
+<p>We will examine four different scenarios:</p>
+<ul class="simple">
+<li><p>Correct model with correct errors</p></li>
+<li><p>Correct model with overestimated errors</p></li>
+<li><p>Correct model with underestimated errors</p></li>
+<li><p>Incorrect model with correct errors</p></li>
+</ul>
+<p>First, we will define <span class="math notranslate nohighlight">\(N\)</span>, <span class="math notranslate nohighlight">\(\ell^0\)</span> (the constant luminosity of our star), and <span class="math notranslate nohighlight">\(\sigma_\ell\)</span> (the measurement error).</p>
+<p>our models, and our errors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">luminosity</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">sigma_L</span> <span class="o">=</span> <span class="mf">0.2</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">L_obs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">luminosity</span><span class="p">,</span> <span class="n">sigma_L</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+
+<span class="n">y_vals</span> <span class="o">=</span> <span class="p">[</span><span class="n">L_obs</span><span class="p">,</span> <span class="n">L_obs</span><span class="p">,</span> <span class="n">L_obs</span><span class="p">,</span> <span class="n">L_obs</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">-</span> <span class="n">t</span> <span class="o">**</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">y_errs</span> <span class="o">=</span> <span class="p">[</span><span class="n">sigma_L</span><span class="p">,</span> <span class="n">sigma_L</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sigma_L</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sigma_L</span><span class="p">]</span>
+<span class="n">titles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;correct errors&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;overestimated errors&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;underestimated errors&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;incorrect model&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we will plot our scenarios.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+                    <span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[])</span>
+
+    <span class="c1"># compute the mean and the chi^2/dof</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y_vals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">mu</span><span class="p">)</span> <span class="o">/</span> <span class="n">y_errs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">chi2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">z</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">chi2dof</span> <span class="o">=</span> <span class="n">chi2</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># compute the standard deviations of chi^2/dof</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">nsig</span> <span class="o">=</span> <span class="p">(</span><span class="n">chi2dof</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span>
+
+    <span class="c1"># plot the points with errorbars</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">y_errs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.k&#39;</span><span class="p">,</span> <span class="n">ecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">ms</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">],</span> <span class="p">[</span><span class="n">luminosity</span><span class="p">,</span> <span class="n">luminosity</span><span class="p">],</span> <span class="s1">&#39;:k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="c1"># Add labels and text</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.95</span><span class="p">,</span> <span class="n">titles</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">,</span>
+            <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;round&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\hat{\mu} = </span><span class="si">%.2f</span><span class="s1">$&#39;</span> <span class="o">%</span> <span class="n">mu</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span>
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.98</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span> <span class="sa">r</span><span class="s1">&#39;$\chi^2_{\rm dof} = </span><span class="si">%.2f</span><span class="s1">\, (</span><span class="si">%.2g</span><span class="s1">\,\sigma)$&#39;</span>
+            <span class="o">%</span> <span class="p">(</span><span class="n">chi2dof</span><span class="p">,</span> <span class="n">nsig</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> 
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">15</span><span class="p">)</span>
+
+    <span class="c1"># set axis limits</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">1.05</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">8.6</span><span class="p">,</span> <span class="mf">11.4</span><span class="p">)</span>
+
+    <span class="c1"># set ticks and labels</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;observations&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">18</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Luminosity&#39;</span><span class="p">,</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">18</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span> <span class="n">ax</span><span class="o">.</span><span class="n">yaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7f9fb1f31f0974158629df1c09f16ef63a915a53f4e8f1392ac1dd9d8db49413.png" src="../_images/7f9fb1f31f0974158629df1c09f16ef63a915a53f4e8f1392ac1dd9d8db49413.png" />
+</div>
+</div>
+<p><span class="math notranslate nohighlight">\(\chi^2_{\text{dof}} \approx 1\)</span> indicates that the model fits the data well (upper-left panel). <span class="math notranslate nohighlight">\(\chi^2_{\text{dof}}\)</span> much smaller than 1 (upper-right panel) is an indication that the errors are overestimated. <span class="math notranslate nohighlight">\(\chi^2_{\text{dof}}\)</span> much larger than 1 is an indication either that the errors are underestimated (lower-left panel) or that the model is not a good description of the data (lower-right panel). In this last case, it is clear from the data that the star’s luminosity is varying with time.</p>
+</section>
+<section id="model-comparison">
+<h2>Model comparison<a class="headerlink" href="#model-comparison" title="Permalink to this headline">#</a></h2>
+<p>A popular general classical method for model comparison is the Akaike information criterion (AIC). The AIC is a simple approach based on an asymptotic approximation; the preferred approach to model comparison for the highest accuracy is cross-validation (discussed in  chapter 8.11.1), which is based on only the finite data at hand rather than approximations based on infinite data. Nonetheless the AIC is easy to use, and often effective for simple models.
+The AIC is computed as</p>
+<div class="math notranslate nohighlight">
+\[\text{AIC} \equiv -2\ln{L^0(M)} +2k + \frac{2k(k+1)}{N-k-1}\]</div>
+<p>Under the assumption of normality, the first term is equal to the model’s <span class="math notranslate nohighlight">\(\chi^2\)</span> (up to a constant). When multiple models are compared, the one with the <em>smallest</em> AIC is the best model to select. If the models are equally successful in describing the data (they have the same value of <span class="math notranslate nohighlight">\(L^0(M)\)</span>, then the model with fewer free parameters wins.</p>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="README.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Chapter 4: Classical Statistical Inference</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../chapter5/README.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 5: Bayesian Statistical Inference</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By AstroML developers<br/>
+  
+      &copy; Copyright 2020-2021, AstroML developers.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
