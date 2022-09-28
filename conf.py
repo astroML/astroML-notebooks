@@ -13,8 +13,8 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'AstroML tutorial notebooks'
-copyright = '2020-2021, AstroML developers'
+project = 'AstroML Interactive Book'
+copyright = '2020-2022, AstroML developers'
 author = 'AstroML developers'
 
 
@@ -50,7 +50,7 @@ nb_execution_timeout = 900
 # a list of builtin themes.
 #
 html_theme = 'sphinx_book_theme'
-html_title = 'AstroML Notebooks'
+html_title = 'AstroML Interactive Book'
 html_logo = '_static/astroml_logo.gif'
 html_favicon = '_static/favicon.ico'
 html_theme_options = {
