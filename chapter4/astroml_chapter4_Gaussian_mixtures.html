@@ -1,0 +1,1004 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>MLE applied to Gaussian mixtures &#8212; AstroML Notebooks</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 5: Bayesian Statistical Inference" href="../chapter5/README.html" />
+    <link rel="prev" title="Maximum Likelihood Estimation (MLE)" href="astroml_chapter4_Maximum_Likelihood_Estimation_and_Goodness_of_fit.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/astroml_logo.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">AstroML Notebooks</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter1/README.html">
+   Chapter 1: Introduction and Data Sets
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="simple">
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter2/README.html">
+   Chapter 2: Fast Computation and Massive Datasets
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="simple">
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter3/README.html">
+   Chapter 3: Probability and Statistical Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Overview_of_Probability_and_Random_Variables.html">
+     Overview of Probability and Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Descriptive_Statistics.html">
+     Descriptive Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Univariate_Distribution_Functions.html">
+     Univariate Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_The_Central_Limit_Theorem.html">
+     The Central Limit Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Bivariate_and_Multivariate_Distribution_Functions.html">
+     Bivariate and multivariate distribution functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="README.html">
+   Chapter 4: Classical Statistical Inference
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroml_chapter4_Maximum_Likelihood_Estimation_and_Goodness_of_fit.html">
+     Maximum Likelihood Estimation (MLE)
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     MLE applied to Gaussian mixtures
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter5/README.html">
+   Chapter 5: Bayesian Statistical Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution.html">
+     Parameter Estimation for a Gaussian Distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Binomial_Distribution.html">
+     Parameter Estimation for a Binomial Distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Cauchy_Distribution.html">
+     Parameter estimation for the Cauchy (Lorentzian) distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Approximate_Bayesian_Computation.html">
+     Approximate Bayesian Computation Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Hierarchical_Bayes.html">
+     Hierarchical Bayes Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter6/README.html">
+   Chapter 6: Searching for Structure in Point Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall.html">
+     Density Estimation for SDSS “Great Wall”
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Searching_for_Structure_in_Point_Data.html">
+     Searching for Structure in Point Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Gaussian_Mixture_Models.html">
+     Gaussian Mixture Models Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Extreme_Deconvolution.html">
+     Extreme Deconvolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter7/README.html">
+   Chapter 7: Dimensionality and its Reduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter7/astroml_chapter7_Dimensionality_Reduction.html">
+     Dimensionality reduction
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter8/README.html">
+   Chapter 8: Regression and Model Fitting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter8/astroml_chapter8_Regression.html">
+     Measurement Errors in Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter8/astroml_chapter8_Regression_with_Errors_on_Dependent_and_Independent_Variables.html">
+     Measurement errors in both dependent and independent variables
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter9/README.html">
+   Chapter 9: Classification
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter9/astroml_chapter9_Classification.html">
+     Classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter9/astroml_chapter9_Deep_Learning_Classifying_Astronomical_Images.html">
+     Deep Learning: Classifying Astronomical Images
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter10/README.html">
+   Chapter 10: Time Series Analysis
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.html">
+     Modeling Toolkit For Time Series Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Wavelets.html">
+     Wavelets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Digital_Filtering.html">
+     Digital Filtering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Temporally_Localized_Signals.html">
+     Temporally localized signals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Analysis_of_Stochastic_Processes.html">
+     Analysis of Stochastic Processes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?urlpath=tree/chapter4/astroml_chapter4_Gaussian_mixtures.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/astroML/astroML-notebooks/blob/main/chapter4/astroml_chapter4_Gaussian_mixtures.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2Fchapter4/astroml_chapter4_Gaussian_mixtures.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter4/astroml_chapter4_Gaussian_mixtures.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/chapter4/astroml_chapter4_Gaussian_mixtures.ipynb.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gaussian-mixture-model">
+   Gaussian mixture model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#class-labels-and-hidden-variables">
+   Class labels and hidden variables
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-basics-of-the-expectation-maximization-algorithm">
+   The basics of the expectation maximization algorithm
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example">
+     EXAMPLE
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#useful-scipy-functions">
+     Useful SciPy functions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-choose-the-number-of-classes">
+       How to choose the number of classes?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-em-algorithm-as-a-classification-tool">
+     The EM algorithm as a classification tool
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-account-for-measurement-errors">
+     How to account for measurement errors?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-gaussian-mixture-models">
+     Non-Gaussian mixture models
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>MLE applied to Gaussian mixtures</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gaussian-mixture-model">
+   Gaussian mixture model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#class-labels-and-hidden-variables">
+   Class labels and hidden variables
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-basics-of-the-expectation-maximization-algorithm">
+   The basics of the expectation maximization algorithm
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example">
+     EXAMPLE
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#useful-scipy-functions">
+     Useful SciPy functions
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#how-to-choose-the-number-of-classes">
+       How to choose the number of classes?
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-em-algorithm-as-a-classification-tool">
+     The EM algorithm as a classification tool
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#how-to-account-for-measurement-errors">
+     How to account for measurement errors?
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-gaussian-mixture-models">
+     Non-Gaussian mixture models
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="mle-applied-to-gaussian-mixtures">
+<h1>MLE applied to Gaussian mixtures<a class="headerlink" href="#mle-applied-to-gaussian-mixtures" title="Permalink to this headline">#</a></h1>
+<p>Finding the maximum likelihood estimator becomes trickier when our data comes from a complex function of many parameters. A particular case of a reasonably complex likelihood that can still be maximized using a relatively straightforward numerical method is a mixture of Gaussians. As the name suggests, these models assume all the data points are generated from a combination of a finite number of normal distributions with unknown parameters. First, we’ll define the model and then discuss how to go about maximizing the likelihood.</p>
+<section id="gaussian-mixture-model">
+<h2>Gaussian mixture model<a class="headerlink" href="#gaussian-mixture-model" title="Permalink to this headline">#</a></h2>
+<p>For a mixture of <span class="math notranslate nohighlight">\(M\)</span> Gaussian distributions, we can write the likelihood for a single datum <span class="math notranslate nohighlight">\(x_i\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\qquad \qquad \qquad p(x_i|\boldsymbol{\theta}) = \sum^M_{j=1} \alpha_j \mathcal{N}(\mu_j,\sigma_j). \qquad \qquad \qquad (1)\]</div>
+<p>Note that the data <span class="math notranslate nohighlight">\(x = \{x_1,...,x_N\}\)</span> are still assumed to be independent and identically distributed. The vector of parameters <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> contains the weights (the contribution of each distribution to the mixture), means, and standard deviations for each distribution <span class="math notranslate nohighlight">\(M\)</span>. The weights have the property that each is a value between 0 and 1, and they must satisfy the normalization constraint</p>
+<div class="math notranslate nohighlight">
+\[\sum_{j=1}^M \alpha_j = 1.\]</div>
+<p>Again, we can work with the natural log of equation <span class="math notranslate nohighlight">\((1)\)</span>, which becomes</p>
+<div class="math notranslate nohighlight">
+\[\ln{L} = \sum_{i=1}^N \ln\bigg[\sum_{j=1}^M \alpha_j\mathcal{N}(\mu_j,\sigma_j)\bigg].\]</div>
+<p>To solve this, we would need to take the partial derivatives on <span class="math notranslate nohighlight">\(\ln{L}\)</span> with respect to each parameter</p>
+<div class="math notranslate nohighlight">
+\[ \frac{\partial \ln{L}}{\partial \mu_j} =  \frac{\partial \ln{L}}{\partial \sigma_j} = \frac{\partial \ln{L}}{\partial \alpha_j} = 0\]</div>
+<p>which would result in a complex system of <span class="math notranslate nohighlight">\((3M −1)\)</span> nonlinear equations, not bring us much closer to the solution. No fear! A fast procedure is available, especially for the case of large <span class="math notranslate nohighlight">\(M\)</span>, based on the concept of hidden variables, as described in the next section.</p>
+</section>
+<section id="class-labels-and-hidden-variables">
+<h2>Class labels and hidden variables<a class="headerlink" href="#class-labels-and-hidden-variables" title="Permalink to this headline">#</a></h2>
+<p>To simplify our problem, we can think of our likelihood in terms of <em>hidden variables</em>. Suppose <span class="math notranslate nohighlight">\(M\)</span> Gaussian components are thought of as being different classes, meaning that a particular datum <span class="math notranslate nohighlight">\(x_i\)</span> was generated by only <em>one</em> of the individual Gaussian components. In that case, the index <span class="math notranslate nohighlight">\(j\)</span> is called a “class label.” Thus, the <span class="math notranslate nohighlight">\(j\)</span> responsible for generating each <span class="math notranslate nohighlight">\(x_i\)</span> is the hidden variable. If we knew the class label for each datum, we could maximize it as we did in the previous section based on a single Gaussian distribution. That is, all the data could be sorted into <span class="math notranslate nohighlight">\(M\)</span> subsamples according to their class label. <span class="math notranslate nohighlight">\(\mu_j\)</span> and <span class="math notranslate nohighlight">\(\sigma_j\)</span> would be found using equation <span class="math notranslate nohighlight">\(3.31\)</span> and <span class="math notranslate nohighlight">\(3.32\)</span> in the textbook, and the fraction of points in each subsample would be an estimator of <span class="math notranslate nohighlight">\(\alpha_j\)</span>.</p>
+<p>Unfortunately, the class labels are not known, but we can determine the probability that a particular datum was generated by class <span class="math notranslate nohighlight">\(j\)</span> using Bayes rule,</p>
+<div class="math notranslate nohighlight">
+\[p(j | x_i) = \frac{p(x_i | j) p(j)}  {\sum_{j=1}^M p(x_i | j) p(j)}.\]</div>
+<p><span class="math notranslate nohighlight">\(p(x_i|j)\)</span> is our Gaussian distribution, and <span class="math notranslate nohighlight">\(p(j) = \alpha_j\)</span> since <span class="math notranslate nohighlight">\(\alpha_j\)</span> is the fraction of data drawn from Gaussian <span class="math notranslate nohighlight">\(j\)</span>. Thus, we can rewrite this equation as</p>
+<div class="math notranslate nohighlight">
+\[ \qquad \qquad \qquad p(j|x_i) = \frac{\alpha_j \mathcal{N}(\mu_j,\sigma_j)}{\sum^M_{j=1}\alpha_j\mathcal{N}(\mu_j,\sigma_j)}. \qquad \qquad \qquad (2)\]</div>
+<p>The class probability <span class="math notranslate nohighlight">\(p(j|x_i)\)</span> is small when <span class="math notranslate nohighlight">\(x_i\)</span> is not within a few <span class="math notranslate nohighlight">\(\sigma_j\)</span> from <span class="math notranslate nohighlight">\(\mu_j\)</span>. Note that <span class="math notranslate nohighlight">\(\sum^M_{j=1} p(j|x_i)=1 \)</span></p>
+</section>
+<section id="the-basics-of-the-expectation-maximization-algorithm">
+<h2>The basics of the expectation maximization algorithm<a class="headerlink" href="#the-basics-of-the-expectation-maximization-algorithm" title="Permalink to this headline">#</a></h2>
+<p>Interpreting equation <span class="math notranslate nohighlight">\((1)\)</span> in terms of hidden variables and class labels yields the expectation maximization (EM) algorithm, which can be used to maximize our Gaussian mixture easily. The critical component of the
+iterative EM algorithm is the assumption that <strong>the class probability <span class="math notranslate nohighlight">\(p(j|x_i)\)</span> is known and fixed in each iteration.</strong></p>
+<p>The EM algorithm is not limited to Gaussian mixtures, so instead of <span class="math notranslate nohighlight">\(\mathcal{N}(\mu_j,\sigma_j)\)</span> in equation <span class="math notranslate nohighlight">\((1)\)</span>, we will use a general pdf for each component, <span class="math notranslate nohighlight">\(p_j(x_i|\boldsymbol{\theta})\)</span> (Note that <span class="math notranslate nohighlight">\(p_j\)</span> includes only a subset of all <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> parameters; only the <span class="math notranslate nohighlight">\(j\)</span>th components <span class="math notranslate nohighlight">\(\mu_j\)</span> and <span class="math notranslate nohighlight">\(\sigma_j\)</span> are relevant). The log-likelihood is described by</p>
+<div class="math notranslate nohighlight">
+\[\ln{L} = \sum^N_{i=1} \ln\bigg[\sum^M_{j=1}\alpha_j p_j(x_i|\boldsymbol{\theta})\bigg]. \]</div>
+<p>Next, we can take a partial derivative of <span class="math notranslate nohighlight">\(\ln{L}\)</span> with respect to the parameter <span class="math notranslate nohighlight">\(\theta_j\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial \ln{L}}{\partial \theta_j} = \sum^N_{i=1} \frac{\alpha_j}{\sum^M_{j=1}\alpha_j p_j (x_i|\boldsymbol{\theta})} \bigg[\frac{\partial p_j (x_i| \boldsymbol{\theta})}{\partial \theta_j}\bigg],\]</div>
+<p>and motivated by equation <span class="math notranslate nohighlight">\((2)\)</span>, rewrite it as</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial\ln{L}}{\partial \theta_j} = \sum^N_{i=1} \bigg[\frac{\alpha_j p_j (x_i|\boldsymbol{\theta})}{\sum^M_{j=1}\alpha_j p_j (x_i|\boldsymbol{\theta})} \bigg] \bigg[\frac{1}{p_j (x_i|\boldsymbol{\theta})} \frac{\partial p_j (x_i| \boldsymbol{\theta})}{\partial \theta_j}\bigg]. \qquad (3) \]</div>
+<p>Although this equation looks quite daunting, we can simplify it. The first term corresponds to the class probability given by equation <span class="math notranslate nohighlight">\((2)\)</span>. Because it will be fixed in a given iteration, we introduce a shorthand <span class="math notranslate nohighlight">\(w_{ij} = p(j|x_i)\)</span>. The second term is the partial derivative of <span class="math notranslate nohighlight">\(\ln{[p_j(x_i|\boldsymbol{\theta})]}\)</span>. When <span class="math notranslate nohighlight">\(p_j(x_i|\boldsymbol{\theta})\)</span> is Gaussian, it leads to particularly simple constraints for model parameters because now we take the logarithm of the exponential function before taking the derivative. Therefore,</p>
+<div class="math notranslate nohighlight">
+\[ \frac{\partial \ln{L}}{\partial \theta_j} = -\sum^N_{i=1} w_{ij} \frac{\partial}{\partial \theta_j} \bigg[\ln{\sigma_j} + \frac{(x_i -\mu_j)^2}{2\sigma_j^2} \bigg], \]</div>
+<p>where <span class="math notranslate nohighlight">\(\theta_j\)</span> now corresponds to <span class="math notranslate nohighlight">\(\mu_j\)</span> or <span class="math notranslate nohighlight">\(\sigma_j\)</span>. By setting the derivatives of <span class="math notranslate nohighlight">\(\ln{L}\)</span> with respect to <span class="math notranslate nohighlight">\(\mu_j\)</span> and <span class="math notranslate nohighlight">\(\sigma_j\)</span>
+to zero, we get the estimators</p>
+<div class="math notranslate nohighlight">
+\[\qquad\qquad  \qquad \mu_j = \frac{\sum^N_{i=1} w_{ij}x_i}{\sum^N_{i=1} w_{ij}}, \qquad \qquad \qquad (4) \]</div>
+<div class="math notranslate nohighlight">
+\[\qquad  \qquad  \quad \sigma_j^2 = \frac{\sum^N_{i=1} w_{ij} (x_i - \mu_j)^2}{\sum^N_{i=1} w_{ij}}, \qquad \qquad (5)\]</div>
+<p>and from the normalization constraint that <span class="math notranslate nohighlight">\(\sum_{j=1}^M \alpha_j\)</span> must add to 1,</p>
+<div class="math notranslate nohighlight">
+\[\qquad  \qquad  \quad \quad\: \alpha_j = \frac{1}{N}\sum^N_{i=1}w_{ij}, \qquad \qquad \qquad (6)\]</div>
+<p>where <span class="math notranslate nohighlight">\(N\)</span> is the number of data points in Gaussian <span class="math notranslate nohighlight">\(j\)</span>. These expressions and equation <span class="math notranslate nohighlight">\((2)\)</span> form the basis of the <em>iterative</em> EM algorithm in the case of Gaussian mixtures. There are two main steps to this algorithm:</p>
+<ul class="simple">
+<li><p><strong>M Step</strong>: Starting with a guess for <span class="math notranslate nohighlight">\(w_{ij}\)</span>, the values of <span class="math notranslate nohighlight">\(\alpha_j\)</span> , <span class="math notranslate nohighlight">\(\mu_j\)</span>, and <span class="math notranslate nohighlight">\(\sigma_j\)</span> are estimated using Eqs. <span class="math notranslate nohighlight">\(4\)</span> – <span class="math notranslate nohighlight">\(6\)</span>. This is the “maximization” M-step which brings the parameters closer to the local maximum.</p></li>
+<li><p><strong>E step</strong>: Also known as the “expectation” step. Here, <span class="math notranslate nohighlight">\(w_{ij}\)</span> are updated using Eq. <span class="math notranslate nohighlight">\((2)\)</span>.</p></li>
+</ul>
+<p>The algorithm is not sensitive to the initial guess of parameter values. For example, setting all <span class="math notranslate nohighlight">\(\sigma_j\)</span> to the sample standard deviation, all <span class="math notranslate nohighlight">\(\alpha_j\)</span> to <span class="math notranslate nohighlight">\(1/M\)</span>, and randomly drawing <span class="math notranslate nohighlight">\(\mu_j\)</span> from the observed <span class="math notranslate nohighlight">\(\{xi\}\)</span> values, typically works well in practice.</p>
+<p>The EM algorithm has a rigorous foundation, and it is provable that it will indeed find a local maximum of <span class="math notranslate nohighlight">\(\ln{L}\)</span> for a wide class of likelihood functions. In practice, however, the EM algorithm may fail due to numerical difficulties, especially when the available data are sparsely distributed, in the case of outliers, and if some data points are repeated.</p>
+<section id="example">
+<h3>EXAMPLE<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h3>
+<p>Imagine we have a Gaussian mixture of distributions <span class="math notranslate nohighlight">\(\mathcal{N}(-1,1.5)\)</span>, <span class="math notranslate nohighlight">\(\mathcal{N}(0,1)\)</span>, and <span class="math notranslate nohighlight">\(\mathcal{N}(3,0.5)\)</span>. In this case, <span class="math notranslate nohighlight">\(M\)</span> = 3 (number of separate Gaussian distributions), <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> includes the normalization factors for each distribution, <span class="math notranslate nohighlight">\(\alpha_1\)</span>,<span class="math notranslate nohighlight">\(\alpha_2\)</span>,and <span class="math notranslate nohighlight">\(\alpha_3\)</span> as well as the descriptive parameters <span class="math notranslate nohighlight">\(\mu_1\)</span>,<span class="math notranslate nohighlight">\(\sigma_1\)</span>,<span class="math notranslate nohighlight">\(\mu_2\)</span>,<span class="math notranslate nohighlight">\(\sigma_2\)</span>,and <span class="math notranslate nohighlight">\(\mu_3\)</span>,<span class="math notranslate nohighlight">\(\sigma_3\)</span></p>
+<p>First we will define our distributions and combine them using <code class="docutils literal notranslate"><span class="pre">numpy.concatenate</span></code>. Then we will create models using <code class="docutils literal notranslate"><span class="pre">sklearn.mixture.GaussianMixture</span></code>that range from one class to ten classes and calculate the AIC and BIC to find the optimal number of classes for our data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GaussianMixture</span>
+<span class="n">random_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">random_state</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">350</span><span class="p">),</span>
+                    <span class="n">random_state</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span>
+                    <span class="n">random_state</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">150</span><span class="p">)])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">N</span><span class="p">))]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">N</span><span class="p">)):</span>
+    <span class="n">models</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">GaussianMixture</span><span class="p">(</span><span class="n">N</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="n">AIC</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">aic</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">models</span><span class="p">]</span>
+<span class="n">BIC</span> <span class="o">=</span> <span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">bic</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">models</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we’ll plot our results. By using <code class="docutils literal notranslate"><span class="pre">np.argmin</span></code> on our AIC and BIC arrays, we can find the model with the most optimal  <span class="math notranslate nohighlight">\(M\)</span> value. After this, we will use <code class="docutils literal notranslate"><span class="pre">.score_samples</span></code> on this model to compute the log-likelihood (the PDF of the sum of Gaussians). Then we can use <code class="docutils literal notranslate"><span class="pre">.predict_proba</span></code> on our log-likelihood to get the density of the <span class="math notranslate nohighlight">\(j\)</span>th component.</p>
+<p>Afterward, we can plot <code class="docutils literal notranslate"><span class="pre">pdf</span></code>, our Gaussian mixture, and <code class="docutils literal notranslate"><span class="pre">pdf_individual</span></code> for the three separate Gaussians along with the histogram of our data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">M_best</span> <span class="o">=</span> <span class="n">models</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">AIC</span><span class="p">)]</span> 
+<span class="n">logprob</span> <span class="o">=</span> <span class="n">M_best</span><span class="o">.</span><span class="n">score_samples</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">responsibilities</span> <span class="o">=</span> <span class="n">M_best</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">pdf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">logprob</span><span class="p">)</span>
+<span class="n">pdf_individual</span> <span class="o">=</span> <span class="n">responsibilities</span> <span class="o">*</span> <span class="n">pdf</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Best-fit Mixture&#39;</span><span class="p">,</span><span class="s1">&#39;$\mathcal</span><span class="si">{N}</span><span class="s1">(x|0,1)$&#39;</span><span class="p">,</span>
+          <span class="s1">&#39;$\mathcal</span><span class="si">{N}</span><span class="s1">(x|-1,1.5)$&#39;</span><span class="p">,</span><span class="s1">&#39;$\mathcal</span><span class="si">{N}</span><span class="s1">(x|3,0.5)$&#39;</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> 
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span><span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;steelblue&#39;</span><span class="p">,</span><span class="n">edgecolor</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+<span class="c1">#Plot the Gaussian mixture</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1">#Plot the individual Gaussians</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">pdf_individual</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span><span class="n">label</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+    
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/47e94dc01e2f52e6959c1039e2d709211582e398ed468f99597e4dc0bd8235e7.png" src="../_images/47e94dc01e2f52e6959c1039e2d709211582e398ed468f99597e4dc0bd8235e7.png" />
+</div>
+</div>
+<p>Additionally, we’ll first plot the model selection criteria (the AIC and BIC) as a function of the number of components (left panel). We’ll find that both the AIC and BIC are minimized for a three-component model. We’ll then plot the probability that a given point is drawn from each class as a function of its position (right panel), with the vertical extent of each region proportional to this class probability.”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.97</span><span class="p">,</span>
+                    <span class="n">bottom</span><span class="o">=</span><span class="mf">0.21</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># plot 2: AIC and BIC</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">132</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">AIC</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;AIC&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">BIC</span><span class="p">,</span> <span class="s1">&#39;--k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;BIC&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;n. components&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;information criterion&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># plot 3: posterior probabilities for each component</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">133</span><span class="p">)</span>
+
+<span class="n">p</span> <span class="o">=</span> <span class="n">responsibilities</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="p">[:,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span>  <span class="c1"># rearrange order so the plot looks better</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p({\rm class}|x)$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;class 1&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;class 2&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="s1">&#39;class 3&#39;</span><span class="p">,</span> <span class="n">rotation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4a1b5ffb244495bdbb904d0be49296e9d53aa47b0964be7d49d531e8f49e6cca.png" src="../_images/4a1b5ffb244495bdbb904d0be49296e9d53aa47b0964be7d49d531e8f49e6cca.png" />
+</div>
+</div>
+</section>
+<section id="useful-scipy-functions">
+<h3>Useful SciPy functions<a class="headerlink" href="#useful-scipy-functions" title="Permalink to this headline">#</a></h3>
+<p>Once we fit a model to our data, SciPy has a ton of very helpful functions; to name a few, we can call <code class="docutils literal notranslate"><span class="pre">means_</span></code>, <code class="docutils literal notranslate"><span class="pre">covariances_</span></code> and <code class="docutils literal notranslate"><span class="pre">weights</span></code> to find <span class="math notranslate nohighlight">\(\mu_j\)</span>, <span class="math notranslate nohighlight">\(\sigma_j\)</span>, and <span class="math notranslate nohighlight">\(\alpha_j\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">means</span> <span class="o">=</span> <span class="p">[(</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">models</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">means_</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span><span class="mi">3</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">len</span><span class="p">]</span>
+<span class="n">covariances</span> <span class="o">=</span> <span class="p">[(</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">models</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">covariances_</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span><span class="mi">3</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">len</span><span class="p">]</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="p">[(</span><span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">models</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">weights_</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span><span class="mi">3</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">len</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;means = </span><span class="si">{</span><span class="n">means</span><span class="si">}</span><span class="s2"> </span>
+<span class="s2">covariances = </span><span class="si">{</span><span class="n">covariances</span><span class="si">}</span><span class="s2"></span>
+<span class="s2">weights = </span><span class="si">{</span><span class="n">weights</span><span class="si">}</span><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>means = [-1.437, 3.019, 0.173] 
+covariances = [1.377, 0.213, 0.832]
+weights = [0.293, 0.156, 0.551]
+</pre></div>
+</div>
+</div>
+</div>
+<section id="how-to-choose-the-number-of-classes">
+<h4>How to choose the number of classes?<a class="headerlink" href="#how-to-choose-the-number-of-classes" title="Permalink to this headline">#</a></h4>
+<p>What if the number of Gaussian components was unknown? Using the model selection methods discussed in §4.3, we can find the optimal <span class="math notranslate nohighlight">\(M\)</span> for a mixture model; this includes the Akaike information criterion (AIC) and the Bayesian information criterion (BIC). To find this value that minimizes the AIC and BIC, we create and evaluate multiple models with different numbers of components using <code class="docutils literal notranslate"><span class="pre">sklearn.mixture.GaussianMixture</span></code>. After this, we can call <code class="docutils literal notranslate"><span class="pre">m.aic(X)</span></code> or <code class="docutils literal notranslate"><span class="pre">m.bic(X)</span></code>, where <span class="math notranslate nohighlight">\(X\)</span> is our Gaussian mixture and <span class="math notranslate nohighlight">\(m\)</span> is our model.</p>
+<p>In our example above, we see that as <span class="math notranslate nohighlight">\(M\)</span> is increased, the model improves until its minimum at <span class="math notranslate nohighlight">\(M = 3\)</span>; after this, increasing <span class="math notranslate nohighlight">\(M\)</span> worsens the model. Since we already knew <span class="math notranslate nohighlight">\(M = 3\)</span>, this provides a good sanity check that the AIC and BIC are accurately choosing the optimal number of classes.</p>
+</section>
+</section>
+<section id="the-em-algorithm-as-a-classification-tool">
+<h3>The EM algorithm as a classification tool<a class="headerlink" href="#the-em-algorithm-as-a-classification-tool" title="Permalink to this headline">#</a></h3>
+<p>The right panel in our example above shows the class probability for the optimal model (<span class="math notranslate nohighlight">\(M\)</span> = 3) as a function of x (eq. <span class="math notranslate nohighlight">\((2)\)</span>). These results can be used to probabilistically assign all measured values <span class="math notranslate nohighlight">\(\{xi\}\)</span> to one of the three classes (mixture components). We cannot deterministically assign a class to each data point because there are unknown hidden parameters.</p>
+<p>Results analogous to our example above can be obtained in multidimensional cases, where the mixture involves multivariate Gaussian distribution. Here too, an optimal model can be used to assign a probabilistic classification to each data point, and this and other classification methods are discussed in detail in chapter 9.</p>
+</section>
+<section id="how-to-account-for-measurement-errors">
+<h3>How to account for measurement errors?<a class="headerlink" href="#how-to-account-for-measurement-errors" title="Permalink to this headline">#</a></h3>
+<p>So far, we have assumed that measurement error’s for <span class="math notranslate nohighlight">\(\{x_i\}\)</span>are negligible when compared to the smallest component width, <span class="math notranslate nohighlight">\(\sigma_j\)</span>.
+However, this assumption is often not acceptable; often, the best fit <span class="math notranslate nohighlight">\(\sigma_j\)</span>  that are “broadened” by measurement errors are biased estimates of the “intrinsic widths (e.g., when measuring the widths of spectral lines). How can we account for errors in <span class="math notranslate nohighlight">\(x_i\)</span>, given as <span class="math notranslate nohighlight">\(e_i\)</span>?</p>
+<p>We’ll focus our discussion on Gaussian mixtures, and assume that the measurement errors follow Gaussian distributions with standard deviations <span class="math notranslate nohighlight">\(e_i\)</span>. In the case of <strong>homoscedastic</strong> error where all <span class="math notranslate nohighlight">\(e_i = e\)</span>, we can rely on the fact that the convolution of two Gaussians is a Gaussian and obtain “intrinsic “widths</p>
+<div class="math notranslate nohighlight">
+\[\sigma^*_j = (\sigma_j^2 - e^2)^{1 / 2}.\]</div>
+<p>This correction procedure fails in the <strong>heteroscedastic</strong> case. Additionally, due to uncertainties in the best-fit values, it’s possible that the best-fit value of <span class="math notranslate nohighlight">\(\sigma_j\)</span> may turn out to be smaller than <span class="math notranslate nohighlight">\(e\)</span>.</p>
+<p>A remedy is to account for measurement errors already in the model description: we can replace <span class="math notranslate nohighlight">\(\sigma_j\)</span> in eq. <span class="math notranslate nohighlight">\((1)\)</span> by <span class="math notranslate nohighlight">\((\sigma_j^2 + e_i^2)^{1/2}\)</span>, where the <span class="math notranslate nohighlight">\(\sigma_j\)</span> now correspond to the intrinsic widths of each class. However, these new class pdfs <strong>do not admit simple explicit prescriptions for the maximization step given by Eqs. 4 – 5 since the Gaussian has a different width for each <span class="math notranslate nohighlight">\(x_i\)</span></strong></p>
+<p>Following the same derivation steps, the new prescriptions for the M-step are now</p>
+<div class="math notranslate nohighlight">
+\[\mu_j = \frac{\sum^N_{i=1} \frac{w_{ij}}{\sigma_j^2 +e_i^2} x_i}{\sum^N_{i=1} \frac{w_{ij}}{\sigma_j^2 +e^2_i}} \]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\qquad \qquad \sum^N_{i=1} \frac{w_{ij}}{\sigma_j^2 - e_i^2} = \sum^N_{i=1} \frac{w_{ij}}{(\sigma^2_j + e^2_i)^2} (x_i - \mu_j)^2. \qquad \qquad (7)\]</div>
+<p>Compared to Eqs. 4 – 5, <span class="math notranslate nohighlight">\(\sigma_j\)</span> is now “coupled” to <span class="math notranslate nohighlight">\(e_i\)</span> and cannot be moved outside of the sum, which prevents a few cancelations that led to simple forms when <span class="math notranslate nohighlight">\(e_i = 0\)</span>. Update rules for <span class="math notranslate nohighlight">\(\mu_j\)</span> and <span class="math notranslate nohighlight">\(\alpha_j\)</span> are still explicit and would require only a minor modification of specific implementation. The main difficulty, which prevents the use of standard EM routines for performing the M-step, is eq. <span class="math notranslate nohighlight">\(7\)</span>, because the update rule for <span class="math notranslate nohighlight">\(\sigma_j\)</span> is not explicit anymore. Nevertheless, it still provides a rule for updating <span class="math notranslate nohighlight">\(\sigma_j\)</span>, which can be found by numerically solving eq. <span class="math notranslate nohighlight">\(7\)</span>.</p>
+</section>
+<section id="non-gaussian-mixture-models">
+<h3>Non-Gaussian mixture models<a class="headerlink" href="#non-gaussian-mixture-models" title="Permalink to this headline">#</a></h3>
+<p>The EM algorithm is not confined to Gaussian mixtures. As eq. <span class="math notranslate nohighlight">\(3\)</span> shows, the basic premise of the method can be derived for any mixture model. In addition to various useful properties discussed in §3.3.2, a major benefit of Gaussian pdfs is the very simple set of explicit equations (Eqs. 4 – 6) for updating model parameters. When other pdfs are used, a variety of techniques are proposed in the literature for implementation of the maximization M-step. For cases where Gaussian mixtures are insufficient descriptors of data, we recommend consulting abundant and easily accessible literature on the various forms of the EM algorithm.</p>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="astroml_chapter4_Maximum_Likelihood_Estimation_and_Goodness_of_fit.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Maximum Likelihood Estimation (MLE)</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../chapter5/README.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 5: Bayesian Statistical Inference</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By AstroML developers<br/>
+  
+      &copy; Copyright 2020-2021, AstroML developers.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
