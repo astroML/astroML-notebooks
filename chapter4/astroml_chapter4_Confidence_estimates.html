@@ -1,0 +1,909 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Confidence Estimates: The Bootstrap and The Jackknife &#8212; AstroML Interactive Book</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 5: Bayesian Statistical Inference" href="../chapter5/README.html" />
+    <link rel="prev" title="MLE applied to Gaussian mixtures" href="astroml_chapter4_Gaussian_mixtures.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/astroml_logo.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">AstroML Interactive Book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter1/README.html">
+   Chapter 1: Introduction and Data Sets
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="simple">
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter2/README.html">
+   Chapter 2: Fast Computation and Massive Datasets
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="simple">
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter3/README.html">
+   Chapter 3: Probability and Statistical Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Overview_of_Probability_and_Random_Variables.html">
+     Overview of Probability and Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Descriptive_Statistics.html">
+     Descriptive Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Univariate_Distribution_Functions.html">
+     Univariate Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_The_Central_Limit_Theorem.html">
+     The Central Limit Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Bivariate_and_Multivariate_Distribution_Functions.html">
+     Bivariate and multivariate distribution functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="README.html">
+   Chapter 4: Classical Statistical Inference
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroml_chapter4_Maximum_Likelihood_Estimation_and_Goodness_of_fit.html">
+     Maximum Likelihood Estimation (MLE)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroml_chapter4_Gaussian_mixtures.html">
+     MLE applied to Gaussian mixtures
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Confidence Estimates: The Bootstrap and The Jackknife
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter5/README.html">
+   Chapter 5: Bayesian Statistical Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution.html">
+     Parameter Estimation for a Gaussian Distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Binomial_Distribution.html">
+     Parameter Estimation for a Binomial Distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Cauchy_Distribution.html">
+     Parameter estimation for the Cauchy (Lorentzian) distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Approximate_Bayesian_Computation.html">
+     Approximate Bayesian Computation Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Hierarchical_Bayes.html">
+     Hierarchical Bayes Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter6/README.html">
+   Chapter 6: Searching for Structure in Point Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall.html">
+     Density Estimation for SDSS “Great Wall”
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Searching_for_Structure_in_Point_Data.html">
+     Searching for Structure in Point Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Gaussian_Mixture_Models.html">
+     Gaussian Mixture Models Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Extreme_Deconvolution.html">
+     Extreme Deconvolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter7/README.html">
+   Chapter 7: Dimensionality and its Reduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter7/astroml_chapter7_Dimensionality_Reduction.html">
+     Dimensionality reduction
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter8/README.html">
+   Chapter 8: Regression and Model Fitting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter8/astroml_chapter8_Regression.html">
+     Measurement Errors in Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter8/astroml_chapter8_Regression_with_Errors_on_Dependent_and_Independent_Variables.html">
+     Measurement errors in both dependent and independent variables
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter9/README.html">
+   Chapter 9: Classification
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter9/astroml_chapter9_Classification.html">
+     Classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter9/astroml_chapter9_Deep_Learning_Classifying_Astronomical_Images.html">
+     Deep Learning: Classifying Astronomical Images
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter10/README.html">
+   Chapter 10: Time Series Analysis
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.html">
+     Modeling Toolkit For Time Series Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Wavelets.html">
+     Wavelets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Digital_Filtering.html">
+     Digital Filtering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Temporally_Localized_Signals.html">
+     Temporally localized signals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Analysis_of_Stochastic_Processes.html">
+     Analysis of Stochastic Processes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?urlpath=tree/chapter4/astroml_chapter4_Confidence_estimates.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/astroML/astroML-notebooks/blob/main/chapter4/astroml_chapter4_Confidence_estimates.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2Fchapter4/astroml_chapter4_Confidence_estimates.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter4/astroml_chapter4_Confidence_estimates.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/chapter4/astroml_chapter4_Confidence_estimates.ipynb.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bootstrap">
+   Bootstrap
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jackknife">
+   Jackknife
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#useful-scipy-functions">
+   Useful SciPy functions
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Confidence Estimates: The Bootstrap and The Jackknife</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bootstrap">
+   Bootstrap
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#jackknife">
+   Jackknife
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#useful-scipy-functions">
+   Useful SciPy functions
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="confidence-estimates-the-bootstrap-and-the-jackknife">
+<h1>Confidence Estimates: The Bootstrap and The Jackknife<a class="headerlink" href="#confidence-estimates-the-bootstrap-and-the-jackknife" title="Permalink to this headline">#</a></h1>
+<p>Often, expressions for computing confidence limits for estimated parameters are based on strong assumptions, such as the data being truly Gaussian and having large samples. Two alternative methods exist that are powerful and easy to compute, which rely on resampling the data set <span class="math notranslate nohighlight">\(\{x_i\}\)</span>.</p>
+<section id="bootstrap">
+<h2>Bootstrap<a class="headerlink" href="#bootstrap" title="Permalink to this headline">#</a></h2>
+<p>Our data set <span class="math notranslate nohighlight">\(\{x_i\}\)</span> is drawn from a distribution function <span class="math notranslate nohighlight">\(h(x)\)</span>. If we knew <span class="math notranslate nohighlight">\(h(x)\)</span> and its descriptive parameters, we could compute any statistic without uncertainty. However, we do not know <span class="math notranslate nohighlight">\(h(x)\)</span>, and the best we can do are computations that rely on various estimates of <span class="math notranslate nohighlight">\(h(x)\)</span> derived from the data, which we call here <span class="math notranslate nohighlight">\(f(x)\)</span>. Bootstrapping is based on the approximation</p>
+<div class="math notranslate nohighlight">
+\[f(x) = \frac{1}{N}\sum^N_{i=1}\delta (x-x_i) \]</div>
+<p>where <span class="math notranslate nohighlight">\(\delta(x)\)</span> is the Dirac delta function. The function <span class="math notranslate nohighlight">\(f(x)\)</span> <em>maximizes</em> the probability of obtaining observed data values. We can now pretend that <span class="math notranslate nohighlight">\(f(x)\)</span> is actually <span class="math notranslate nohighlight">\(h(x)\)</span>, and use it to perform various computations. For example, we could use the equation above to estimate the mean and its uncertainty.</p>
+<p>When finding parameter uncertainties, we can use this equation to draw new data sets. There are <span class="math notranslate nohighlight">\(N!\)</span> ways to get sample that matches the original and <span class="math notranslate nohighlight">\(N^N\)</span> possible datasets – thus, the probability that the new dataset matches the original is <span class="math notranslate nohighlight">\(N!/N^N\)</span>.</p>
+<p>Essentially, we draw from the observed data set with replacement: select <span class="math notranslate nohighlight">\(N\)</span> new index values <span class="math notranslate nohighlight">\(j\)</span> from the range <span class="math notranslate nohighlight">\(i = 1, . . . , N\)</span>, and this becomes the new sample. This resampling is done <span class="math notranslate nohighlight">\(B\)</span> times, and the resulting <span class="math notranslate nohighlight">\(B\)</span> data sets are used to compute the statistic of interest <span class="math notranslate nohighlight">\(B\)</span> times. The distribution of these values maps the uncertainty of the statistics of interest and can be used to estimate its bias and standard error, as well as other statistics. This approach described above is known as the <strong>nonparametric bootstrap method</strong>; there is also the parametric bootstrap method which draws samples from the best-fit model.</p>
+<p>The example below demonstrates the nonparametric bootstrap method for estimating uncertainty in the standard deviation and <span class="math notranslate nohighlight">\(\sigma_G\)</span> (Eq. <span class="math notranslate nohighlight">\(2\)</span>). To do this, we will use <code class="docutils literal notranslate"><span class="pre">astroML.resample.bootstrap</span></code> and we’ll also need to import <code class="docutils literal notranslate"><span class="pre">sigmaG</span></code> from <code class="docutils literal notranslate"><span class="pre">astroML.stats</span></code>. Our data sample will have <span class="math notranslate nohighlight">\(m = 1000\)</span> values drawn from a Gaussian distribution with <span class="math notranslate nohighlight">\(\mu\)</span> = 0 and <span class="math notranslate nohighlight">\(\sigma\)</span> = 1. Then we will compute our bootstrap resamplings where we’ll resample 10000 times. Afterward, we will compute the theoretical expectations for the two distributions using Eqs. <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(2\)</span>. Note that <span class="math notranslate nohighlight">\(s\)</span> is the <em>sample standard deviation</em> and that these equations only hold for Gaussian distributions.</p>
+<div class="math notranslate nohighlight">
+\[\qquad\qquad\qquad\sigma_s = \frac{s}{\sqrt{2(N-1)}}\qquad\qquad \qquad (1)\]</div>
+<div class="math notranslate nohighlight">
+\[\qquad\qquad\qquad\qquad\sigma_{\sigma_G} = \frac{1.06s}{\sqrt{N}}\qquad\qquad\quad\quad(2)\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">astroML.resample</span> <span class="kn">import</span> <span class="n">bootstrap</span>
+<span class="kn">from</span> <span class="nn">astroML.stats</span> <span class="kn">import</span> <span class="n">sigmaG</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># number of points</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10000</span>  <span class="c1"># number of bootstraps</span>
+
+<span class="c1"># sample values from a normal distribution</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="c1"># Compute bootstrap resamplings of data</span>
+<span class="n">mu1_bootstrap</span> <span class="o">=</span> <span class="n">bootstrap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span>  <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">mu2_bootstrap</span> <span class="o">=</span> <span class="n">bootstrap</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">sigmaG</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># # Compute the theoretical expectations for the two distributions</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="n">sigma1</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">pdf1</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sigma1</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">sigma2</span> <span class="o">=</span> <span class="mf">1.06</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> 
+<span class="n">pdf2</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">sigma2</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we will plot the histograms, which show the distribution of the resulting <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(\sigma_G\)</span>, along with the theoretical distributions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">mu1_bootstrap</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\sigma\ {\rm (std. dev.)}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">mu2_bootstrap</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;step&#39;</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\sigma_G\ {\rm (quartile)}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.82</span><span class="p">,</span> <span class="mf">1.18</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(\sigma|x,I)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">16</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c6994cd4c68fa6ddfcff70a874e4565c9e3230970d802f982f03bafcb7308484.png" src="../_images/c6994cd4c68fa6ddfcff70a874e4565c9e3230970d802f982f03bafcb7308484.png" />
+</div>
+</div>
+<p>We can see that the bootstrap estimates of uncertainties are in good agreement with the values computed using Eqs. <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(2\)</span>.</p>
+</section>
+<section id="jackknife">
+<h2>Jackknife<a class="headerlink" href="#jackknife" title="Permalink to this headline">#</a></h2>
+<p>The jackknife approach is similar to the bootstrap method, but rather than drawing a data set identical in size to the original data set during the resampling step, one or more observations are left unused when computing the statistic of interest.</p>
+<p>We can call this statistic <span class="math notranslate nohighlight">\(\alpha\)</span> with its value computed from the full data set <span class="math notranslate nohighlight">\(\alpha_N\)</span>. Assuming that one observation (data point) is removed when resampling, we can form <span class="math notranslate nohighlight">\(N\)</span> such data sets and compute a statistic of interest, <span class="math notranslate nohighlight">\(\alpha_i^*\)</span>, for each of them. It can be shown that in the case of a single observation removed from the data set, a bias-corrected jackknife estimate of <span class="math notranslate nohighlight">\(\alpha\)</span> can be computed as</p>
+<div class="math notranslate nohighlight">
+\[\:\qquad\qquad\qquad\qquad\alpha^J = \alpha_N + \Delta \alpha\qquad\qquad\qquad\qquad\: (3)\]</div>
+<p>where the jackknife correction is</p>
+<div class="math notranslate nohighlight">
+\[ \quad\qquad\qquad\Delta \alpha = (N-1) \bigg( \alpha_N - \frac{1}{N} \sum^N_{i=1} \alpha_i^*\bigg).\qquad\qquad(4) \]</div>
+<p>For estimators which are asymptotically normal, the standard error for a jackknife estimate <span class="math notranslate nohighlight">\(\alpha^J\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[ \qquad\sigma_\alpha = \sqrt{\frac{1}{N(N-1)}\sum^N_{i=1} [N\alpha_N-\alpha^J-(N-1)\alpha_i^*]^2}.\qquad(5)\]</div>
+<p>We will visualize this below, again drawing our sample from a Gaussian with 1000 data points. Then we’ll use <code class="docutils literal notranslate"><span class="pre">astroML.resample.jackknife</span></code> and compute the jackknife resamplings of data using <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\sigma_G\)</span>. Note that <span class="math notranslate nohighlight">\(\mu_s\)</span> is the mean of the standard deviation-based width, and <span class="math notranslate nohighlight">\(\mu_{\sigma_G}\)</span> is the mean of the interquartile-based width. Additionally, computing the jackknife resampling for <span class="math notranslate nohighlight">\(\sigma_G\)</span> should <strong>not</strong> be done in practice; we will see the jackknife fails for rank-based statistics.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.resample</span> <span class="kn">import</span> <span class="n">jackknife</span>
+<span class="kn">from</span> <span class="nn">astroML.stats</span> <span class="kn">import</span> <span class="n">sigmaG</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="c1"># Compute jackknife resampling</span>
+
+<span class="c1"># Standard deviation based</span>
+<span class="n">mu_s</span><span class="p">,</span> <span class="n">sigma_mu_s</span><span class="p">,</span> <span class="n">mu_s_raw</span> <span class="o">=</span> <span class="n">jackknife</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">,</span>
+                                    <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+                                    <span class="n">return_raw_distribution</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">pdf1_theory</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)))</span>
+<span class="n">pdf1_jackknife</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">mu_s</span><span class="p">,</span> <span class="n">sigma_mu_s</span><span class="p">)</span>
+
+<span class="c1"># Sigma_G based</span>
+<span class="n">mu_sigG</span><span class="p">,</span> <span class="n">sigma_mu_sigG</span><span class="p">,</span> <span class="n">mu_sigG_raw</span> <span class="o">=</span> <span class="n">jackknife</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sigmaG</span><span class="p">,</span>
+                                    <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+                                    <span class="n">return_raw_distribution</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">pdf2_theory</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">(),</span> <span class="mf">1.06</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">m</span><span class="p">))</span>
+<span class="n">pdf2_jackknife</span> <span class="o">=</span> <span class="n">norm</span><span class="p">(</span><span class="n">mu_sigG</span><span class="p">,</span> <span class="n">sigma_mu_sigG</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mu_s = </span><span class="si">{</span><span class="n">mu_s</span><span class="si">:</span><span class="s2">.3</span><span class="si">}</span><span class="s2">, sigma_mu_s = </span><span class="si">{</span><span class="n">sigma_mu_s</span><span class="si">:</span><span class="s2">.3</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;mu_sigmaG = </span><span class="si">{</span><span class="n">mu_sigG</span><span class="si">:</span><span class="s2">.3</span><span class="si">}</span><span class="s2">, sigma_mu_sigmaG = </span><span class="si">{</span><span class="n">sigma_mu_sigG</span><span class="si">:</span><span class="s2">.3</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>mu_s = 1.0, sigma_mu_s = 0.0223
+mu_sigmaG = 0.598, sigma_mu_sigmaG = 0.0314
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next, we’ll plot the distributions. The left panel will show a histogram of the widths determined using the sample standard deviation and the interquartile range. The right panel will show the corrected jackknife estimates (Eqs. <span class="math notranslate nohighlight">\(3\)</span> and <span class="math notranslate nohighlight">\(5\)</span>) for the two methods. The gray lines show the theoretical results given by eq. <span class="math notranslate nohighlight">\(1\)</span> for <span class="math notranslate nohighlight">\(s\)</span> and eq. <span class="math notranslate nohighlight">\(2\)</span> for <span class="math notranslate nohighlight">\(\sigma_G\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.11</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+                    <span class="n">wspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">mu_s_raw</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.996</span><span class="p">,</span> <span class="mf">1.008</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\sigma^*\ {\rm (std.\ dev.)}$&#39;</span><span class="p">,</span>
+        <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">mu_sigG_raw</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.996</span><span class="p">,</span> <span class="mf">1.008</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\sigma_G^*\ {\rm (quartile)}$&#39;</span><span class="p">,</span>
+        <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">handlelength</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_locator</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">MultipleLocator</span><span class="p">(</span><span class="mf">0.004</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma^*$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$N(\sigma^*)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.998</span><span class="p">,</span> <span class="mf">1.008</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">550</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.45</span><span class="p">,</span> <span class="mf">1.15</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf1_jackknife</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\sigma\ {\rm (std.\ dev.)}$&#39;</span><span class="p">,</span>
+        <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf1_theory</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf2_jackknife</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\sigma_G\ {\rm (quartile)}$&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf2_theory</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">handlelength</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\sigma$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$p(\sigma|x,I)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mf">0.45</span><span class="p">,</span> <span class="mf">1.15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f21971a0279fdb87e7caf8092c8078baed780d721fa7a17aeb1332b6db2d10f4.png" src="../_images/f21971a0279fdb87e7caf8092c8078baed780d721fa7a17aeb1332b6db2d10f4.png" />
+</div>
+</div>
+<p>The result for <span class="math notranslate nohighlight">\(\sigma\)</span> matches the theoretical result almost exactly, but note the failure of the jackknife to estimate <span class="math notranslate nohighlight">\(\sigma_G\)</span> correctly.</p>
+<p>The confidence limits for <span class="math notranslate nohighlight">\(\alpha\)</span> can be found using Student’s t distribution with <span class="math notranslate nohighlight">\(t = (\alpha - \alpha^J)/\sigma_\alpha\)</span> and <span class="math notranslate nohighlight">\(N-1\)</span> degrees of freedom. The jackknife standard error is more reliable than the jackknife bias correction because it is based on a simpler approximation. For the sample whose bootstrap uncertainty estimates for <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(\sigma_G\)</span> are shown in the figure above, the jackknife method (eq. <span class="math notranslate nohighlight">\(5\)</span>) gives similar widths as with the bootstrap method. However, note that the bias correction estimate for <span class="math notranslate nohighlight">\(\sigma_G\)</span> given by eq. <span class="math notranslate nohighlight">\(4\)</span> is completely unreliable.</p>
+<p>This failure is a general problem with the standard jackknife method, which performs well for smooth differential statistics such as the mean and standard deviation, but does not perform well for medians, quantiles, and other rank-based statistics. For these sorts of statistics, a jackknife implementation that removes more than one observation can overcome this problem. The reason for this failure becomes apparent upon examination of the figure above: for <span class="math notranslate nohighlight">\(\sigma_G\)</span>, the vast majority of jackknife samples yield one of three discrete values! Because quartiles are insensitive to the removal of outliers, all samples created by the removal of a point larger than <span class="math notranslate nohighlight">\(q_{75}\)</span> lead to precisely the same estimate. The same is true for removal of any point smaller than <span class="math notranslate nohighlight">\(q_{25}\)</span>, and for any point in the range <span class="math notranslate nohighlight">\(q_{25} &lt; x &lt; q_{75}\)</span>. Because of this, the jackknife cannot accurately sample the error distribution, which leads to a gross misestimate of the result.</p>
+<p>So, should we use bootstrap or jackknife in practice? Although based on different approximations, they typically produce similar results for smooth statistics, especially for large samples.</p>
+<ul class="simple">
+<li><p>Jackknife estimates are usually easier to calculate and apply to complex sampling schemes. Additionally, they automatically remove bias.</p></li>
+<li><p>Bootstrap is better for computing confidence intervals because it does not involve the assumption of asymptotic normality (i.e., it maps out the shape of the distribution).</p></li>
+</ul>
+<p><em>Note that bootstrap gives slightly different results even if the data set is fixed (because random resampling is performed), while jackknife gives repeatable results for a given data set (because all possible permutations are used).</em></p>
+<p>Of course, when feasible, it’s helpful to use both bootstrap and jackknife and critically compare their results. Both methods should be used with caution when <span class="math notranslate nohighlight">\(N\)</span> is small.</p>
+</section>
+<section id="useful-scipy-functions">
+<h2>Useful SciPy functions<a class="headerlink" href="#useful-scipy-functions" title="Permalink to this headline">#</a></h2>
+<p>Both <code class="docutils literal notranslate"><span class="pre">Astropy</span></code> and <code class="docutils literal notranslate"><span class="pre">AstroML</span></code> contain some routines for performing basic nonparametric jackknife and bootstrap: <code class="docutils literal notranslate"><span class="pre">astroML.resample.jackknife</span></code> and <code class="docutils literal notranslate"><span class="pre">astroML.resample.bootstrap</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">astropy.stats</span> <span class="kn">import</span> <span class="n">jackknife_stats</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">estimate</span><span class="p">,</span> <span class="n">bias</span><span class="p">,</span> <span class="n">stderr</span><span class="p">,</span> <span class="n">conf_interval</span> <span class="o">=</span> <span class="n">jackknife_stats</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">estimate</span> <span class="p">,</span> <span class="n">stderr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9877692831445253 0.021862029271295866
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="astroml_chapter4_Gaussian_mixtures.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">MLE applied to Gaussian mixtures</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../chapter5/README.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 5: Bayesian Statistical Inference</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By AstroML developers<br/>
+  
+      &copy; Copyright 2020-2022, AstroML developers.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
