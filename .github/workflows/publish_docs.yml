@@ -14,10 +14,10 @@ jobs:
   build-docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: 3.8
 
@@ -25,6 +25,11 @@ jobs:
         run: |
           pip install -r .binder/requirements.txt -r doc-requirements.txt
 
+      - name: TMP clean MD source files
+        # sphinx defaults to use the md files to generate content
+        # revisit these issues upstream, or enable executing for the simpler notebooks.
+        run: |
+            find chapter* -name "*ipynb"|awk -F ipynb '{print $1"md"}'|xargs rm -f
 
       - name: Build the notebooks
         run: |
