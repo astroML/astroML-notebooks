@@ -508,7 +508,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.md"
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -536,24 +536,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../_sources/chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.md.txt"
+        <a href="../_sources/chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.ipynb.txt"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -564,7 +547,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -987,7 +970,7 @@ variables, in such models the value of <span class="math notranslate nohighlight
 <h3>Import Functions and Packages<a class="headerlink" href="#import-functions-and-packages" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_rrlyrae_templates</span>
@@ -1009,7 +992,7 @@ variables, in such models the value of <span class="math notranslate nohighlight
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
 <span class="n">setup_text_plots</span><span class="p">(</span><span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1065,7 +1048,7 @@ The total power is the same whether computed in the frequency or the time domain
 <p>From astroML.datasets, we take the RR Lyrae (variable star) light curve as an example. RR Lyrae has a periodical pulsation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">templates</span> <span class="o">=</span> <span class="n">fetch_rrlyrae_templates</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">templates</span> <span class="o">=</span> <span class="n">fetch_rrlyrae_templates</span><span class="p">()</span>
 <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">templates</span><span class="p">[</span><span class="s1">&#39;115r&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
 </div>
@@ -1077,7 +1060,7 @@ The total power is the same whether computed in the frequency or the time domain
 <p>The thick dashed line shows the true curve; the gray lines show the approximation based on 1, 3, and 8 Fourier modes (sinusoids).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="n">kvals</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
@@ -1120,6 +1103,9 @@ The total power is the same whether computed in the frequency or the time domain
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/845d2a20eca40976569dbb0b581c0a4791bdf42a6a9356d8836f8ce64a1b419e.png" src="../_images/845d2a20eca40976569dbb0b581c0a4791bdf42a6a9356d8836f8ce64a1b419e.png" />
+</div>
 </div>
 </section>
 </section>
@@ -1145,7 +1131,7 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 <p>Generate random x, y with a given covariance length. Then we define a normalized top-hat window function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate data</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
 <span class="n">h</span> <span class="o">=</span> <span class="mf">0.01</span>
@@ -1165,7 +1151,7 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 <p>The graph below show simulated data <span class="math notranslate nohighlight">\(D(x)\)</span> in black line, and top-hat window function <span class="math notranslate nohighlight">\(W(x)\)</span> in gray boxes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the plots</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the plots</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 
@@ -1186,13 +1172,19 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 2.0)
+</pre></div>
+</div>
+<img alt="../_images/61ed02f20d2fd51c9fb05e5e5a5cb2d1a9a5926108042470641e58bd640384f0.png" src="../_images/61ed02f20d2fd51c9fb05e5e5a5cb2d1a9a5926108042470641e58bd640384f0.png" />
+</div>
 </div>
 </section>
 <section id="compute-the-fourier-transforms-of-the-signal-and-window">
 <h4>Compute the Fourier transforms of the signal and window<a class="headerlink" href="#compute-the-fourier-transforms-of-the-signal-and-window" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y_fft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_fft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="n">w_fft</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
 
 <span class="n">yw_fft</span> <span class="o">=</span> <span class="n">y_fft</span> <span class="o">*</span> <span class="n">w_fft</span>
@@ -1207,7 +1199,7 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 <p>The function on the top shows the Fourier transform of <span class="math notranslate nohighlight">\(D(x)\)</span> and the bottom shows the transform of <span class="math notranslate nohighlight">\(W(x)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the plots</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the plots</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="c1"># plot the Fourier transforms</span>
@@ -1238,6 +1230,12 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;$x$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/374fc81dc81ab39eaf9356b81f2c3c1fdc2817d29beae5c2802ad58fa28d6156.png" src="../_images/374fc81dc81ab39eaf9356b81f2c3c1fdc2817d29beae5c2802ad58fa28d6156.png" />
+</div>
 </div>
 </section>
 <section id="calculate-the-product-of-fourier-transforms">
@@ -1245,7 +1243,7 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 <p>We multiply the above two Fourier transform functions and get the product of them (shown below). The inverse transformation of this product give us the convolution of <span class="math notranslate nohighlight">\([D*W](x)\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fftshift</span><span class="p">(</span><span class="n">yw_fft</span><span class="p">)),</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
 
@@ -1261,6 +1259,12 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 0, &#39;$k$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/4cad2598e81842ed5f943b65ec94316f26e2d30955ab9269bf54af5dcc9ebee3.png" src="../_images/4cad2598e81842ed5f943b65ec94316f26e2d30955ab9269bf54af5dcc9ebee3.png" />
+</div>
 </div>
 </section>
 <section id="perform-the-convolution">
@@ -1268,7 +1272,7 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 <p>Use equation <span class="math notranslate nohighlight">\((a*b)(t) \equiv \int_{-\infty}^{\infty} a(t')b(t-t')dt'\)</span> we take the convolution of D(x) and W(x).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">w</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">convolve</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">w</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">)</span>
 <span class="n">valid_indices</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_norm</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
 <span class="n">y_norm</span> <span class="o">=</span> <span class="n">y_norm</span><span class="p">[</span><span class="n">valid_indices</span><span class="p">]</span>
 
@@ -1287,7 +1291,7 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 <p>The result of <span class="math notranslate nohighlight">\([D*W](x)\)</span> can be viewed as the data signal smoothed with the window (top-hat) function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the convolution</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the convolution</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_w</span><span class="p">,</span> <span class="n">y_w</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
@@ -1309,6 +1313,12 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 1.99)
+</pre></div>
+</div>
+<img alt="../_images/fc20a110cfa9702933957d4609ee12172b4e099f2099c790e958cf896afe7349.png" src="../_images/fc20a110cfa9702933957d4609ee12172b4e099f2099c790e958cf896afe7349.png" />
+</div>
 </div>
 </section>
 <section id="show-convolution-diagram">
@@ -1322,7 +1332,7 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the plots</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up the plots</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.09</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.09</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
                     <span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
@@ -1439,6 +1449,9 @@ of the ratio <span class="math notranslate nohighlight">\(H(f)=A(f)\)</span>. In
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/c41d65661839d1b30c40b35d77d8a18a87d2a0ba969684c50eb727b30ac32433.png" src="../_images/c41d65661839d1b30c40b35d77d8a18a87d2a0ba969684c50eb727b30ac32433.png" />
+</div>
 </div>
 </section>
 </section>
@@ -1492,7 +1505,7 @@ than that set by <span class="math notranslate nohighlight">\(f_c\)</span>. The 
 <p>Here we defind a Gaussian shaped data and its Fourier transform as an example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussian</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mf">1.0</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">a</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
 
 
@@ -1524,7 +1537,7 @@ We have two sets of four panels, and in each set:</p>
 In the bottom panels, the data is not well sampled (the spacing between two data points is larger) which leads to aliasing, as seen in the overlap of the convolved Fourier transforms. The aliasing effect can be recognized if the Fourier transform is nonzero at <span class="math notranslate nohighlight">\(|f| = 1/(2 \Delta t)\)</span> in this example.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Two plots: one well-sampled, one over-sampled</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Two plots: one well-sampled, one over-sampled</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">12</span>
 
 <span class="k">def</span> <span class="nf">plot_aliasing</span><span class="p">(</span><span class="n">dt</span><span class="p">):</span>
@@ -1627,16 +1640,22 @@ In the bottom panels, the data is not well sampled (the spacing between two data
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plot_aliasing</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_aliasing</span><span class="p">(</span><span class="mf">0.9</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8f7010dc1c7c72065b027cc370056f7e523f5b1ce4024f6475c0c8fa7db93ed3.png" src="../_images/8f7010dc1c7c72065b027cc370056f7e523f5b1ce4024f6475c0c8fa7db93ed3.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plot_aliasing</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_aliasing</span><span class="p">(</span><span class="mf">1.2</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0dda6d8c7b4b50ffed826bbb69f0ad3b3199492fc593e8cf0cce84d7e5555c60.png" src="../_images/0dda6d8c7b4b50ffed826bbb69f0ad3b3199492fc593e8cf0cce84d7e5555c60.png" />
 </div>
 </div>
 </section>
@@ -1659,7 +1678,7 @@ We will see an example of an irregular sampling window in the figure below.</p>
 <h4>Generate the data<a class="headerlink" href="#generate-the-data" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Nbins</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">15</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Nbins</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="mi">15</span>
 <span class="n">Nobs</span> <span class="o">=</span> <span class="mi">40</span>
 <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">t</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
 
@@ -1675,7 +1694,7 @@ We will see an example of an irregular sampling window in the figure below.</p>
 <h4>Select observations and compute PSD<a class="headerlink" href="#select-observations-and-compute-psd" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># select observations</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># select observations</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">t_obs</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span>
 
@@ -1707,7 +1726,7 @@ We will see an example of an irregular sampling window in the figure below.</p>
 <p>Normalize the true PSD so it can be shown in the plot: in theory it’s a delta function, so normalization is arbitrary.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PSD_window</span> <span class="o">/=</span> <span class="mi">500</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">PSD_window</span> <span class="o">/=</span> <span class="mi">500</span>
 <span class="n">PSD_y</span> <span class="o">/=</span> <span class="n">PSD_y</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 <span class="n">PSD_obs</span> <span class="o">/=</span> <span class="mi">500</span>
 </pre></div>
@@ -1726,7 +1745,7 @@ We will see an example of an irregular sampling window in the figure below.</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare the figures</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare the figures</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
                     <span class="n">left</span><span class="o">=</span><span class="mf">0.12</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
@@ -1771,6 +1790,9 @@ We will see an example of an irregular sampling window in the figure below.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/ee879e1dd1e9613aedb48b13872318dfceedc0b43016a0d0247e8347585104df.png" src="../_images/ee879e1dd1e9613aedb48b13872318dfceedc0b43016a0d0247e8347585104df.png" />
+</div>
 </div>
 </section>
 </section>
@@ -1785,7 +1807,7 @@ An example below shows such analysis for a function with a single dominant frequ
 <h4>Generate the data<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="n">tj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>
 <span class="n">hj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">tj</span><span class="p">)</span>
@@ -1800,7 +1822,7 @@ An example below shows such analysis for a function with a single dominant frequ
 <p>The discrete Fourier transform (bottom panel) for two noisy data sets shown in the top panel. For 512 evenly sampled times t (dt = 0.977), points are drawn from h(t) = a + sin(t)G(t), where G(t) is a Gaussian N(mu = 0,sigma = 10). Gaussian noise with sigma = 0.05 (top data set) and 0.005 (bottom data set) is added to signal h(t). The value of the offset a is 0.15 and 0, respectively. The discrete Fourier transform is computed as described in this section. For both noise realizations, the correct frequency f = (2pi)-1 ~ 0.159 is easily discernible in the bottom panel. Note that the height of peaks is the same for both noise realizations. The large value of abs(H(f = 0)) for data with larger noise is due to the vertical offset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the results</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.35</span><span class="p">)</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">211</span><span class="p">)</span>
@@ -1843,6 +1865,9 @@ An example below shows such analysis for a function with a single dominant frequ
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/05ba11cfd021ab66b189244a6a5a407671b7073908644032ba4bbc223692c492.png" src="../_images/05ba11cfd021ab66b189244a6a5a407671b7073908644032ba4bbc223692c492.png" />
 </div>
 </div>
 </section>

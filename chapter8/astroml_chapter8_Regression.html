@@ -508,7 +508,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter8/astroml_chapter8_Regression.md"
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter8/astroml_chapter8_Regression.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -536,24 +536,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/chapter8/astroml_chapter8_Regression.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../_sources/chapter8/astroml_chapter8_Regression.md.txt"
+        <a href="../_sources/chapter8/astroml_chapter8_Regression.ipynb.txt"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -564,7 +547,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -713,7 +696,7 @@ title="Print to PDF"
 <p>We rely on that astroML has a common API with scikit-learn, extending the functionality of the latter.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
@@ -723,7 +706,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.cosmology</span> <span class="kn">import</span> <span class="n">LambdaCDM</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astropy.cosmology</span> <span class="kn">import</span> <span class="n">LambdaCDM</span>
 <span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">generate_mu_z</span>
 
 <span class="n">z_sample</span><span class="p">,</span> <span class="n">mu_sample</span><span class="p">,</span> <span class="n">dmu</span> <span class="o">=</span> <span class="n">generate_mu_z</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -735,6 +718,12 @@ title="Print to PDF"
 <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">z_sample</span><span class="p">,</span> <span class="n">mu_sample</span><span class="p">,</span> <span class="n">dmu</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;ErrorbarContainer object of 3 artists&gt;
+</pre></div>
+</div>
+<img alt="../_images/eb7452375b511b106cb1487f05aa66178637cb5cf113dcc549b2cdf669c6f18f.png" src="../_images/eb7452375b511b106cb1487f05aa66178637cb5cf113dcc549b2cdf669c6f18f.png" />
 </div>
 </div>
 </section>
@@ -751,7 +740,7 @@ where \)</span>a<span class="math notranslate nohighlight">\( is commonly known 
 <p>We can use Scikit-Learn’s LinearRegression estimator to fit this data and construct the best-fit line:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span> <span class="k">as</span> <span class="n">LinearRegression_sk</span> 
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span> <span class="k">as</span> <span class="n">LinearRegression_sk</span> 
 
 <span class="n">linear_sk</span> <span class="o">=</span> <span class="n">LinearRegression_sk</span><span class="p">()</span>
 <span class="n">linear_sk</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">z_sample</span><span class="p">[:,</span><span class="kc">None</span><span class="p">],</span> <span class="n">mu_sample</span><span class="p">)</span>
@@ -778,6 +767,9 @@ where \)</span>a<span class="math notranslate nohighlight">\( is commonly known 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/606c2e0df10f3b97e892a8e3445cfec57a5e343acc87bd9607f4317b1fd55ff4.png" src="../_images/606c2e0df10f3b97e892a8e3445cfec57a5e343acc87bd9607f4317b1fd55ff4.png" />
+</div>
 </div>
 </section>
 <section id="measurement-errors">
@@ -785,7 +777,7 @@ where \)</span>a<span class="math notranslate nohighlight">\( is commonly known 
 <p>Modifications to LinearRegression in astroML take measurement errors into account on the dependent variable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
 
 <span class="n">linear</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
 <span class="n">linear</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">z_sample</span><span class="p">[:,</span><span class="kc">None</span><span class="p">],</span> <span class="n">mu_sample</span><span class="p">,</span> <span class="n">dmu</span><span class="p">)</span>
@@ -814,6 +806,9 @@ where \)</span>a<span class="math notranslate nohighlight">\( is commonly known 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/8703e4880c0a6a4307095893f7f96bfef03f113f2a8d4aa76aada6a7994f3e1a.png" src="../_images/8703e4880c0a6a4307095893f7f96bfef03f113f2a8d4aa76aada6a7994f3e1a.png" />
+</div>
 </div>
 </section>
 <section id="basis-function-regression">
@@ -827,7 +822,7 @@ where \)</span>a<span class="math notranslate nohighlight">\( is commonly known 
 <p>Notice that this is still a linear model—the linearity refers to the fact that the coefficients <span class="math notranslate nohighlight">\(a_n\)</span> never multiply or divide each other. What we have effectively done here is to take our one-dimensional <span class="math notranslate nohighlight">\(x\)</span> values and projected them into a higher dimension, so that a linear fit can fit more complicated relationships between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.linear_model</span> <span class="kn">import</span> <span class="n">PolynomialRegression</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.linear_model</span> <span class="kn">import</span> <span class="n">PolynomialRegression</span>
 
 <span class="c1"># 2nd degree polynomial regression</span>
 <span class="n">polynomial</span> <span class="o">=</span> <span class="n">PolynomialRegression</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
@@ -856,6 +851,9 @@ where \)</span>a<span class="math notranslate nohighlight">\( is commonly known 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/70af424c10bd0871f0eabd7912c5ad680e9bec3cdabceb9f88343705c7ab0b58.png" src="../_images/70af424c10bd0871f0eabd7912c5ad680e9bec3cdabceb9f88343705c7ab0b58.png" />
+</div>
 </div>
 </section>
 <section id="gaussian-basis-functions">
@@ -864,7 +862,7 @@ where \)</span>a<span class="math notranslate nohighlight">\( is commonly known 
 For example, one useful pattern is to fit a model that is not a sum of polynomial bases, but a sum of Gaussian bases. E.g. we could substitute <span class="math notranslate nohighlight">\(x^2\)</span> for Gaussians (where we fix <span class="math notranslate nohighlight">\(\sigma\)</span> and <span class="math notranslate nohighlight">\(\mu\)</span> and fit for the amplitude) as long as the attribute we are fitting for is linear. This is called basis function regression.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.linear_model</span> <span class="kn">import</span> <span class="n">BasisFunctionRegression</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.linear_model</span> <span class="kn">import</span> <span class="n">BasisFunctionRegression</span>
 
 <span class="c1">#------------------------------------------------------------</span>
 <span class="c1"># Define our number of Gaussians</span>
@@ -897,6 +895,9 @@ For example, one useful pattern is to fit a model that is not a sum of polynomia
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9f1c05a3fb678acd20d5883608ead0a04cbc85e7e0528901eb02cb92e973d751.png" src="../_images/9f1c05a3fb678acd20d5883608ead0a04cbc85e7e0528901eb02cb92e973d751.png" />
 </div>
 </div>
 </section>

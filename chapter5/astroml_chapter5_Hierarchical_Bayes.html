@@ -508,7 +508,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter5/astroml_chapter5_Hierarchical_Bayes.md"
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter5/astroml_chapter5_Hierarchical_Bayes.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -536,24 +536,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/chapter5/astroml_chapter5_Hierarchical_Bayes.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../_sources/chapter5/astroml_chapter5_Hierarchical_Bayes.md.txt"
+        <a href="../_sources/chapter5/astroml_chapter5_Hierarchical_Bayes.ipynb.txt"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -564,7 +547,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -961,7 +944,7 @@ $<span class="math notranslate nohighlight">\(\mu_p = \frac{(x/e^2) + (\mu_0/\si
 is quite simple, but very educational. Let’s plot an example…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
 </pre></div>
@@ -970,7 +953,7 @@ is quite simple, but very educational. Let’s plot an example…</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## case of conjugate prior: both prior and posterior pdfs are gaussian</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## case of conjugate prior: both prior and posterior pdfs are gaussian</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mf">0.7</span> 
 <span class="n">e</span> <span class="o">=</span> <span class="mf">0.2</span>
 <span class="n">mu0</span> <span class="o">=</span> <span class="mf">1.4</span>
@@ -1006,6 +989,9 @@ is quite simple, but very educational. Let’s plot an example…</p>
  
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/9efda439f1b61a32ee4521cd1ddeb3d6e2b30aa5bba121d4ae22ace8cd7808ba.png" src="../_images/9efda439f1b61a32ee4521cd1ddeb3d6e2b30aa5bba121d4ae22ace8cd7808ba.png" />
 </div>
 </div>
 <ul class="simple">
@@ -1118,7 +1104,7 @@ the concept of shrinkage estimators.</p>
 <p>Let’s now look at our radial velocity example numerically.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">astroML.plotting.mcmc</span> <span class="kn">import</span> <span class="n">convert_to_stdev</span>
 </pre></div>
@@ -1127,7 +1113,7 @@ the concept of shrinkage estimators.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussgauss_logL</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">ei</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">gaussgauss_logL</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">ei</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Equation 5.63: gaussian likelihood with gaussian errors&quot;&quot;&quot;</span>
     <span class="n">ndim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
@@ -1148,7 +1134,7 @@ the concept of shrinkage estimators.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ------------------------------------------------------------</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ------------------------------------------------------------</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>    <span class="c1"># for repeatability</span>
 
 <span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>               <span class="c1"># number of measured stars</span>
@@ -1187,7 +1173,7 @@ the concept of shrinkage estimators.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#------------------------------------------------------------</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#------------------------------------------------------------</span>
 <span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
 <span class="n">setup_text_plots</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">usetex</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
@@ -1275,6 +1261,9 @@ the concept of shrinkage estimators.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d2be97f8b3b179d32a75ca3378e39d4abe2e1b617c33c7c837e0d370aeb495e5.png" src="../_images/d2be97f8b3b179d32a75ca3378e39d4abe2e1b617c33c7c837e0d370aeb495e5.png" />
 </div>
 </div>
 </section>

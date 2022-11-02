@@ -508,7 +508,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter10/astroml_chapter10_Digital_Filtering.md"
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter10/astroml_chapter10_Digital_Filtering.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -536,24 +536,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/chapter10/astroml_chapter10_Digital_Filtering.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../_sources/chapter10/astroml_chapter10_Digital_Filtering.md.txt"
+        <a href="../_sources/chapter10/astroml_chapter10_Digital_Filtering.ipynb.txt"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -564,7 +547,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -917,7 +900,7 @@ an analogous situation to binning data to produce a histogram-while very useful 
 Survey (SDSS).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="kn">from</span> <span class="nn">astroML.fourier</span> <span class="kn">import</span> <span class="n">PSD_continuous</span>
@@ -958,7 +941,7 @@ uncorrelated. We will see how the filtering works in the example below.</p>
 <p>We are going to generate a set of noisy data as the input signal, on which we apply filters. The figure below shows the input data (200 evenly spaced points) with a narrow Gaussian peak centered at x = 20.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the noisy data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create the noisy data</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">2000</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.05</span>
@@ -994,6 +977,12 @@ uncorrelated. We will see how the filtering works in the example below.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;flux&#39;)
+</pre></div>
+</div>
+<img alt="../_images/71518a83cdaeca04f60a921626c58ac5d1d3a3e3f3cb6ec6f8e8742ed5938c29.png" src="../_images/71518a83cdaeca04f60a921626c58ac5d1d3a3e3f3cb6ec6f8e8742ed5938c29.png" />
+</div>
 </div>
 </section>
 <section id="set-up-the-wiener-filter">
@@ -1001,7 +990,7 @@ uncorrelated. We will see how the filtering works in the example below.</p>
 <p>We fit a model to the PSD consisting of the sum of a gaussian and white noise using <strong>Wiener filter</strong>. We will see this method in the later sections in this notebook.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">2000</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">2000</span>
 
 <span class="n">Df</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">N</span> <span class="o">/</span> <span class="n">dt</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">ifftshift</span><span class="p">(</span><span class="n">Df</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">-</span> <span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
@@ -1022,7 +1011,7 @@ to data (in the time domain) using sliding windows (it is also known as the leas
 For a detailed discussion, see NumRec.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># apply the Savitzky-Golay filter</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># apply the Savitzky-Golay filter</span>
 <span class="n">h_sg</span> <span class="o">=</span> <span class="n">savgol_filter</span><span class="p">(</span><span class="n">hN</span><span class="p">,</span> <span class="n">window_length</span><span class="o">=</span><span class="mi">201</span><span class="p">,</span> <span class="n">polyorder</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;mirror&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1039,7 +1028,7 @@ For a detailed discussion, see NumRec.</p>
 <p>The Gaussian peak at x=20 is clearly seen in both curves.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Second plot: filtered signal</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Second plot: filtered signal</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="s1">&#39;:k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">h_smooth</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Wiener&#39;</span><span class="p">)</span>
@@ -1058,6 +1047,12 @@ For a detailed discussion, see NumRec.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;flux&#39;)
+</pre></div>
+</div>
+<img alt="../_images/96dc0f0e1a49600db29898a92e2350c5bb922e2495dc1b7b27b96707b80cfa87.png" src="../_images/96dc0f0e1a49600db29898a92e2350c5bb922e2495dc1b7b27b96707b80cfa87.png" />
+</div>
 </div>
 </section>
 <section id="show-filtered-psd">
@@ -1071,7 +1066,7 @@ For a detailed discussion, see NumRec.</p>
 \[\Phi(f) = \frac{P_S(f)}{P_S(f)+P_N(f)}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
 <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
 <span class="n">Df</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">N</span> <span class="o">/</span> <span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">ifftshift</span><span class="p">(</span><span class="n">Df</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">-</span> <span class="n">N</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
@@ -1117,6 +1112,12 @@ For a detailed discussion, see NumRec.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$PSD(f)$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/b9d05f9f75d7c58e05079c5a1223d9b0dec75e7fff7447b96eba72beafe6bec6.png" src="../_images/b9d05f9f75d7c58e05079c5a1223d9b0dec75e7fff7447b96eba72beafe6bec6.png" />
+</div>
 </div>
 </section>
 <section id="wiener-filter-and-kernel-smoothing-connection">
@@ -1139,7 +1140,7 @@ of the Wiener filter is not of paramount importance, the choice of kernel is not
 <h3>Find effective kernel<a class="headerlink" href="#find-effective-kernel" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># inverse fourier transform Phi to find the effective kernel</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># inverse fourier transform Phi to find the effective kernel</span>
 <span class="n">t_plot</span><span class="p">,</span> <span class="n">kernel</span> <span class="o">=</span> <span class="n">IFT_continuous</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">Phi</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1152,7 +1153,7 @@ of the Wiener filter is not of paramount importance, the choice of kernel is not
 space (i.e. using the standard Wiener filter above) but we will do it in the slow &amp; simple way here to demonstrate the equivalence explicitly.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">kernel_func</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">t_plot</span><span class="p">,</span> <span class="n">kernel</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">kernel_func</span> <span class="o">=</span> <span class="n">interpolate</span><span class="o">.</span><span class="n">interp1d</span><span class="p">(</span><span class="n">t_plot</span><span class="p">,</span> <span class="n">kernel</span><span class="o">.</span><span class="n">real</span><span class="p">)</span>
 
 <span class="n">t_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">t_KDE</span> <span class="o">=</span> <span class="n">t_eval</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span>
@@ -1176,7 +1177,7 @@ space (i.e. using the standard Wiener filter above) but we will do it in the slo
 the kernel shown above, and thus Wiener filtering and kernel density estimation (KDE) are directly related.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
                     <span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
@@ -1209,6 +1210,9 @@ the kernel shown above, and thus Wiener filtering and kernel density estimation 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/3f33dff04c7afac3084d2a75d85e133a7beac1782f309b8a0cb48ed97e7f357f.png" src="../_images/3f33dff04c7afac3084d2a75d85e133a7beac1782f309b8a0cb48ed97e7f357f.png" />
+</div>
 </div>
 </section>
 </section>
@@ -1239,7 +1243,7 @@ the result from step 3. This is the minimum component filtering estimate of base
 <p>We first fetch the spectrum data from SDSS database for use. The intermediate steps of the minimum component filter procedure applied to the spectrum of a white dwarf from the SDSS data set (mjd= 52199, plate=659, fiber=381).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch the spectrum from SDSS database</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch the spectrum from SDSS database</span>
 <span class="n">plate</span> <span class="o">=</span> <span class="mi">659</span>
 <span class="n">mjd</span> <span class="o">=</span> <span class="mi">52199</span>
 <span class="n">fiber</span> <span class="o">=</span> <span class="mi">381</span>
@@ -1258,7 +1262,7 @@ the result from step 3. This is the minimum component filtering estimate of base
 <p>Wavelengths we get are logorithmically spaced: we will work in log(lam).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">spec</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">preprocess</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span> <span class="n">spec</span><span class="p">):</span>
     <span class="n">loglam</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span>
 
     <span class="n">flag</span> <span class="o">=</span> <span class="p">(</span><span class="n">lam</span> <span class="o">&gt;</span> <span class="mi">4000</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lam</span> <span class="o">&lt;</span> <span class="mi">5000</span><span class="p">)</span>
@@ -1283,7 +1287,7 @@ the result from step 3. This is the minimum component filtering estimate of base
 <p>First step: mask-out significant features</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">feature_mask</span> <span class="o">=</span> <span class="p">(((</span><span class="n">lam</span> <span class="o">&gt;</span> <span class="mi">4080</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lam</span> <span class="o">&lt;</span> <span class="mi">4130</span><span class="p">))</span> <span class="o">|</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_mask</span> <span class="o">=</span> <span class="p">(((</span><span class="n">lam</span> <span class="o">&gt;</span> <span class="mi">4080</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lam</span> <span class="o">&lt;</span> <span class="mi">4130</span><span class="p">))</span> <span class="o">|</span>
                 <span class="p">((</span><span class="n">lam</span> <span class="o">&gt;</span> <span class="mi">4315</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lam</span> <span class="o">&lt;</span> <span class="mi">4370</span><span class="p">))</span> <span class="o">|</span>
                 <span class="p">((</span><span class="n">lam</span> <span class="o">&gt;</span> <span class="mi">4830</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lam</span> <span class="o">&lt;</span> <span class="mi">4900</span><span class="p">)))</span>
 </pre></div>
@@ -1293,7 +1297,7 @@ the result from step 3. This is the minimum component filtering estimate of base
 <p>Second step: fit a line to the unmasked portion of the spectrum</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">XX</span> <span class="o">=</span> <span class="n">loglam</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">XX</span> <span class="o">=</span> <span class="n">loglam</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">XX</span><span class="p">[</span><span class="o">~</span><span class="n">feature_mask</span><span class="p">],</span> <span class="n">spec</span><span class="p">[</span><span class="o">~</span><span class="n">feature_mask</span><span class="p">],</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="n">spec_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">XX</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
@@ -1306,7 +1310,7 @@ the result from step 3. This is the minimum component filtering estimate of base
 <p>Third step: Fourier transform the patched spectrum</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">loglam</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">loglam</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="n">N</span> <span class="o">/</span> <span class="p">(</span><span class="n">loglam</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">loglam</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">ifftshift</span><span class="p">(</span><span class="n">df</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">-</span> <span class="n">N</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">))</span>
 <span class="n">spec_patched_FT</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">spec_patched</span><span class="p">)</span>
@@ -1317,7 +1321,7 @@ the result from step 3. This is the minimum component filtering estimate of base
 <p>Fourth step: Low-pass filter on the transform</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">filt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="p">(</span><span class="mf">0.01</span> <span class="o">*</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">-</span> <span class="mf">100.</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="p">(</span><span class="mf">0.01</span> <span class="o">*</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">-</span> <span class="mf">100.</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">filt</span><span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
 <span class="n">spec_filt_FT</span> <span class="o">=</span> <span class="n">spec_patched_FT</span> <span class="o">*</span> <span class="n">filt</span>
@@ -1328,7 +1332,7 @@ the result from step 3. This is the minimum component filtering estimate of base
 <p>Fifth step: inverse Fourier transform, and add back the fit</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">spec_filt</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">spec_filt_FT</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">spec_filt</span> <span class="o">=</span> <span class="n">fftpack</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">spec_filt_FT</span><span class="p">)</span>
 <span class="n">spec_filt</span> <span class="o">+=</span> <span class="n">spec_fit</span>
 </pre></div>
 </div>
@@ -1344,7 +1348,7 @@ the result from step 3. This is the minimum component filtering estimate of base
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot results</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.45</span><span class="p">)</span>
 
@@ -1377,6 +1381,12 @@ the result from step 3. This is the minimum component filtering estimate of base
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;scaled $PSD(f)$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/dc3dc90783f5526e915cdd904a587a90acd6cf67dbb6e829d30d9160bcfe14f3.png" src="../_images/dc3dc90783f5526e915cdd904a587a90acd6cf67dbb6e829d30d9160bcfe14f3.png" />
+</div>
 </div>
 </section>
 </section>
@@ -1387,7 +1397,7 @@ the result from step 3. This is the minimum component filtering estimate of base
 <p>We follow the same process to analyze the same white dwarf example. Here instead of explicitly applying steps, we call function <em>min_component_filter</em> to achieve the same goal.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plate</span> <span class="o">=</span> <span class="mi">659</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plate</span> <span class="o">=</span> <span class="mi">659</span>
 <span class="n">mjd</span> <span class="o">=</span> <span class="mi">52199</span>
 <span class="n">fiber</span> <span class="o">=</span> <span class="mi">381</span>
 
@@ -1404,7 +1414,7 @@ the result from step 3. This is the minimum component filtering estimate of base
 <h3>Pre-process the data<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">lam</span><span class="p">,</span> <span class="n">loglam</span><span class="p">,</span> <span class="n">spec</span><span class="p">]</span> <span class="o">=</span> <span class="n">preprocess</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span><span class="n">spec</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">lam</span><span class="p">,</span> <span class="n">loglam</span><span class="p">,</span> <span class="n">spec</span><span class="p">]</span> <span class="o">=</span> <span class="n">preprocess</span><span class="p">(</span><span class="n">lam</span><span class="p">,</span><span class="n">spec</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1415,7 +1425,7 @@ the result from step 3. This is the minimum component filtering estimate of base
 <p>The function used here is <em>min_component_filter</em> in <em>astroML.filters</em> package.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">feature_mask</span> <span class="o">=</span> <span class="p">(((</span><span class="n">lam</span> <span class="o">&gt;</span> <span class="mi">4080</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lam</span> <span class="o">&lt;</span> <span class="mi">4130</span><span class="p">))</span> <span class="o">|</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">feature_mask</span> <span class="o">=</span> <span class="p">(((</span><span class="n">lam</span> <span class="o">&gt;</span> <span class="mi">4080</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lam</span> <span class="o">&lt;</span> <span class="mi">4130</span><span class="p">))</span> <span class="o">|</span>
                 <span class="p">((</span><span class="n">lam</span> <span class="o">&gt;</span> <span class="mi">4315</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lam</span> <span class="o">&lt;</span> <span class="mi">4370</span><span class="p">))</span> <span class="o">|</span>
                 <span class="p">((</span><span class="n">lam</span> <span class="o">&gt;</span> <span class="mi">4830</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">lam</span> <span class="o">&lt;</span> <span class="mi">4900</span><span class="p">)))</span>
 
@@ -1429,7 +1439,7 @@ the result from step 3. This is the minimum component filtering estimate of base
 <h3>Compute PSD of filtered and unfiltered versions<a class="headerlink" href="#compute-psd-of-filtered-and-unfiltered-versions" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">spec_filt_PSD</span> <span class="o">=</span> <span class="n">PSD_continuous</span><span class="p">(</span><span class="n">loglam</span><span class="p">,</span> <span class="n">spec_filtered</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="p">,</span> <span class="n">spec_filt_PSD</span> <span class="o">=</span> <span class="n">PSD_continuous</span><span class="p">(</span><span class="n">loglam</span><span class="p">,</span> <span class="n">spec_filtered</span><span class="p">)</span>
 <span class="n">f</span><span class="p">,</span> <span class="n">spec_PSD</span> <span class="o">=</span> <span class="n">PSD_continuous</span><span class="p">(</span><span class="n">loglam</span><span class="p">,</span> <span class="n">spec</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1444,7 +1454,7 @@ the result from step 3. This is the minimum component filtering estimate of base
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.45</span><span class="p">)</span>
 
@@ -1472,6 +1482,12 @@ the result from step 3. This is the minimum component filtering estimate of base
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 2000.0)
+</pre></div>
+</div>
+<img alt="../_images/9d996f142e255a8c436319c3ea23105cb95e11fe0bd858bc5fbaecb4c10798fc.png" src="../_images/9d996f142e255a8c436319c3ea23105cb95e11fe0bd858bc5fbaecb4c10798fc.png" />
 </div>
 </div>
 </section>

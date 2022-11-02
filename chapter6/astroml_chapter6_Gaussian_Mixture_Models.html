@@ -508,7 +508,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter6/astroml_chapter6_Gaussian_Mixture_Models.md"
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter6/astroml_chapter6_Gaussian_Mixture_Models.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -536,24 +536,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/chapter6/astroml_chapter6_Gaussian_Mixture_Models.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../_sources/chapter6/astroml_chapter6_Gaussian_Mixture_Models.md.txt"
+        <a href="../_sources/chapter6/astroml_chapter6_Gaussian_Mixture_Models.ipynb.txt"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -564,7 +547,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -759,7 +742,7 @@ M is given.</p>
 <p>The main function we use in this section is GaussianMixture from sklearn package. The data we use in the example is from a subset of SEGUE Stellar Parameters data, in which the parameters are estimated using (SEGUE Stellar Parameters Pipeline). Data reference from <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2006IAUJD..13E..26B/abstract">Beers et al 2006</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.mixture</span> <span class="kn">import</span> <span class="n">GaussianMixture</span>
@@ -775,7 +758,7 @@ M is given.</p>
 <h3>2. Get the Segue Stellar Parameters Pipeline data<a class="headerlink" href="#get-the-segue-stellar-parameters-pipeline-data" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">fetch_sdss_sspp</span><span class="p">(</span><span class="n">cleaned</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">fetch_sdss_sspp</span><span class="p">(</span><span class="n">cleaned</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;FeH&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;alphFe&#39;</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
 
 <span class="c1"># truncate dataset for speed</span>
@@ -791,7 +774,7 @@ M is given.</p>
 We will evaluate between 1 and 13 Gaussian components of the model, and pick the number of components with the lowest BIC score.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">compute_GaussianMixture</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">covariance_type</span><span class="o">=</span><span class="s1">&#39;full&#39;</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
     <span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">N</span><span class="p">]</span>
@@ -813,13 +796,19 @@ We will evaluate between 1 and 13 Gaussian components of the model, and pick the
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>best fit converged: True
+BIC: n_components =  5
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="compute-2d-density">
 <h3>4. Compute 2D density<a class="headerlink" href="#compute-2d-density" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">FeH_bins</span> <span class="o">=</span> <span class="mi">51</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">FeH_bins</span> <span class="o">=</span> <span class="mi">51</span>
 <span class="n">alphFe_bins</span> <span class="o">=</span> <span class="mi">51</span>
 <span class="n">H</span><span class="p">,</span> <span class="n">FeH_bins</span><span class="p">,</span> <span class="n">alphFe_bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">histogram2d</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;FeH&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;alphFe&#39;</span><span class="p">],</span>
                                           <span class="p">(</span><span class="n">FeH_bins</span><span class="p">,</span> <span class="n">alphFe_bins</span><span class="p">))</span>
@@ -839,7 +828,7 @@ We will evaluate between 1 and 13 Gaussian components of the model, and pick the
 <h3>5. Plot true data density<a class="headerlink" href="#plot-true-data-density" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
 <span class="c1"># define plot_figure to plot all figures with the same format.</span>
 <span class="k">def</span> <span class="nf">plot_figure</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
@@ -863,6 +852,9 @@ We will evaluate between 1 and 13 Gaussian components of the model, and pick the
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/a03f8d8a15e9be482e4903e94faae2d8dd76f5cf7713248b8d42a9cd02c4c630.png" src="../_images/a03f8d8a15e9be482e4903e94faae2d8dd76f5cf7713248b8d42a9cd02c4c630.png" />
+</div>
 </div>
 </section>
 <section id="plot-aic-bic">
@@ -870,7 +862,7 @@ We will evaluate between 1 and 13 Gaussian components of the model, and pick the
 <p>We pick the N value for smallest score in BIC for the following calculations.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">AIC</span><span class="p">,</span> <span class="s1">&#39;-k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;AIC&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">BIC</span><span class="p">,</span> <span class="s1">&#39;:k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;BIC&#39;</span><span class="p">)</span>
@@ -880,6 +872,12 @@ We will evaluate between 1 and 13 Gaussian components of the model, and pick the
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[None, None, None, None, None, None, None, None, None, None, None, None]
+</pre></div>
+</div>
+<img alt="../_images/e686a0f5cbe97ce6b4146efb8c8b532a921afe374f4b70dd8853f44ea0b91f91.png" src="../_images/e686a0f5cbe97ce6b4146efb8c8b532a921afe374f4b70dd8853f44ea0b91f91.png" />
+</div>
 </div>
 </section>
 <section id="best-configurations-for-bic">
@@ -888,7 +886,7 @@ We will evaluate between 1 and 13 Gaussian components of the model, and pick the
 The reconstructed density are in grayscale. The Gaussians are solid ellipses in the figure.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
 
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_figure</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_dens</span><span class="p">),</span> <span class="s2">&quot;Converged&quot;</span><span class="p">)</span>
 
@@ -900,6 +898,12 @@ The reconstructed density are in grayscale. The Gaussians are solid ellipses in 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$\\rm [\\alpha/Fe]$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/b2def1e594a0bbb379a4ec38461bf37640ca8a22f818fdb0d5e15afecbf41f45.png" src="../_images/b2def1e594a0bbb379a4ec38461bf37640ca8a22f818fdb0d5e15afecbf41f45.png" />
+</div>
 </div>
 </section>
 <section id="compare-input-data-and-converged-model">
@@ -907,7 +911,7 @@ The reconstructed density are in grayscale. The Gaussians are solid ellipses in 
 <p>We plot the input true density distribution and best scored model from BIC in comparison. As a result, we find component number = 5 best discribes this metallicity dataset.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
 <span class="c1"># plot density</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_figure</span><span class="p">(</span><span class="mi">121</span><span class="p">,</span> <span class="n">H</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="s2">&quot;Input&quot;</span><span class="p">)</span>
@@ -919,6 +923,9 @@ The reconstructed density are in grayscale. The Gaussians are solid ellipses in 
     <span class="n">draw_ellipse</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">scales</span><span class="o">=</span><span class="p">[</span><span class="mf">1.5</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax2</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/278b53ebb0b465186242e896a60736b993a04cb5e9d3df27cd7614dc93e6907b.png" src="../_images/278b53ebb0b465186242e896a60736b993a04cb5e9d3df27cd7614dc93e6907b.png" />
 </div>
 </div>
 </section>

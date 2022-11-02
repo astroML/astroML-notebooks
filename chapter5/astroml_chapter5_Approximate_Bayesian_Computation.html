@@ -508,7 +508,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter5/astroml_chapter5_Approximate_Bayesian_Computation.md"
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter5/astroml_chapter5_Approximate_Bayesian_Computation.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -536,24 +536,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/chapter5/astroml_chapter5_Approximate_Bayesian_Computation.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../_sources/chapter5/astroml_chapter5_Approximate_Bayesian_Computation.md.txt"
+        <a href="../_sources/chapter5/astroml_chapter5_Approximate_Bayesian_Computation.ipynb.txt"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -564,7 +547,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -806,7 +789,7 @@ This sampling algorithm is called <em>Population Monte Carlo ABC</em>.</p>
 https://www.astroml.org/book_figures/chapter5/fig_ABCexample.html</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
 </pre></div>
@@ -815,7 +798,7 @@ https://www.astroml.org/book_figures/chapter5/fig_ABCexample.html</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">### generic ABC tools </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### generic ABC tools </span>
 
 <span class="c1"># return the gaussian kernel values</span>
 <span class="k">def</span> <span class="nf">kernelValues</span><span class="p">(</span><span class="n">prevThetas</span><span class="p">,</span> <span class="n">prevStdDev</span><span class="p">,</span> <span class="n">currentTheta</span><span class="p">):</span>
@@ -850,7 +833,7 @@ https://www.astroml.org/book_figures/chapter5/fig_ABCexample.html</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">### specific ABC tools </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### specific ABC tools </span>
 
 <span class="c1"># ABC distance metric </span>
 <span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
@@ -865,7 +848,7 @@ https://www.astroml.org/book_figures/chapter5/fig_ABCexample.html</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ABC iterator </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ABC iterator </span>
 <span class="k">def</span> <span class="nf">doABC</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="n">ssTot</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">Ndata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -932,7 +915,7 @@ https://www.astroml.org/book_figures/chapter5/fig_ABCexample.html</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plotABC</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">muTrue</span><span class="p">,</span> <span class="n">sigTrue</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plotABC</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">muTrue</span><span class="p">,</span> <span class="n">sigTrue</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">):</span>
 
     <span class="n">Nresample</span> <span class="o">=</span> <span class="mi">100000</span>
     <span class="n">Ndata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -1028,7 +1011,7 @@ https://www.astroml.org/book_figures/chapter5/fig_ABCexample.html</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulateData</span><span class="p">(</span><span class="n">Ndata</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simulateData</span><span class="p">(</span><span class="n">Ndata</span><span class="p">,</span> <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
     <span class="c1"># simple gaussian toy model</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">Ndata</span><span class="p">)</span>
 
@@ -1041,7 +1024,7 @@ https://www.astroml.org/book_figures/chapter5/fig_ABCexample.html</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># &quot;observed&quot; data:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># &quot;observed&quot; data:</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># for repeatability</span>
 <span class="n">Ndata</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">muTrue</span> <span class="o">=</span> <span class="mf">2.0</span>
@@ -1059,7 +1042,7 @@ https://www.astroml.org/book_figures/chapter5/fig_ABCexample.html</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># ABC sampling parameters</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># ABC sampling parameters</span>
 <span class="n">Ndraw</span> <span class="o">=</span> <span class="mi">1000</span>
 <span class="n">Niter</span> <span class="o">=</span> <span class="mi">26</span>
 <span class="n">DpercCut</span> <span class="o">=</span> <span class="mi">80</span>
@@ -1069,7 +1052,7 @@ https://www.astroml.org/book_figures/chapter5/fig_ABCexample.html</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># arrays for tracking iterations </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># arrays for tracking iterations </span>
 <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">])</span>
 <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">])</span>
 <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">])</span>
@@ -1084,17 +1067,174 @@ https://www.astroml.org/book_figures/chapter5/fig_ABCexample.html</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">numberSimEvals</span> <span class="o">=</span> <span class="n">doABC</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">numberSimEvals</span> <span class="o">=</span> <span class="n">doABC</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">eps</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>iteration: 1
+ number of sim. evals so far: 2810.0
+     sim. evals in this iter: 2810
+         acceptance rate (%): 35.587188612099645
+                 new epsilon: 3.747800742428658
+           KL sample scatter: 3.9088207666206944
+iteration: 2
+ number of sim. evals so far: 4529.0
+     sim. evals in this iter: 1719
+         acceptance rate (%): 58.17335660267597
+                 new epsilon: 2.831756063394538
+           KL sample scatter: 3.0052790682293784
+iteration: 3
+ number of sim. evals so far: 6335.0
+     sim. evals in this iter: 1806
+         acceptance rate (%): 55.370985603543744
+                 new epsilon: 2.160458055603449
+           KL sample scatter: 2.2587673148212857
+iteration: 4
+ number of sim. evals so far: 8134.0
+     sim. evals in this iter: 1799
+         acceptance rate (%): 55.58643690939411
+                 new epsilon: 1.6456625235625149
+           KL sample scatter: 1.8304632418084037
+iteration: 5
+ number of sim. evals so far: 10047.0
+     sim. evals in this iter: 1913
+         acceptance rate (%): 52.27391531625719
+                 new epsilon: 1.257612187267058
+           KL sample scatter: 1.3668563521112371
+iteration: 6
+ number of sim. evals so far: 11907.0
+     sim. evals in this iter: 1860
+         acceptance rate (%): 53.763440860215056
+                 new epsilon: 0.9828161376253346
+           KL sample scatter: 1.042719126541488
+iteration: 7
+ number of sim. evals so far: 13754.0
+     sim. evals in this iter: 1847
+         acceptance rate (%): 54.141851651326476
+                 new epsilon: 0.7296646422530663
+           KL sample scatter: 0.830011249695032
+iteration: 8
+ number of sim. evals so far: 15780.0
+     sim. evals in this iter: 2026
+         acceptance rate (%): 49.35834155972359
+                 new epsilon: 0.5734611153568521
+           KL sample scatter: 0.6471250006146377
+iteration: 9
+ number of sim. evals so far: 17725.0
+     sim. evals in this iter: 1945
+         acceptance rate (%): 51.41388174807198
+                 new epsilon: 0.45045526628923327
+           KL sample scatter: 0.5594171662693772
+iteration: 10
+ number of sim. evals so far: 19780.0
+     sim. evals in this iter: 2055
+         acceptance rate (%): 48.661800486618006
+                 new epsilon: 0.3508712684406295
+           KL sample scatter: 0.4728938684640442
+iteration: 11
+ number of sim. evals so far: 22014.0
+     sim. evals in this iter: 2234
+         acceptance rate (%): 44.76275738585497
+                 new epsilon: 0.27136332572706756
+           KL sample scatter: 0.4023816615583871
+iteration: 12
+ number of sim. evals so far: 24600.0
+     sim. evals in this iter: 2586
+         acceptance rate (%): 38.669760247486465
+                 new epsilon: 0.21467684783100782
+           KL sample scatter: 0.3483870188455545
+iteration: 13
+ number of sim. evals so far: 27366.0
+     sim. evals in this iter: 2766
+         acceptance rate (%): 36.153289949385396
+                 new epsilon: 0.17172532980341643
+           KL sample scatter: 0.3251422736855301
+iteration: 14
+ number of sim. evals so far: 30758.0
+     sim. evals in this iter: 3392
+         acceptance rate (%): 29.4811320754717
+                 new epsilon: 0.1339438876553719
+           KL sample scatter: 0.3161626302391143
+iteration: 15
+ number of sim. evals so far: 34700.0
+     sim. evals in this iter: 3942
+         acceptance rate (%): 25.36783358701167
+                 new epsilon: 0.10851469529879447
+           KL sample scatter: 0.30140014715088465
+iteration: 16
+ number of sim. evals so far: 39649.0
+     sim. evals in this iter: 4949
+         acceptance rate (%): 20.20610224287735
+                 new epsilon: 0.08671394512232951
+           KL sample scatter: 0.29343062978627743
+iteration: 17
+ number of sim. evals so far: 45538.0
+     sim. evals in this iter: 5889
+         acceptance rate (%): 16.98081168279844
+                 new epsilon: 0.06880583399854477
+           KL sample scatter: 0.3167788133378119
+iteration: 18
+ number of sim. evals so far: 53235.0
+     sim. evals in this iter: 7697
+         acceptance rate (%): 12.992074834351046
+                 new epsilon: 0.05684009106567408
+           KL sample scatter: 0.2716148078502225
+iteration: 19
+ number of sim. evals so far: 62099.0
+     sim. evals in this iter: 8864
+         acceptance rate (%): 11.28158844765343
+                 new epsilon: 0.04468885258966929
+           KL sample scatter: 0.291729815450315
+iteration: 20
+ number of sim. evals so far: 73550.0
+     sim. evals in this iter: 11451
+         acceptance rate (%): 8.732861758798359
+                 new epsilon: 0.03523084288062881
+           KL sample scatter: 0.28211371862230267
+iteration: 21
+ number of sim. evals so far: 87723.0
+     sim. evals in this iter: 14173
+         acceptance rate (%): 7.055669230226487
+                 new epsilon: 0.028027171422800822
+           KL sample scatter: 0.28566455425290255
+iteration: 22
+ number of sim. evals so far: 106022.0
+     sim. evals in this iter: 18299
+         acceptance rate (%): 5.46477949614733
+                 new epsilon: 0.022211537013158634
+           KL sample scatter: 0.31089018970552496
+iteration: 23
+ number of sim. evals so far: 130186.0
+     sim. evals in this iter: 24164
+         acceptance rate (%): 4.138387684158252
+                 new epsilon: 0.017310672157556176
+           KL sample scatter: 0.27356884968210093
+iteration: 24
+ number of sim. evals so far: 157464.0
+     sim. evals in this iter: 27278
+         acceptance rate (%): 3.6659579148031383
+                 new epsilon: 0.013681562311032016
+           KL sample scatter: 0.28909520482642886
+iteration: 25
+ number of sim. evals so far: 193965.0
+     sim. evals in this iter: 36501
+         acceptance rate (%): 2.7396509684666173
+                 new epsilon: 0.011164765216288775
+           KL sample scatter: 0.2916672133596475
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot</span>
 <span class="n">plotABC</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">muTrue</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/531e3626936d05f86ef3b715203ab585ec2793e05ffc9d92cf7b037fdcf2c7c6.png" src="../_images/531e3626936d05f86ef3b715203ab585ec2793e05ffc9d92cf7b037fdcf2c7c6.png" />
 </div>
 </div>
 </section>
@@ -1111,7 +1251,7 @@ https://www.astroml.org/book_figures/chapter5/fig_ABCexample.html</p>
 <p>Let’s do it!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## LAST POINT: we can have much smaller Ndraw if we don&#39;t care about pretty </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## LAST POINT: we can have much smaller Ndraw if we don&#39;t care about pretty </span>
 <span class="c1">## histograms for 100 times smaller Ndraw, expect about 100 times fewer </span>
 <span class="c1">## simulation evaluations</span>
 <span class="n">Ndraw</span> <span class="o">=</span> <span class="mi">10</span>
@@ -1121,7 +1261,7 @@ https://www.astroml.org/book_figures/chapter5/fig_ABCexample.html</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># arrays for tracking iterations </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># arrays for tracking iterations </span>
 <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">])</span>
 <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">])</span>
 <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">([</span><span class="n">Niter</span><span class="p">,</span> <span class="n">Ndraw</span><span class="p">])</span>
@@ -1130,12 +1270,169 @@ https://www.astroml.org/book_figures/chapter5/fig_ABCexample.html</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>iteration: 1
+ number of sim. evals so far: 16.0
+     sim. evals in this iter: 16
+         acceptance rate (%): 62.5
+                 new epsilon: 3.382172501177358
+           KL sample scatter: 4.215968709849081
+iteration: 2
+ number of sim. evals so far: 31.0
+     sim. evals in this iter: 15
+         acceptance rate (%): 66.66666666666667
+                 new epsilon: 2.1589713569679114
+           KL sample scatter: 1.2419989351788945
+iteration: 3
+ number of sim. evals so far: 46.0
+     sim. evals in this iter: 15
+         acceptance rate (%): 66.66666666666667
+                 new epsilon: 1.8210327274810516
+           KL sample scatter: 1.0197054314561427
+iteration: 4
+ number of sim. evals so far: 58.0
+     sim. evals in this iter: 12
+         acceptance rate (%): 83.33333333333333
+                 new epsilon: 0.7750945943459232
+           KL sample scatter: 0.797736358954423
+iteration: 5
+ number of sim. evals so far: 73.0
+     sim. evals in this iter: 15
+         acceptance rate (%): 66.66666666666667
+                 new epsilon: 0.5690041565242981
+           KL sample scatter: 0.6461739019978467
+iteration: 6
+ number of sim. evals so far: 93.0
+     sim. evals in this iter: 20
+         acceptance rate (%): 50.0
+                 new epsilon: 0.33544413819596797
+           KL sample scatter: 0.41271450725802855
+iteration: 7
+ number of sim. evals so far: 115.0
+     sim. evals in this iter: 22
+         acceptance rate (%): 45.45454545454545
+                 new epsilon: 0.23315080652592474
+           KL sample scatter: 0.3900070857100843
+iteration: 8
+ number of sim. evals so far: 142.0
+     sim. evals in this iter: 27
+         acceptance rate (%): 37.03703703703704
+                 new epsilon: 0.13722661732786437
+           KL sample scatter: 0.22127660755219733
+iteration: 9
+ number of sim. evals so far: 164.0
+     sim. evals in this iter: 22
+         acceptance rate (%): 45.45454545454545
+                 new epsilon: 0.11302948977529503
+           KL sample scatter: 0.250449034952723
+iteration: 10
+ number of sim. evals so far: 225.0
+     sim. evals in this iter: 61
+         acceptance rate (%): 16.39344262295082
+                 new epsilon: 0.07858595261148027
+           KL sample scatter: 0.1894978575552935
+iteration: 11
+ number of sim. evals so far: 289.0
+     sim. evals in this iter: 64
+         acceptance rate (%): 15.625
+                 new epsilon: 0.058777201109350495
+           KL sample scatter: 0.20845182384740657
+iteration: 12
+ number of sim. evals so far: 383.0
+     sim. evals in this iter: 94
+         acceptance rate (%): 10.638297872340425
+                 new epsilon: 0.05181113697268893
+           KL sample scatter: 0.16025549597439864
+iteration: 13
+ number of sim. evals so far: 482.0
+     sim. evals in this iter: 99
+         acceptance rate (%): 10.1010101010101
+                 new epsilon: 0.04242079769067413
+           KL sample scatter: 0.1831340381067212
+iteration: 14
+ number of sim. evals so far: 597.0
+     sim. evals in this iter: 115
+         acceptance rate (%): 8.695652173913043
+                 new epsilon: 0.0281600175430186
+           KL sample scatter: 0.24356279104144424
+iteration: 15
+ number of sim. evals so far: 726.0
+     sim. evals in this iter: 129
+         acceptance rate (%): 7.751937984496124
+                 new epsilon: 0.01592375303974274
+           KL sample scatter: 0.1422976280067622
+iteration: 16
+ number of sim. evals so far: 1056.0
+     sim. evals in this iter: 330
+         acceptance rate (%): 3.0303030303030303
+                 new epsilon: 0.009543589371648498
+           KL sample scatter: 0.14508293485217377
+iteration: 17
+ number of sim. evals so far: 1425.0
+     sim. evals in this iter: 369
+         acceptance rate (%): 2.710027100271003
+                 new epsilon: 0.007252405598960721
+           KL sample scatter: 0.2343784242537285
+iteration: 18
+ number of sim. evals so far: 1851.0
+     sim. evals in this iter: 426
+         acceptance rate (%): 2.347417840375587
+                 new epsilon: 0.006186190377834766
+           KL sample scatter: 0.27415472248158285
+iteration: 19
+ number of sim. evals so far: 3415.0
+     sim. evals in this iter: 1564
+         acceptance rate (%): 0.639386189258312
+                 new epsilon: 0.0042522614499568515
+           KL sample scatter: 0.11156624750755727
+iteration: 20
+ number of sim. evals so far: 4950.0
+     sim. evals in this iter: 1535
+         acceptance rate (%): 0.6514657980456026
+                 new epsilon: 0.0030523219136835422
+           KL sample scatter: 0.16733791773803083
+iteration: 21
+ number of sim. evals so far: 6201.0
+     sim. evals in this iter: 1251
+         acceptance rate (%): 0.7993605115907274
+                 new epsilon: 0.0026167158877769656
+           KL sample scatter: 0.14500926988951582
+iteration: 22
+ number of sim. evals so far: 8220.0
+     sim. evals in this iter: 2019
+         acceptance rate (%): 0.4952947003467063
+                 new epsilon: 0.0017704114051227294
+           KL sample scatter: 0.24851827619176742
+iteration: 23
+ number of sim. evals so far: 10402.0
+     sim. evals in this iter: 2182
+         acceptance rate (%): 0.458295142071494
+                 new epsilon: 0.0011809062949680537
+           KL sample scatter: 0.17238435823894685
+iteration: 24
+ number of sim. evals so far: 14219.0
+     sim. evals in this iter: 3817
+         acceptance rate (%): 0.26198585276395076
+                 new epsilon: 0.0009084485215901772
+           KL sample scatter: 0.11822072981714417
+iteration: 25
+ number of sim. evals so far: 20065.0
+     sim. evals in this iter: 5846
+         acceptance rate (%): 0.17105713308244955
+                 new epsilon: 0.0007119057854027666
+           KL sample scatter: 0.22193036173945535
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plotABC</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">muTrue</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plotABC</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">Niter</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">muTrue</span><span class="p">,</span> <span class="n">sigmaTrue</span><span class="p">,</span> <span class="n">accrate</span><span class="p">,</span> <span class="n">simTot</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/26b11fa0e2ddd93360f5cba659212d2047f4f1126de7559b6faddd02b8ab6361.png" src="../_images/26b11fa0e2ddd93360f5cba659212d2047f4f1126de7559b6faddd02b8ab6361.png" />
 </div>
 </div>
 <p>For “professional” implementations of ABC as an open-source Python code see:</p>

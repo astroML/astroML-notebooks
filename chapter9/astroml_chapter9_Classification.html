@@ -508,7 +508,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter9/astroml_chapter9_Classification.md"
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter9/astroml_chapter9_Classification.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -536,24 +536,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/chapter9/astroml_chapter9_Classification.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../_sources/chapter9/astroml_chapter9_Classification.md.txt"
+        <a href="../_sources/chapter9/astroml_chapter9_Classification.ipynb.txt"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -564,7 +547,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -766,7 +749,7 @@ title="Print to PDF"
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
@@ -790,7 +773,7 @@ title="Print to PDF"
 and then use the same sets for all the examples below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#----------------------------------------------------------------------</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#----------------------------------------------------------------------</span>
 <span class="c1"># get data and split into training &amp; testing sets</span>
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">fetch_rrlyrae_combined</span><span class="p">()</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>  <span class="c1"># rearrange columns for better 1-color results</span>
@@ -809,7 +792,7 @@ and then use the same sets for all the examples below.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#------------------------------------------------------------</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#------------------------------------------------------------</span>
 <span class="c1"># Fit all the models to the training data</span>
 <span class="k">def</span> <span class="nf">compute_models</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
     <span class="n">names</span> <span class="o">=</span> <span class="p">[]</span>
@@ -894,6 +877,18 @@ and then use the same sets for all the examples below.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GaussianNB
+LinearDiscriminantAnalysis
+QuadraticDiscriminantAnalysis
+LogisticRegression
+KNeighborsClassifier
+DecisionTreeClassifier
+GMMBayes
+</pre></div>
+</div>
+<img alt="../_images/abc28148da542c3a6bd81a2aee933cdd0a3c84cb500029c1478f51a321a13260.png" src="../_images/abc28148da542c3a6bd81a2aee933cdd0a3c84cb500029c1478f51a321a13260.png" />
+</div>
 </div>
 </section>
 <section id="linear-and-quadratic-discriminant-analysis">
@@ -920,7 +915,7 @@ becomes quadratic in <span class="math notranslate nohighlight">\(x\)</span>:</p
 <p>This is sometimes known as <em>quadratic discriminant analysis</em> (QDA)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#----------------------------------------------------------------------</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#----------------------------------------------------------------------</span>
 <span class="c1"># perform LinearDiscriminantAnalysis</span>
 <span class="n">classifiers</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
@@ -941,10 +936,16 @@ becomes quadratic in <span class="math notranslate nohighlight">\(x\)</span>:</p
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>completeness [0.48175182 0.67153285 0.67153285 0.67153285]
+contamination [0.85300668 0.80590717 0.80467091 0.80590717]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># perform QuadraticDiscriminantAnalysis</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># perform QuadraticDiscriminantAnalysis</span>
 <span class="n">qclassifiers</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">qpredictions</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -965,10 +966,16 @@ becomes quadratic in <span class="math notranslate nohighlight">\(x\)</span>:</p
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>completeness [0.48175182 0.68613139 0.73722628 0.78832117]
+contamination [0.85201794 0.79249448 0.77555556 0.75675676]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#------------------------------------------------------------</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#------------------------------------------------------------</span>
 <span class="c1"># Compute the decision boundary</span>
 <span class="n">clf</span> <span class="o">=</span> <span class="n">classifiers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">qlf</span> <span class="o">=</span> <span class="n">qclassifiers</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -1037,6 +1044,9 @@ becomes quadratic in <span class="math notranslate nohighlight">\(x\)</span>:</p
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/f1a5aaedcc8f28b75248dca5fa90d30baaf4273b45db7a318d3c68f6f65c2c17.png" src="../_images/f1a5aaedcc8f28b75248dca5fa90d30baaf4273b45db7a318d3c68f6f65c2c17.png" />
+</div>
 </div>
 </section>
 <section id="gmm-and-bayes-classification">
@@ -1045,7 +1055,7 @@ becomes quadratic in <span class="math notranslate nohighlight">\(x\)</span>:</p
 <p>The number of Gaussian components <span class="math notranslate nohighlight">\(K\)</span> must be chosen for each class independently</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># GMM-bayes takes several minutes to run, and is order[N^2]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># GMM-bayes takes several minutes to run, and is order[N^2]</span>
 <span class="c1">#  truncating the dataset can be useful for experimentation.</span>
 <span class="c1">#X_tr = X[::10]</span>
 <span class="c1">#y_tr = y[::10]</span>
@@ -1152,6 +1162,19 @@ becomes quadratic in <span class="math notranslate nohighlight">\(x\)</span>:</p
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages/sklearn/mixture/_base.py:265: ConvergenceWarning: Initialization 1 did not converge. Try different init parameters, or increase max_iter, tol or check for degenerate data.
+  warnings.warn(&#39;Initialization %d did not converge. &#39;
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>completeness [[0.48175182 0.68613139 0.73722628 0.78832117]
+ [0.         0.11678832 0.41605839 0.68613139]]
+contamination [[0.85201794 0.79249448 0.77605322 0.75675676]
+ [0.         0.33333333 0.13636364 0.21666667]]
+</pre></div>
+</div>
+<img alt="../_images/12f6f4adeeeaefe639c09b692fb8a34ed9e2b2d82cbe8b3a00a6c0c17259cb71.png" src="../_images/12f6f4adeeeaefe639c09b692fb8a34ed9e2b2d82cbe8b3a00a6c0c17259cb71.png" />
+</div>
 </div>
 </section>
 <section id="k-nearest-neighbours">
@@ -1161,7 +1184,7 @@ becomes quadratic in <span class="math notranslate nohighlight">\(x\)</span>:</p
 <p>Weights can be assigned to  individual votes by weighting the vote by the distance to the nearest point.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#----------------------------------------------------------------------</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#----------------------------------------------------------------------</span>
 <span class="c1"># perform Classification</span>
 
 <span class="n">classifiers</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1260,6 +1283,15 @@ becomes quadratic in <span class="math notranslate nohighlight">\(x\)</span>:</p
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>completeness [[0.22627737 0.3649635  0.46715328 0.54014599]
+ [0.00729927 0.23357664 0.40145985 0.53284672]]
+contamination [[0.78014184 0.53271028 0.44347826 0.41732283]
+ [0.875      0.44827586 0.24657534 0.23958333]]
+</pre></div>
+</div>
+<img alt="../_images/2940b98403aca46f962c028de6f0f97b0150aa520431e67c27dc7b85a9ed2182.png" src="../_images/2940b98403aca46f962c028de6f0f97b0150aa520431e67c27dc7b85a9ed2182.png" />
+</div>
 </div>
 </section>
 <section id="support-vector-machines">
@@ -1293,7 +1325,7 @@ $<span class="math notranslate nohighlight">\(
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># SVM takes several minutes to run, and is order[N^2]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SVM takes several minutes to run, and is order[N^2]</span>
 <span class="c1">#  truncating the dataset can be useful for experimentation.</span>
 <span class="c1">#X_tr = X[::5]</span>
 <span class="c1">#y_tr = y[::5]</span>
@@ -1391,6 +1423,13 @@ $<span class="math notranslate nohighlight">\(
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>completeness [1. 1. 1. 1.]
+contamination [0.90108303 0.83901293 0.83573141 0.81561238]
+</pre></div>
+</div>
+<img alt="../_images/e642905e6cb6570c51823f144271babb5fb0a9648dc121587a480f818b8267be.png" src="../_images/e642905e6cb6570c51823f144271babb5fb0a9648dc121587a480f818b8267be.png" />
+</div>
 </div>
 </section>
 <section id="gaussian-naive-bayes">
@@ -1401,7 +1440,7 @@ $<span class="math notranslate nohighlight">\(
 <p><b> Note: this is the log of the Bayes criterion with no normalization constant </b></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_imaging_sample</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.datasets</span> <span class="kn">import</span> <span class="n">fetch_imaging_sample</span>
 
 <span class="k">def</span> <span class="nf">get_stars_and_galaxies</span><span class="p">(</span><span class="n">Nstars</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">Ngals</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Get the subset of star/galaxy data to plot&quot;&quot;&quot;</span>
@@ -1420,7 +1459,7 @@ $<span class="math notranslate nohighlight">\(
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">get_stars_and_galaxies</span><span class="p">(</span><span class="n">Nstars</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">Ngals</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">get_stars_and_galaxies</span><span class="p">(</span><span class="n">Nstars</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">Ngals</span><span class="o">=</span><span class="mi">10000</span><span class="p">)</span>
 
 <span class="c1"># select r model mag and psf - model mag as columns</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;rRaw&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;rRawPSF&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;rRaw&#39;</span><span class="p">]))</span>
@@ -1456,6 +1495,9 @@ $<span class="math notranslate nohighlight">\(
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b745409a2ef34a96b2eecc3a90b1bebe1d0c1e94ab9a5777e09c88d01571e28a.png" src="../_images/b745409a2ef34a96b2eecc3a90b1bebe1d0c1e94ab9a5777e09c88d01571e28a.png" />
 </div>
 </div>
 </section>

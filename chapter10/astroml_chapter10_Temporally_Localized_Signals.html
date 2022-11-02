@@ -508,7 +508,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter10/astroml_chapter10_Temporally_Localized_Signals.md"
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter10/astroml_chapter10_Temporally_Localized_Signals.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -536,24 +536,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/chapter10/astroml_chapter10_Temporally_Localized_Signals.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../_sources/chapter10/astroml_chapter10_Temporally_Localized_Signals.md.txt"
+        <a href="../_sources/chapter10/astroml_chapter10_Temporally_Localized_Signals.ipynb.txt"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -564,7 +547,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -863,7 +846,7 @@ these two examples.</p>
 <p>We use functions from PyMC3. We will also use <code class="docutils literal notranslate"><span class="pre">FT_continuous</span></code>, <code class="docutils literal notranslate"><span class="pre">IFT_continuous</span></code>, and <code class="docutils literal notranslate"><span class="pre">wavelet_PSD</span></code> from <code class="docutils literal notranslate"><span class="pre">astroML.fourier</span></code> for wavelet PSD analysis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="kn">import</span> <span class="nn">pymc3</span> <span class="k">as</span> <span class="nn">pm</span>
@@ -893,7 +876,7 @@ Typically, MCMC methods are used to estimate model parameters.</p>
 Here we consider a case with <span class="math notranslate nohighlight">\(gB(t|\alpha) = exp(-\alpha t)\)</span>. The burst data set is shown in the plot below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up toy dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up toy dataset</span>
 <span class="k">def</span> <span class="nf">burst</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">b0</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Burst model&quot;&quot;&quot;</span>
     <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span> <span class="o">&gt;=</span> <span class="n">T</span><span class="p">)</span>
@@ -924,6 +907,12 @@ Here we consider a case with <span class="math notranslate nohighlight">\(gB(t|\
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$h_{\\rm obs}$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/2e5de032adf239184e4efb64d166ceaaf85ecd400438c3d4267c5a4981970b0c.png" src="../_images/2e5de032adf239184e4efb64d166ceaaf85ecd400438c3d4267c5a4981970b0c.png" />
+</div>
 </div>
 </section>
 <section id="set-up-and-run-the-mcmc-sampling">
@@ -932,7 +921,7 @@ Here we consider a case with <span class="math notranslate nohighlight">\(gB(t|\
 This cell may take more than 2 minutes to run.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_MCMC_results</span><span class="p">(</span><span class="n">draws</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">tune</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_MCMC_results</span><span class="p">(</span><span class="n">draws</span><span class="o">=</span><span class="mi">3000</span><span class="p">,</span> <span class="n">tune</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
     <span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">():</span>
         <span class="n">b0</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">&#39;b0&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
         <span class="n">A</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
@@ -958,6 +947,44 @@ This cell may take more than 2 minutes to run.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Auto-assigning NUTS sampler...
+Initializing NUTS using jitter+adapt_diag...
+Multiprocess sampling (4 chains in 4 jobs)
+NUTS: [log_alpha, T, A, b0]
+</pre></div>
+</div>
+<div class="output text_html">
+    <div>
+        <style>
+            /* Turns off some styling */
+            progress {
+                /* gets rid of default border in Firefox and Opera. */
+                border: none;
+                /* Needs to be in here for Safari polyfill so background images work as expected. */
+                background-size: auto;
+            }
+            .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+                background: #F44336;
+            }
+        </style>
+      <progress value='16000' class='' max='16000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      100.00% [16000/16000 00:21<00:00 Sampling 4 chains, 419 divergences]
+    </div>
+    </div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 1_000 tune and 3_000 draw iterations (4_000 + 12_000 draws total) took 30 seconds.
+There were 101 divergences after tuning. Increase `target_accept` or reparameterize.
+The acceptance probability does not match the target. It is 0.8933143824958532, but should be close to 0.8. Try to increase the number of tuning steps.
+There were 105 divergences after tuning. Increase `target_accept` or reparameterize.
+The acceptance probability does not match the target. It is 0.9714992144629166, but should be close to 0.8. Try to increase the number of tuning steps.
+There were 96 divergences after tuning. Increase `target_accept` or reparameterize.
+There were 117 divergences after tuning. Increase `target_accept` or reparameterize.
+The acceptance probability does not match the target. It is 0.9377623723516028, but should be close to 0.8. Try to increase the number of tuning steps.
+The number of effective samples is smaller than 25% for some parameters.
+/Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages/arviz/data/io_pymc3.py:87: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="show-estimated-model">
@@ -969,7 +996,7 @@ This cell may take more than 2 minutes to run.</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
                     <span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
@@ -995,6 +1022,9 @@ This cell may take more than 2 minutes to run.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/71c00798efb77c9f38ccbc686bc7a14a5b2b1887e9ffbffd8f6fdff62bbab523.png" src="../_images/71c00798efb77c9f38ccbc686bc7a14a5b2b1887e9ffbffd8f6fdff62bbab523.png" />
+</div>
 </div>
 </section>
 </section>
@@ -1010,7 +1040,7 @@ This cell may take more than 2 minutes to run.</p>
 The chirp data set is shown in the plot below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up toy dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up toy dataset</span>
 <span class="k">def</span> <span class="nf">chirp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">b0</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">omega</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">b0</span> <span class="o">+</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">omega</span> <span class="o">*</span> <span class="n">t</span> <span class="o">+</span> <span class="n">beta</span> <span class="o">*</span> <span class="n">t</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
 
@@ -1038,6 +1068,12 @@ The chirp data set is shown in the plot below.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$h_{\\rm obs}$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/4c40c7cf6cdf684d6b6b6bfec28cfa92b75643df96d84b15f6a15366064ba716.png" src="../_images/4c40c7cf6cdf684d6b6b6bfec28cfa92b75643df96d84b15f6a15366064ba716.png" />
+</div>
 </div>
 </section>
 <section id="id1">
@@ -1045,7 +1081,7 @@ The chirp data set is shown in the plot below.</p>
 <p>We use MCMC to compute the posterior parameters in the equation, in order to fit this chirp model. The parameters we estimate using MCMC are <span class="math notranslate nohighlight">\(b_0\)</span>, <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(\omega\)</span>, and <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up MCMC sampling</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up MCMC sampling</span>
 <span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">():</span>
     <span class="n">b0</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">&#39;b0&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mi">50</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
     <span class="n">A</span> <span class="o">=</span> <span class="n">pm</span><span class="o">.</span><span class="n">Uniform</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">testval</span><span class="o">=</span><span class="mi">50</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
@@ -1070,6 +1106,39 @@ The chirp data set is shown in the plot below.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Multiprocess sampling (4 chains in 4 jobs)
+CompoundStep
+&gt;Metropolis: [log_omega]
+&gt;Metropolis: [log_beta]
+&gt;Metropolis: [A]
+&gt;Metropolis: [b0]
+</pre></div>
+</div>
+<div class="output text_html">
+    <div>
+        <style>
+            /* Turns off some styling */
+            progress {
+                /* gets rid of default border in Firefox and Opera. */
+                border: none;
+                /* Needs to be in here for Safari polyfill so background images work as expected. */
+                background-size: auto;
+            }
+            .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+                background: #F44336;
+            }
+        </style>
+      <progress value='28000' class='' max='28000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      100.00% [28000/28000 00:06<00:00 Sampling 4 chains, 0 divergences]
+    </div>
+    </div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 2_000 tune and 5_000 draw iterations (8_000 + 20_000 draws total) took 13 seconds.
+The estimated number of effective samples is smaller than 200 for some parameters.
+/Users/bsipocz/.pyenv/versions/3.9.1/lib/python3.9/site-packages/arviz/data/io_pymc3.py:87: FutureWarning: Using `from_pymc3` without the model will be deprecated in a future release. Not using the model will return less accurate and less useful results. Make sure you use the model argument or call from_pymc3 within a model context.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="id2">
@@ -1086,7 +1155,7 @@ frequency: starting from a given model, slightly increasing one while slightly d
 leads to a very similar prediction.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the model fit</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the model fit</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">])</span>
 <span class="n">t_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1001</span><span class="p">)</span>
@@ -1107,6 +1176,9 @@ leads to a very similar prediction.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/ed6fe3cc910f20f2d21696ab9f6657199ef0f3c8397153c0b3cbe6ee3ce595ee.png" src="../_images/ed6fe3cc910f20f2d21696ab9f6657199ef0f3c8397153c0b3cbe6ee3ce595ee.png" />
+</div>
 </div>
 </section>
 </section>
@@ -1123,7 +1195,7 @@ temporally localized and it decays exponentially for t &gt; T:</p>
 The chirp data set is shown in the plot below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up toy dataset</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up toy dataset</span>
 <span class="k">def</span> <span class="nf">chirp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;chirp signal&quot;&quot;&quot;</span>
     <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span> <span class="o">&gt;=</span> <span class="n">T</span><span class="p">)</span>
@@ -1172,6 +1244,12 @@ The chirp data set is shown in the plot below.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$h_{\\rm obs}$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/efc359148cd6430e697cfa32088ef16cfbac155ffd6b8605f98dee9c4e625224.png" src="../_images/efc359148cd6430e697cfa32088ef16cfbac155ffd6b8605f98dee9c4e625224.png" />
+</div>
 </div>
 </section>
 <section id="id5">
@@ -1179,7 +1257,7 @@ The chirp data set is shown in the plot below.</p>
 <p>We use MCMC to compute the posterior parameters in the equation, in order to fit this chirp model. The parameters we estimate using MCMC are <span class="math notranslate nohighlight">\(T\)</span>, <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(\omega\)</span>, and <span class="math notranslate nohighlight">\(\beta\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up and run MCMC sampling</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up and run MCMC sampling</span>
 
 <span class="k">with</span> <span class="n">pm</span><span class="o">.</span><span class="n">Model</span><span class="p">():</span>
 
@@ -1211,6 +1289,43 @@ The chirp data set is shown in the plot below.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Multiprocess sampling (4 chains in 4 jobs)
+CompoundStep
+&gt;Metropolis: [beta]
+&gt;Metropolis: [omega]
+&gt;Metropolis: [log_omega2]
+&gt;Metropolis: [log_omega1]
+&gt;Metropolis: [b1]
+&gt;Metropolis: [b0]
+&gt;Metropolis: [phi]
+&gt;Metropolis: [A]
+&gt;Metropolis: [T]
+</pre></div>
+</div>
+<div class="output text_html">
+    <div>
+        <style>
+            /* Turns off some styling */
+            progress {
+                /* gets rid of default border in Firefox and Opera. */
+                border: none;
+                /* Needs to be in here for Safari polyfill so background images work as expected. */
+                background-size: auto;
+            }
+            .progress-bar-interrupted, .progress-bar-interrupted::-webkit-progress-bar {
+                background: #F44336;
+            }
+        </style>
+      <progress value='28000' class='' max='28000' style='width:300px; height:20px; vertical-align: middle;'></progress>
+      100.00% [28000/28000 00:16<00:00 Sampling 4 chains, 0 divergences]
+    </div>
+    </div><div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling 4 chains for 2_000 tune and 5_000 draw iterations (8_000 + 20_000 draws total) took 25 seconds.
+The rhat statistic is larger than 1.2 for some parameters.
+The estimated number of effective samples is smaller than 200 for some parameters.
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="id6">
@@ -1223,7 +1338,7 @@ The chirp data set is shown in the plot below.</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot results</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">))</span>
 
 <span class="c1"># This function plots multiple panels with the traces</span>
@@ -1246,6 +1361,12 @@ The chirp data set is shown in the plot below.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$h_{\\rm obs}$&#39;)
+</pre></div>
+</div>
+<img alt="../_images/5d2ddbe7785e34390acfb969520156f8b50ed4aa2e554e96c9f75b04fda4f7bf.png" src="../_images/5d2ddbe7785e34390acfb969520156f8b50ed4aa2e554e96c9f75b04fda4f7bf.png" />
+</div>
 </div>
 </section>
 <section id="chirp-wavelet-psd">
@@ -1261,7 +1382,7 @@ We will take the same chirp signal above and draw a wavelet PSD for demonstratio
 <p>We use the previous complex ten-parameter case of chirp modeling, and compute its wavelet PSD.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">4096</span>
 <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
 <span class="n">h_true</span> <span class="o">=</span> <span class="n">chirp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">)</span>
@@ -1281,7 +1402,7 @@ We will take the same chirp signal above and draw a wavelet PSD for demonstratio
 <p>Here, the signal with an amplitude of A = 0.8 is sampled in 4096 evenly spaced bins, and with Gaussian noise with sigma = 1. The two-dimensional wavelet PSD easily recovers the increase of characteristic chirp frequency with time.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the  results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the  results</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">)</span>
 
@@ -1316,6 +1437,9 @@ We will take the same chirp signal above and draw a wavelet PSD for demonstratio
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a8f69f641155f1b5d97edf6ddab0b8aba0ed96112c1b349ba2dcb326dc38ba7c.png" src="../_images/a8f69f641155f1b5d97edf6ddab0b8aba0ed96112c1b349ba2dcb326dc38ba7c.png" />
 </div>
 </div>
 </section>

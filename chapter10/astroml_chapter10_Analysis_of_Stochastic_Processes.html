@@ -507,7 +507,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter10/astroml_chapter10_Analysis_of_Stochastic_Processes.md"
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter10/astroml_chapter10_Analysis_of_Stochastic_Processes.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -535,24 +535,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/chapter10/astroml_chapter10_Analysis_of_Stochastic_Processes.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../_sources/chapter10/astroml_chapter10_Analysis_of_Stochastic_Processes.md.txt"
+        <a href="../_sources/chapter10/astroml_chapter10_Analysis_of_Stochastic_Processes.ipynb.txt"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -563,7 +546,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -846,7 +829,7 @@ Despite their seemingly irregular behavior, stochastic processes can be quantifi
 <p>In this notebook, we mainly use functions from <em>astroML.time_series</em> and from <em>astroML.fourier</em>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="kn">from</span> <span class="nn">astroML.time_series</span> <span class="kn">import</span> <span class="n">generate_power_law</span>
 <span class="kn">from</span> <span class="nn">astroML.fourier</span> <span class="kn">import</span> <span class="n">PSD_continuous</span>
@@ -859,7 +842,7 @@ Despite their seemingly irregular behavior, stochastic processes can be quantifi
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">astroML.plotting</span> <span class="kn">import</span> <span class="n">setup_text_plots</span>
 <span class="n">setup_text_plots</span><span class="p">(</span><span class="n">usetex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -905,7 +888,7 @@ The connection between the PSD and the appearance of time series of two power-la
 <p>Let us use 1024 data points, and let <span class="math notranslate nohighlight">\(\Delta t = 0.01\)</span> in this case.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">1024</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">1024</span>
 <span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>
 <span class="n">factor</span> <span class="o">=</span> <span class="mi">100</span>
 
@@ -933,7 +916,7 @@ The structure function for the <span class="math notranslate nohighlight">\(1/f\
 the <span class="math notranslate nohighlight">\(1/f^2\)</span> process (remember that we defined structure function with a square root).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">7.5</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">beta</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]):</span>
@@ -971,6 +954,9 @@ the <span class="math notranslate nohighlight">\(1/f^2\)</span> process (remembe
         <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$PSD(f)$&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d6546a3e58fbd2f7e360f5a985fdaad1cfa63cbb8327a0e6d07a4fcd869b850e.png" src="../_images/d6546a3e58fbd2f7e360f5a985fdaad1cfa63cbb8327a0e6d07a4fcd869b850e.png" />
 </div>
 </div>
 </section>
@@ -1019,7 +1005,7 @@ procedure are as follows:</p>
 <p>We use do 1000 days worth of magnitudes for this sample data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1E3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1E3</span><span class="p">)</span>
 <span class="n">z</span> <span class="o">=</span> <span class="mf">2.0</span>
 <span class="n">tau</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="n">tau_obs</span> <span class="o">=</span> <span class="n">tau</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">z</span><span class="p">)</span>
@@ -1048,7 +1034,7 @@ procedure are as follows:</p>
 <p>We calculate the ACF following Scargle method process.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">C_S</span><span class="p">,</span> <span class="n">t_S</span> <span class="o">=</span> <span class="n">ACF_scargle</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_obs</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C_S</span><span class="p">,</span> <span class="n">t_S</span> <span class="o">=</span> <span class="n">ACF_scargle</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_obs</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span>
                        <span class="n">n_omega</span><span class="o">=</span><span class="mf">2.</span> <span class="o">**</span> <span class="mi">12</span><span class="p">,</span> <span class="n">omega_max</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">5.0</span><span class="p">)</span>
 
 <span class="n">ind</span> <span class="o">=</span> <span class="p">(</span><span class="n">t_S</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">t_S</span> <span class="o">&lt;=</span> <span class="mi">500</span><span class="p">)</span>
@@ -1064,7 +1050,7 @@ procedure are as follows:</p>
 <p>We calculate ACF using Edelson and Krolik’s DCF method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">C_EK</span><span class="p">,</span> <span class="n">C_EK_err</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">ACF_EK</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_obs</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">51</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">C_EK</span><span class="p">,</span> <span class="n">C_EK_err</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="n">ACF_EK</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y_obs</span><span class="p">,</span> <span class="n">dy</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">51</span><span class="p">))</span>
 <span class="n">t_EK</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">bins</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -1083,7 +1069,7 @@ procedure are as follows:</p>
 is crucial when fitting models to the autocorrelation function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="c1"># plot the input data</span>
@@ -1110,6 +1096,12 @@ is crucial when fitting models to the autocorrelation function.</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;ACF(t)&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;ACF(t)&#39;)
+</pre></div>
+</div>
+<img alt="../_images/05e8b9a3fb16c6932f12fa74c9a7703787d9033d9515af460c7e8e1e0237105c.png" src="../_images/05e8b9a3fb16c6932f12fa74c9a7703787d9033d9515af460c7e8e1e0237105c.png" />
 </div>
 </div>
 </section>

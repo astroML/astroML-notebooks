@@ -508,7 +508,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter9/astroml_chapter9_Deep_Learning_Classifying_Astronomical_Images.md"
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter9/astroml_chapter9_Deep_Learning_Classifying_Astronomical_Images.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -536,24 +536,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/chapter9/astroml_chapter9_Deep_Learning_Classifying_Astronomical_Images.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../_sources/chapter9/astroml_chapter9_Deep_Learning_Classifying_Astronomical_Images.md.txt"
+        <a href="../_sources/chapter9/astroml_chapter9_Deep_Learning_Classifying_Astronomical_Images.ipynb.txt"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -564,7 +547,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -895,7 +878,7 @@ y_k = g \left( \sum_j   w_{jk} a_j  + b_k \right)  = g\left( \sum_j
 <p><strong>Training of the network is simply the learning of the weights and bias values</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># to reduce the deprecation warnings</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># to reduce the deprecation warnings</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
 <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
 </pre></div>
@@ -904,19 +887,36 @@ y_k = g \left( \sum_j   w_{jk} a_j  + b_k \right)  = g\left( \sum_j
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#check we have a GPU available</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#check we have a GPU available</span>
 <span class="kn">from</span> <span class="nn">tensorflow.python.client</span> <span class="kn">import</span> <span class="n">device_lib</span>
 <span class="n">device_lib</span><span class="o">.</span><span class="n">list_local_devices</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:tensorflow:Enabling eager execution
+INFO:tensorflow:Enabling v2 tensorshape
+INFO:tensorflow:Enabling resource variables
+INFO:tensorflow:Enabling tensor equality
+INFO:tensorflow:Enabling control flow v2
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[name: &quot;/device:CPU:0&quot;
+ device_type: &quot;CPU&quot;
+ memory_limit: 268435456
+ locality {
+ }
+ incarnation: 17111024148454857511]
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">astroML.utils</span> <span class="kn">import</span> <span class="n">split_samples</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
 </pre></div>
 </div>
 </div>
@@ -926,7 +926,7 @@ y_k = g \left( \sum_j   w_{jk} a_j  + b_k \right)  = g\left( \sum_j
 <p>These functions  <code class="docutils literal notranslate"><span class="pre">normalize_image</span></code>, <code class="docutils literal notranslate"><span class="pre">plot_image_array</span></code>, <code class="docutils literal notranslate"><span class="pre">plot_confusion_matrix</span></code>, <code class="docutils literal notranslate"><span class="pre">plot_model_history</span></code> will be used to visualize the data and the outputs of the neural networks as a function of the type and complexity of the network</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">normalize_image</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Rescale the constrast in an image based on the noise (used for displays and the CNN)&#39;&#39;&#39;</span>
@@ -949,7 +949,7 @@ y_k = g \left( \sum_j   w_{jk} a_j  + b_k \right)  = g\left( \sum_j
     <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">hspace</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">wspace</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">bottom</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">indx</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">nrows</span><span class="o">*</span><span class="n">ncols</span><span class="p">):</span>
         <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">indx</span><span class="o">/</span><span class="n">ncols</span><span class="p">)</span>
-        <span class="n">j</span> <span class="o">=</span> <span class="n">indx</span><span class="o">%</span><span class="n">ncols</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">indx</span><span class="o">%</span><span class="k">ncols</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
             <span class="n">ax</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">xaxis</span><span class="o">.</span><span class="n">set_major_formatter</span><span class="p">(</span><span class="n">plt</span><span class="o">.</span><span class="n">NullFormatter</span><span class="p">())</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">j</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">):</span>
@@ -1048,7 +1048,7 @@ y_k = g \left( \sum_j   w_{jk} a_j  + b_k \right)  = g\left( \sum_j
 <p>The data we are using is taken from a survey for NEOs by Lori Allen and collaborators using DECam on the Blanco 4m Telescope at CTIO. The data comprise a stack of images taken over a period of 5 nights. Within these images we search for slowly moving sources (TNOs) along potential orbital trajectories. Given these trajectories we coadd the images. Our goal is to determine whether there is a point source within the coadded images. The training sample includes images of simulated TNOs (true positives; stamps_sources.npz) and random trajectories where there is no known source (false positives; stamps_noise.npz). The true positives range in signal-to-noise from 100 to 3</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Brute force direct downloads source and noise images to circumvent size limitations </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Brute force direct downloads source and noise images to circumvent size limitations </span>
 <span class="c1"># for google drive internal virus scan. Download may take some time.</span>
 
 <span class="kn">import</span> <span class="nn">os</span>
@@ -1073,10 +1073,18 @@ y_k = g \left( \sum_j   w_{jk} a_j  + b_k \right)  = g\left( \sum_j
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Downloading file data/stamps_noise.npy.
+File data/stamps_noise.npy is downloaded
+Downloading file data/stamps_sources.npy.
+File data/stamps_sources.npy is downloaded
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># normalizing images</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># normalizing images</span>
 
 <span class="n">point_source_stamps</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">sources</span><span class="p">:</span>
@@ -1091,11 +1099,15 @@ y_k = g \left( \sum_j   w_{jk} a_j  + b_k \right)  = g\left( \sum_j
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot sample of images</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot sample of images</span>
 <span class="n">plot_image_array</span><span class="p">(</span><span class="n">no_point_source_stamps</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;false positives&#39;</span><span class="p">)</span>
 <span class="n">plot_image_array</span><span class="p">(</span><span class="n">point_source_stamps</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;true positives&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7a75937cabe837dd6c12963d7bd41c010c9fda3bec6c65a7924be813860739ae.png" src="../_images/7a75937cabe837dd6c12963d7bd41c010c9fda3bec6c65a7924be813860739ae.png" />
+<img alt="../_images/ceb0c67b012f46d2773548dfeecddd03aed52e8e1f4726e2f7b861cfe614eddb.png" src="../_images/ceb0c67b012f46d2773548dfeecddd03aed52e8e1f4726e2f7b861cfe614eddb.png" />
 </div>
 </div>
 </section>
@@ -1104,7 +1116,7 @@ y_k = g \left( \sum_j   w_{jk} a_j  + b_k \right)  = g\left( \sum_j
 <p>We will use astroML’s split_samples to do this <code class="docutils literal notranslate"><span class="pre">split_samples(input_stamps,</span> <span class="pre">stamp_class,</span> <span class="pre">[0.7,0.1,0.2])</span></code> breaks the data in to random selections with  appropriate fractions of sources</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.utils</span> <span class="kn">import</span> <span class="n">to_categorical</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">tensorflow.keras.utils</span> <span class="kn">import</span> <span class="n">to_categorical</span>
 <span class="k">def</span> <span class="nf">reshape_arrays</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;reshape arrays for Keras&#39;&#39;&#39;</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> 
@@ -1126,6 +1138,11 @@ y_k = g \left( \sum_j   w_{jk} a_j  + b_k \right)  = g\left( \sum_j
 <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;Number of samples in the training (</span><span class="si">{}</span><span class="s1">); test (</span><span class="si">{}</span><span class="s1">); and validation (</span><span class="si">{}</span><span class="s1">) data sets&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">data_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> 
                                                                                     <span class="n">data_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
                                                                                    <span class="n">data_val</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of samples in the training (76666); test (21905); and validation (10952) data sets
 </pre></div>
 </div>
 </div>
@@ -1198,7 +1215,7 @@ to the weights and biases.</p>
 <h2>Creating a Neural Network with Keras<a class="headerlink" href="#creating-a-neural-network-with-keras" title="Permalink to this headline">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">Flatten</span><span class="p">,</span> <span class="n">Activation</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.utils</span> <span class="kn">import</span> <span class="n">to_categorical</span>
@@ -1224,20 +1241,45 @@ to the weights and biases.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#output the structure of the model</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#output the structure of the model</span>
 <span class="n">simple_model</span> <span class="o">=</span> <span class="n">simple</span><span class="p">()</span>
 <span class="n">simple_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;simple&quot;
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+fc_1 (Dense)                 (None, 21, 21, 30)        60        
+_________________________________________________________________
+fc_2 (Dense)                 (None, 21, 21, 30)        930       
+_________________________________________________________________
+flatten (Flatten)            (None, 13230)             0         
+_________________________________________________________________
+fc_out (Dense)               (None, 2)                 26462     
+=================================================================
+Total params: 27,452
+Trainable params: 27,452
+Non-trainable params: 0
+_________________________________________________________________
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n_epochs</span><span class="o">=</span><span class="mi">1</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_epochs</span><span class="o">=</span><span class="mi">1</span>
 <span class="n">batch_size</span><span class="o">=</span><span class="mi">1</span>
 <span class="n">simple_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;sgd&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
 <span class="n">simple_model_history</span> <span class="o">=</span> <span class="n">simple_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="p">,</span> <span class="n">class_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">n_epochs</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>  <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
                                         <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">data_val</span><span class="p">,</span> <span class="n">class_val</span><span class="p">),</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>76666/76666 [==============================] - 66s 857us/step - loss: 0.6549 - accuracy: 0.5892 - val_loss: 0.6911 - val_accuracy: 0.5540
 </pre></div>
 </div>
 </div>
@@ -1250,7 +1292,7 @@ whole, for subsets of the data (batch learning), or for individual
 entries (on-line or stochastic learning). <em>Batch gradient descent</em> looks at all points in the data and calculates the average gradients before updating the weights in the model. <em>Stochastic gradient descent</em> takes a single point and calculates the gradients and then updates the model (and then repeats). <em>Mini-batch gradient descent</em> takes a subset of the training data and  calculates the average gradients and  updates the model  (and then repeats over all mini-batches).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n_epochs</span><span class="o">=</span><span class="mi">20</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_epochs</span><span class="o">=</span><span class="mi">20</span>
 <span class="n">batch_size</span><span class="o">=</span>
 <span class="n">simple_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;sgd&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
 <span class="n">simple_model_history</span> <span class="o">=</span> <span class="n">simple_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="p">,</span> <span class="n">class_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">n_epochs</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>  <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
@@ -1264,28 +1306,45 @@ entries (on-line or stochastic learning). <em>Batch gradient descent</em> looks 
 <h3>Performance of the network<a class="headerlink" href="#performance-of-the-network" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># use the network to predict class values</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># use the network to predict class values</span>
 <span class="n">classes</span> <span class="o">=</span> <span class="n">simple_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data_test</span><span class="p">)</span>
 <span class="nb">print</span> <span class="p">(</span><span class="n">classes</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[0.41 0.59]
+ [0.41 0.59]
+ [0.41 0.59]
+ ...
+ [0.41 0.59]
+ [0.41 0.59]
+ [0.41 0.59]]
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the confusion matrix</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the confusion matrix</span>
 <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">class_test</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                       <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Normalized confusion matrix&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/512454c09cfe33bd876fe72172c6d511badfeaa24f5097dcd0819005eefd82ff.png" src="../_images/512454c09cfe33bd876fe72172c6d511badfeaa24f5097dcd0819005eefd82ff.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the training history of the network</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the training history of the network</span>
 <span class="n">plot_model_history</span><span class="p">(</span><span class="n">simple_model_history</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/979fb36793c0eb4c2d81b6fac14f872a2447238d3bf55b014e2cd7647c8271f7.png" src="../_images/979fb36793c0eb4c2d81b6fac14f872a2447238d3bf55b014e2cd7647c8271f7.png" />
 </div>
 </div>
 </section>
@@ -1298,7 +1357,7 @@ entries (on-line or stochastic learning). <em>Batch gradient descent</em> looks 
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simpleBN</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">n_classes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">simpleBN</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">n_classes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">):</span>
 
     <span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;simple&#39;</span><span class="p">)</span>
 
@@ -1319,7 +1378,7 @@ entries (on-line or stochastic learning). <em>Batch gradient descent</em> looks 
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">n_epochs</span><span class="o">=</span><span class="mi">20</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_epochs</span><span class="o">=</span><span class="mi">20</span>
 <span class="n">simple_model</span> <span class="o">=</span> <span class="n">simpleBN</span><span class="p">()</span>
 <span class="n">simple_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;sgd&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
 <span class="n">simple_model_history</span> <span class="o">=</span> <span class="n">simple_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="p">,</span> <span class="n">class_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">n_epochs</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
@@ -1328,21 +1387,71 @@ entries (on-line or stochastic learning). <em>Batch gradient descent</em> looks 
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/20
+300/300 [==============================] - 12s 39ms/step - loss: 0.6903 - accuracy: 0.5446 - val_loss: 0.6881 - val_accuracy: 0.5499
+Epoch 2/20
+300/300 [==============================] - 13s 44ms/step - loss: 0.6887 - accuracy: 0.5467 - val_loss: 0.6881 - val_accuracy: 0.5499
+Epoch 3/20
+300/300 [==============================] - 12s 41ms/step - loss: 0.6883 - accuracy: 0.5485 - val_loss: 0.6880 - val_accuracy: 0.5499
+Epoch 4/20
+300/300 [==============================] - 10s 35ms/step - loss: 0.6889 - accuracy: 0.5453 - val_loss: 0.6879 - val_accuracy: 0.5499
+Epoch 5/20
+300/300 [==============================] - 12s 39ms/step - loss: 0.6881 - accuracy: 0.5489 - val_loss: 0.6878 - val_accuracy: 0.5499
+Epoch 6/20
+300/300 [==============================] - 12s 38ms/step - loss: 0.6887 - accuracy: 0.5454 - val_loss: 0.6878 - val_accuracy: 0.5499
+Epoch 7/20
+300/300 [==============================] - 12s 39ms/step - loss: 0.6881 - accuracy: 0.5481 - val_loss: 0.6878 - val_accuracy: 0.5499
+Epoch 8/20
+300/300 [==============================] - 12s 40ms/step - loss: 0.6883 - accuracy: 0.5469 - val_loss: 0.6877 - val_accuracy: 0.5499
+Epoch 9/20
+300/300 [==============================] - 12s 39ms/step - loss: 0.6878 - accuracy: 0.5495 - val_loss: 0.6877 - val_accuracy: 0.5499
+Epoch 10/20
+300/300 [==============================] - 12s 40ms/step - loss: 0.6879 - accuracy: 0.5483 - val_loss: 0.6876 - val_accuracy: 0.5499
+Epoch 11/20
+300/300 [==============================] - 12s 40ms/step - loss: 0.6878 - accuracy: 0.5487 - val_loss: 0.6875 - val_accuracy: 0.5499
+Epoch 12/20
+300/300 [==============================] - 11s 36ms/step - loss: 0.6879 - accuracy: 0.5477 - val_loss: 0.6873 - val_accuracy: 0.5499
+Epoch 13/20
+300/300 [==============================] - 13s 42ms/step - loss: 0.6882 - accuracy: 0.5456 - val_loss: 0.6873 - val_accuracy: 0.5499
+Epoch 14/20
+300/300 [==============================] - 12s 40ms/step - loss: 0.6874 - accuracy: 0.5495 - val_loss: 0.6874 - val_accuracy: 0.5499
+Epoch 15/20
+300/300 [==============================] - 12s 39ms/step - loss: 0.6871 - accuracy: 0.5511 - val_loss: 0.6871 - val_accuracy: 0.5499
+Epoch 16/20
+300/300 [==============================] - 12s 39ms/step - loss: 0.6870 - accuracy: 0.5505 - val_loss: 0.6871 - val_accuracy: 0.5499
+Epoch 17/20
+300/300 [==============================] - 12s 40ms/step - loss: 0.6881 - accuracy: 0.5440 - val_loss: 0.6870 - val_accuracy: 0.5499
+Epoch 18/20
+300/300 [==============================] - 12s 41ms/step - loss: 0.6874 - accuracy: 0.5475 - val_loss: 0.6869 - val_accuracy: 0.5499
+Epoch 19/20
+300/300 [==============================] - 12s 39ms/step - loss: 0.6873 - accuracy: 0.5477 - val_loss: 0.6868 - val_accuracy: 0.5499
+Epoch 20/20
+300/300 [==============================] - 12s 39ms/step - loss: 0.6869 - accuracy: 0.5493 - val_loss: 0.6867 - val_accuracy: 0.5499
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot normalized confusion matrix</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot normalized confusion matrix</span>
 <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">class_test</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                       <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Normalized confusion matrix&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/29923acf3bce06b621b0529d15e69fc3c416eb983a4ae5e530539f9b071012dc.png" src="../_images/29923acf3bce06b621b0529d15e69fc3c416eb983a4ae5e530539f9b071012dc.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plot_model_history</span><span class="p">(</span><span class="n">simple_model_history</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plot_model_history</span><span class="p">(</span><span class="n">simple_model_history</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/00cfff41adbbaf248c9663204508e613a0d4d642a98e889ca3309ee4dd2fe5ab.png" src="../_images/00cfff41adbbaf248c9663204508e613a0d4d642a98e889ca3309ee4dd2fe5ab.png" />
 </div>
 </div>
 </section>
@@ -1402,7 +1511,7 @@ classification layer.</p>
 <p>Let’s start with a simple network architecture from Oxford’s Visual Geometry Group. VGG6 is a very simple network that performs well in traditional image classification competitions (e.g. those using the ImageNet data)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">Flatten</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.utils</span> <span class="kn">import</span> <span class="n">to_categorical</span>
@@ -1448,7 +1557,7 @@ classification layer.</p>
 <p>As we increase the complexity of the network we run into the issue of overfitting the data (as seen in many of the astroML examples). The dropout layer <code class="docutils literal notranslate"><span class="pre">model.add(tf.keras.layers.Dropout(0.5))</span></code> at each training epoch randomly sets a neuron to 0 with a probability of 0.5. There is debate over whether the dropout layer should come before or after an activation layer but a recommended rule of thumb is that it should come after the activation layer for activation functions other than relu.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vgg_model</span> <span class="o">=</span> <span class="n">vgg6</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">vgg_model</span> <span class="o">=</span> <span class="n">vgg6</span><span class="p">()</span>
 <span class="n">vgg_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;sgd&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
 <span class="n">n_epochs</span><span class="o">=</span><span class="mi">15</span>
 <span class="n">vgg_model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
@@ -1458,30 +1567,107 @@ classification layer.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model: &quot;VGG6&quot;
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+conv1 (Conv2D)               (None, 19, 19, 16)        160       
+_________________________________________________________________
+conv2 (Conv2D)               (None, 17, 17, 16)        2320      
+_________________________________________________________________
+max_pooling2d (MaxPooling2D) (None, 8, 8, 16)          0         
+_________________________________________________________________
+dropout (Dropout)            (None, 8, 8, 16)          0         
+_________________________________________________________________
+conv3 (Conv2D)               (None, 6, 6, 32)          4640      
+_________________________________________________________________
+conv4 (Conv2D)               (None, 4, 4, 32)          9248      
+_________________________________________________________________
+bn_2 (BatchNormalization)    (None, 4, 4, 32)          128       
+_________________________________________________________________
+max_pooling2d_1 (MaxPooling2 (None, 1, 1, 32)          0         
+_________________________________________________________________
+dropout_1 (Dropout)          (None, 1, 1, 32)          0         
+_________________________________________________________________
+flatten_2 (Flatten)          (None, 32)                0         
+_________________________________________________________________
+fc_1 (Dense)                 (None, 256)               8448      
+_________________________________________________________________
+dropout_2 (Dropout)          (None, 256)               0         
+_________________________________________________________________
+fc_out (Dense)               (None, 2)                 514       
+=================================================================
+Total params: 25,458
+Trainable params: 25,394
+Non-trainable params: 64
+_________________________________________________________________
+Epoch 1/15
+75/75 - 13s - loss: 0.6890 - accuracy: 0.5519 - val_loss: 0.6904 - val_accuracy: 0.5499
+Epoch 2/15
+75/75 - 13s - loss: 0.6869 - accuracy: 0.5557 - val_loss: 0.6892 - val_accuracy: 0.5499
+Epoch 3/15
+75/75 - 13s - loss: 0.6845 - accuracy: 0.5594 - val_loss: 0.6881 - val_accuracy: 0.5499
+Epoch 4/15
+75/75 - 13s - loss: 0.6807 - accuracy: 0.5685 - val_loss: 0.6866 - val_accuracy: 0.5499
+Epoch 5/15
+75/75 - 13s - loss: 0.6779 - accuracy: 0.5772 - val_loss: 0.6850 - val_accuracy: 0.5499
+Epoch 6/15
+75/75 - 13s - loss: 0.6747 - accuracy: 0.5922 - val_loss: 0.6831 - val_accuracy: 0.5507
+Epoch 7/15
+75/75 - 13s - loss: 0.6714 - accuracy: 0.6051 - val_loss: 0.6798 - val_accuracy: 0.5501
+Epoch 8/15
+75/75 - 13s - loss: 0.6675 - accuracy: 0.6169 - val_loss: 0.6759 - val_accuracy: 0.5520
+Epoch 9/15
+75/75 - 13s - loss: 0.6628 - accuracy: 0.6290 - val_loss: 0.6693 - val_accuracy: 0.5617
+Epoch 10/15
+75/75 - 13s - loss: 0.6579 - accuracy: 0.6362 - val_loss: 0.7803 - val_accuracy: 0.4501
+Epoch 11/15
+75/75 - 13s - loss: 0.6523 - accuracy: 0.6394 - val_loss: 0.7370 - val_accuracy: 0.5500
+Epoch 12/15
+75/75 - 13s - loss: 0.6451 - accuracy: 0.6452 - val_loss: 0.7329 - val_accuracy: 0.5504
+Epoch 13/15
+75/75 - 13s - loss: 0.6398 - accuracy: 0.6427 - val_loss: 0.7394 - val_accuracy: 0.5534
+Epoch 14/15
+75/75 - 13s - loss: 0.6337 - accuracy: 0.6444 - val_loss: 1.0248 - val_accuracy: 0.5499
+Epoch 15/15
+75/75 - 13s - loss: 0.6285 - accuracy: 0.6464 - val_loss: 0.6993 - val_accuracy: 0.5504
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the confusion matrix</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the confusion matrix</span>
 <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">class_test</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">classes</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                       <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Normalized confusion matrix&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/29923acf3bce06b621b0529d15e69fc3c416eb983a4ae5e530539f9b071012dc.png" src="../_images/29923acf3bce06b621b0529d15e69fc3c416eb983a4ae5e530539f9b071012dc.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the training history</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot the training history</span>
 <span class="n">plot_model_history</span><span class="p">(</span><span class="n">vgg_model_history</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/4b0801f4e9b0535bf3cd24d79964fe2168f0100a2dd1145f6fdc63e408b235f7.png" src="../_images/4b0801f4e9b0535bf3cd24d79964fe2168f0100a2dd1145f6fdc63e408b235f7.png" />
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot example classifications</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot example classifications</span>
 <span class="n">plot_image_array</span><span class="p">(</span><span class="n">data_val</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">16</span><span class="p">,</span><span class="mi">10</span><span class="p">],</span> <span class="n">subtitle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="n">classes</span><span class="p">,</span> <span class="n">class_true</span><span class="o">=</span><span class="n">class_test</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8170f51f04b8e199a9909c7787bde818989f23347aadacb12f62f88834d9b054.png" src="../_images/8170f51f04b8e199a9909c7787bde818989f23347aadacb12f62f88834d9b054.png" />
 </div>
 </div>
 </section>
@@ -1512,7 +1698,7 @@ proposals for rules of thumb for defining a network architecture:</p>
 <p>Occulsion maps, saliency maps, class activation maps are all techniques for expressing which pixels contribute to classification. These are attempts to reduce the “black box” nature of the networks. The simplest of these is the occlussion map where we part of an image and calculate the probability of it belonging to a class. If the probability decreases the occluded part of the image is assumed to be important. If there is no change in probability the occluded pixels are not assumed to be important. A simple implementation of this is shown here.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">vgg_model</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">vgg_model</span>
 <span class="n">image_number</span> <span class="o">=</span> <span class="mi">11</span>
 
 <span class="n">kernel_size</span><span class="o">=</span><span class="mi">5</span>
@@ -1549,13 +1735,19 @@ proposals for rules of thumb for defining a network architecture:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x196d13f10&gt;
+</pre></div>
+</div>
+<img alt="../_images/e986e445df45f02c368e0ada82179929fc28b7d593d305d9ab4f3c60739963c3.png" src="../_images/e986e445df45f02c368e0ada82179929fc28b7d593d305d9ab4f3c60739963c3.png" />
+</div>
 </div>
 </section>
 <section id="exercise-for-the-reader-more-complicated-architectures-resnet50">
 <h3>Exercise for the reader: more complicated architectures: resnet50<a class="headerlink" href="#exercise-for-the-reader-more-complicated-architectures-resnet50" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Based on https://github.com/priya-dwivedi/Deep-Learning/blob/master/resnet_keras/Residual_Networks_yourself.ipynb</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Based on https://github.com/priya-dwivedi/Deep-Learning/blob/master/resnet_keras/Residual_Networks_yourself.ipynb</span>
 <span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Add</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Activation</span><span class="p">,</span> <span class="n">ZeroPadding2D</span><span class="p">,</span> <span class="n">BatchNormalization</span><span class="p">,</span> <span class="n">Flatten</span><span class="p">,</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">AveragePooling2D</span><span class="p">,</span> <span class="n">MaxPooling2D</span><span class="p">,</span> <span class="n">GlobalMaxPooling2D</span>
 <span class="kn">from</span> <span class="nn">tensorflow.keras.initializers</span> <span class="kn">import</span> <span class="n">glorot_uniform</span>
@@ -1737,7 +1929,7 @@ proposals for rules of thumb for defining a network architecture:</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">resnet50_model</span> <span class="o">=</span> <span class="n">ResNet50</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">resnet50_model</span> <span class="o">=</span> <span class="n">ResNet50</span><span class="p">()</span>
 <span class="n">resnet50_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">loss</span><span class="o">=</span><span class="s1">&#39;categorical_crossentropy&#39;</span><span class="p">,</span> <span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;sgd&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
 <span class="n">n_epochs</span><span class="o">=</span><span class="mi">5</span>
 <span class="n">resnet_model_history</span> <span class="o">=</span> <span class="n">resnet50_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data_train</span><span class="p">,</span> <span class="n">class_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">n_epochs</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 

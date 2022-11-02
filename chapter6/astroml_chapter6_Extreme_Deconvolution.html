@@ -508,7 +508,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter6/astroml_chapter6_Extreme_Deconvolution.md"
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter6/astroml_chapter6_Extreme_Deconvolution.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -536,24 +536,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/chapter6/astroml_chapter6_Extreme_Deconvolution.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download notebook file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-code"></i>
-  </span>
-<span class="headerbtn__text-container">.ipynb</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="../_sources/chapter6/astroml_chapter6_Extreme_Deconvolution.md.txt"
+        <a href="../_sources/chapter6/astroml_chapter6_Extreme_Deconvolution.ipynb.txt"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -564,7 +547,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -842,7 +825,7 @@ The data we use to in this demostration is from the Stripe 82 Standard Star Cata
 More information about data used is in references.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="kn">from</span> <span class="nn">astroML.density_estimation</span> <span class="kn">import</span> <span class="n">XDGMM</span>
@@ -866,7 +849,7 @@ We will plot this data set as a reference to compare with the model derived from
 Users can change sample size (N) to experiment the effectiveness of this method: Bigger sample size gives more information about the data set and is easier to converge, however it takes longer time to run in the method. The method may fail to converge due to small sample size.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sample the dataset. </span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sample the dataset. </span>
 <span class="c1"># Here we use sample size = 400 in the example, </span>
 <span class="c1"># which converges in shorter time, and gives reasonable result.</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">400</span>
@@ -900,6 +883,9 @@ Users can change sample size (N) to experiment the effectiveness of this method:
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/cfa8419dd3a99f470f7148ecf9e9d2b9f0e29f99fa2f59d66297ba238ce62efd.png" src="../_images/cfa8419dd3a99f470f7148ecf9e9d2b9f0e29f99fa2f59d66297ba238ce62efd.png" />
+</div>
 </div>
 </section>
 <section id="generate-noisy-data">
@@ -907,7 +893,7 @@ Users can change sample size (N) to experiment the effectiveness of this method:
 <p>We add some radom noisy onto the true data to model what we may observe from true distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># add noise to get the &quot;observed&quot; distribution</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># add noise to get the &quot;observed&quot; distribution</span>
 <span class="n">dx</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 <span class="n">dy</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 
@@ -919,6 +905,9 @@ Users can change sample size (N) to experiment the effectiveness of this method:
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/4020f7562029b2ac0873c925c05ff745f5857dd073b1d384084e8c2ce8128caa.png" src="../_images/4020f7562029b2ac0873c925c05ff745f5857dd073b1d384084e8c2ce8128caa.png" />
+</div>
 </div>
 </section>
 <section id="compute-extreme-deconvolution-xd">
@@ -929,7 +918,7 @@ In the XDGMM method, <em>n_components</em> (integer) defines the number of Gauss
 This cell is expected to execute in a bit long time around 1 minute.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># stack the results for computation</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># stack the results for computation</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])</span><span class="o">.</span><span class="n">T</span>
 <span class="n">Xerr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span> <span class="o">+</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:])</span>
 <span class="n">diag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
@@ -950,10 +939,13 @@ This cell is expected to execute in a bit long time around 1 minute.</p>
 than noisy data and even than true data, which better portraits a “underlying distribution.”</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot noisy distribution</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># plot noisy distribution</span>
 <span class="n">plot_distribution</span><span class="p">(</span><span class="s1">&#39;Extreme Deconvolution Resampling&#39;</span><span class="p">,</span> <span class="n">sample</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">sample</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/805e3c4933db5471ae9b9b1311d9fea33f2de9322994061e526b4b3b96d42938.png" src="../_images/805e3c4933db5471ae9b9b1311d9fea33f2de9322994061e526b4b3b96d42938.png" />
 </div>
 </div>
 </section>
@@ -965,7 +957,7 @@ In addition, we add a clustered representation of the distribution (bottom right
 XD method.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
                     <span class="n">bottom</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
@@ -1013,6 +1005,9 @@ XD method.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/c0f11bda5fd171ecddf63148b0f791d4821fe5024c365bd5aca71090445cf439.png" src="../_images/c0f11bda5fd171ecddf63148b0f791d4821fe5024c365bd5aca71090445cf439.png" />
+</div>
 </div>
 </section>
 </section>
@@ -1025,7 +1020,7 @@ XD method.</p>
 <span class="math notranslate nohighlight">\(C_{\lambda} \equiv \frac{A_{\lambda}}{A}\)</span>, where the value of <span class="math notranslate nohighlight">\(C_{\lambda}\)</span> for each band of S82 is from <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2012ApJ...757..166B/abstract">Berry et al 2012</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># define u-g-r-i-z extinction from Berry et al, arXiv 1111.4985 multiply extinction by A_r</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define u-g-r-i-z extinction from Berry et al, arXiv 1111.4985 multiply extinction by A_r</span>
 <span class="n">extinction_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.810</span><span class="p">,</span> <span class="mf">1.400</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.759</span><span class="p">,</span> <span class="mf">0.561</span><span class="p">])</span>
 
 <span class="c1"># Fetch and process the noisy imaging data</span>
@@ -1050,7 +1045,7 @@ XD method.</p>
 <p>Next, we stack the S82 star set and perform the same extinction correction on the data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch and process the stacked imaging data</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fetch and process the stacked imaging data</span>
 <span class="n">data_stacked</span> <span class="o">=</span> <span class="n">fetch_sdss_S82standards</span><span class="p">()</span>
 
 <span class="c1"># cut to RA, DEC range of imaging sample</span>
@@ -1083,7 +1078,7 @@ XD method.</p>
 <p>We use cross-match to match the noisy sample to standard sample, and make two sets comparable.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Xlocs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">data_noisy</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">][:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Xlocs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">data_noisy</span><span class="p">[</span><span class="s1">&#39;ra&#39;</span><span class="p">][:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span>
                    <span class="n">data_noisy</span><span class="p">[</span><span class="s1">&#39;dec&#39;</span><span class="p">][:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]))</span>
 <span class="n">Ylocs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">data_stacked</span><span class="p">[</span><span class="s1">&#39;RA&#39;</span><span class="p">][:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span>
                    <span class="n">data_stacked</span><span class="p">[</span><span class="s1">&#39;DEC&#39;</span><span class="p">][:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]))</span>
@@ -1113,13 +1108,20 @@ XD method.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>number of noisy points:   (82003, 2)
+number of stacked points: (13377, 2)
+size after crossmatch: (12313, 5)
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="define-w-matrix-and-calculate-covariance">
 <h3>4. Define W matrix and calculate covariance<a class="headerlink" href="#define-w-matrix-and-calculate-covariance" title="Permalink to this headline">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># first define mixing matrix W</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># first define mixing matrix W</span>
 <span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>    <span class="c1"># g magnitude</span>
               <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>   <span class="c1"># u-g color</span>
               <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>   <span class="c1"># g-r color</span>
@@ -1146,7 +1148,7 @@ XD method.</p>
 <p>We choose ten percent of the points in each data sets to plot in comparison. As we can see from the result, before XD, the sigle epoch (right) has more noise than standard stars (left).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit and sample from the underlying distribution</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit and sample from the underlying distribution</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">X_sample</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
@@ -1181,6 +1183,20 @@ XD method.</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="nn">&lt;ipython-input-9-15bac7e0cf5b&gt;</span> in <span class="ni">&lt;module&gt;</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Fit and sample from the underlying distribution</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">X_sample</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="c1"># plot the results</span>
+
+<span class="ne">NameError</span>: name &#39;clf&#39; is not defined
+</pre></div>
+</div>
+</div>
 </div>
 </section>
 <section id="calculate-xd-value">
@@ -1188,7 +1204,7 @@ XD method.</p>
 <p>We define compute_XD and save the result to pickle file. This cell is estimated to take a long running time (more than 20 minutes).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_XD</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">rseed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_XD</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">rseed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">rseed</span><span class="p">)</span>
     <span class="n">clf</span> <span class="o">=</span> <span class="n">XDGMM</span><span class="p">(</span><span class="n">n_clusters</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="n">max_iter</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1E-5</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
     <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Xcov</span><span class="p">)</span>
@@ -1206,7 +1222,7 @@ XD method.</p>
 After XD resampling, the resampled data distributes less scattered than the original noisy data. It also shows a better clustered pattern than the standard star distribution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit and sample from the underlying distribution</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit and sample from the underlying distribution</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">X_sample</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 
@@ -1258,6 +1274,9 @@ After XD resampling, the resampled data distributes less scattered than the orig
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/70f1f877f2755e7d9dd1f518422f58ed9152d81c855a46c5faa7a29caff1aa96.png" src="../_images/70f1f877f2755e7d9dd1f518422f58ed9152d81c855a46c5faa7a29caff1aa96.png" />
+</div>
 </div>
 </section>
 <section id="plot-width-of-locus">
@@ -1268,7 +1287,7 @@ On the x-axis shows the width of locus, also called w color, defined as
 <span class="math notranslate nohighlight">\(\sigma_{G}\)</span> of the Gaussian distribution fit is the smallest in XD resampled result. This shows the effectiveness of correcting and clustering noisy data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Second figure: the width of the locus</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Second figure: the width of the locus</span>
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">3.75</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">)</span>
 
