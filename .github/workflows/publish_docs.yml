@@ -25,6 +25,11 @@ jobs:
         run: |
           pip install -r .binder/requirements.txt -r doc-requirements.txt
 
+      - name: TMP clean MD source files
+        # sphinx defaults to use the md files to generate content
+        # revisit these issues upstream, or enable executing for the simpler notebooks.
+        run: |
+            find chapter* -name "*ipynb"|awk -F ipynb '{print $1"md"}'|xargs rm -f
 
       - name: Build the notebooks
         run: |
