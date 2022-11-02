@@ -41,3 +41,5 @@ chapter10/README
 ```
 
 ## Contributing
+
+For contributing guidelines, please follow the documentation in the [astroML-notebooks github repository](https://github.com/astroML/astroML-notebooks/#contributing).
