@@ -874,7 +874,7 @@ $<span class="math notranslate nohighlight">\( p(A) + p(\overline{A}) = 1 \)</sp
 <span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">NullFormatter</span>
 
 <span class="k">def</span> <span class="nf">banana_distribution</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This generates random points in a banana shape&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This generates random points in a banana shape&quot;&quot;&quot;</span>
     <span class="c1"># create a truncated normal distribution</span>
     <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
     <span class="n">theta</span><span class="p">[</span><span class="n">theta</span> <span class="o">&gt;=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mi">4</span><span class="p">]</span> <span class="o">/=</span> <span class="mi">2</span>
