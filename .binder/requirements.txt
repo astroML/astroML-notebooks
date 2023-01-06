@@ -7,4 +7,4 @@ seaborn
 jupyter-contrib-nbextensions
 tensorflow
 scipy
-scikit-learn<0.24    # Until https://github.com/astroML/astroML/pull/230 is released
+scikit-learn
