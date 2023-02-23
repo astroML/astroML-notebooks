@@ -12,4 +12,5 @@ astroml_chapter4_Maximum_Likelihood_Estimation_and_Goodness_of_fit
 astroml_chapter4_Gaussian_mixtures
 astroml_chapter4_Confidence_estimates
 astroml_chapter4_Hypothesis_testing
+astroml_chapter4_Comparison_of_distributions
 ```
