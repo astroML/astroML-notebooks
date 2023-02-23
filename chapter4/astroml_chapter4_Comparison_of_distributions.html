@@ -1,0 +1,1478 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Comparison of distributions &#8212; AstroML Interactive Book</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Chapter 5: Bayesian Statistical Inference" href="../chapter5/README.html" />
+    <link rel="prev" title="Hypothesis Testing" href="astroml_chapter4_Hypothesis_testing.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/astroml_logo.gif" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">AstroML Interactive Book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter1/README.html">
+   Chapter 1: Introduction and Data Sets
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="simple">
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter2/README.html">
+   Chapter 2: Fast Computation and Massive Datasets
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="simple">
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter3/README.html">
+   Chapter 3: Probability and Statistical Distributions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Overview_of_Probability_and_Random_Variables.html">
+     Overview of Probability and Random Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Descriptive_Statistics.html">
+     Descriptive Statistics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Univariate_Distribution_Functions.html">
+     Univariate Distribution Functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_The_Central_Limit_Theorem.html">
+     The Central Limit Theorem
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter3/astroml_chapter3_Bivariate_and_Multivariate_Distribution_Functions.html">
+     Bivariate and multivariate distribution functions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="README.html">
+   Chapter 4: Classical Statistical Inference
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroml_chapter4_Maximum_Likelihood_Estimation_and_Goodness_of_fit.html">
+     Maximum Likelihood Estimation (MLE)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroml_chapter4_Gaussian_mixtures.html">
+     MLE applied to Gaussian mixtures
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroml_chapter4_Confidence_estimates.html">
+     Confidence Estimates: The Bootstrap and The Jackknife
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="astroml_chapter4_Hypothesis_testing.html">
+     Hypothesis Testing
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Comparison of distributions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter5/README.html">
+   Chapter 5: Bayesian Statistical Inference
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Gaussian_Distribution.html">
+     Parameter Estimation for a Gaussian Distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Binomial_Distribution.html">
+     Parameter Estimation for a Binomial Distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Parameter_Estimation_for_Cauchy_Distribution.html">
+     Parameter estimation for the Cauchy (Lorentzian) distribution
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Approximate_Bayesian_Computation.html">
+     Approximate Bayesian Computation Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter5/astroml_chapter5_Hierarchical_Bayes.html">
+     Hierarchical Bayes Example
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter6/README.html">
+   Chapter 6: Searching for Structure in Point Data
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Density_Estimation_for_SDSS_Great_Wall.html">
+     Density Estimation for SDSS “Great Wall”
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Searching_for_Structure_in_Point_Data.html">
+     Searching for Structure in Point Data
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Gaussian_Mixture_Models.html">
+     Gaussian Mixture Models Example
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter6/astroml_chapter6_Extreme_Deconvolution.html">
+     Extreme Deconvolution
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter7/README.html">
+   Chapter 7: Dimensionality and its Reduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter7/astroml_chapter7_Dimensionality_Reduction.html">
+     Dimensionality reduction
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter8/README.html">
+   Chapter 8: Regression and Model Fitting
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter8/astroml_chapter8_Regression.html">
+     Measurement Errors in Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter8/astroml_chapter8_Regression_with_Errors_on_Dependent_and_Independent_Variables.html">
+     Measurement errors in both dependent and independent variables
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter9/README.html">
+   Chapter 9: Classification
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+  <label for="toctree-checkbox-9">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter9/astroml_chapter9_Classification.html">
+     Classification
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter9/astroml_chapter9_Deep_Learning_Classifying_Astronomical_Images.html">
+     Deep Learning: Classifying Astronomical Images
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../chapter10/README.html">
+   Chapter 10: Time Series Analysis
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+  <label for="toctree-checkbox-10">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Modeling_Toolkit_for_Time_Series_Analysis.html">
+     Modeling Toolkit For Time Series Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Wavelets.html">
+     Wavelets
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Digital_Filtering.html">
+     Digital Filtering
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Temporally_Localized_Signals.html">
+     Temporally localized signals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter10/astroml_chapter10_Analysis_of_Stochastic_Processes.html">
+     Analysis of Stochastic Processes
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/astroML/astroML-notebooks/main?urlpath=tree/chapter4/astroml_chapter4_Comparison_of_distributions.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/astroML/astroML-notebooks/blob/main/chapter4/astroml_chapter4_Comparison_of_distributions.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks/issues/new?title=Issue%20on%20page%20%2Fchapter4/astroml_chapter4_Comparison_of_distributions.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/astroML/astroML-notebooks/edit/main/chapter4/astroml_chapter4_Comparison_of_distributions.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/chapter4/astroml_chapter4_Comparison_of_distributions.ipynb.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regression-toward-the-mean">
+   Regression toward the mean
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nonparametric-methods-for-comparing-distributions">
+   Nonparametric methods for comparing distributions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-implementation-of-the-k-s-test">
+     Python implementation of the K-S test
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-u-test-and-the-wilcoxon-test">
+     <em>
+      The U test and the Wilcoxon test
+     </em>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#python-implementation-of-the-u-test-and-the-wilcoxon-test">
+       Python implementation of the U test and the Wilcoxon test
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#python-implementation-of-wilcoxon-signed-rank-test">
+       Python implementation of Wilcoxon signed-rank test
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison-of-two-dimensional-distributions">
+   Comparison of two-dimensional distributions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#is-my-distribution-really-gaussian">
+   Is my distribution really Gaussian?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-implementation-of-the-anderson-darling-test">
+     Python Implementation of the Anderson-Darling test
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-implementation-of-the-shapirowilk-test">
+     Python Implementation of the Shapiro–Wilk test
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#is-my-distribution-bimodal">
+   Is my distribution bimodal?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parametric-methods-for-comparing-distributions">
+   Parametric methods for comparing distributions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparison-of-gaussian-means-using-the-t-test">
+     Comparison of Gaussian means using the t test
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#python-implementation-of-the-t-test">
+       Python implementation of the
+       <span class="math notranslate nohighlight">
+        \(t\)
+       </span>
+       test
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparison-of-gaussian-variances-using-the-f-test">
+     Comparison of Gaussian variances using the F test
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#python-implementation-of-the-f-test">
+       Python implementation of the
+       <span class="math notranslate nohighlight">
+        \(F\)
+       </span>
+       test
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Comparison of distributions</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#regression-toward-the-mean">
+   Regression toward the mean
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nonparametric-methods-for-comparing-distributions">
+   Nonparametric methods for comparing distributions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-implementation-of-the-k-s-test">
+     Python implementation of the K-S test
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-u-test-and-the-wilcoxon-test">
+     <em>
+      The U test and the Wilcoxon test
+     </em>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#python-implementation-of-the-u-test-and-the-wilcoxon-test">
+       Python implementation of the U test and the Wilcoxon test
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#python-implementation-of-wilcoxon-signed-rank-test">
+       Python implementation of Wilcoxon signed-rank test
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison-of-two-dimensional-distributions">
+   Comparison of two-dimensional distributions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#is-my-distribution-really-gaussian">
+   Is my distribution really Gaussian?
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-implementation-of-the-anderson-darling-test">
+     Python Implementation of the Anderson-Darling test
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#python-implementation-of-the-shapirowilk-test">
+     Python Implementation of the Shapiro–Wilk test
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#is-my-distribution-bimodal">
+   Is my distribution bimodal?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parametric-methods-for-comparing-distributions">
+   Parametric methods for comparing distributions
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparison-of-gaussian-means-using-the-t-test">
+     Comparison of Gaussian means using the t test
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#python-implementation-of-the-t-test">
+       Python implementation of the
+       <span class="math notranslate nohighlight">
+        \(t\)
+       </span>
+       test
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#comparison-of-gaussian-variances-using-the-f-test">
+     Comparison of Gaussian variances using the F test
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#python-implementation-of-the-f-test">
+       Python implementation of the
+       <span class="math notranslate nohighlight">
+        \(F\)
+       </span>
+       test
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="comparison-of-distributions">
+<h1>Comparison of distributions<a class="headerlink" href="#comparison-of-distributions" title="Permalink to this headline">#</a></h1>
+<p>We often ask whether two samples are drawn from the same distribution or, equivalently, whether two sets of measurements imply a difference in the measured quantity. Similarly, we can ask whether a sample is consistent with being drawn from some known distribution.</p>
+<p>First, what do we mean by the same distribution? We can describe distributions by their shape, location, and scale. Once we can assume the shape, or likewise once we know from which distribution the sample is drawn (i.e., a Gaussian distribution), the problem simplifies; we now only need to consider two parameters: location and scale.</p>
+<p>We can implement different statistical tests depending on the data type (discrete vs. continuous random variables), the assumptions we can make about the underlying distributions and the specific question we ask.</p>
+<p>The underlying idea of statistical tests is to use data to compute an appropriate statistic and then compare the resulting data-based value to its expected distribution. As discussed in the preceding section, the expected distribution is evaluated by <strong>assuming that the null hypothesis is true</strong>. When this expected distribution implies that the data-based value is unlikely to have arisen from it by chance (i.e., a small <span class="math notranslate nohighlight">\(p\)</span> value), the null hypothesis is <strong>rejected</strong> with some threshold probability <span class="math notranslate nohighlight">\(\alpha\)</span>, typically <span class="math notranslate nohighlight">\(0.05\)</span> or <span class="math notranslate nohighlight">\(0.01\)</span> ( <span class="math notranslate nohighlight">\(p &lt; \alpha\)</span>).</p>
+<section id="regression-toward-the-mean">
+<h2>Regression toward the mean<a class="headerlink" href="#regression-toward-the-mean" title="Permalink to this headline">#</a></h2>
+<p>Before proceeding with statistical tests for comparing distributions, we point out a simple statistical selection effect that is sometimes ignored and leads to invalid conclusions.</p>
+<p>If two instances of a data set <span class="math notranslate nohighlight">\({x_i}\)</span> are drawn from some distribution, the mean difference between the matched values (i.e., the <span class="math notranslate nohighlight">\(i\)</span>th values from both data sets) will be zero. However, the mean difference can become biased if we use one data set and select a subsample for comparison. For example, if we choose the lowest quartile from the 1st data set, the mean difference between the 2nd and 1st data set will be larger than zero.</p>
+<p>This effect is known as regression toward the mean: if a random variable is extreme on its first measurement, it will tend to be closer to the population mean on a second measurement.</p>
+<ul class="simple">
+<li><p><strong>Example</strong>: In an astronomical context, a commonly related tale states that weather conditions observed at a telescope site today are, typically, not as good as those that would have been inferred from the prior measurements made during the site selection process.</p></li>
+</ul>
+<p>Thus, when selecting a subsample for further study or a control sample for comparison analysis, one has to worry about various statistical selection effects.</p>
+</section>
+<section id="nonparametric-methods-for-comparing-distributions">
+<h2>Nonparametric methods for comparing distributions<a class="headerlink" href="#nonparametric-methods-for-comparing-distributions" title="Permalink to this headline">#</a></h2>
+<p>When the distributions are not known, tests are called <em>nonparametric</em>, or distribution-free tests. The most popular nonparametric test is the <strong>Kolmogorov-Smirnov (K-S) test</strong>, which compares the cumulative distribution function, <span class="math notranslate nohighlight">\(F(x)\)</span>, for two samples, <span class="math notranslate nohighlight">\(\{x1_i\}\)</span>, <span class="math notranslate nohighlight">\(i = 1,...,N_1\)</span>, and <span class="math notranslate nohighlight">\(\{x2_i\}\)</span>, <span class="math notranslate nohighlight">\(i = 1,...,N_2\)</span>.</p>
+<p>The K-S test is based on the following statistic, which measures the maximum distance of the two cumulative distributions, <span class="math notranslate nohighlight">\(F_1(x1)\)</span> and <span class="math notranslate nohighlight">\(F_2(x2)\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[D = \text{max}|F_1(x1) - F_2(x2)| \]</div>
+<p>where <span class="math notranslate nohighlight">\(0 \leq D \leq 1\)</span>.</p>
+<p>We can visualize <span class="math notranslate nohighlight">\(D\)</span> in the graph below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">25</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span> <span class="p">,</span><span class="n">lw</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1000</span><span class="p">)),</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="mf">2.3</span><span class="p">,</span> <span class="mf">0.965</span><span class="p">),</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mf">2.3</span><span class="p">,</span> <span class="mf">0.77</span><span class="p">),</span>
+            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s2">&quot;&lt;-&gt;&quot;</span><span class="p">,</span><span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">2.6</span><span class="p">,</span><span class="mf">0.86</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;CDF 1&#39;</span><span class="p">,</span> <span class="s1">&#39;CDF 2&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Comparing CDFs for K-S test&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/103f7da26070132a39db77c7a14ae23998f65243c028ff74e3cb3933b67af700.png" src="../_images/103f7da26070132a39db77c7a14ae23998f65243c028ff74e3cb3933b67af700.png" />
+</div>
+</div>
+<p>The key question is how often would the value of <span class="math notranslate nohighlight">\(D\)</span> computed from the data arise by chance if the two samples were drawn from the <em>same</em> distribution (the null hypothesis in this case). Surprisingly, this question has a well-defined answer even when we know nothing about the underlying distribution. Kolmogorov showed in 1933 that the probability of obtaining by chance a value of <span class="math notranslate nohighlight">\(D\)</span> larger than the measured value is given by the function</p>
+<div class="math notranslate nohighlight">
+\[\qquad \qquad \qquad Q_{KS}(\lambda) = 2\sum^{\infty}_{k=1} (-1)^{k-1}e^{-2k^2\lambda^2} \qquad\qquad\qquad (1)\]</div>
+<p>where the argument <span class="math notranslate nohighlight">\(\lambda\)</span> can be accurately described by the following approximation:</p>
+<div class="math notranslate nohighlight">
+\[\lambda = \bigg(0.12 + \sqrt{n_e} + \frac{0.11}{\sqrt{n_e}}\bigg)D \]</div>
+<p>where the number of effective data points is computed from</p>
+<div class="math notranslate nohighlight">
+\[n_e = \frac{N_1N_2}{N_1 +N_2}. \]</div>
+<p>Note that for large <span class="math notranslate nohighlight">\(n_e\)</span>, <span class="math notranslate nohighlight">\(\lambda \approx \sqrt{n_e}D\)</span>. If the probability that a given value of <span class="math notranslate nohighlight">\(D\)</span> is due to chance is very small (e.g., 0.01 or 0.05), we can reject the null hypothesis that the two samples were drawn from the same underlying distribution.</p>
+<p>For <span class="math notranslate nohighlight">\(n_e\)</span> greater than about 10 or so, we can bypass <span class="math notranslate nohighlight">\(\text{eq}\:(1)\)</span> and use the following approximation to evaluate <span class="math notranslate nohighlight">\(D\)</span> corresponding to a given probability <span class="math notranslate nohighlight">\(\alpha\)</span> of obtaining a value at least that large:</p>
+<p>$<span class="math notranslate nohighlight">\(D_{KS} = \frac{C(\alpha)}{\sqrt{n_e}} \)</span>$,</p>
+<p>where <span class="math notranslate nohighlight">\(C(\alpha = 0.05)= 1.36\)</span> and <span class="math notranslate nohighlight">\(C(\alpha = 0.01)= 1.63\)</span>. Note that the ability to reject the null hypothesis (if it really is false) increases with <span class="math notranslate nohighlight">\(\sqrt{n_e}\)</span>.</p>
+<ul class="simple">
+<li><p><strong>Example</strong>: if <span class="math notranslate nohighlight">\(n_e\)</span> = 100, then <span class="math notranslate nohighlight">\(D&gt; D_{KS}\)</span> = 0.163 would arise by chance in only 1% of all trials. If the actual data-based value is indeed 0.163, we can reject the null hypothesis that the data were drawn from the same (unknown) distribution, with our decision being correct 99 out of 100 cases.</p></li>
+</ul>
+<p>We can also use the K-S test to ask, “Is the measured <span class="math notranslate nohighlight">\(f(x)\)</span> consistent with a known reference distribution function <span class="math notranslate nohighlight">\(h(x)\)</span>?” This is known as the “one sample” K-S test, as opposed to the “two sample” K-S test discussed above. In this case, <span class="math notranslate nohighlight">\(N_1 = N\)</span> and <span class="math notranslate nohighlight">\(N_2 = \infty\)</span>, and thus <span class="math notranslate nohighlight">\(n_e = N\)</span>. Again, a small value of <span class="math notranslate nohighlight">\(Q_{KS}\)</span> (or <span class="math notranslate nohighlight">\(D &gt; D_{KS}\)</span>) indicates that it is unlikely, at the given confidence level set by <span class="math notranslate nohighlight">\(\alpha\)</span>, that the data summarized by <span class="math notranslate nohighlight">\(f(x)\)</span> were drawn from <span class="math notranslate nohighlight">\(h(x)\)</span>.</p>
+<p>The K-S test is sensitive to the underlying distribution’s location, scale, and shape. Additionally, because the test relies on cumulative distributions, it is invariant to the reparametrization of <span class="math notranslate nohighlight">\(x\)</span> (we would get the same answer if we used <span class="math notranslate nohighlight">\(\ln{x}\)</span> instead of <span class="math notranslate nohighlight">\(x\)</span>). The K-S test’s main strength (but also its main weakness) is its ignorance about the underlying distribution. For example, the test is insensitive to details in the differential distribution function (e.g., narrow regions where it drops to zero) and more sensitive near the center distribution than at the tails. The K-S test is not the best choice for distinguishing samples drawn from Gaussian and exponential distributions (see <span class="math notranslate nohighlight">\(\S\)</span>4.7.4).</p>
+<section id="python-implementation-of-the-k-s-test">
+<h3>Python implementation of the K-S test<a class="headerlink" href="#python-implementation-of-the-k-s-test" title="Permalink to this headline">#</a></h3>
+<p>The K-S test and its variations can be performed in Python using the routines <code class="docutils literal notranslate"><span class="pre">kstest</span></code>, <code class="docutils literal notranslate"><span class="pre">ks_2samp</span></code>, and <code class="docutils literal notranslate"><span class="pre">kstwo</span></code> from the module <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>.</p>
+<p>In the example below, we use <code class="docutils literal notranslate"><span class="pre">np.random.normal</span></code> to sample a standard Gaussian distribution (<span class="math notranslate nohighlight">\(\mu\)</span> = 0, <span class="math notranslate nohighlight">\(\sigma\)</span> =1). Then we will use <code class="docutils literal notranslate"><span class="pre">kstest</span></code>, which takes the sample with an underlying distribution we wish to know and compares it against a given distribution. First, we will compare it against a normal distribution and, afterward, a Uniform distribution on [0,1]. We’ll see <span class="math notranslate nohighlight">\(p &gt; 0.05\)</span> when the sample is compared to a normal distribution, whereas <span class="math notranslate nohighlight">\(p &lt; 0.05\)</span> when we compare the sample to a Uniform distribution. Thus, we <em><strong>cannot</strong></em> reject the null hypothesis that the two samples came from the same distribution for the first case, but we <em><strong>can</strong></em> reject it for the second case, which is expected.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Normal: </span><span class="si">{</span><span class="n">stats</span><span class="o">.</span><span class="n">kstest</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;norm&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Uniform: </span><span class="si">{</span><span class="n">stats</span><span class="o">.</span><span class="n">kstest</span><span class="p">(</span><span class="n">vals</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;uniform&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Normal: KstestResult(statistic=0.03737519429804048, pvalue=0.11930823166569182)
+Laplace: KstestResult(statistic=0.524, pvalue=3.108930667670788e-256)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Additionally, <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> contains the class <code class="docutils literal notranslate"><span class="pre">ks2_samp</span></code>, which takes two samples and performs the K-S test. We’ll see again that <span class="math notranslate nohighlight">\(p &lt; 0.05\)</span> when we compare a Uniform distribution to a normal distribution, and thus we can reject the null hypothesis that the two samples came from the same distribution, whereas when we compare two normal distributions, <span class="math notranslate nohighlight">\(p &gt; 0.05\)</span> and we cannot reject the null hypothesis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">sample1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">sample2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">110</span><span class="p">)</span>
+<span class="n">sample3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">95</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Uniform vs. Normal: </span><span class="si">{</span><span class="n">stats</span><span class="o">.</span><span class="n">ks_2samp</span><span class="p">(</span><span class="n">sample1</span><span class="p">,</span><span class="w"> </span><span class="n">sample2</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Normal vs. Normal: </span><span class="si">{</span><span class="n">stats</span><span class="o">.</span><span class="n">ks_2samp</span><span class="p">(</span><span class="n">sample2</span><span class="p">,</span><span class="w"> </span><span class="n">sample3</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Uniform vs. Normal: KstestResult(statistic=0.4627272727272727, pvalue=1.1459255766510523e-10)
+Normal vs. Normal: KstestResult(statistic=0.1645933014354067, pvalue=0.10999225789270017)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lastly, we’ll show an example using <code class="docutils literal notranslate"><span class="pre">scipy.stats.kstwo</span></code>, which performs the two-sided test statistic distribution. Similarly to other <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code> classes, we can calculate the first four moments using <code class="docutils literal notranslate"><span class="pre">kstwo.stats</span></code>. Additionally, we can compare the histogram of random samples generated using <code class="docutils literal notranslate"><span class="pre">kstwo.rvs</span></code> to the pdf using <code class="docutils literal notranslate"><span class="pre">kstwo.pdf</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">kstwo</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Calculate the first four moments for a given n</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">mean</span><span class="p">,</span> <span class="n">var</span><span class="p">,</span> <span class="n">skew</span><span class="p">,</span> <span class="n">kurt</span> <span class="o">=</span> <span class="n">kstwo</span><span class="o">.</span><span class="n">stats</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">moments</span><span class="o">=</span><span class="s1">&#39;mvsk&#39;</span><span class="p">)</span>
+
+<span class="c1">#Generate random values</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">kstwo</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1">#Plot the ksone pdf and histogram</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">kstwo</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">kstwo</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="s1">&#39;auto&#39;</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s1">&#39;kstwo hist&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">kstwo</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;kstwo pdf&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;best&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/93eb84896cc8a8d2f7956c65a336d3dbce8a96bcddc3e90117bc602194001bd9.png" src="../_images/93eb84896cc8a8d2f7956c65a336d3dbce8a96bcddc3e90117bc602194001bd9.png" />
+</div>
+</div>
+</section>
+<section id="the-u-test-and-the-wilcoxon-test">
+<h3><em>The U test and the Wilcoxon test</em><a class="headerlink" href="#the-u-test-and-the-wilcoxon-test" title="Permalink to this headline">#</a></h3>
+<p>The K-S test, as well as other nonparametric methods for comparing distributions, are often sensitive to more than one distribution property, such as the location or scale parameters. We often care about differences in only a particular statistic, such as the mean value, and do not care about the others. For these cases, there exist several nonparametric tests analogous to the better-known classical parametric tests: the <span class="math notranslate nohighlight">\(t\)</span> test and the paired <span class="math notranslate nohighlight">\(t\)</span> test. These are based on the ranks of data points and not their values.</p>
+<p>The <strong><span class="math notranslate nohighlight">\(U\)</span> test</strong>, or the Mann-Whitney-Wilcoxon test (or the Wilcoxon rank-sum test), is a nonparametric test for testing whether two data sets are drawn from distributions with different location parameters (if the distributions are known to be Gaussian, the standard classical test is called the <span class="math notranslate nohighlight">\(t\)</span> test). The sensitivity of the <span class="math notranslate nohighlight">\(U\)</span> test is dominated by a difference in the medians of the two tested distributions.</p>
+<p>The <strong><span class="math notranslate nohighlight">\(U\)</span> statistic</strong> is determined using ranks for the full sample obtained by concatenating the two data sets and sorting them while retaining the information about which data set a value came from. To compute the <span class="math notranslate nohighlight">\(U\)</span> statistic, take each value from sample 1 and count the number of observations in sample 2 that have a smaller rank (in the case of identical values, take half a count). The sum of these counts is <span class="math notranslate nohighlight">\(U\)</span>, and the minimum of the values with the samples reversed is used to assess the significance. For cases with more than about 20 points per sample, the <span class="math notranslate nohighlight">\(U\)</span> statistic for sample 1 can be more easily computed as</p>
+<div class="math notranslate nohighlight">
+\[U_1 = R_1 - \frac{N_1(N_1-1)}{2} \]</div>
+<p>where <span class="math notranslate nohighlight">\(R_1\)</span> is the sum of ranks for sample 1 and analogously for sample 2. The adopted <span class="math notranslate nohighlight">\(U\)</span> statistic is the smaller of the two (note that <span class="math notranslate nohighlight">\(U_1+U_2 = N_1N_2\)</span>, which can be used to check computations). The behavior for <span class="math notranslate nohighlight">\(U\)</span> for large samples can be well approximated with a Gaussian distribution, <span class="math notranslate nohighlight">\(\mathcal{N}(\mu_U,\sigma_U)\)</span>, of the variable</p>
+<div class="math notranslate nohighlight">
+\[z = \frac{U-\mu_U}{\sigma_U} \]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[\mu_U = \frac{N_1N_2}{2} \]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\sigma_U = \sqrt{\frac{N_1N_2(N_1+N_2+1)}{12}}. \]</div>
+<p>A particular case of comparing the means of two data sets is when the data sets have the same size  (<span class="math notranslate nohighlight">\(N_1 = N_2 = N\)</span>), and data points are paired. For example, the two data sets could correspond to the same sample measured twice, before and after something that could have affected the values, and we are testing for evidence of a change in means values. The nonparametric <strong>Wilcoxon signed-rank test</strong> can be used to compare the means of two arbitrary distributions. The test is based on differences <span class="math notranslate nohighlight">\(y_i=x1_i-x2_i\)</span>, and the values with <span class="math notranslate nohighlight">\(y_1=0\)</span> are excluded, yielding the new sample size <span class="math notranslate nohighlight">\(m &lt; N\)</span>. The sample is ordered by <span class="math notranslate nohighlight">\(|y_i|\)</span>, resulting in the rank <span class="math notranslate nohighlight">\(R_i\)</span> for each pair, and each pair is assigned <span class="math notranslate nohighlight">\(\Phi = 1\)</span> if <span class="math notranslate nohighlight">\(x1_i &gt; x2_i\)</span> and 0 otherwise. The Wilcoxon signed-ranked statistic is then</p>
+<div class="math notranslate nohighlight">
+\[W_+ = \sum^m_i \Phi_iR_i \]</div>
+<p>that is, all the ranks with <span class="math notranslate nohighlight">\(y_i &gt; 0\)</span> are summed. Analogously, <span class="math notranslate nohighlight">\(W_{-}\)</span> is the sum of all the ranks with <span class="math notranslate nohighlight">\(y_i &lt; 0\)</span>, and the statistic <span class="math notranslate nohighlight">\(T\)</span> is the smaller of the two. For small values of <span class="math notranslate nohighlight">\(m\)</span>, the significance of <span class="math notranslate nohighlight">\(T\)</span> can be found in tables. For <span class="math notranslate nohighlight">\(m\)</span> larger than about 20, the behavior of <span class="math notranslate nohighlight">\(T\)</span> can be well approximated with a Gaussian distribution. <span class="math notranslate nohighlight">\(\mathcal{N} (\mu_T, \sigma_T)\)</span>, of the variable</p>
+<div class="math notranslate nohighlight">
+\[z = \frac{T-\mu_T}{\sigma_T} \]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[\mu_T = \frac{N(2N+1)}{2} \]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\sigma_T = N \sqrt{\frac{(2N+1)}{12}}. \]</div>
+<section id="python-implementation-of-the-u-test-and-the-wilcoxon-test">
+<h4>Python implementation of the U test and the Wilcoxon test<a class="headerlink" href="#python-implementation-of-the-u-test-and-the-wilcoxon-test" title="Permalink to this headline">#</a></h4>
+<p>The <span class="math notranslate nohighlight">\(U\)</span> test and Wilcoxon-rank-sum test are implemented in <code class="docutils literal notranslate"><span class="pre">mannwhitneyu</span></code> and <code class="docutils literal notranslate"><span class="pre">ranksums</span></code> within the <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>; these are equivalent functions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">mannwhitneyu</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>MannwhitneyuResult(statistic=482654.0, pvalue=0.17919398705643008)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span> <span class="c1"># same shape but different location and scale parameters</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">ranksums</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span> <span class="c1"># different shapes, same location</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">ranksums</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>RanksumsResult(statistic=-2.6435517147698615, pvalue=0.008204123191145227)
+RanksumsResult(statistic=-2.1280433697217225, pvalue=0.03333348790392057)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="python-implementation-of-wilcoxon-signed-rank-test">
+<h4>Python implementation of Wilcoxon signed-rank test<a class="headerlink" href="#python-implementation-of-wilcoxon-signed-rank-test" title="Permalink to this headline">#</a></h4>
+<p>The Wilcoxon signed-rank test can be performed with the function <code class="docutils literal notranslate"><span class="pre">scipy.stats.wilcoxon</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">wilcoxon</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">wilcoxon</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WilcoxonResult(statistic=238373.0, pvalue=0.19357179019702442)
+WilcoxonResult(statistic=29627.0, pvalue=1.8119410593156403e-24)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="comparison-of-two-dimensional-distributions">
+<h2>Comparison of two-dimensional distributions<a class="headerlink" href="#comparison-of-two-dimensional-distributions" title="Permalink to this headline">#</a></h2>
+<p>For multidimensional distribution, the cumulative probability distribution is not well defined in more than one dimension. Thus, there <em>does not exist</em> a direct analog to the K-S test for distributions that are multidimensional. However, we can use a similar method developed by Fasano and Franceschini, which goes as follows:</p>
+<ul class="simple">
+<li><p>Assume we have two sets of data points, <span class="math notranslate nohighlight">\(\{x_i^A, y_i^A\}\)</span>, <span class="math notranslate nohighlight">\(i = 1,...,N_A\)</span> and <span class="math notranslate nohighlight">\(\{x_i^B, y_i^B\}\)</span>, <span class="math notranslate nohighlight">\(i = 1,...,N_B\)</span>. Define four quadrants centered on the point <span class="math notranslate nohighlight">\(\{x_j^A, y_j^A\}\)</span>.</p></li>
+<li><p>Compute the number of data points from each data set in each quadrant.</p></li>
+<li><p>Record the maximum difference among the four quadrants between the fractions for data sets <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>.</p></li>
+<li><p>Repeat for all data points <span class="math notranslate nohighlight">\(\{x_j^A, y_j^A\}\)</span> from sample <span class="math notranslate nohighlight">\(A\)</span> to get the overall maximum difference, <span class="math notranslate nohighlight">\(D_A\)</span>, and repeat the same process for sample <span class="math notranslate nohighlight">\(B\)</span>. The final statistic is then <span class="math notranslate nohighlight">\(D = (D_A+D_B)/2\)</span></p></li>
+</ul>
+<p>Note that although it isn’t necessarily true that the distribution of <span class="math notranslate nohighlight">\(D\)</span> is independent of the details of the underlying distributions, Fasano and Franceschini showed that its variation is captured well by the coefficient of correlation, <span class="math notranslate nohighlight">\(\rho\)</span>. Using simulated samples, they derived the following behavior analogous to the one-dimensional K-S Test:</p>
+<div class="math notranslate nohighlight">
+\[\lambda = \frac{\sqrt{n_e}D}{1+(0.25-0.75/\sqrt{n_e})\sqrt{1-\rho^2}}\]</div>
+<p>This value of <span class="math notranslate nohighlight">\(\lambda\)</span> can be used with <span class="math notranslate nohighlight">\(\text{eq}\:(1)\)</span> to compute the significance level of <span class="math notranslate nohighlight">\(D\)</span> when <span class="math notranslate nohighlight">\(n_e &gt;20\)</span>.</p>
+</section>
+<section id="is-my-distribution-really-gaussian">
+<h2>Is my distribution really Gaussian?<a class="headerlink" href="#is-my-distribution-really-gaussian" title="Permalink to this headline">#</a></h2>
+<p>When asking, “Is the measured <span class="math notranslate nohighlight">\(f(x)\)</span> consistent with a known reference distribution <span class="math notranslate nohighlight">\(h(x)\)</span>?”, a few standard statistical tests can be used when we know or can assume that both <span class="math notranslate nohighlight">\(h(x)\)</span> and <span class="math notranslate nohighlight">\(f(x)\)</span> are Gaussian distributions. We thus need to first reliably prove that our data is, in fact, consistent with being a Gaussian.</p>
+<p>Assume we have a data set <span class="math notranslate nohighlight">\(\{x_i\}\)</span>; we want to know if we can reject the null hypothesis that <span class="math notranslate nohighlight">\(\{x_i\}\)</span> was drawn from a Gaussian distribution. We aren’t concerned with scale and location parameters at the moment but only whether the <em>shape</em> of the distribution is Gaussian. Common reasons for deviations from a Gaussian are nonzero skewness, nonzero kurtosis, or a complex combination of deviations. Numerous tests are available in statistical literature which have varying sensitivity to different deviations.</p>
+<ul class="simple">
+<li><p><strong>Example</strong>: The difference between the mean and median for a given data set is sensitive to nonzero skewness but has no sensitivity whatsoever to changes in kurtosis. Therefore, if one is trying to detect a difference between the Gaussian <span class="math notranslate nohighlight">\(\mathcal{N}(\mu = 4, \sigma = 2)\)</span> and the Poisson distribution with <span class="math notranslate nohighlight">\(\mu=4\)</span>, the difference between the mean and the median might be a good test (0 vs. 1/6 for large samples), but it will not catch the difference between a Gaussian and an exponential distribution no matter what the size of the sample.</p></li>
+</ul>
+<p>A common feature of most tests is to predict the distribution of their chosen statistic under the assumption that the null hypothesis is true. An added complexity is whether the test uses any parameter estimates derived from data.</p>
+<p>The first test we’ll discuss is the <strong>Anderson-Darling test</strong>, specialized to the case of a Gaussian distribution. The test is based on the statistic</p>
+<div class="math notranslate nohighlight">
+\[ A^2 = -N - \frac{1}{N}\sum^N_{i=1}[(2i-1)\ln(F_i)+(2N-2i+1)\ln(1-F_i)] \]</div>
+<p>where <span class="math notranslate nohighlight">\(F_i\)</span> is the <span class="math notranslate nohighlight">\(i\)</span>th value of the cumulative distribution function <span class="math notranslate nohighlight">\(z_i\)</span>, which is defined as</p>
+<div class="math notranslate nohighlight">
+\[z_i = \frac{x_i-\mu}{\sigma}\]</div>
+<p>and assumed to be in ascending order. In this expression, either one or both of <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> can be known or determined from data <span class="math notranslate nohighlight">\(\{x_i\}\)</span>. Depending on which parameters are determined from data, the statistical behavior of <span class="math notranslate nohighlight">\(A^2\)</span> varies. Furthermore, if <strong>both</strong> <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> are determined from data, then <span class="math notranslate nohighlight">\(A^2\)</span> needs to be multiplied by <span class="math notranslate nohighlight">\((1+4/N-25/N^2)\)</span>. The specialization to a Gaussian distribution enters when predicting the detailed statistical behavior of <span class="math notranslate nohighlight">\(A^2\)</span>, and its values for a few common significance levels <span class="math notranslate nohighlight">\((p)\)</span> are listed in Table <span class="math notranslate nohighlight">\(4.1\)</span>. The values corresponding to other significance levels as well as the statistical behavior of <span class="math notranslate nohighlight">\(A^2\)</span> in the case of distributions other than Gaussian can be computed with simple numerical simulations.</p>
+<p><img alt="table4.1.png" src="chapter4/attachment:table4.1.png" /></p>
+<section id="python-implementation-of-the-anderson-darling-test">
+<h3>Python Implementation of the Anderson-Darling test<a class="headerlink" href="#python-implementation-of-the-anderson-darling-test" title="Permalink to this headline">#</a></h3>
+<p>The Anderson–Darling test can be performed with the function <code class="docutils literal notranslate"><span class="pre">scipy.stats.anderson</span></code>. We’ll find that for this random data set, the Anderson-Darling test statistic is 0.877. If we examine the critical values and significance levels, we can see that the statistic exceeds the critical value corresponding with a significance level of 2.5%; thus, we can reject the null hypothesis at a significance level of 2.5%, but we cannot at a significance level of 1%.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">A</span><span class="p">,</span> <span class="n">crit</span><span class="p">,</span> <span class="n">sig</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">anderson</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="s2">&quot;norm&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;Anderson-Darling Statistic:  </span><span class="si">{</span><span class="n">A</span><span class="si">}</span>
+<span class="s2">critical values:  </span><span class="si">{</span><span class="n">crit</span><span class="si">}</span>
+<span class="s2">significance levels:  </span><span class="si">{</span><span class="n">sig</span><span class="si">}</span><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Anderson-Darling Statistic:  0.8770622861248185
+critical values:  [0.538 0.613 0.736 0.858 1.021]
+significance levels:  [15.  10.   5.   2.5  1. ]
+</pre></div>
+</div>
+</div>
+</div>
+<p>The K-S test can also be used to detect a difference between <span class="math notranslate nohighlight">\(f(x)\)</span> and <span class="math notranslate nohighlight">\(\mathcal{N}(\mu,\sigma)\)</span>. A difficulty arises if <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> are determined from the same data set: in this case, the behavior of <span class="math notranslate nohighlight">\(Q_{KS}\)</span> is different from that given by <span class="math notranslate nohighlight">\(\text{eq}\:(1)\)</span> and has only been determined using Monte Carlo simulations.</p>
+<p>Another test for detecting non-Gaussianity in <span class="math notranslate nohighlight">\(\{x_i\}\)</span> is the <strong>Shapiro-Wilk test</strong>. It is implemented in a number of statistical programs and based on both data values <span class="math notranslate nohighlight">\(x_i\)</span> and data ranks <span class="math notranslate nohighlight">\(R_i\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[W = \frac{\big(\sum^N_{i=1}a_iR_i\big)^2}{\sum^N_{i=1}(x_i-\overline{x})^2} \]</div>
+<p>where constants <span class="math notranslate nohighlight">\(a_i\)</span> encode the expected values of the order statistics for random variables sampled from the standard normal distribution (the test’s null hypothesis). The Shapiro-Wilk test is very sensitive to non-Gaussian tails of the distribution (“outliers”) but not as much to detailed departures from Gaussianity in the distribution’s core.</p>
+</section>
+<section id="python-implementation-of-the-shapirowilk-test">
+<h3>Python Implementation of the Shapiro–Wilk test<a class="headerlink" href="#python-implementation-of-the-shapirowilk-test" title="Permalink to this headline">#</a></h3>
+<p>The Shapiro–Wilk test is implemented in <code class="docutils literal notranslate"><span class="pre">scipy.stats.shapiro</span></code>. A value of <span class="math notranslate nohighlight">\(W\)</span> close to 1 indicates that the data is indeed Gaussian. Additionally, it still holds that if <span class="math notranslate nohighlight">\(p &lt; 0.05\)</span>, we reject the null hypothesis that the distribution came from a Gaussian.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>ShapiroResult(statistic=0.9985557794570923, pvalue=0.5914123058319092)
+ShapiroResult(statistic=0.9477643966674805, pvalue=0.0005927692400291562)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Often the biggest deviation from Gaussianity is due to so-called “catastrophic outliers,” or largely discrepant values many <span class="math notranslate nohighlight">\(\sigma\)</span> away from <span class="math notranslate nohighlight">\(\mu\)</span>.</p>
+<ul class="simple">
+<li><p><strong>Example</strong>: the overwhelming majority of measurements of fluxes of objects in an astronomical image many follow a Gaussian distribution. However, for just a few of them, unrecognized cosmic rays could have had a significant impact on flux extraction.</p></li>
+</ul>
+<p>A simple method to detect the presence of such outliers is to compare the sample standard deviation, <span class="math notranslate nohighlight">\(s\)</span>, and <span class="math notranslate nohighlight">\(\sigma_G\)</span>, recalling that <span class="math notranslate nohighlight">\(s\)</span> is equal to</p>
+<div class="math notranslate nohighlight">
+\[ \qquad \qquad s = \sqrt{\frac{1}{N-1}\sum^N_{i=1}(x_i-\overline{x})^2} \qquad \qquad (2)\]</div>
+<p>and <span class="math notranslate nohighlight">\(\sigma_G\)</span> is equal to</p>
+<div class="math notranslate nohighlight">
+\[ \sigma_G = 0.7413(q_{75} - q_{25}). \]</div>
+<p>Even when the outlier fraction is tiny, the ratio <span class="math notranslate nohighlight">\(s/\sigma_G\)</span> can become significantly large. When <span class="math notranslate nohighlight">\(N &gt; 100\)</span>, for a Gaussian distribution (i.e., for the null hypothesis), this ratio follows a nearly Gaussian distribution with <span class="math notranslate nohighlight">\(\mu \sim 1\)</span> and with <span class="math notranslate nohighlight">\(\sigma \sim 0.92/\sqrt{N}\)</span>.</p>
+<ul class="simple">
+<li><p><strong>Example</strong>: if you measure <span class="math notranslate nohighlight">\(s/\sigma_G = 1.3\)</span> using a sample with <span class="math notranslate nohighlight">\(N=100\)</span>, then you can state that the probability of such a large value appearing by chance is less than 1% and reject the null hypothesis that your sample was drawn from a Gaussian distribution.</p></li>
+</ul>
+<p>Another useful result is that the difference of the mean and the median drawn from a Gaussian distribution also follows a nearly Gaussian distribution with <span class="math notranslate nohighlight">\(\mu \sim 0\)</span> and <span class="math notranslate nohighlight">\(\sigma \sim 0.76s/\sqrt{N}\)</span>. Therefore, when <span class="math notranslate nohighlight">\(N&gt;100\)</span>, we can define two simple statistics based on the measured values of  (<span class="math notranslate nohighlight">\(\mu,q_{50},s, \text{and}\:\sigma_G\)</span>) that both measure departures in terms of Gaussian-like “sigma”:</p>
+<div class="math notranslate nohighlight">
+\[Z_1 = 1.3\frac{|\mu-q_{50}|}{s}\sqrt{N}\]</div>
+<p>and</p>
+<p>$<span class="math notranslate nohighlight">\(Z_2= 1.1\bigg|\frac{s}{\sigma_G}-1\bigg|\sqrt{N}\)</span>$.</p>
+<p>Similar results for the statistical behavior of various statistics can be easily derived using Monte Carlo samples.</p>
+<p>In the example below, we’ll show the results of these tests when applied to samples of <span class="math notranslate nohighlight">\(N = 10,000\)</span> values selected from a Gaussian distribution and from a mixture of two Gaussian distributions. For data that depart from a Gaussian distribution, we expect the Anderson–Darling <span class="math notranslate nohighlight">\(A^2\)</span> statistic to be much larger than 1 (see table 4.1), the K-S <span class="math notranslate nohighlight">\(D\)</span> statistic to be much larger than <span class="math notranslate nohighlight">\(1/\sqrt{N}\)</span>, the Shapiro–Wilk <span class="math notranslate nohighlight">\(W\)</span> statistic to be smaller than 1, and <span class="math notranslate nohighlight">\(Z_1\)</span> and <span class="math notranslate nohighlight">\(Z_2\)</span> to be larger than several <span class="math notranslate nohighlight">\(\sigma\)</span>. All these tests correctly identify the first data set as being normally distributed, and the second data set as departing from normality.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">astroML.stats</span> <span class="kn">import</span> <span class="n">mean_sigma</span><span class="p">,</span> <span class="n">median_sigmaG</span>
+
+<span class="c1"># create distributions</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">normal_vals</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span> <span class="c1"># singular Gaussian</span>
+
+<span class="n">dual_vals</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<span class="n">dual_vals</span><span class="p">[:</span><span class="mi">4000</span><span class="p">]</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">4000</span><span class="p">)</span> <span class="c1"># mixture of two Gaussians</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">normal_pdf</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># pdf for singular Gaussian</span>
+<span class="n">dual_pdf</span> <span class="o">=</span> <span class="mf">0.6</span> <span class="o">*</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.4</span> <span class="o">*</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1">#pdf for mixture of two Gaussians</span>
+
+<span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="n">normal_vals</span><span class="p">,</span> <span class="n">dual_vals</span><span class="p">]</span>
+<span class="n">pdf</span> <span class="o">=</span> <span class="p">[</span><span class="n">normal_pdf</span><span class="p">,</span> <span class="n">dual_pdf</span><span class="p">]</span>
+<span class="n">xlims</span> <span class="o">=</span> <span class="p">[(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]</span>
+
+<span class="c1">#------------------------------------------------------------</span>
+<span class="c1"># Compute the statistics and plot the results</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># compute statistics</span>
+    <span class="n">A2</span><span class="p">,</span> <span class="n">sig</span><span class="p">,</span> <span class="n">crit</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">anderson</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> 
+    <span class="n">D</span><span class="p">,</span> <span class="n">pD</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">kstest</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s2">&quot;norm&quot;</span><span class="p">)</span>  
+    <span class="n">W</span><span class="p">,</span> <span class="n">pW</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">shapiro</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>  
+    
+    <span class="n">mu</span><span class="p">,</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">mean_sigma</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">median</span><span class="p">,</span> <span class="n">sigmaG</span> <span class="o">=</span> <span class="n">median_sigmaG</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">Z1</span> <span class="o">=</span> <span class="mf">1.3</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">mu</span> <span class="o">-</span> <span class="n">median</span><span class="p">)</span> <span class="o">/</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">Z2</span> <span class="o">=</span> <span class="mf">1.1</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">sigma</span> <span class="o">/</span> <span class="n">sigmaG</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+    <span class="c1"># display results in a table</span>
+    <span class="nb">print</span><span class="p">(</span><span class="mi">70</span> <span class="o">*</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Kolmogorov-Smirnov test: D = </span><span class="si">%.2g</span><span class="s2">  p = </span><span class="si">%.2g</span><span class="s2"> &quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">pD</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Anderson-Darling test: A^2 = </span><span class="si">%.2g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">A2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    significance  | critical value &quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    --------------|----------------&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sig</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    </span><span class="si">{0:.2f}</span><span class="s2">          | </span><span class="si">{1:.1f}</span><span class="s2">%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sig</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">crit</span><span class="p">[</span><span class="n">j</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Shapiro-Wilk test: W = </span><span class="si">%.2g</span><span class="s2"> p = </span><span class="si">%.2g</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">W</span><span class="p">,</span> <span class="n">pW</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Z_1 = </span><span class="si">%.1f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">Z1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  Z_2 = </span><span class="si">%.1f</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">Z2</span><span class="p">)</span>
+
+    <span class="c1"># plot a histogram</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">histtype</span><span class="o">=</span><span class="s1">&#39;stepfilled&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">pdf</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xlims</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="c1"># print information on the plot</span>
+    <span class="n">info</span> <span class="o">=</span> <span class="s2">&quot;Anderson-Darling: $A^2 = </span><span class="si">%.2f</span><span class="s2">$</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">A2</span>
+    <span class="n">info</span> <span class="o">+=</span> <span class="s2">&quot;Kolmogorov-Smirnov: $D = </span><span class="si">%.2g</span><span class="s2">$</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">D</span>
+    <span class="n">info</span> <span class="o">+=</span> <span class="s2">&quot;Shapiro-Wilk: $W = </span><span class="si">%.2g</span><span class="s2">$</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">W</span>
+    <span class="n">info</span> <span class="o">+=</span> <span class="s2">&quot;$Z_1 = </span><span class="si">%.1f</span><span class="s2">$</span><span class="se">\n</span><span class="s2">$Z_2 = </span><span class="si">%.1f</span><span class="s2">$&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">Z1</span><span class="p">,</span> <span class="n">Z2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.97</span><span class="p">,</span> <span class="mf">0.97</span><span class="p">,</span> <span class="n">info</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> 
+            <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+        
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$p(x)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>______________________________________________________________________
+  Kolmogorov-Smirnov test: D = 0.0076  p = 0.6 
+  Anderson-Darling test: A^2 = 0.29
+    significance  | critical value 
+    --------------|----------------
+    0.58          | 15.0%
+    0.66          | 10.0%
+    0.79          | 5.0%
+    0.92          | 2.5%
+    1.09          | 1.0%
+  Shapiro-Wilk test: W = 1 p = 0.59
+  Z_1 = 0.2
+  Z_2 = 1.0
+______________________________________________________________________
+  Kolmogorov-Smirnov test: D = 0.28  p = 0 
+  Anderson-Darling test: A^2 = 1.9e+02
+    significance  | critical value 
+    --------------|----------------
+    0.58          | 15.0%
+    0.66          | 10.0%
+    0.79          | 5.0%
+    0.92          | 2.5%
+    1.09          | 1.0%
+  Shapiro-Wilk test: W = 0.94 p = 0
+  Z_1 = 32.2
+  Z_2 = 2.5
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/scipy/stats/morestats.py:1760: UserWarning: p-value may not be accurate for N &gt; 5000.
+  warnings.warn(&quot;p-value may not be accurate for N &gt; 5000.&quot;)
+/Library/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/scipy/stats/morestats.py:1760: UserWarning: p-value may not be accurate for N &gt; 5000.
+  warnings.warn(&quot;p-value may not be accurate for N &gt; 5000.&quot;)
+</pre></div>
+</div>
+<img alt="../_images/8c8b3d6f560cdb8922f874953e7a4c13cdf4bde6fbe0f989b762b9da9cc54434.png" src="../_images/8c8b3d6f560cdb8922f874953e7a4c13cdf4bde6fbe0f989b762b9da9cc54434.png" />
+</div>
+</div>
+<p>In cases when our empirical distribution fails the tests for Gaussianity, but there is no strong motivation for choosing an alternative specific distribution, a good approach for modeling non-Gaussianity is to adopt the Gram–Charlier series,</p>
+<div class="math notranslate nohighlight">
+\[h(x) = \mathcal{N}(\mu,\sigma)\sum^\infty_{k=0}a_kH_k(z) \]</div>
+<p>where <span class="math notranslate nohighlight">\(z = (x-\mu)/\sigma\)</span> and <span class="math notranslate nohighlight">\(H_k(z)\)</span> are the Hermite polynomials (<span class="math notranslate nohighlight">\(H_0 = 1, H_1 = z, H_2 = z^2-1, H_3 = z^3 - 3z, \text{etc.}\)</span>). For “nearly Gaussian” distributions, even the first few terms of the series provide a good description of <span class="math notranslate nohighlight">\(h(x)\)</span>. A related expansion, the Edgeworth series, uses derivatives of <span class="math notranslate nohighlight">\(h(x)\)</span> to derive “correction” factors for a Gaussian distribution.</p>
+</section>
+</section>
+<section id="is-my-distribution-bimodal">
+<h2>Is my distribution bimodal?<a class="headerlink" href="#is-my-distribution-bimodal" title="Permalink to this headline">#</a></h2>
+<p>It frequently happens in practice that we want to test a hypothesis that the data were drawn from a unimodal distribution (e.g., in the context of studying the bimodal color distribution of galaxies, a bimodal distribution of radio emission from quasars, or the kinematic structure of the Galaxy’s halo). Answering this question can become quite involved, and we discuss it in chapter 5 (see <span class="math notranslate nohighlight">\(\S\)</span>5.7.3).</p>
+</section>
+<section id="parametric-methods-for-comparing-distributions">
+<h2>Parametric methods for comparing distributions<a class="headerlink" href="#parametric-methods-for-comparing-distributions" title="Permalink to this headline">#</a></h2>
+<p>Given a sample <span class="math notranslate nohighlight">\(\{x_i\}\)</span> that does <strong>not</strong> fail any test for Gaussianity, one can use a few standard statistical tests for comparing means and variances. They are more efficient than nonparametric tests, but often by much less than a factor of 2. As before, we assume that we are given two samples, <span class="math notranslate nohighlight">\(\{x1_i\}\)</span>, which <span class="math notranslate nohighlight">\(i=1,...,N_1\)</span> and <span class="math notranslate nohighlight">\(\{x2_i\}\)</span> with <span class="math notranslate nohighlight">\(i = 1,...,N_2\)</span>.</p>
+<section id="comparison-of-gaussian-means-using-the-t-test">
+<h3>Comparison of Gaussian means using the t test<a class="headerlink" href="#comparison-of-gaussian-means-using-the-t-test" title="Permalink to this headline">#</a></h3>
+<p>If the only question we are asking is whether our data <span class="math notranslate nohighlight">\(\{x1_i\}\)</span> and <span class="math notranslate nohighlight">\(\{x2_i\}\)</span> were drawn from two Gaussian distributions with a different <span class="math notranslate nohighlight">\(\mu\)</span> but the same <span class="math notranslate nohighlight">\(\sigma\)</span>, and we were given <span class="math notranslate nohighlight">\(\sigma\)</span>, the answer would be simple.</p>
+<ul class="simple">
+<li><p>We would first compute the mean values for both samples, <span class="math notranslate nohighlight">\(\overline{x1}\)</span> and <span class="math notranslate nohighlight">\(\overline{x2}\)</span> (where <span class="math notranslate nohighlight">\(\overline{x}\)</span> is equal to <span class="math notranslate nohighlight">\( \overline{x} = \frac{1}{N} \sum ^N_{i=1} x_i \)</span>) and their standard errors, <span class="math notranslate nohighlight">\(\sigma_{\overline{x1}} = \sigma/\sqrt{N_1}\)</span> and analogously for <span class="math notranslate nohighlight">\(\sigma_\overline{x2}\)</span>. We would then ask how large is the difference <span class="math notranslate nohighlight">\(\Delta = \overline{x1}-\overline{x2}\)</span> in terms of its expected scatter, <span class="math notranslate nohighlight">\(\sigma_\Delta = \sigma\sqrt{1/N_1^2+1/N_2^2}\)</span>: <span class="math notranslate nohighlight">\(M_\sigma = \Delta/ \sigma_\Delta\)</span>. The probability that the observed value of <span class="math notranslate nohighlight">\(M\)</span> would arise by chance is given by the Gauss error function as <span class="math notranslate nohighlight">\(p = 1-\text{erf}(M/\sqrt{2})\)</span>.</p></li>
+</ul>
+<p>If we do <em>not</em> know <span class="math notranslate nohighlight">\(\sigma\)</span>, but need to estimate it from data (with possibly different values for the two sample, <span class="math notranslate nohighlight">\(s_1\)</span> and <span class="math notranslate nohighlight">\(s_2\)</span> (eq <span class="math notranslate nohighlight">\((2)\)</span>), then the ratio <span class="math notranslate nohighlight">\(M_s = \Delta/s_\Delta\)</span>, where <span class="math notranslate nohighlight">\(s_\Delta = \sqrt{s_1^2/N_1 + s_2^2/N_2}\)</span>, can no longer be described by a Gaussian distribution! Instead, it follows Student’s <span class="math notranslate nohighlight">\(t\)</span> distribution. The number of degrees of freedom depends on whether we assume that the two underlying distributions from which the samples were drawn have the same variances or not. If we can make this assumption, then the relevant statistic (corresponding to <span class="math notranslate nohighlight">\(M_s\)</span>) is</p>
+<div class="math notranslate nohighlight">
+\[ \qquad \qquad \qquad t=\frac{\overline{x1}-\overline{x2}}{s_D}\qquad \qquad \qquad (3)\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\qquad \qquad s_D = \sqrt{s^2_{12}\bigg(\frac{1}{N_1}+\frac{1}{N_2}\bigg)} \qquad \qquad (4)\]</div>
+<p>is an estimate of the standard error of the difference of the means, and</p>
+<div class="math notranslate nohighlight">
+\[s_{12} = \sqrt{\frac{(N_1-1)s^2_1+(N_2-1)s^2_2}{N_1+N_2-2}} \]</div>
+<p>is an estimator of the common standard deviation of the two samples. The number of degrees of freedom is <span class="math notranslate nohighlight">\(k = (N_1+N_2-2)\)</span>. Hence, instead of looking up the significance of <span class="math notranslate nohighlight">\(M_\sigma = \Delta/\sigma_\Delta\)</span> using the Gaussian distribution <span class="math notranslate nohighlight">\(\mathcal{N}(0,1)\)</span>, we use the significance corresponding to <span class="math notranslate nohighlight">\(t\)</span> and Student’s <span class="math notranslate nohighlight">\(t\)</span> distribution with <span class="math notranslate nohighlight">\(k\)</span> degrees of freedom. For very large samples, this procedure tends to the simple case with known <span class="math notranslate nohighlight">\(\sigma\)</span> described in the first paragraph because Student’s <span class="math notranslate nohighlight">\(t\)</span> distribution tends to a Gaussian distribution (in other words, <span class="math notranslate nohighlight">\(s\)</span> converges to <span class="math notranslate nohighlight">\(\sigma\)</span>).</p>
+<p>A special case of comparing the means of two data sets is when the data sets have the same size <span class="math notranslate nohighlight">\((N_1 =N_2 =N)\)</span>and each pair of data points has the same <span class="math notranslate nohighlight">\(\sigma\)</span> ,but the value of <span class="math notranslate nohighlight">\(\sigma\)</span> is not the same for all pairs (recall the difference between the nonparametric <span class="math notranslate nohighlight">\(U\)</span> and the Wilcoxon tests). In this case, the <span class="math notranslate nohighlight">\(t\)</span> test for paired samples should be used. The expression eq. <span class="math notranslate nohighlight">\((3)\)</span> is still valid, but eq. <span class="math notranslate nohighlight">\((4)\)</span> needs to be modified as</p>
+<div class="math notranslate nohighlight">
+\[s_D = \sqrt{\frac{(N_1-1)s^2_1+(N_2-1)s^2_2-2\text{Cov}_{12}}{N}} \]</div>
+<p>where the covariance between the two samples is</p>
+<div class="math notranslate nohighlight">
+\[\text{Cov}_{12} = \frac{1}{N-1}\sum^N_{i=1}(x1_i-\overline{x1})(x2_i-\overline{x2}) \]</div>
+<p>Here the pairs of data points from the two samples need to be properly arranged when summing, and the number of degrees of freedom is <span class="math notranslate nohighlight">\(N-1\)</span>.</p>
+<section id="python-implementation-of-the-t-test">
+<h4>Python implementation of the <span class="math notranslate nohighlight">\(t\)</span> test<a class="headerlink" href="#python-implementation-of-the-t-test" title="Permalink to this headline">#</a></h4>
+<p>Variants of the <span class="math notranslate nohighlight">\(t\)</span> test can be computed using the routines <code class="docutils literal notranslate"><span class="pre">ttest_ind</span></code> and <code class="docutils literal notranslate"><span class="pre">ttest_1samp</span></code>, available in the module <code class="docutils literal notranslate"><span class="pre">scipy.stats</span></code>. <code class="docutils literal notranslate"><span class="pre">ttest_ind</span></code> computes the test for two independent samples; an example of it is shown below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">rvs1</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<span class="n">rvs2</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span> <span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">rvs1</span><span class="p">,</span> <span class="n">rvs2</span><span class="p">))</span>
+
+<span class="n">rvs3</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span><span class="o">+</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_ind</span><span class="p">(</span><span class="n">rvs1</span><span class="p">,</span> <span class="n">rvs3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_indResult(statistic=0.625416390541633, pvalue=0.5318407886123997)
+Ttest_indResult(statistic=-8.378738664093502, pvalue=1.8000707268010143e-16)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Additionally,<code class="docutils literal notranslate"><span class="pre">ttest_1samp</span></code> calculates the T-test for the mean of one group of scores. This is a test for the null hypothesis that the expected mean of a sample of independent observations <span class="math notranslate nohighlight">\(a\)</span> is equal to the given population mean, <em>popmean</em>. Assume we want to check the null hypothesis that the mean of a population is equal to 0.5. We’ll choose a confidence level of 95%</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">rvs_1</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">uniform</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">rvs_2</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">norm</span><span class="o">.</span><span class="n">rvs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_1samp</span><span class="p">(</span><span class="n">rvs_1</span><span class="p">,</span> <span class="n">popmean</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stats</span><span class="o">.</span><span class="n">ttest_1samp</span><span class="p">(</span><span class="n">rvs_2</span><span class="p">,</span> <span class="n">popmean</span><span class="o">=</span><span class="mf">0.5</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Ttest_1sampResult(statistic=-1.3317813022489975, pvalue=0.18909413335928232)
+Ttest_1sampResult(statistic=-4.030899743442583, pvalue=0.000193470853688186)
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected, for the uniform distribution between 0 and 1, we cannot reject the null hypothesis that the mean is 0.5. However, for the normal distribution centered at 0 with a standard deviation of 1 (which has a mean of 0), we can reject the null hypothesis that the population mean is equal to 0.5.</p>
+</section>
+</section>
+<section id="comparison-of-gaussian-variances-using-the-f-test">
+<h3>Comparison of Gaussian variances using the F test<a class="headerlink" href="#comparison-of-gaussian-variances-using-the-f-test" title="Permalink to this headline">#</a></h3>
+<p>The <span class="math notranslate nohighlight">\(F\)</span> test is used to compare the variances of two samples, <span class="math notranslate nohighlight">\({x1_i}\)</span> and <span class="math notranslate nohighlight">\({x2_i}\)</span>, drawn from two unspecified Gaussian distributions. The null hypothesis is that the variances of two samples are equal, and the statistic is based on the ratio of the sample variances. Comparison of Gaussian variances using the <span class="math notranslate nohighlight">\(F\)</span> test</p>
+<div class="math notranslate nohighlight">
+\[F = \frac{s^2_1}{s^2_2} \]</div>
+<p>where <span class="math notranslate nohighlight">\(F\)</span> follows Fisher’s <span class="math notranslate nohighlight">\(F\)</span> distribution with <span class="math notranslate nohighlight">\(d_1 = N_1 - 1\)</span> and <span class="math notranslate nohighlight">\(d_2 = N_2 - 1\)</span>. Situations when we are interested in only knowing whether <span class="math notranslate nohighlight">\(\sigma_1 &lt; \sigma_2\)</span> or <span class="math notranslate nohighlight">\(\sigma_2 &lt; \sigma_1\)</span> are treated by appropriately using the left and right tails of Fisher’s <span class="math notranslate nohighlight">\(F\)</span> distribution.</p>
+<section id="python-implementation-of-the-f-test">
+<h4>Python implementation of the <span class="math notranslate nohighlight">\(F\)</span> test<a class="headerlink" href="#python-implementation-of-the-f-test" title="Permalink to this headline">#</a></h4>
+<p>Below we will use the <span class="math notranslate nohighlight">\(F\)</span> test to compare the variances of two sample and then print the <span class="math notranslate nohighlight">\(p\)</span> value.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">stats</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
+<span class="n">df1</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="n">df1</span><span class="p">,</span> <span class="n">df2</span><span class="p">)</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">var</span><span class="p">()</span> <span class="o">/</span> <span class="n">y</span><span class="o">.</span><span class="n">var</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7290828317467344
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="astroml_chapter4_Hypothesis_testing.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Hypothesis Testing</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../chapter5/README.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Chapter 5: Bayesian Statistical Inference</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By AstroML developers<br/>
+  
+      &copy; Copyright 2020-2022, AstroML developers.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
