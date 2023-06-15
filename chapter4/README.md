@@ -13,4 +13,5 @@ astroml_chapter4_Gaussian_mixtures
 astroml_chapter4_Confidence_estimates
 astroml_chapter4_Hypothesis_testing
 astroml_chapter4_Comparison_of_distributions
+astroml_chapter4_Nonparametric_modeling_and_selection_effects
 ```
